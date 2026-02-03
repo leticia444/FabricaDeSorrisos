@@ -10,10 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Img\" />
-    <Folder Include="Navigation\" />
-    <Folder Include="InterfacesUI\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
 
