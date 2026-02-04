@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FabricaDeSorrisos.UI.InterfacesUI
 {
-    internal interface INavigationServic
+    internal interface INavigationService
     {
     }
 }
