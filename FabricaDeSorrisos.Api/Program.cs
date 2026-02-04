@@ -1,4 +1,4 @@
-using FabricaDeSorrisos.Infrastructure; // Para usar o AddInfrastructure
+using FabricaDeSorrisos.Infrastructure;
 using FabricaDeSorrisos.Infrastructure.Identity;
 using FabricaDeSorrisos.Infrastructure.Persistence;
 using FabricaDeSorrisos.Infrastructure.Persistence.Seed;
@@ -6,17 +6,30 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Adiciona os Controllers e Swagger
+// 1. Services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// 2. Adiciona a nossa camada de Infraestrutura (Banco e Login)
+// Adiciona a Infraestrutura (Banco, Repositórios, Services)
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// --- NOVO: Configuração de CORS ---
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowWeb", policy =>
+    {
+        // Ajuste as portas conforme o seu projeto Web roda (ex: 5001, 7001)
+        policy.WithOrigins("https://localhost:7001", "http://localhost:5001", "https://localhost:5001")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+// ----------------------------------
 
 var app = builder.Build();
 
-// 3. Configura o Pipeline HTTP
+// 2. Pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,29 +38,29 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Importante: Autenticação antes de Autorização
+// --- NOVO: Ativar CORS ---
+app.UseCors("AllowWeb"); // Tem que vir antes de Auth e MapControllers
+// -------------------------
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
-// 4. Roda o Seed (Cria o banco e o Admin automaticamente ao iniciar)
+// 3. Seed Data (Admin)
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
     try
     {
+        var services = scope.ServiceProvider;
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var context = services.GetRequiredService<AppDbContext>();
-
-        // Chama nosso método que cria o Admin
         await DatabaseSeeder.SeedAsync(userManager, roleManager, context);
     }
     catch (Exception ex)
     {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Ocorreu um erro ao popular o banco de dados.");
+        Console.WriteLine($"Erro no Seed: {ex.Message}");
     }
 }
 
