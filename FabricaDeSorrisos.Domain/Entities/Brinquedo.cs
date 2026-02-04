@@ -20,6 +20,18 @@ public class Brinquedo
     public int FaixaEtariaId { get; set; }
     public FaixaEtaria? FaixaEtaria { get; set; }
 
+
+    // Adicione essas propriedades no Brinquedo.cs:
+
+    // Personagem (Opcional)
+    public int? PersonagemId { get; set; }
+    public Personagem? Personagem { get; set; }
+
+    // SubCategoria (Opcional - o brinquedo já tem a Categoria principal obrigatória)
+    public int? SubCategoriaId { get; set; }
+    public SubCategoria? SubCategoria { get; set; }
+
+
     // Listas para funcionalidades futuras
     public ICollection<Avaliacao>? Avaliacoes { get; set; }
     public ICollection<Comentario>? Comentarios { get; set; }
