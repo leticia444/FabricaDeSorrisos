@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace FabricaDeSorrisos.Application.DTOs;
 
-namespace FabricaDeSorrisos.Application.DTOs
+public class CategoriaDto
 {
-    internal class CategoriaDto
-    {
-    }
+    public int Id { get; set; }
+    public string Nome { get; set; } = string.Empty;
+
+    // Lista simples com os nomes das subcategorias
+    public List<SubCategoriaDto> SubCategorias { get; set; } = new();
+}
+
+public class SubCategoriaDto
+{
+    public int Id { get; set; }
+    public string Nome { get; set; } = string.Empty;
 }

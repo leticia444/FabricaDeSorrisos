@@ -1,5 +1,9 @@
-﻿using FabricaDeSorrisos.Infrastructure.Identity;
+﻿using FabricaDeSorrisos.Application.Abstractions.Repositories;
+using FabricaDeSorrisos.Application.Abstractions.Services;
+using FabricaDeSorrisos.Infrastructure.Identity;
 using FabricaDeSorrisos.Infrastructure.Persistence;
+using FabricaDeSorrisos.Infrastructure.Repositories;
+using FabricaDeSorrisos.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +35,20 @@ public static class DependencyInjection
             options.Password.RequireUppercase = false;
             options.Password.RequiredLength = 3; // Senha curta para testar
         });
+
+
+        // 3. Registrar Repositórios
+        services.AddScoped<IBrinquedoRepository, EfBrinquedoRepository>();
+        services.AddScoped<ICategoriaRepository, EfCategoriaRepository>();
+        services.AddScoped<IMarcaRepository, EfMarcaRepository>();
+        services.AddScoped<IPersonagemRepository, EfPersonagemRepository>();
+        services.AddScoped<IFaixaEtariaRepository, EfFaixaEtariaRepository>();
+        // Adicione os de Avaliação e Favorito se criou os arquivos
+
+        // 4. Registrar Serviços de Leitura
+        services.AddScoped<IBrinquedoQueryService, BrinquedoQueryService>();
+        services.AddScoped<ICatalogLookupService, CatalogLookupService>();
+
 
         return services;
     }
