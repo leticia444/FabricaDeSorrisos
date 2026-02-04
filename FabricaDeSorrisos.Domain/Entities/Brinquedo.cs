@@ -23,4 +23,7 @@ public class Brinquedo
     // Listas para funcionalidades futuras
     public ICollection<Avaliacao>? Avaliacoes { get; set; }
     public ICollection<Comentario>? Comentarios { get; set; }
+
+    // Dentro da classe Brinquedo, adicione:
+    public ICollection<Favorito>? FavoritadosPor { get; set; }
 }

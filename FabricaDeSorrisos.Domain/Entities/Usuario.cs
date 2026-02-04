@@ -15,4 +15,5 @@ public class Usuario
     // Histórico do cliente
     public ICollection<Pedido>? Pedidos { get; set; }
     public int PontosFidelidade { get; set; } // Para o joguinho
+    public ICollection<Favorito>? Favoritos { get; set; }
 }
