@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FabricaDeSorrisos.Infrastructure.IoC
 {
-    internal class DependencyInjection
+    internal class IoC
     {
     }
 }
