@@ -1,8 +1,8 @@
 ﻿namespace FabricaDeSorrisos.Application.DTOs;
 
-public class MarcaDto
+public class PersonagemDto
 {
     public int Id { get; set; }
     public string Nome { get; set; } = string.Empty;
-    public string? LogotipoUrl { get; set; }
+    public string? ImagemUrl { get; set; }
 }
