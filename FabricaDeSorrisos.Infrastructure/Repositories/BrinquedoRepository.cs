@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FabricaDeSorrisos.Infrastructure.Repositories
 {
-    internal class ProdutoRepository
+    internal class BrinquedoRepository
     {
     }
 }
