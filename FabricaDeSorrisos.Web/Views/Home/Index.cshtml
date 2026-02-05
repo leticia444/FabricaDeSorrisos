@@ -1,11 +1,171 @@
-﻿@{
-    ViewData["Title"] = "Bem-vindo";
+﻿@model FabricaDeSorrisos.Web.Models.CatalogViewModel
+@{
+    ViewData["Title"] = "Fábrica de Sorrisos";
 }
 
-<div class="text-center py-5 bg-light rounded-3">
-    <h1 class="display-4 text-primary fw-bold">Bem-vindo à Fábrica de Sorrisos!</h1>
-    <p class="lead">Os melhores brinquedos para todas as idades estão aqui.</p>
-    <hr class="my-4">
-    <p>Use o menu acima para navegar ou busque seu brinquedo favorito.</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Ver Catálogo</a>
+<style>
+    .btn-pill-filter {
+        border-radius: 50px;
+        border: 2px solid #ff69b4; /* Rosa do tema */
+        color: #333;
+        font-weight: 500;
+        text-align: center;
+        transition: all 0.2s;
+        background: white;
+    }
+    .btn-pill-filter:hover, .btn-pill-filter.active {
+        background-color: #ff69b4;
+        color: white;
+        text-decoration: none;
+    }
+    .card-brinquedo {
+        border-radius: 15px;
+        border: none;
+        transition: transform 0.2s;
+    }
+    .card-brinquedo:hover {
+        transform: translateY(-5px);
+    }
+    .badge-lancamento {
+        background-color: #6f42c1; /* Roxo Lançamento */
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        color: white;
+        z-index: 2;
+    }
+    .btn-add-carrinho {
+        background-color: #4CAF50; /* Verde do Figma */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        width: 100%;
+        padding: 8px;
+    }
+    .btn-add-carrinho:hover {
+        background-color: #45a049;
+        color: white;
+    }
+</style>
+
+<div class="mb-5">
+    <div class="rounded-4 p-5 mb-4 text-white text-center shadow-sm"
+         style="background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); position: relative; overflow: hidden;">
+        <h1 class="display-4 fw-bold">Fábrica de Sorrisos 🐻</h1>
+        <p class="fs-4">Onde cada brinquedo cria um momento feliz!</p>
+        <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(255,255,255,0.2); border-radius: 50%;"></div>
+    </div>
+
+    <div class="rounded-4 p-4 text-center shadow-sm border border-warning" style="background-color: #fff3cd;">
+        <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+            <span class="fs-2">🐻🔧</span>
+            <div class="text-start">
+                <h5 class="fw-bold mb-0 text-warning text-dark">Ajude o ursinho Fabrício!</h5>
+                <small class="text-muted">Encontre os pares e ganhe desconto.</small>
+            </div>
+            <button class="btn btn-warning fw-bold text-white rounded-pill px-4 shadow-sm">🎮 Jogar agora</button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+            <h5 class="fw-bold mb-3" style="color: #ff69b4;">Categorias</h5>
+
+            <div class="d-flex flex-column gap-2">
+                <a asp-action="Index" class="btn btn-pill-filter @(Model.SubCategoriaId == null ? "active" : "")">
+                    Todos os Brinquedos
+                </a>
+
+                @foreach (var sub in Model.Categorias.SelectMany(c => c.SubCategorias))
+                {
+                    <a asp-action="Index" asp-route-subCategoriaId="@sub.Id"
+                       class="btn btn-pill-filter py-2 @(Model.SubCategoriaId == sub.Id ? "active" : "")">
+                        @sub.Nome
+                    </a>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold text-secondary">Destaques</h4>
+                <form class="d-flex" asp-action="Index" method="get">
+                    <input class="form-control form-control-sm rounded-pill px-3 me-2" type="search" name="termoBusca" placeholder="Buscar..." value="@Model.TermoBusca">
+                </form>
+            </div>
+
+            @if (Model.Produtos?.Items == null || !Model.Produtos.Items.Any())
+            {
+                <div class="text-center py-5">
+                    <h3 class="text-muted">😢</h3>
+                    <p class="text-muted">Nenhum brinquedo encontrado.</p>
+                    <a asp-action="Index" class="btn btn-primary btn-sm rounded-pill">Limpar filtros</a>
+                </div>
+            }
+            else
+            {
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    @foreach (var item in Model.Produtos.Items)
+                    {
+                        <div class="col">
+                            <div class="card card-brinquedo h-100 shadow-sm bg-white">
+                                <span class="badge-lancamento">Lançamento</span>
+
+                                <button class="btn btn-sm position-absolute top-0 end-0 m-2 rounded-circle bg-light text-secondary" style="z-index: 2;">
+                                    ♥
+                                </button>
+
+                                <div class="p-4 text-center bg-light rounded-top-4" style="height: 220px;">
+                                    <img src="@(string.IsNullOrEmpty(item.ImagemUrl) ? "https://placehold.co/150x150?text=Brinquedo" : item.ImagemUrl)"
+                                         class="img-fluid" style="max-height: 100%; object-fit: contain;" alt="@item.Nome">
+                                </div>
+
+                                <div class="card-body d-flex flex-column">
+                                    <div class="text-warning small mb-1">★★★★★</div>
+
+                                    <h6 class="card-title fw-bold text-dark text-truncate" title="@item.Nome">@item.Nome</h6>
+
+                                    <div class="mt-auto pt-3">
+                                        <h5 class="fw-bold mb-0">R$ @item.Preco.ToString("N2")</h5>
+                                        <small class="text-muted" style="font-size: 0.8rem;">ou 6x de R$ @((item.Preco / 6).ToString("N2")) s/ juros</small>
+
+                                        <button class="btn-add-carrinho mt-3 shadow-sm">
+                                            <i class="bi bi-cart-plus"></i> Adicionar
+                                        </button>
+
+                                        <div class="text-center mt-2">
+                                            <small class="text-muted" style="font-size: 0.65rem;">Vendido e entregue por <strong>Fábrica de Sorrisos</strong></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="mt-5 d-flex justify-content-center">
+                    <nav>
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item @(Model.Produtos.PageIndex == 1 ? "disabled" : "")">
+                                <a class="page-link rounded-start-pill" asp-action="Index" asp-route-pageIndex="@(Model.Produtos.PageIndex - 1)">Anterior</a>
+                            </li>
+                            <li class="page-item active">
+                                <span class="page-link bg-primary border-primary">@Model.Produtos.PageIndex</span>
+                            </li>
+                            <li class="page-item @(Model.Produtos.PageIndex >= Model.Produtos.TotalPages ? "disabled" : "")">
+                                <a class="page-link rounded-end-pill" asp-action="Index" asp-route-pageIndex="@(Model.Produtos.PageIndex + 1)">Próximo</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            }
+        </div>
+    </div>
 </div>
