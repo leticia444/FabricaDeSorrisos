@@ -5,19 +5,15 @@ namespace FabricaDeSorrisos.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CategoriasController : ControllerBase
+public class FaixasEtariasController : ControllerBase
 {
     private readonly ICatalogLookupService _service;
 
-    public CategoriasController(ICatalogLookupService service)
-    {
-        _service = service;
-    }
+    public FaixasEtariasController(ICatalogLookupService service) => _service = service;
 
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var result = await _service.GetCategoriasAsync();
-        return Ok(result);
+        return Ok(await _service.GetFaixasEtariasAsync());
     }
 }

@@ -1,4 +1,4 @@
-using FabricaDeSorrisos.Infrastructure; // Para usar o AddInfrastructure
+using FabricaDeSorrisos.Infrastructure;
 using FabricaDeSorrisos.Infrastructure.Identity;
 using FabricaDeSorrisos.Infrastructure.Persistence;
 using FabricaDeSorrisos.Infrastructure.Persistence.Seed;
@@ -6,17 +6,31 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Adiciona Controllers e Swagger
+// 1. Services (Controllers, Swagger)
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// 2. Adiciona a camada de Infraestrutura (Banco, EF, Identity)
+// 2. Infraestrutura (Banco, EF, Identity, JWT, etc.)
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// 3. CORS (para Web/Desktop consumirem a API)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowWeb", policy =>
+    {
+        policy.WithOrigins(
+                "https://localhost:7001",
+                "http://localhost:5001",
+                "https://localhost:5001")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
-// 3. Configura o Pipeline HTTP
+// 4. Pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,11 +39,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Importante: Autenticação antes de Autorização
+// CORS precisa vir antes de Auth
+app.UseCors("AllowWeb");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 4. Roda o Seed (popula o banco com dados iniciais: Admin, Roles, etc.)
+// 5. Seed (popula o banco com Admin, Roles, etc.)
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -39,7 +55,6 @@ using (var scope = app.Services.CreateScope())
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var context = services.GetRequiredService<AppDbContext>();
 
-        // Seed de Identity + dados iniciais
         await DatabaseSeeder.SeedAsync(userManager, roleManager, context);
     }
     catch (Exception ex)
@@ -49,7 +64,7 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// 5. Mapeia os Controllers
+// 6. Controllers
 app.MapControllers();
 
 app.Run();
