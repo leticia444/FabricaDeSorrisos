@@ -6,30 +6,31 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Services
+// 1. Services (Controllers, Swagger)
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Adiciona a Infraestrutura (Banco, Repositórios, Services)
+// 2. Infraestrutura (Banco, EF, Identity, JWT, etc.)
 builder.Services.AddInfrastructure(builder.Configuration);
 
-// --- NOVO: Configuração de CORS ---
+// 3. CORS (para Web/Desktop consumirem a API)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowWeb", policy =>
     {
-        // Ajuste as portas conforme o seu projeto Web roda (ex: 5001, 7001)
-        policy.WithOrigins("https://localhost:7001", "http://localhost:5001", "https://localhost:5001")
+        policy.WithOrigins(
+                "https://localhost:7001",
+                "http://localhost:5001",
+                "https://localhost:5001")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
-// ----------------------------------
 
 var app = builder.Build();
 
-// 2. Pipeline
+// 4. Pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -38,30 +39,32 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// --- NOVO: Ativar CORS ---
-app.UseCors("AllowWeb"); // Tem que vir antes de Auth e MapControllers
-// -------------------------
+// CORS precisa vir antes de Auth
+app.UseCors("AllowWeb");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-
-// 3. Seed Data (Admin)
+// 5. Seed (popula o banco com Admin, Roles, etc.)
 using (var scope = app.Services.CreateScope())
 {
+    var services = scope.ServiceProvider;
     try
     {
-        var services = scope.ServiceProvider;
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var context = services.GetRequiredService<AppDbContext>();
+
         await DatabaseSeeder.SeedAsync(userManager, roleManager, context);
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Erro no Seed: {ex.Message}");
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Erro ao executar o seed do banco de dados.");
     }
 }
+
+// 6. Controllers
+app.MapControllers();
 
 app.Run();
