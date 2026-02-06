@@ -6,19 +6,58 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Seed;
 
 public static class DatabaseSeeder
 {
-    public static async Task SeedAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, AppDbContext context)
+    private record SeedUser(
+        string Email,
+        string Password,
+        string Role,
+        string TipoUsuarioNome,
+        string NomeCompleto
+    );
+
+    private static readonly SeedUser[] InitialUsers =
     {
-        // 1. Cria as Roles (Permissões) do Identity se não existirem
-        if (!await roleManager.RoleExistsAsync("Admin"))
-            await roleManager.CreateAsync(new IdentityRole("Admin"));
+        new(
+            Email: "adm@fabricadesorrisos.com",
+            Password: "Admin@123",
+            Role: "Admin",
+            TipoUsuarioNome: "Administrador",
+            NomeCompleto: "Administrador do Sistema"
+        ),
+        new(
+            Email: "gerente@fabricadesorrisos.com",
+            Password: "Gerente@123",
+            Role: "Gerente",
+            TipoUsuarioNome: "Gerente",
+            NomeCompleto: "Gerente Padrão"
+        ),
+        new(
+            Email: "cliente@fabricadesorrisos.com",
+            Password: "Cliente@123",
+            Role: "Cliente",
+            TipoUsuarioNome: "Cliente",
+            NomeCompleto: "Cliente Padrão"
+        )
+    };
 
-        if (!await roleManager.RoleExistsAsync("Gerente"))
-            await roleManager.CreateAsync(new IdentityRole("Gerente"));
+    public static async Task SeedAsync(
+        UserManager<ApplicationUser> userManager,
+        RoleManager<IdentityRole> roleManager,
+        AppDbContext context)
+    {
+        // =========================
+        // 1. ROLES DO IDENTITY
+        // =========================
+        var roles = new[] { "Admin", "Gerente", "Cliente" };
 
-        if (!await roleManager.RoleExistsAsync("Cliente"))
-            await roleManager.CreateAsync(new IdentityRole("Cliente"));
+        foreach (var role in roles)
+        {
+            if (!await roleManager.RoleExistsAsync(role))
+                await roleManager.CreateAsync(new IdentityRole(role));
+        }
 
-        // 2. Cria os Tipos de Usuário do Domínio (nossa tabela personalizada)
+        // =========================
+        // 2. TIPOS DE USUÁRIO (DOMÍNIO)
+        // =========================
         if (!context.TiposUsuarios.Any())
         {
             context.TiposUsuarios.AddRange(
@@ -29,25 +68,54 @@ public static class DatabaseSeeder
             await context.SaveChangesAsync();
         }
 
-        // 3. Cria um Usuário Admin padrão para você poder logar
-        var adminEmail = "admin@loja.com";
-        if (await userManager.FindByEmailAsync(adminEmail) == null)
+        // =========================
+        // 3. USUÁRIOS INICIAIS
+        // =========================
+        foreach (var seedUser in InitialUsers)
         {
-            var user = new ApplicationUser { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
-            await userManager.CreateAsync(user, "Admin@123"); // Senha padrão
-            await userManager.AddToRoleAsync(user, "Admin");
+            var user = await userManager.FindByEmailAsync(seedUser.Email);
 
-            // Cria o vínculo no Domínio
-            var tipoAdmin = context.TiposUsuarios.First(t => t.Nome == "Administrador");
-            context.UsuariosDoSistema.Add(new Usuario
+            if (user == null)
             {
-                NomeCompleto = "Super Admin",
-                Email = adminEmail,
-                Cpf = "00000000000",
-                IdentityUserId = user.Id, // Link importante!
-                TipoUsuario = tipoAdmin
-            });
-            await context.SaveChangesAsync();
+                user = new ApplicationUser
+                {
+                    UserName = seedUser.Email,
+                    Email = seedUser.Email,
+                    EmailConfirmed = true
+                };
+
+                var result = await userManager.CreateAsync(user, seedUser.Password);
+
+                if (!result.Succeeded)
+                {
+                    var errors = string.Join(" | ", result.Errors.Select(e => e.Description));
+                    throw new Exception($"Erro ao criar usuário {seedUser.Email}: {errors}");
+                }
+            }
+
+            // Garante a role correta
+            if (!await userManager.IsInRoleAsync(user, seedUser.Role))
+            {
+                await userManager.AddToRoleAsync(user, seedUser.Role);
+            }
+
+            // Garante vínculo com o domínio
+            if (!context.UsuariosDoSistema.Any(u => u.IdentityUserId == user.Id))
+            {
+                var tipoUsuario = context.TiposUsuarios
+                    .First(t => t.Nome == seedUser.TipoUsuarioNome);
+
+                context.UsuariosDoSistema.Add(new Usuario
+                {
+                    NomeCompleto = seedUser.NomeCompleto,
+                    Email = seedUser.Email,
+                    Cpf = "00000000000",
+                    IdentityUserId = user.Id,
+                    TipoUsuario = tipoUsuario
+                });
+
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

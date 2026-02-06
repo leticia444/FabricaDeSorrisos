@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<JwtTokenService>();
 
 // 2. Infraestrutura (Banco, EF, Identity, JWT, etc.)
 builder.Services.AddInfrastructure(builder.Configuration);

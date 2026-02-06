@@ -10,14 +10,14 @@ namespace FabricaDeSorrisos.Api.Controllers.Auth
     public class AuthController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly JwtTokenService _tokenService;
+        private readonly JwtTokenService _jwtTokenService;
 
         public AuthController(
             UserManager<ApplicationUser> userManager,
-            JwtTokenService tokenService)
+            JwtTokenService jwtTokenService)
         {
             _userManager = userManager;
-            _tokenService = tokenService;
+            _jwtTokenService = jwtTokenService;
         }
 
         [HttpPost("login")]
@@ -26,19 +26,27 @@ namespace FabricaDeSorrisos.Api.Controllers.Auth
             var user = await _userManager.FindByEmailAsync(request.Email);
 
             if (user == null)
-                return Unauthorized("Usuário ou senha inválidos");
+                return Unauthorized("Usuário não encontrado");
 
-            var passwordValid =
-                await _userManager.CheckPasswordAsync(user, request.Password);
+            if (!await _userManager.CheckPasswordAsync(user, request.Password))
+                return Unauthorized("Senha inválida");
 
-            if (!passwordValid)
-                return Unauthorized("Usuário ou senha inválidos");
+            var roles = await _userManager.GetRolesAsync(user);
+            var role = roles.FirstOrDefault();
 
-            var token = await _tokenService.GenerateTokenAsync(user, _userManager);
+            if (role == null)
+                return Unauthorized("Usuário sem role");
+
+            // 🔑 GERA O JWT AQUI
+            var token = _jwtTokenService.GenerateToken(user, role);
 
             return Ok(new
             {
-                token
+                Token = token,
+                user.Id,
+                user.Email,
+                user.UserName,
+                Role = role
             });
         }
     }
