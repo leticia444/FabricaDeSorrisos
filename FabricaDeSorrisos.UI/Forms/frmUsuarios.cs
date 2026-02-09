@@ -14,5 +14,15 @@ namespace FabricaDeSorrisos.UI.Forms
         {
             InitializeComponent();
         }
+
+        private void guna2Button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

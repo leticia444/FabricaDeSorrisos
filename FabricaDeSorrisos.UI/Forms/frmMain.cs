@@ -77,7 +77,7 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPainel(new frmUsuarios());
+            AbrirFormNoPainel(new frmCriarUsuarios());
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
@@ -133,6 +133,11 @@ namespace FabricaDeSorrisos.UI.Forms
         {
             new frmLogin().Show();
             Close();
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
