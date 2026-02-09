@@ -21,11 +21,17 @@ namespace FabricaDeSorrisos.UI.Forms
             this.AcceptButton = btnEntrar;
 
             btnEntrar.Click += btnEntrar_Click;
+            btnFechar.Click += btnFechar_Click; // 👈 AQUI
         }
 
         private async void btnEntrar_Click(object sender, EventArgs e)
         {
             await RealizarLogin();
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // 👈 Fecha a aplicação inteira
         }
 
         private async Task RealizarLogin()
@@ -70,7 +76,7 @@ namespace FabricaDeSorrisos.UI.Forms
                     return;
                 }
 
-                // ✅ Inicia sessão (FORMA CORRETA)
+                // ✅ Inicia sessão
                 UserSession.Token = response.Token;
                 UserSession.UserName = response.UserName;
                 UserSession.Role = response.Role;
