@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             label1 = new Label();
             txtNomeProduto = new Guna.UI2.WinForms.Guna2TextBox();
             cbCategoria = new Guna.UI2.WinForms.Guna2ComboBox();
+            txtPreco = new Guna.UI2.WinForms.Guna2TextBox();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -61,7 +64,7 @@
             // txtNomeProduto
             // 
             txtNomeProduto.BorderRadius = 10;
-            txtNomeProduto.CustomizableEdges = customizableEdges3;
+            txtNomeProduto.CustomizableEdges = customizableEdges7;
             txtNomeProduto.DefaultText = "";
             txtNomeProduto.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtNomeProduto.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -74,7 +77,7 @@
             txtNomeProduto.Name = "txtNomeProduto";
             txtNomeProduto.PlaceholderText = "Nome do Produto";
             txtNomeProduto.SelectedText = "";
-            txtNomeProduto.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtNomeProduto.ShadowDecoration.CustomizableEdges = customizableEdges8;
             txtNomeProduto.Size = new Size(200, 36);
             txtNomeProduto.TabIndex = 1;
             // 
@@ -82,7 +85,7 @@
             // 
             cbCategoria.BackColor = Color.Transparent;
             cbCategoria.BorderRadius = 10;
-            cbCategoria.CustomizableEdges = customizableEdges1;
+            cbCategoria.CustomizableEdges = customizableEdges9;
             cbCategoria.DrawMode = DrawMode.OwnerDrawFixed;
             cbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCategoria.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -92,15 +95,36 @@
             cbCategoria.ItemHeight = 30;
             cbCategoria.Location = new Point(301, 236);
             cbCategoria.Name = "cbCategoria";
-            cbCategoria.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            cbCategoria.ShadowDecoration.CustomizableEdges = customizableEdges10;
             cbCategoria.Size = new Size(200, 36);
             cbCategoria.TabIndex = 8;
+            // 
+            // txtPreco
+            // 
+            txtPreco.BorderRadius = 10;
+            txtPreco.CustomizableEdges = customizableEdges11;
+            txtPreco.DefaultText = "";
+            txtPreco.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPreco.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPreco.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPreco.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPreco.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPreco.Font = new Font("Segoe UI", 9F);
+            txtPreco.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPreco.Location = new Point(301, 278);
+            txtPreco.Name = "txtPreco";
+            txtPreco.PlaceholderText = "Preço";
+            txtPreco.SelectedText = "";
+            txtPreco.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtPreco.Size = new Size(200, 36);
+            txtPreco.TabIndex = 9;
             // 
             // frmCriarProdutos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtPreco);
             Controls.Add(cbCategoria);
             Controls.Add(txtNomeProduto);
             Controls.Add(label1);
@@ -117,5 +141,6 @@
         private Label label1;
         private Guna.UI2.WinForms.Guna2TextBox txtNomeProduto;
         private Guna.UI2.WinForms.Guna2ComboBox cbCategoria;
+        private Guna.UI2.WinForms.Guna2TextBox txtPreco;
     }
 }
