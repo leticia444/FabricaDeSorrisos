@@ -148,11 +148,11 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(920, 0);
+            btnFechar.Location = new Point(932, 9);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnFechar.Size = new Size(54, 50);
+            btnFechar.Size = new Size(31, 28);
             btnFechar.TabIndex = 5;
             btnFechar.Text = "X";
             // 

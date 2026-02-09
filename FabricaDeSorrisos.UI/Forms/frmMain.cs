@@ -44,7 +44,7 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPainel(new frmProdutos());
+            AbrirFormNoPainel(new frmCriarProdutos());
         }
 
         private void pbLogo_Click(object sender, EventArgs e)

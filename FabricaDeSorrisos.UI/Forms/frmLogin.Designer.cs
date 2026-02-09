@@ -110,7 +110,7 @@
             btnEntrar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnEntrar.Font = new Font("Segoe UI", 9F);
             btnEntrar.ForeColor = Color.White;
-            btnEntrar.Location = new Point(273, 336);
+            btnEntrar.Location = new Point(273, 334);
             btnEntrar.Name = "btnEntrar";
             btnEntrar.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnEntrar.Size = new Size(200, 45);
