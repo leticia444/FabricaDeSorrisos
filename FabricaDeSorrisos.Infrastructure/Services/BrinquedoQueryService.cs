@@ -20,6 +20,12 @@ public class BrinquedoQueryService : IBrinquedoQueryService
         // 1. Começa a query base
         var query = _context.Brinquedos.AsNoTracking().AsQueryable();
 
+        // --- ADICIONE ISSO: REGRA DE OURO ---
+        // Só mostra se estiver Ativo. 
+        // Opcional: && b.Estoque > 0 (se quiser esconder sem estoque automaticamente)
+        query = query.Where(b => b.Ativo == true);
+        // ------------------------------------
+
         // 2. Aplica os filtros se eles existirem (Dinâmico)
         if (!string.IsNullOrWhiteSpace(filter.TermoBusca))
         {

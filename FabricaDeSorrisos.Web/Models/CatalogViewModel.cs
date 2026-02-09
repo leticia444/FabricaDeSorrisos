@@ -1,4 +1,6 @@
-﻿namespace FabricaDeSorrisos.Web.Models;
+﻿using FabricaDeSorrisos.Application.DTOs; // <--- ADICIONADO PARA ENCONTRAR OS DTOs
+
+namespace FabricaDeSorrisos.Web.Models;
 
 public class CatalogViewModel
 {

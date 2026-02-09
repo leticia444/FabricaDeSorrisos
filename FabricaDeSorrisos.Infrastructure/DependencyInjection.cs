@@ -21,10 +21,20 @@ public static class DependencyInjection
                 configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
 
-        // 2. Configurar o Identity (Sistema de Login)
-        services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders();
+        services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+        {
+            // --- REGRAS DE SENHA ---
+            options.Password.RequiredLength = 8; // Mínimo de 8 caracteres
+            options.Password.RequireDigit = true; // Precisa de Número (0-9)
+            options.Password.RequireLowercase = true; // Precisa de Minúscula (a-z)
+            options.Password.RequireUppercase = true; // Precisa de Maiúscula (A-Z)
+            options.Password.RequireNonAlphanumeric = true; // Precisa de Caractere Especial (!@#$%^&*)
+
+            // Outras configurações úteis (Opcional)
+            options.User.RequireUniqueEmail = true; // Não deixa cadastrar mesmo e-mail 2x
+        })
+        .AddEntityFrameworkStores<AppDbContext>()
+        .AddDefaultTokenProviders();
 
         // Configurações de senha (opcional, para facilitar testes deixa fraca)
         services.Configure<IdentityOptions>(options =>
@@ -43,7 +53,10 @@ public static class DependencyInjection
         services.AddScoped<IMarcaRepository, EfMarcaRepository>();
         services.AddScoped<IPersonagemRepository, EfPersonagemRepository>();
         services.AddScoped<IFaixaEtariaRepository, EfFaixaEtariaRepository>();
+        // Adicione esta linha junto com os outros Repositórios
+        services.AddScoped<ISubCategoriaRepository, EfSubCategoriaRepository>();
         // Adicione os de Avaliação e Favorito se criou os arquivos
+        services.AddScoped<IUsuarioRepository, EfUsuarioRepository>();
 
         // 4. Registrar Serviços de Leitura
         services.AddScoped<IBrinquedoQueryService, BrinquedoQueryService>();

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FabricaDeSorrisos.Domain.Entities.Usuario>
+@{
+    ViewData["Title"] = "Gestão de Usuários"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Usuários Cadastrados</h3>
+</div>
+
+<div class="card shadow-sm">
+    <table class="table table-hover align-middle mb-0">
+        <thead class="bg-light">
+            <tr>
+                <th class="ps-4">Nome</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th class="text-end pe-4">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="ps-4 fw-bold">@item.NomeCompleto</td>
+                    <td>@item.Email</td>
+                    <td>
+                        @if (item.TipoUsuario?.Nome == "Administrador")
+                        {
+                            <span class="badge bg-danger">Admin</span>
+                        }
+                        else if (item.TipoUsuario?.Nome == "Gerente")
+                        {
+
+                            <span class="badge bg-warning text-dark">Gerente</span>
+                        }
+                        else
+                        {
+
+                            <span class="badge bg-info text-dark">Cliente</span>
+                        }
+                    </td>
+                    <td class="text-end pe-4">
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Banir Usuário">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

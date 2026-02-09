@@ -1,0 +1,20 @@
+﻿@model FabricaDeSorrisos.Domain.Entities.SubCategoria
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Categoria Principal (Pai)</label>
+    <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId">
+        <option value="">Selecione uma categoria...</option>
+    </select>
+    <span asp-validation-for="CategoriaId" class="text-danger small"></span>
+</div>
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Nome da Subcategoria</label>
+    <input asp-for="Nome" class="form-control" placeholder="Ex: Barbie, Hot Wheels, Quebra-Cabeça" required />
+    <span asp-validation-for="Nome" class="text-danger small"></span>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a asp-action="Index" class="btn btn-light me-md-2">Cancelar</a>
+    <button type="submit" class="btn btn-primary px-4">Salvar</button>
+</div>

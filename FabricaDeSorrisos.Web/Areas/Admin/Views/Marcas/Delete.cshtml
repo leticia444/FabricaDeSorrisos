@@ -1,0 +1,35 @@
+﻿@model FabricaDeSorrisos.Domain.Entities.Marca
+@{
+    ViewData["Title"] = "Excluir Marca"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="alert alert-danger shadow-sm border-danger">
+        <h4 class="alert-heading fw-bold"><i class="bi bi-exclamation-triangle-fill"></i> Atenção!</h4>
+        <p>Você está prestes a excluir permanentemente a marca abaixo. Brinquedos vinculados a ela podem ficar sem marca.</p>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="row g-0">
+            <div class="col-md-4 d-flex align-items-center justify-content-center bg-light p-3">
+                <img src="@(Model.LogotipoUrl ?? "https://placehold.co/100")" class="img-fluid" style="max-height: 100px;">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">@Model.Nome</h5>
+                    <p class="card-text text-muted">ID do Registro: #@Model.Id</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-danger btn-lg">
+                <i class="bi bi-trash-fill"></i> Sim, Excluir Definitivamente
+            </button>
+            <a asp-action="Index" class="btn btn-light btn-lg border">Cancelar</a>
+        </div>
+    </form>
+</div>

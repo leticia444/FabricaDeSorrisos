@@ -1,0 +1,28 @@
+﻿@model FabricaDeSorrisos.Domain.Entities.Personagem
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Nome do Personagem</label>
+    <input asp-for="Nome" class="form-control" placeholder="Ex: Woody, Buzz Lightyear, Peppa Pig" required />
+    <span asp-validation-for="Nome" class="text-danger small"></span>
+</div>
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Imagem / Ícone</label>
+
+    @if (!string.IsNullOrEmpty(Model.ImagemUrl))
+    {
+        <div class="card p-2 mb-2 d-inline-block bg-light border">
+            <img src="@Model.ImagemUrl" style="height: 100px; width: 100px; object-fit: contain;" />
+            <div class="text-center mt-1"><small class="text-muted">Atual</small></div>
+        </div>
+        <input type="hidden" asp-for="ImagemUrl" />
+    }
+
+    <input type="file" name="arquivo" class="form-control" accept="image/*" />
+    <div class="form-text">Use imagens com fundo transparente (PNG) para ficar bonito na Home.</div>
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a asp-action="Index" class="btn btn-light me-md-2">Cancelar</a>
+    <button type="submit" class="btn btn-primary px-4">Salvar</button>
+</div>

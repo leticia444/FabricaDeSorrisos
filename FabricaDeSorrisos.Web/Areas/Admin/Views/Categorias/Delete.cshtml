@@ -1,0 +1,18 @@
+﻿@model FabricaDeSorrisos.Domain.Entities.Categoria
+@{
+    ViewData["Title"] = "Excluir Categoria"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5" style="max-width: 500px;">
+    <div class="alert alert-danger text-center">
+        <h4 class="fw-bold"><i class="bi bi-exclamation-triangle"></i> Atenção</h4>
+        <p>Tem certeza que deseja excluir a categoria <strong>@Model.Nome</strong>?</p>
+        <small>Isso pode afetar produtos vinculados a ela.</small>
+    </div>
+
+    <form asp-action="Delete" class="d-grid gap-2">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger btn-lg">Sim, Excluir</button>
+        <a asp-action="Index" class="btn btn-light btn-lg border">Cancelar</a>
+    </form>
+</div>

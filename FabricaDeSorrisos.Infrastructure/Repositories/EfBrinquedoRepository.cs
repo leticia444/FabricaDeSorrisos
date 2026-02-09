@@ -46,11 +46,11 @@ public class EfBrinquedoRepository : IBrinquedoRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Brinquedo brinquedo)
-    {
-        _context.Brinquedos.Remove(brinquedo);
-        await _context.SaveChangesAsync();
-    }
+    //public async Task DeleteAsync(Brinquedo brinquedo)
+    //{
+    //    _context.Brinquedos.Remove(brinquedo);
+    //    await _context.SaveChangesAsync();
+    //}
 
     public async Task<bool> ExistsAsync(int id)
     {

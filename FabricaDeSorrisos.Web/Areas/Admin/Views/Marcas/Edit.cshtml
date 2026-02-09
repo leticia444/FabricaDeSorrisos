@@ -1,0 +1,14 @@
+﻿@model FabricaDeSorrisos.Domain.Entities.Marca
+@{
+    ViewData["Title"] = "Editar Marca"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card p-4 shadow-sm" style="max-width: 600px; margin: auto;">
+    <h4 class="mb-4 text-warning"><i class="bi bi-pencil-square"></i> Editar Marca</h4>
+
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+
+        <partial name="_Form" model="Model" />
+    </form>
+</div>

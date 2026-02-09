@@ -1,0 +1,11 @@
+﻿@model FabricaDeSorrisos.Domain.Entities.SubCategoria
+@{
+    ViewData["Title"] = "Nova Subcategoria"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card p-4 shadow-sm" style="max-width: 600px; margin: auto;">
+    <h4 class="mb-4 text-primary">Nova Subcategoria</h4>
+    <form asp-action="Create">
+        <partial name="_Form" model="Model" />
+    </form>
+</div>

@@ -1,0 +1,12 @@
+﻿@model FabricaDeSorrisos.Web.Areas.Admin.Models.BrinquedoFormViewModel
+@{
+    ViewData["Title"] = "Novo Brinquedo"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card p-4 shadow-sm" style="max-width: 800px; margin: auto;">
+    <h4 class="mb-3">Novo Brinquedo</h4>
+    <form asp-action="Create" enctype="multipart/form-data">
+        <partial name="_Form" model="Model" />
+        <a asp-action="Index" class="btn btn-link w-100 mt-2">Cancelar</a>
+    </form>
+</div>

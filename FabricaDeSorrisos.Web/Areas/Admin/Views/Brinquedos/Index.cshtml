@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FabricaDeSorrisos.Domain.Entities.Brinquedo>
+@{
+    ViewData["Title"] = "Brinquedos"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between mb-4">
+    <h3>Gerenciar Brinquedos</h3>
+    <a asp-action="Create" class="btn btn-primary">Novo Brinquedo</a>
+</div>
+
+<div class="card shadow-sm">
+    <table class="table table-hover align-middle">
+        <thead class="bg-light">
+            <tr>
+                <th>Status</th>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="@(!item.Ativo ? "table-secondary opacity-75" : "")">
+                    <td>
+                        @if (item.Ativo)
+                        {
+                            <span class="badge bg-success">Ativo</span>
+                        }
+                        else
+                        {
+
+                            <span class="badge bg-secondary">Inativo</span>
+                        }
+                    </td>
+                    <td>
+                        <img src="@(item.ImagemUrl ?? "https://placehold.co/50")" width="40" class="rounded me-2">
+                        @item.Nome
+                    </td>
+                    <td>@item.Categoria?.Nome</td>
+                    <td>R$ @item.Preco.ToString("N2")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+
+                        <form asp-action="AlternarStatus" asp-route-id="@item.Id" class="d-inline">
+                            <button type="submit" class="btn btn-sm @(item.Ativo ? "btn-outline-danger" : "btn-outline-success")"
+                                    title="@(item.Ativo ? "Desativar" : "Reativar")">
+                                <i class="bi @(item.Ativo ? "bi-eye-slash" : "bi-eye")"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

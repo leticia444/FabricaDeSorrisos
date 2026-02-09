@@ -11,7 +11,7 @@ public interface IBrinquedoRepository
     // Métodos de Escrita (CRUD)
     Task AddAsync(Brinquedo brinquedo);
     Task UpdateAsync(Brinquedo brinquedo);
-    Task DeleteAsync(Brinquedo brinquedo);
+    //Task DeleteAsync(Brinquedo brinquedo);
 
     // Verificações
     Task<bool> ExistsAsync(int id);

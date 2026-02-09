@@ -1,11 +1,13 @@
 ﻿using FabricaDeSorrisos.Domain.Entities;
 using FabricaDeSorrisos.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore; // Importante para o método Any()
 
 namespace FabricaDeSorrisos.Infrastructure.Persistence.Seed;
 
 public static class DatabaseSeeder
 {
+    // Definição do registro auxiliar para os usuários iniciais
     private record SeedUser(
         string Email,
         string Password,
@@ -14,6 +16,7 @@ public static class DatabaseSeeder
         string NomeCompleto
     );
 
+    // Lista de usuários que serão criados automaticamente
     private static readonly SeedUser[] InitialUsers =
     {
         new(
@@ -45,7 +48,7 @@ public static class DatabaseSeeder
         AppDbContext context)
     {
         // =========================
-        // 1. ROLES DO IDENTITY
+        // 1. ROLES DO IDENTITY (PERMISSÕES)
         // =========================
         var roles = new[] { "Admin", "Gerente", "Cliente" };
 
@@ -56,7 +59,27 @@ public static class DatabaseSeeder
         }
 
         // =========================
-        // 2. TIPOS DE USUÁRIO (DOMÍNIO)
+        // 2. FAIXAS ETÁRIAS (NOVO!)
+        // =========================
+        // Verifica se existe alguma faixa etária. Se não, cria as padrões.
+        if (!context.FaixasEtarias.Any())
+        {
+            var faixas = new List<FaixaEtaria>
+            {
+                new FaixaEtaria { Descricao = "0 a 18 meses (Bebês)" },
+                new FaixaEtaria { Descricao = "1 a 3 anos (Primeira Infância)" },
+                new FaixaEtaria { Descricao = "3 a 5 anos (Pré-escolar)" },
+                new FaixaEtaria { Descricao = "5 a 7 anos (Alfabetização)" },
+                new FaixaEtaria { Descricao = "7 a 10 anos (Crianças maiores)" },
+                new FaixaEtaria { Descricao = "+10 anos (Pré-adolescentes)" }
+            };
+
+            context.FaixasEtarias.AddRange(faixas);
+            await context.SaveChangesAsync();
+        }
+
+        // =========================
+        // 3. TIPOS DE USUÁRIO (DOMÍNIO)
         // =========================
         if (!context.TiposUsuarios.Any())
         {
@@ -69,14 +92,16 @@ public static class DatabaseSeeder
         }
 
         // =========================
-        // 3. USUÁRIOS INICIAIS
+        // 4. USUÁRIOS INICIAIS
         // =========================
         foreach (var seedUser in InitialUsers)
         {
+            // Tenta buscar o usuário pelo e-mail
             var user = await userManager.FindByEmailAsync(seedUser.Email);
 
             if (user == null)
             {
+                // Cria o usuário no Identity (Login)
                 user = new ApplicationUser
                 {
                     UserName = seedUser.Email,
@@ -93,28 +118,32 @@ public static class DatabaseSeeder
                 }
             }
 
-            // Garante a role correta
+            // Garante a role correta (Admin, Gerente, etc)
             if (!await userManager.IsInRoleAsync(user, seedUser.Role))
             {
                 await userManager.AddToRoleAsync(user, seedUser.Role);
             }
 
-            // Garante vínculo com o domínio
+            // Garante vínculo com a tabela de domínio (UsuariosDoSistema)
             if (!context.UsuariosDoSistema.Any(u => u.IdentityUserId == user.Id))
             {
                 var tipoUsuario = context.TiposUsuarios
-                    .First(t => t.Nome == seedUser.TipoUsuarioNome);
+                    .FirstOrDefault(t => t.Nome == seedUser.TipoUsuarioNome);
 
-                context.UsuariosDoSistema.Add(new Usuario
+                // Só adiciona se encontrou o tipo de usuário
+                if (tipoUsuario != null)
                 {
-                    NomeCompleto = seedUser.NomeCompleto,
-                    Email = seedUser.Email,
-                    Cpf = "00000000000",
-                    IdentityUserId = user.Id,
-                    TipoUsuario = tipoUsuario
-                });
+                    context.UsuariosDoSistema.Add(new Usuario
+                    {
+                        NomeCompleto = seedUser.NomeCompleto,
+                        Email = seedUser.Email,
+                        Cpf = "00000000000",
+                        IdentityUserId = user.Id,
+                        TipoUsuario = tipoUsuario
+                    });
 
-                await context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
+                }
             }
         }
     }

@@ -1,0 +1,12 @@
+﻿@model FabricaDeSorrisos.Domain.Entities.Personagem
+@{
+    ViewData["Title"] = "Editar Personagem"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card p-4 shadow-sm" style="max-width: 600px; margin: auto;">
+    <h4 class="mb-4 text-warning">Editar Personagem</h4>
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <partial name="_Form" model="Model" />
+    </form>
+</div>

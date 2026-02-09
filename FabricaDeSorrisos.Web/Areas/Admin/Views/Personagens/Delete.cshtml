@@ -1,0 +1,21 @@
+﻿@model FabricaDeSorrisos.Domain.Entities.Personagem
+@{
+    ViewData["Title"] = "Excluir Personagem"; Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5" style="max-width: 500px;">
+    <div class="alert alert-danger text-center">
+        <h4 class="fw-bold"><i class="bi bi-exclamation-triangle"></i> Atenção</h4>
+        <p>Tem certeza que deseja excluir o personagem <strong>@Model.Nome</strong>?</p>
+    </div>
+
+    <div class="text-center mb-4">
+        <img src="@(Model.ImagemUrl ?? "https://placehold.co/100")" class="img-thumbnail" style="height: 120px;">
+    </div>
+
+    <form asp-action="Delete" class="d-grid gap-2">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger btn-lg">Sim, Excluir</button>
+        <a asp-action="Index" class="btn btn-light btn-lg border">Cancelar</a>
+    </form>
+</div>
