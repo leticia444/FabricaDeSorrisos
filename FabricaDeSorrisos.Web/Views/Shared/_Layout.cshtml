@@ -4,46 +4,67 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Fábrica de Sorrisos</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-3 shadow-sm">
             <div class="container">
-                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">🧸 Fábrica de Sorrisos</a>
+                <a class="navbar-brand fw-bold fs-4" asp-controller="Home" asp-action="Index">
+                    🧸 Fábrica de Sorrisos
+                </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-controller="Home" asp-action="Index">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Brinquedos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Home" asp-action="Suporte">Suporte</a>
+                            <a class="nav-link text-white" asp-controller="Home" asp-action="Index">Brinquedos</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav ms-auto">
+
+                    <ul class="navbar-nav ms-auto align-items-center">
 
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle text-white fw-bold bg-white bg-opacity-10 rounded px-3" href="#" role="button" data-bs-toggle="dropdown">
                                     Hello, @User.Identity.Name! 🐻
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Favoritos" asp-action="Index">
+                                            <i class="bi bi-heart-fill text-danger me-2"></i> Meus Favoritos
+                                        </a>
+                                    </li>
+
+                                    <li><hr class="dropdown-divider"></li>
+
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Acessar Admin</a></li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                                                <i class="bi bi-speedometer2 me-2"></i> Admin Dashboard
+                                            </a>
+                                        </li>
                                         <li><hr class="dropdown-divider"></li>
                                     }
+
                                     <li>
                                         <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                            <button type="submit" class="dropdown-item text-danger">Sair</button>
+                                            <button type="submit" class="dropdown-item text-danger">
+                                                <i class="bi bi-box-arrow-right me-2"></i> Sair
+                                            </button>
                                         </form>
                                     </li>
                                 </ul>
@@ -52,20 +73,20 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-primary fw-bold" asp-controller="Account" asp-action="Login">Entrar</a>
+                                <a class="nav-link text-white fw-semibold" asp-controller="Account" asp-action="Login">Entrar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-primary btn-sm ms-2 text-white rounded-pill px-3" asp-controller="Account" asp-action="Register">Criar Conta</a>
+                                <a class="btn btn-light btn-sm ms-2 text-primary fw-bold rounded-pill px-3 shadow-sm" asp-controller="Account" asp-action="Register">Criar Conta</a>
                             </li>
                         }
 
                         <li class="nav-item ms-3">
-                            <button class="btn btn-outline-dark position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrinho">
-                                <i class="bi bi-cart3"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <a asp-controller="Carrinho" asp-action="Index" class="btn btn-outline-light position-relative border-0">
+                                <i class="bi bi-cart3 fs-5"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light badge-carrinho">
                                     0
                                 </span>
-                            </button>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -79,14 +100,18 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted mt-5 pt-3 text-center">
-        <div class="container">
-            &copy; 2026 - Fábrica de Sorrisos - <a href="#">Privacidade</a>
+    <footer class="border-top footer text-muted mt-5 pt-3 text-center bg-light">
+        <div class="container py-3">
+            &copy; 2026 - <strong>Fábrica de Sorrisos</strong> 🧸 - <a href="#">Privacidade</a>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/favoritos.js" asp-append-version="true"></script>
+    <script src="~/js/carrinho.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -36,22 +36,23 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         base.OnModelCreating(builder);
 
-        // Configuração para campos de dinheiro (evita erros no SQL Server)
-        builder.Entity<Brinquedo>()
-            .Property(b => b.Preco).HasColumnType("decimal(18,2)");
+        // --- CORREÇÃO DO ERRO DE DECIMAL ---
+        // Define que todo campo decimal do Pedido terá 18 dígitos no total e 2 casas decimais (ex: 150.50)
+        builder.Entity<Pedido>()
+            .Property(p => p.ValorTotal)
+            .HasColumnType("decimal(18,2)");
 
         builder.Entity<Pedido>()
-            .Property(p => p.ValorTotal).HasColumnType("decimal(18,2)");
+            .Property(p => p.ValorFrete)
+            .HasColumnType("decimal(18,2)");
+
+        // Se tiver outros decimais (como Preco no Brinquedo), é bom garantir também:
+        builder.Entity<Brinquedo>()
+            .Property(b => b.Preco)
+            .HasColumnType("decimal(18,2)");
 
         builder.Entity<PedidoItem>()
-            .Property(pi => pi.PrecoUnitario).HasColumnType("decimal(18,2)");
-
-        // Configuração de relacionamentos que podem ser ambíguos
-        // Exemplo: Garantir que deletar um TipoUsuario não apague os Usuarios em cascata (opcional, mas seguro)
-        builder.Entity<Usuario>()
-            .HasOne(u => u.TipoUsuario)
-            .WithMany(t => t.Usuarios)
-            .HasForeignKey(u => u.TipoUsuarioId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .Property(i => i.PrecoUnitario)
+            .HasColumnType("decimal(18,2)");
     }
 }

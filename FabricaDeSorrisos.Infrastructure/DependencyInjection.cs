@@ -52,11 +52,14 @@ public static class DependencyInjection
         services.AddScoped<ICategoriaRepository, EfCategoriaRepository>();
         services.AddScoped<IMarcaRepository, EfMarcaRepository>();
         services.AddScoped<IPersonagemRepository, EfPersonagemRepository>();
+        services.AddScoped<IFavoritoRepository, EfFavoritoRepository>();
         services.AddScoped<IFaixaEtariaRepository, EfFaixaEtariaRepository>();
+        services.AddScoped<ICarrinhoRepository, EfCarrinhoRepository>();
         // Adicione esta linha junto com os outros Repositórios
         services.AddScoped<ISubCategoriaRepository, EfSubCategoriaRepository>();
         // Adicione os de Avaliação e Favorito se criou os arquivos
         services.AddScoped<IUsuarioRepository, EfUsuarioRepository>();
+        services.AddScoped<IPedidoRepository, EfPedidoRepository>();
 
         // 4. Registrar Serviços de Leitura
         services.AddScoped<IBrinquedoQueryService, BrinquedoQueryService>();

@@ -1,18 +1,42 @@
 using FabricaDeSorrisos.Infrastructure;
+using FabricaDeSorrisos.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Adiciona o MVC
+// ==========================================
+// 1. SERVIÇOS DO CONTAINER (DI)
+// ==========================================
+
+// Adiciona o MVC (Controllers e Views)
 builder.Services.AddControllersWithViews();
 
-// 2. INJEÇÃO DE DEPENDÊNCIA DA INFRAESTRUTURA (Banco, Identity, Repositórios)
-// Isso aqui faz a mágica de conectar no SQL sem precisar de API
+// INJEÇÃO DA INFRAESTRUTURA
+// Carrega o Banco de Dados, Repositórios e Configuração Básica do Identity
 builder.Services.AddInfrastructure(builder.Configuration);
 
+// CONFIGURAÇÃO DE SENHA FORTE (Identity)
+// Estamos reconfigurando aqui para garantir que as regras sejam aplicadas
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequiredLength = 8; // Mínimo 8 caracteres
+    options.Password.RequireDigit = true; // Requer número
+    options.Password.RequireLowercase = true; // Requer minúscula
+    options.Password.RequireUppercase = true; // Requer maiúscula
+    options.Password.RequireNonAlphanumeric = true; // Requer caractere especial (@, #, etc)
+    options.User.RequireUniqueEmail = true; // E-mail único
+});
+
+// REGISTRO DA FÁBRICA DE CLAIMS (CUSTOMIZADA)
+// Isso ensina o Identity a colocar o ID da tabela 'UsuariosDoSistema' dentro do Cookie
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, CustomClaimsPrincipalFactory>();
+
+// ==========================================
+// 2. CONSTRUÇÃO DO APP
+// ==========================================
 var app = builder.Build();
 
-// 2. Configura o pipeline de requisições HTTP.
+// Configura o pipeline de requisições HTTP.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -20,38 +44,43 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseRouting();
-app.UseAuthentication(); // Se tiver login
-app.UseAuthorization();
 
-// Rota de Admin
+app.UseRouting();
+
+// HABILITA AUTENTICAÇÃO E AUTORIZAÇÃO
+app.UseAuthentication(); // Quem é você? (Login)
+app.UseAuthorization();  // O que você pode fazer? (Permissões)
+
+// ==========================================
+// 3. ROTAS
+// ==========================================
+
+// Rota de Admin (Áreas)
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
-// Rota Padrão
+// Rota Padrão (Home)
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// --- BLOCO DE SEED (ATUALIZADO) ---
+// ==========================================
+// 4. DATABASE SEEDER (POPULAR BANCO)
+// ==========================================
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     try
     {
+        // Pega os serviços necessários
         var context = services.GetRequiredService<FabricaDeSorrisos.Infrastructure.Persistence.AppDbContext>();
-        var userManager = services.GetRequiredService<UserManager<FabricaDeSorrisos.Infrastructure.Identity.ApplicationUser>>();
+        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-        // Chama o seu DatabaseSeeder existente
+        // Roda o Seeder (Cria Admin, Faixas Etárias, etc.)
         await FabricaDeSorrisos.Infrastructure.Persistence.Seed.DatabaseSeeder.SeedAsync(userManager, roleManager, context);
     }
     catch (Exception ex)
@@ -60,6 +89,5 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "Ocorreu um erro ao rodar o DatabaseSeeder.");
     }
 }
-// ----------------------------------
 
 app.Run();

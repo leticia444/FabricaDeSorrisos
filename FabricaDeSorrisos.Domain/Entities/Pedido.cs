@@ -1,13 +1,18 @@
-﻿namespace FabricaDeSorrisos.Domain.Entities;
+﻿using FabricaDeSorrisos.Domain.Entities;
 
 public class Pedido
 {
     public int Id { get; set; }
-    public DateTime DataPedido { get; set; } = DateTime.UtcNow;
-    public decimal ValorTotal { get; set; }
-
     public int UsuarioId { get; set; }
-    public Usuario? Usuario { get; set; }
+    public DateTime DataPedido { get; set; }
+    public decimal ValorTotal { get; set; }
+    public string Status { get; set; } // "Aguardando Pagamento", "Pago", etc.
 
-    public ICollection<PedidoItem>? Itens { get; set; }
+    // NOVOS CAMPOS PARA O CHECKOUT
+    public string? EnderecoEntrega { get; set; }
+    public string? CEP { get; set; }
+    public decimal ValorFrete { get; set; }
+    public string? FormaPagamento { get; set; } // "Pix", "Cartao", "Boleto"
+
+    public List<PedidoItem> Itens { get; set; } = new();
 }
