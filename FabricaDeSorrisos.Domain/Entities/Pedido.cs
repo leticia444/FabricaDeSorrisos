@@ -14,5 +14,8 @@ public class Pedido
     public decimal ValorFrete { get; set; }
     public string? FormaPagamento { get; set; } // "Pix", "Cartao", "Boleto"
 
+    // ADICIONE ESSA LINHA SE NÃO TIVER:
+    public virtual Usuario Usuario { get; set; }
+
     public List<PedidoItem> Itens { get; set; } = new();
 }

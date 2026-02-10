@@ -1,4 +1,5 @@
-﻿@{
+﻿@model FabricaDeSorrisos.Web.Areas.Admin.Models.DashboardViewModel
+@{
     ViewData["Title"] = "Dashboard";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
@@ -14,24 +15,27 @@
         <a asp-controller="Brinquedos" asp-action="Index" class="text-decoration-none">
             <div class="card card-counter p-3 bg-white border-start border-4 border-primary h-100 shadow-sm hover-effect">
                 <h6 class="text-muted text-uppercase small fw-bold">Brinquedos</h6>
-                <h2 class="mb-0 fw-bold text-dark">Gestão</h2>
+                <h2 class="mb-0 fw-bold text-primary">@Model.QtdBrinquedos</h2>
+                <small class="text-muted">Produtos cadastrados</small>
             </div>
         </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-counter p-3 bg-white border-start border-4 border-warning h-100 shadow-sm opacity-50">
-            <h6 class="text-muted text-uppercase small fw-bold">Pedidos</h6>
-            <h2 class="mb-0 fw-bold text-dark">0</h2>
-            <small class="text-muted" style="font-size: 10px;">(Em breve)</small>
-        </div>
+        <a asp-controller="Pedidos" asp-action="Index" class="text-decoration-none">
+            <div class="card card-counter p-3 bg-white border-start border-4 border-warning h-100 shadow-sm hover-effect">
+                <h6 class="text-muted text-uppercase small fw-bold">Pedidos</h6>
+                <h2 class="mb-0 fw-bold text-warning">@Model.QtdPedidos</h2>
+                <small class="text-muted">Vendas realizadas</small>
+            </div>
+        </a>
     </div>
 
     <div class="col-md-3">
-        <div class="card card-counter p-3 bg-white border-start border-4 border-success h-100 shadow-sm opacity-50">
+        <div class="card card-counter p-3 bg-white border-start border-4 border-success h-100 shadow-sm">
             <h6 class="text-muted text-uppercase small fw-bold">Faturamento</h6>
-            <h2 class="mb-0 fw-bold text-dark">R$ 0,00</h2>
-            <small class="text-muted" style="font-size: 10px;">(Em breve)</small>
+            <h2 class="mb-0 fw-bold text-success">@Model.FaturamentoTotal.ToString("C")</h2>
+            <small class="text-muted">Total bruto</small>
         </div>
     </div>
 
@@ -39,14 +43,16 @@
         <a asp-controller="Usuarios" asp-action="Index" class="text-decoration-none">
             <div class="card card-counter p-3 bg-white border-start border-4 border-danger h-100 shadow-sm hover-effect">
                 <h6 class="text-muted text-uppercase small fw-bold">Usuários</h6>
-                <h2 class="mb-0 fw-bold text-dark">Gestão</h2>
+                <h2 class="mb-0 fw-bold text-danger">@Model.QtdUsuarios</h2>
+                <small class="text-muted">Clientes cadastrados</small>
             </div>
         </a>
     </div>
 </div>
 
-<div class="alert alert-info">
-    <i class="bi bi-info-circle-fill"></i> Use o menu lateral para gerenciar <strong>Marcas</strong>, <strong>Categorias</strong> e <strong>Personagens</strong>.
+<div class="alert alert-light border shadow-sm">
+    <h5 class="alert-heading fw-bold"><i class="bi bi-lightning-charge-fill text-warning"></i> Acesso Rápido</h5>
+    <p class="mb-0 text-muted">Use o menu lateral para gerenciar detalhadamente <strong>Marcas</strong>, <strong>Categorias</strong> e <strong>Personagens</strong>.</p>
 </div>
 
 <style>

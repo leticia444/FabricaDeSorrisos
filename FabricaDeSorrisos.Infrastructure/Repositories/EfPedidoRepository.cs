@@ -21,7 +21,7 @@ public class EfPedidoRepository : IPedidoRepository
     {
         return await _context.Pedidos
             .Include(p => p.Itens)
-            .ThenInclude(i => i.Brinquedo) // Traz os detalhes do brinquedo
+            .ThenInclude(i => i.Brinquedo)
             .Where(p => p.UsuarioId == usuarioId)
             .OrderByDescending(p => p.DataPedido)
             .ToListAsync();
@@ -32,6 +32,25 @@ public class EfPedidoRepository : IPedidoRepository
         return await _context.Pedidos
            .Include(p => p.Itens)
            .ThenInclude(i => i.Brinquedo)
+           .Include(p => p.Usuario) // <--- O PULO DO GATO: Traz os dados do Cliente
            .FirstOrDefaultAsync(p => p.Id == id);
     }
+
+    public async Task<List<Pedido>> GetTodosPedidosAsync()
+    {
+        return await _context.Pedidos
+            .Include(p => p.Itens)
+            .ThenInclude(i => i.Brinquedo)
+            .Include(p => p.Usuario) // <--- AQUI TAMBÉM: Para aparecer na listagem se precisar
+            .OrderByDescending(p => p.DataPedido)
+            .ToListAsync();
+    }
+
+    // IMPLEMENTAÇÃO NOVA:
+    public async Task UpdateAsync(Pedido pedido)
+    {
+        _context.Pedidos.Update(pedido);
+        await _context.SaveChangesAsync();
+    }
+
 }

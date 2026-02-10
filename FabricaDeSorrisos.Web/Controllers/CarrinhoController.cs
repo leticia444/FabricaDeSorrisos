@@ -111,6 +111,16 @@ public class CarrinhoController : Controller
     [HttpPost]
     public async Task<IActionResult> ProcessarPedido(CheckoutViewModel model)
     {
+
+        // 1. VALIDAÇÃO: Se o formulário estiver inválido (sem CEP/Endereço), volta pra tela
+        if (!ModelState.IsValid)
+        {
+            // Precisamos recarregar os itens para não quebrar a tela
+            var uId = GetUsuarioId();
+            model.Itens = await _carrinhoRepo.GetCarrinhoDoUsuarioAsync(uId);
+            return View("Checkout", model); // Retorna para a View Checkout mostrando os erros
+        }
+
         var usuarioId = GetUsuarioId();
         var itensCarrinho = await _carrinhoRepo.GetCarrinhoDoUsuarioAsync(usuarioId);
 
