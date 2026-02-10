@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
-    public partial class frmPedidos : Form
+    public partial class frmExcluirUsuario : Form
     {
-        public frmPedidos()
+        public frmExcluirUsuario()
         {
             InitializeComponent();
         }

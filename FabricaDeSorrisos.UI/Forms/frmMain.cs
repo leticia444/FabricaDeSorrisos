@@ -1,5 +1,6 @@
 ﻿using FabricaDeSorrisos.UI.Models;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace FabricaDeSorrisos.UI.Forms
@@ -9,47 +10,84 @@ namespace FabricaDeSorrisos.UI.Forms
         public frmMain()
         {
             InitializeComponent();
+
+            // Recalcula posição ao redimensionar
+            this.Resize += FrmMain_Resize;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // 🔒 Segurança
-            if (!UserSession.IsAuthenticated)
+            // 🔒 Segurança centralizada
+            if (!UserSession.IsAuthenticated || UserSession.Role != "Admin")
             {
-                MessageBox.Show("Sessão expirada. Faça login novamente.");
+                MessageBox.Show(
+                    "Sessão inválida ou acesso não autorizado.",
+                    "Acesso negado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
                 VoltarParaLogin();
                 return;
             }
 
-            lblUsuario.Text = $"{UserSession.UserName} ({UserSession.Role})";
+            // 👤 Mostra apenas o nome (antes do @)
+            lblUsuario.Text = ObterNomeUsuario();
+
+            // Ajustes visuais do label
+            lblUsuario.AutoSize = true;
+            lblUsuario.TextAlignment = ContentAlignment.MiddleCenter;
+
+            CentralizarLblUsuario();
 
             AplicarPermissoes();
         }
 
-        private void AplicarPermissoes()
+        private void FrmMain_Resize(object sender, EventArgs e)
         {
-            // Apenas Admin vê usuários
-            if (UserSession.Role != "Admin")
-            {
-                guna2Button1.Visible = false;
-            }
-
-            // Cliente não entra
-            if (UserSession.Role == "Cliente")
-            {
-                MessageBox.Show("Acesso não permitido para este perfil.");
-                VoltarParaLogin();
-            }
+            CentralizarLblUsuario();
         }
 
-        private void guna2Button2_Click(object sender, EventArgs e)
+        private void CentralizarLblUsuario()
         {
-            AbrirFormNoPainel(new frmProdutos());
+            // Centraliza horizontalmente em relação ao pbIcon
+            lblUsuario.Left = pbIcon.Left + (pbIcon.Width - lblUsuario.Width) / 2;
+
+            // Posiciona logo abaixo do ícone
+            lblUsuario.Top = pbIcon.Bottom + 8; // espaço de 8px
+        }
+
+        private string ObterNomeUsuario()
+        {
+            if (string.IsNullOrWhiteSpace(UserSession.UserName))
+                return "Usuário";
+
+            // Se for email, pega só o nome
+            if (UserSession.UserName.Contains("@"))
+                return UserSession.UserName.Split('@')[0];
+
+            return UserSession.UserName;
+        }
+
+        private void AplicarPermissoes()
+        {
+            // Somente Admin vê usuários
+            btnUsuarios.Visible = UserSession.Role == "Admin";
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            AbrirFormNoPainel(new frmCriarUsuarios());
+        }
+
+        private void btnProdutos_Click(object sender, EventArgs e)
+        {
+            AbrirFormNoPainel(new frmCriarProdutos());
         }
 
         private void pbLogo_Click(object sender, EventArgs e)
         {
-            painel.Controls.Clear();
+            FecharFormsDoPainel();
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -70,18 +108,36 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private void AbrirFormNoPainel(Form form)
         {
-            painel.Controls.Clear();
+            FecharFormsDoPainel();
+
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            painel.Controls.Add(form);
+
+            panel.Controls.Add(form);
             form.Show();
+        }
+
+        private void FecharFormsDoPainel()
+        {
+            foreach (Control c in panel.Controls)
+            {
+                if (c is Form f)
+                    f.Close();
+            }
+
+            panel.Controls.Clear();
         }
 
         private void VoltarParaLogin()
         {
             new frmLogin().Show();
-            this.Close();
+            Close();
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
