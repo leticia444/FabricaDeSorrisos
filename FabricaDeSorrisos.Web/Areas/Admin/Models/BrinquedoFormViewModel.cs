@@ -35,6 +35,7 @@ public class BrinquedoFormViewModel
 
     public int? SubCategoriaId { get; set; } // Será carregado via JavaScript depois (Fase avançada), por enquanto opcional
 
+
     [Required(ErrorMessage = "Selecione a Faixa Etária")]
     public int FaixaEtariaId { get; set; }
 
@@ -45,4 +46,6 @@ public class BrinquedoFormViewModel
     public IEnumerable<Categoria> Categorias { get; set; } = new List<Categoria>();
     public IEnumerable<FaixaEtaria> FaixasEtarias { get; set; } = new List<FaixaEtaria>();
     public IEnumerable<Personagem> Personagens { get; set; } = new List<Personagem>();
+    // ADICIONE ESSA LINHA:
+    public IEnumerable<SubCategoria> SubCategorias { get; set; } = new List<SubCategoria>();
 }

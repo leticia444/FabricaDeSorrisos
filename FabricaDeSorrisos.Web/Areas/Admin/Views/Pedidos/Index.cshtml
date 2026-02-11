@@ -1,0 +1,56 @@
+﻿@model FabricaDeSorrisos.Web.Areas.Admin.Models.PedidosIndexViewModel
+@{
+    ViewData["Title"] = "Gestão de Pedidos";
+}
+
+<div class="container-fluid py-4">
+    <h2 class="mb-4">📋 Gestão de Pedidos</h2>
+
+    <ul class="nav nav-tabs mb-3" id="pedidoTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active fw-bold text-warning" id="pendentes-tab" data-bs-toggle="tab" data-bs-target="#pendentes" type="button">
+                <i class="bi bi-hourglass-split"></i> Aguardando Pagamento
+                <span class="badge bg-warning text-dark ms-2">@Model.Pendentes.Count</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold text-success" id="finalizados-tab" data-bs-toggle="tab" data-bs-target="#finalizados" type="button">
+                <i class="bi bi-check-all"></i> Finalizados / Pagos
+                <span class="badge bg-success ms-2">@Model.Finalizados.Count</span>
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="pedidoTabsContent">
+
+        <div class="tab-pane fade show active" id="pendentes" role="tabpanel">
+            @if (!Model.Pendentes.Any())
+            {
+                <div class="alert alert-info">Nenhum pedido aguardando pagamento no momento.</div>
+            }
+            else
+            {
+                <div class="card shadow-sm border-warning">
+                    <div class="card-body p-0">
+                        @await Html.PartialAsync("_TabelaPedidos", Model.Pendentes)
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="tab-pane fade" id="finalizados" role="tabpanel">
+            @if (!Model.Finalizados.Any())
+            {
+                <div class="alert alert-light">Nenhum pedido finalizado ainda.</div>
+            }
+            else
+            {
+                <div class="card shadow-sm border-success">
+                    <div class="card-body p-0">
+                        @await Html.PartialAsync("_TabelaPedidos", Model.Finalizados)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

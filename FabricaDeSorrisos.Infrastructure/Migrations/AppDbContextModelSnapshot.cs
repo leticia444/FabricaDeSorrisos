@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
+namespace FabricaDeSorrisos.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -855,11 +855,13 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Pedido", b =>
                 {
-                    b.HasOne("FabricaDeSorrisos.Domain.Entities.Usuario", null)
+                    b.HasOne("FabricaDeSorrisos.Domain.Entities.Usuario", "Usuario")
                         .WithMany("Pedidos")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Brinquedo", b =>

@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
+namespace FabricaDeSorrisos.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260204175943_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260210184434_BancoNovo")]
+    partial class BancoNovo
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,8 +88,14 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PersonagemId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("SubCategoriaId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -98,6 +104,10 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                     b.HasIndex("FaixaEtariaId");
 
                     b.HasIndex("MarcaId");
+
+                    b.HasIndex("PersonagemId");
+
+                    b.HasIndex("SubCategoriaId");
 
                     b.ToTable("Brinquedos");
                 });
@@ -266,30 +276,6 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                     b.ToTable("MensagensSuporte");
                 });
 
-            modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Pedido", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DataPedido")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ValorTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("Pedidos");
-                });
-
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.PedidoItem", b =>
                 {
                     b.Property<int>("Id")
@@ -317,6 +303,48 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                     b.HasIndex("PedidoId");
 
                     b.ToTable("PedidoItens");
+                });
+
+            modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Personagem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImagemUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Personagens");
+                });
+
+            modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.SubCategoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("SubCategorias");
                 });
 
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.TipoUsuario", b =>
@@ -570,6 +598,46 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Pedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CEP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataPedido")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnderecoEntrega")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FormaPagamento")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ValorFrete")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Pedidos");
+                });
+
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Avaliacao", b =>
                 {
                     b.HasOne("FabricaDeSorrisos.Domain.Entities.Brinquedo", "Brinquedo")
@@ -609,11 +677,23 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FabricaDeSorrisos.Domain.Entities.Personagem", "Personagem")
+                        .WithMany("Brinquedos")
+                        .HasForeignKey("PersonagemId");
+
+                    b.HasOne("FabricaDeSorrisos.Domain.Entities.SubCategoria", "SubCategoria")
+                        .WithMany("Brinquedos")
+                        .HasForeignKey("SubCategoriaId");
+
                     b.Navigation("Categoria");
 
                     b.Navigation("FaixaEtaria");
 
                     b.Navigation("Marca");
+
+                    b.Navigation("Personagem");
+
+                    b.Navigation("SubCategoria");
                 });
 
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.CarrinhoItem", b =>
@@ -684,17 +764,6 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Pedido", b =>
-                {
-                    b.HasOne("FabricaDeSorrisos.Domain.Entities.Usuario", "Usuario")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.PedidoItem", b =>
                 {
                     b.HasOne("FabricaDeSorrisos.Domain.Entities.Brinquedo", "Brinquedo")
@@ -703,7 +772,7 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FabricaDeSorrisos.Domain.Entities.Pedido", "Pedido")
+                    b.HasOne("Pedido", "Pedido")
                         .WithMany("Itens")
                         .HasForeignKey("PedidoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -714,12 +783,23 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                     b.Navigation("Pedido");
                 });
 
+            modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.SubCategoria", b =>
+                {
+                    b.HasOne("FabricaDeSorrisos.Domain.Entities.Categoria", "Categoria")
+                        .WithMany("SubCategorias")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+                });
+
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Usuario", b =>
                 {
                     b.HasOne("FabricaDeSorrisos.Domain.Entities.TipoUsuario", "TipoUsuario")
                         .WithMany("Usuarios")
                         .HasForeignKey("TipoUsuarioId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("TipoUsuario");
@@ -776,6 +856,17 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pedido", b =>
+                {
+                    b.HasOne("FabricaDeSorrisos.Domain.Entities.Usuario", "Usuario")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Brinquedo", b =>
                 {
                     b.Navigation("Avaliacoes");
@@ -788,6 +879,8 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Categoria", b =>
                 {
                     b.Navigation("Brinquedos");
+
+                    b.Navigation("SubCategorias");
                 });
 
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.FaixaEtaria", b =>
@@ -800,9 +893,14 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                     b.Navigation("Brinquedos");
                 });
 
-            modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Pedido", b =>
+            modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.Personagem", b =>
                 {
-                    b.Navigation("Itens");
+                    b.Navigation("Brinquedos");
+                });
+
+            modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.SubCategoria", b =>
+                {
+                    b.Navigation("Brinquedos");
                 });
 
             modelBuilder.Entity("FabricaDeSorrisos.Domain.Entities.TipoUsuario", b =>
@@ -815,6 +913,11 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                     b.Navigation("Favoritos");
 
                     b.Navigation("Pedidos");
+                });
+
+            modelBuilder.Entity("Pedido", b =>
+                {
+                    b.Navigation("Itens");
                 });
 #pragma warning restore 612, 618
         }

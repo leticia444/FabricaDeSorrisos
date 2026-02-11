@@ -37,16 +37,22 @@
 <hr />
 
 <div class="row mb-3">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <label class="form-label">Marca</label>
         <select asp-for="MarcaId" class="form-select" asp-items="@(new SelectList(Model.Marcas, "Id", "Nome"))">
             <option value="">Selecione...</option>
         </select>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <label class="form-label">Categoria</label>
         <select asp-for="CategoriaId" class="form-select" asp-items="@(new SelectList(Model.Categorias, "Id", "Nome"))">
             <option value="">Selecione...</option>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Subcategoria</label>
+        <select asp-for="SubCategoriaId" class="form-select" asp-items="@(new SelectList(Model.SubCategorias, "Id", "Nome"))">
+            <option value="">Nenhuma (ou Selecione)</option>
         </select>
     </div>
 </div>

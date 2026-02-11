@@ -12,6 +12,8 @@ public class CatalogViewModel
     public List<CategoriaDto> Categorias { get; set; } = new();
     public List<FaixaEtariaDto> FaixasEtarias { get; set; } = new();
     public List<PersonagemDto> Personagens { get; set; } = new();
+    // ADICIONE ESTA LINHA:
+    public List<SubCategoriaDto> SubCategorias { get; set; } = new();
 
     // O que o usuário selecionou (para manter marcado na tela)
     public string? TermoBusca { get; set; }

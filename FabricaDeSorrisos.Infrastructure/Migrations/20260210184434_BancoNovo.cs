@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
+namespace FabricaDeSorrisos.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class BancoNovo : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -88,6 +88,20 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Marcas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Personagens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImagemUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Personagens", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,40 +224,21 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Brinquedos",
+                name: "SubCategorias",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ImagemUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Estoque = table.Column<int>(type: "int", nullable: false),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false),
-                    CategoriaId = table.Column<int>(type: "int", nullable: false),
-                    MarcaId = table.Column<int>(type: "int", nullable: false),
-                    FaixaEtariaId = table.Column<int>(type: "int", nullable: false)
+                    CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brinquedos", x => x.Id);
+                    table.PrimaryKey("PK_SubCategorias", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Brinquedos_Categorias_CategoriaId",
+                        name: "FK_SubCategorias_Categorias_CategoriaId",
                         column: x => x.CategoriaId,
                         principalTable: "Categorias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Brinquedos_FaixasEtarias_FaixaEtariaId",
-                        column: x => x.FaixaEtariaId,
-                        principalTable: "FaixasEtarias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Brinquedos_Marcas_MarcaId",
-                        column: x => x.MarcaId,
-                        principalTable: "Marcas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -269,7 +264,106 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                         column: x => x.TipoUsuarioId,
                         principalTable: "TiposUsuarios",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Brinquedos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ImagemUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estoque = table.Column<int>(type: "int", nullable: false),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    CategoriaId = table.Column<int>(type: "int", nullable: false),
+                    MarcaId = table.Column<int>(type: "int", nullable: false),
+                    FaixaEtariaId = table.Column<int>(type: "int", nullable: false),
+                    PersonagemId = table.Column<int>(type: "int", nullable: true),
+                    SubCategoriaId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brinquedos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Brinquedos_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categorias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Brinquedos_FaixasEtarias_FaixaEtariaId",
+                        column: x => x.FaixaEtariaId,
+                        principalTable: "FaixasEtarias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Brinquedos_Marcas_MarcaId",
+                        column: x => x.MarcaId,
+                        principalTable: "Marcas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Brinquedos_Personagens_PersonagemId",
+                        column: x => x.PersonagemId,
+                        principalTable: "Personagens",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Brinquedos_SubCategorias_SubCategoriaId",
+                        column: x => x.SubCategoriaId,
+                        principalTable: "SubCategorias",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MensagensSuporte",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Texto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DataEnvio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    RespondidoPorAdmin = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MensagensSuporte", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MensagensSuporte_UsuariosDoSistema_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "UsuariosDoSistema",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pedidos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    DataPedido = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EnderecoEntrega = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CEP = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ValorFrete = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    FormaPagamento = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pedidos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pedidos_UsuariosDoSistema_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "UsuariosDoSistema",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -383,49 +477,6 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MensagensSuporte",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Texto = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataEnvio = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    RespondidoPorAdmin = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MensagensSuporte", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MensagensSuporte_UsuariosDoSistema_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "UsuariosDoSistema",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Pedidos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DataPedido = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pedidos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pedidos_UsuariosDoSistema_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "UsuariosDoSistema",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PedidoItens",
                 columns: table => new
                 {
@@ -518,6 +569,16 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                 column: "MarcaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Brinquedos_PersonagemId",
+                table: "Brinquedos",
+                column: "PersonagemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Brinquedos_SubCategoriaId",
+                table: "Brinquedos",
+                column: "SubCategoriaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CarrinhoItens_BrinquedoId",
                 table: "CarrinhoItens",
                 column: "BrinquedoId");
@@ -566,6 +627,11 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                 name: "IX_Pedidos_UsuarioId",
                 table: "Pedidos",
                 column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubCategorias_CategoriaId",
+                table: "SubCategorias",
+                column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UsuariosDoSistema_TipoUsuarioId",
@@ -622,16 +688,22 @@ namespace FabricaDeSorrisos.Infrastructure.Persistence.Migrations
                 name: "Pedidos");
 
             migrationBuilder.DropTable(
-                name: "Categorias");
-
-            migrationBuilder.DropTable(
                 name: "FaixasEtarias");
 
             migrationBuilder.DropTable(
                 name: "Marcas");
 
             migrationBuilder.DropTable(
+                name: "Personagens");
+
+            migrationBuilder.DropTable(
+                name: "SubCategorias");
+
+            migrationBuilder.DropTable(
                 name: "UsuariosDoSistema");
+
+            migrationBuilder.DropTable(
+                name: "Categorias");
 
             migrationBuilder.DropTable(
                 name: "TiposUsuarios");

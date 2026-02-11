@@ -1,0 +1,219 @@
+﻿@model FabricaDeSorrisos.Web.Models.CatalogViewModel
+@{
+    ViewData["Title"] = "Resultados da Busca";
+}
+
+<div class="container py-4">
+    <div class="mb-4 d-flex align-items-center justify-content-between">
+        <h4 class="fw-bold text-secondary mb-0">
+            @if (!string.IsNullOrEmpty(Model.TermoBusca))
+            {
+                <span>Resultados para: <span class="text-primary">"@Model.TermoBusca"</span></span>
+            }
+            else
+            {
+                <span>Catálogo Completo</span>
+            }
+        </h4>
+        <a asp-action="Busca" class="btn btn-sm btn-outline-secondary rounded-pill">Limpar Filtros</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+
+            @if (Model.CategoriaId.HasValue && Model.SubCategorias.Any())
+            {
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="fw-bold text-primary mb-0">Subcategorias</h5>
+                    <a asp-action="Busca" asp-route-categoriaId="" class="small text-muted text-decoration-none"><i class="bi bi-arrow-left"></i> Voltar</a>
+                </div>
+
+                <div class="d-flex flex-column gap-2 mb-4">
+                    <a asp-action="Busca"
+                       asp-route-categoriaId="@Model.CategoriaId"
+                       asp-route-subCategoriaId=""
+                       class="btn btn-filter @(Model.SubCategoriaId == null ? "active" : "")">
+                        Ver Tudo
+                    </a>
+
+                    @foreach (var sub in Model.SubCategorias)
+                    {
+                        <a asp-action="Busca"
+                           asp-route-categoriaId="@Model.CategoriaId"
+                           asp-route-subCategoriaId="@sub.Id"
+                           asp-route-termoBusca="@Model.TermoBusca"
+                           class="btn btn-filter @(Model.SubCategoriaId == sub.Id ? "active" : "")">
+                            @sub.Nome
+                        </a>
+                    }
+                </div>
+            }
+            else
+            {
+                <h5 class="fw-bold mb-3 text-dark">Categorias</h5>
+                <div class="d-flex flex-column gap-2 mb-4">
+                    <a asp-action="Busca" class="btn btn-filter @(Model.CategoriaId == null ? "active" : "")">Todas</a>
+
+                    @foreach (var cat in Model.Categorias)
+                    {
+                        <a asp-action="Busca"
+                           asp-route-categoriaId="@cat.Id"
+                           asp-route-termoBusca="@Model.TermoBusca"
+                           class="btn btn-filter @(Model.CategoriaId == cat.Id ? "active" : "")">
+                            @cat.Nome
+                        </a>
+                    }
+                </div>
+            }
+
+            <hr class="text-muted opacity-25">
+
+            <h6 class="fw-bold mt-3 mb-2 text-dark">Por Idade</h6>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                @foreach (var idade in Model.FaixasEtarias)
+                {
+                    <a asp-action="Busca"
+                       asp-route-categoriaId="@Model.CategoriaId"
+                       asp-route-subCategoriaId="@Model.SubCategoriaId"
+                       asp-route-faixaEtariaId="@idade.Id"
+                       asp-route-termoBusca="@Model.TermoBusca"
+                       class="badge rounded-pill text-decoration-none p-2 border
+                                  @(Model.FaixaEtariaId == idade.Id ? "bg-warning text-dark border-warning" : "bg-light text-secondary border-light")">
+                        @idade.Descricao
+                    </a>
+                }
+            </div>
+
+            <h6 class="fw-bold mt-3 mb-2 text-dark">Personagens</h6>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                @foreach (var pers in Model.Personagens)
+                {
+                    <a asp-action="Busca"
+                       asp-route-categoriaId="@Model.CategoriaId"
+                       asp-route-subCategoriaId="@Model.SubCategoriaId"
+                       asp-route-personagemId="@pers.Id"
+                       asp-route-termoBusca="@Model.TermoBusca"
+                       class="badge rounded-pill text-decoration-none p-2 border
+                                  @(Model.PersonagemId == pers.Id ? "bg-info text-white border-info" : "bg-light text-secondary border-light")">
+                        @pers.Nome
+                    </a>
+                }
+            </div>
+
+            <h6 class="fw-bold mt-3 mb-2 text-dark">Marcas</h6>
+            <div class="d-flex flex-wrap gap-2">
+                @foreach (var marca in Model.Marcas)
+                {
+                    <a asp-action="Busca"
+                       asp-route-categoriaId="@Model.CategoriaId"
+                       asp-route-subCategoriaId="@Model.SubCategoriaId"
+                       asp-route-marcaId="@marca.Id"
+                       asp-route-termoBusca="@Model.TermoBusca"
+                       class="badge rounded-pill text-decoration-none p-2 border
+                                  @(Model.MarcaId == marca.Id ? "bg-primary text-white border-primary" : "bg-white text-secondary border-secondary")">
+                        @marca.Nome
+                    </a>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @if (Model.Produtos != null && Model.Produtos.Items.Any())
+                {
+                    @foreach (var item in Model.Produtos.Items)
+                    {
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0 hover-card rounded-4 overflow-hidden">
+
+                                <div class="position-relative text-center p-4 bg-light">
+                                    <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.Id" class="d-block text-decoration-none">
+                                        <img src="@(item.ImagemUrl ?? "https://placehold.co/200?text=Foto")"
+                                             class="img-fluid transition-scale" alt="@item.Nome"
+                                             style="height: 180px; object-fit: contain;">
+                                    </a>
+                                </div>
+
+                                <div class="card-body">
+                                    <span class="badge bg-warning text-dark mb-2">@item.Categoria</span>
+
+                                    <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.Id" class="text-decoration-none text-dark">
+                                        <h6 class="card-title fw-bold text-truncate">@item.Nome</h6>
+                                    </a>
+
+                                    <div class="text-warning small mb-2">
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                    </div>
+
+                                    <h5 class="fw-bold text-primary mb-3">R$ @item.Preco.ToString("N2")</h5>
+
+                                    @if (item.Estoque > 0)
+                                    {
+                                        <button class="btn btn-success w-100 rounded-pill fw-bold" onclick="adicionarAoCarrinho(this, @item.Id)">
+                                            Comprar
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-secondary w-100 rounded-pill disabled">Esgotado</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-12 text-center py-5">
+                        <i class="bi bi-emoji-frown fs-1 text-muted"></i>
+                        <h4 class="mt-3">Nenhum brinquedo encontrado.</h4>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilo Botão Rosa (Menu Lateral) */
+    .btn-filter {
+        border: 2px solid #ff69b4; /* Rosa Choque */
+        color: #333;
+        background-color: white;
+        border-radius: 50px;
+        padding: 8px 15px;
+        text-align: left;
+        transition: all 0.3s;
+        font-weight: 500;
+    }
+
+        .btn-filter:hover {
+            background-color: #fff0f5;
+            color: #d63384;
+            transform: translateX(5px);
+        }
+
+        .btn-filter.active {
+            background-color: #ff69b4;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
+        }
+
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    .transition-scale {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-card:hover .transition-scale {
+        transform: scale(1.1);
+    }
+</style>

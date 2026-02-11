@@ -1,0 +1,42 @@
+﻿@model List<Pedido>
+
+<table class="table table-hover align-middle mb-0">
+    <thead class="bg-light">
+        <tr>
+            <th class="ps-4"># ID</th>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="ps-4 fw-bold">@item.Id.ToString("D6")</td>
+                <td>@item.DataPedido.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    @(item.Usuario != null ? item.Usuario.NomeCompleto : "ID: " + item.UsuarioId)
+                </td>
+                <td class="fw-bold text-primary">R$ @item.ValorTotal.ToString("N2")</td>
+                <td>
+                    @if (item.Status == "Aguardando Pagamento")
+                    {
+                        <span class="badge bg-warning text-dark">Aguardando</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-success">@item.Status</span>
+                    }
+                </td>
+                <td class="text-end pe-4">
+                    <a asp-action="Detalhes" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-eye"></i> Analisar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

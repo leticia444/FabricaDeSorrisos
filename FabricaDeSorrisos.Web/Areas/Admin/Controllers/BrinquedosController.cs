@@ -11,6 +11,10 @@ public class BrinquedosController : Controller
     private readonly IBrinquedoRepository _brinquedoRepo;
     private readonly IMarcaRepository _marcaRepo;
     private readonly ICategoriaRepository _categoriaRepo;
+
+    // 1. NOVO REPOSITÓRIO ADICIONADO
+    private readonly ISubCategoriaRepository _subCategoriaRepo;
+
     private readonly IFaixaEtariaRepository _faixaRepo;
     private readonly IPersonagemRepository _personagemRepo;
     private readonly IWebHostEnvironment _env;
@@ -19,6 +23,10 @@ public class BrinquedosController : Controller
         IBrinquedoRepository brinquedoRepo,
         IMarcaRepository marcaRepo,
         ICategoriaRepository categoriaRepo,
+
+        // 2. INJEÇÃO NO CONSTRUTOR
+        ISubCategoriaRepository subCategoriaRepo,
+
         IFaixaEtariaRepository faixaRepo,
         IPersonagemRepository personagemRepo,
         IWebHostEnvironment env)
@@ -26,6 +34,7 @@ public class BrinquedosController : Controller
         _brinquedoRepo = brinquedoRepo;
         _marcaRepo = marcaRepo;
         _categoriaRepo = categoriaRepo;
+        _subCategoriaRepo = subCategoriaRepo; // Atribuição
         _faixaRepo = faixaRepo;
         _personagemRepo = personagemRepo;
         _env = env;
@@ -163,6 +172,8 @@ public class BrinquedosController : Controller
         model.Categorias = await _categoriaRepo.GetAllAsync();
         model.FaixasEtarias = await _faixaRepo.GetAllAsync();
         model.Personagens = await _personagemRepo.GetAllAsync();
+        // 3. CARREGAR A LISTA NOVA
+        model.SubCategorias = await _subCategoriaRepo.GetAllAsync();
     }
 
     private async Task<string> SalvarArquivo(IFormFile arquivo)

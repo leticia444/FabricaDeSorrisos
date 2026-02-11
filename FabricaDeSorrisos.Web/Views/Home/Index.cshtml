@@ -1,219 +1,235 @@
 ﻿@model FabricaDeSorrisos.Web.Models.CatalogViewModel
 @{
-    ViewData["Title"] = "Catálogo de Brinquedos";
+    ViewData["Title"] = "Bem-vindo à Fábrica";
 }
 
-<div class="container py-4">
-    <div class="row">
-        <div class="col-md-3 mb-4">
-            <div class="card shadow-sm border-0 sticky-top" style="top: 20px; z-index: 100;">
-                <div class="card-header bg-primary text-white fw-bold">
-                    <i class="bi bi-funnel-fill me-2"></i> Filtros
+<div class="container-fluid p-0 mb-5">
+    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://placehold.co/1920x500/00bfff/ffffff?text=Fábrica+de+Sorrisos+🐻" class="d-block w-100" alt="Banner Principal" style="max-height: 500px; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row justify-content-center text-center g-4 mb-5">
+
+        <div class="col-6 col-md-2">
+            <a asp-action="Busca" asp-route-categoriaId="1" class="text-decoration-none">
+                <div class="cat-card bg-pink shadow-sm hover-scale">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3082/3082060.png" width="50" alt="Pato">
+                    <span class="d-block fw-bold text-white mt-2">BRINQUEDOS</span>
                 </div>
-                <div class="card-body">
-                    <form asp-action="Index" method="get" id="formFiltros">
-                        @if (!string.IsNullOrEmpty(Model.TermoBusca))
-                        {
-                            <input type="hidden" asp-for="TermoBusca" />
-                            <div class="alert alert-light border mb-3 p-2 small d-flex justify-content-between align-items-center">
-                                <span>Busca: <strong>@Model.TermoBusca</strong></span>
-                                <a asp-action="Index" class="text-danger text-decoration-none fw-bold">&times;</a>
-                            </div>
-                        }
+            </a>
+        </div>
 
-                        <h6 class="fw-bold mt-2">Categorias</h6>
-                        <div class="d-grid gap-1 mb-3">
-                            <a asp-route-categoriaId="" class="btn btn-sm text-start @(Model.CategoriaId == null ? "btn-secondary text-white" : "btn-outline-light text-dark")">
-                                Todas
-                            </a>
-                            @foreach (var cat in Model.Categorias)
-                            {
-                                <a asp-route-categoriaId="@cat.Id"
-                                   class="btn btn-sm text-start @(Model.CategoriaId == cat.Id ? "btn-primary" : "btn-outline-light text-dark")">
-                                    @cat.Nome
-                                </a>
-                            }
-                        </div>
+        <div class="col-6 col-md-2">
+            <a asp-action="Busca" asp-route-categoriaId="2" class="text-decoration-none">
+                <div class="cat-card bg-cyan shadow-sm hover-scale">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3938/3938661.png" width="50" alt="Blocos">
+                    <span class="d-block fw-bold text-white mt-2">EDUCATIVOS</span>
+                </div>
+            </a>
+        </div>
 
-                        <h6 class="fw-bold">Marca</h6>
-                        <select asp-for="MarcaId" class="form-select form-select-sm mb-3" onchange="this.form.submit()">
-                            <option value="">Todas as Marcas</option>
-                            @foreach (var marca in Model.Marcas)
-                            {
-                                <option value="@marca.Id">@marca.Nome</option>
-                            }
-                        </select>
+        <div class="col-6 col-md-2">
+            <a asp-action="Busca" class="text-decoration-none">
+                <div class="cat-card bg-yellow shadow-sm hover-scale">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2219/2219694.png" width="50" alt="Torre">
+                    <span class="d-block fw-bold text-white mt-2">POR IDADE</span>
+                </div>
+            </a>
+        </div>
 
-                        <h6 class="fw-bold">Idade</h6>
-                        <select asp-for="FaixaEtariaId" class="form-select form-select-sm mb-3" onchange="this.form.submit()">
-                            <option value="">Qualquer Idade</option>
-                            @foreach (var faixa in Model.FaixasEtarias)
-                            {
-                                <option value="@faixa.Id">@faixa.Descricao</option>
-                            }
-                        </select>
+        <div class="col-6 col-md-2">
+            <a asp-action="Busca" asp-route-categoriaId="4" class="text-decoration-none">
+                <div class="cat-card bg-green shadow-sm hover-scale">
+                    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" width="50" alt="Pet">
+                    <span class="d-block fw-bold text-white mt-2">PETS</span>
+                </div>
+            </a>
+        </div>
 
-                        <h6 class="fw-bold">Personagem</h6>
-                        <select asp-for="PersonagemId" class="form-select form-select-sm mb-3" onchange="this.form.submit()">
-                            <option value="">Todos</option>
-                            @foreach (var p in Model.Personagens)
-                            {
-                                <option value="@p.Id">@p.Nome</option>
-                            }
-                        </select>
+        <div class="col-6 col-md-2">
+            <a asp-action="Busca" asp-route-categoriaId="3" class="text-decoration-none">
+                <div class="cat-card bg-navy shadow-sm hover-scale">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1435/1435728.png" width="50" alt="Jogos">
+                    <span class="d-block fw-bold text-white mt-2">JOGOS</span>
+                </div>
+            </a>
+        </div>
+    </div>
 
-                        <div class="d-grid mt-3">
-                            <a asp-action="Index" class="btn btn-outline-danger btn-sm">Limpar Filtros</a>
-                        </div>
-                    </form>
+    <div class="card border-0 rounded-4 overflow-hidden mb-5 shadow text-white game-banner">
+        <div class="card-body p-5 text-center position-relative">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-8">
+                    <h2 class="fw-bold display-6 mb-3 text-shadow">Enquanto organiza a fábrica,<br>o ursinho Fabrício conta com sua ajuda!</h2>
+                    <p class="fs-5 mb-4 text-shadow">Cada acerto cria um sorriso. Ganhe descontos exclusivos no final! 🐻✨</p>
+                    <button class="btn btn-warning btn-lg rounded-pill fw-bold px-5 shadow-lg hover-scale text-uppercase text-primary">
+                        <i class="bi bi-controller me-2"></i> Jogar Agora
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-md-9">
+    <div class="mb-5 text-center">
+        <h3 class="fw-bold mb-4 text-secondary">Nossas Marcas Favoritas</h3>
+        <div class="d-flex justify-content-center flex-wrap gap-4">
+            <a asp-action="Busca" asp-route-marcaId="1" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm p-3 d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/LEGO_logo.svg/1024px-LEGO_logo.svg.png" class="img-fluid" alt="Lego">
+                </div>
+            </a>
+            <a asp-action="Busca" asp-route-marcaId="2" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm p-3 d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Mattel_logo.svg" class="img-fluid" alt="Mattel">
+                </div>
+            </a>
+            <a asp-action="Busca" asp-route-marcaId="3" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm p-3 d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Hasbro_Logo.svg/1200px-Hasbro_Logo.svg.png" class="img-fluid" alt="Hasbro">
+                </div>
+            </a>
+            <a asp-action="Busca" asp-route-marcaId="4" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm p-3 d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Fisher-Price_logo.svg/2560px-Fisher-Price_logo.svg.png" class="img-fluid" alt="Fisher">
+                </div>
+            </a>
+            <a asp-action="Busca" asp-route-marcaId="5" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm p-3 d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/pt/e/ee/Logotipo_Estrela.png" class="img-fluid" alt="Estrela">
+                </div>
+            </a>
+        </div>
+    </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-3 bg-white p-3 rounded shadow-sm">
-                <span class="text-muted small">Mostrando <strong>@Model.Produtos?.Items.Count()</strong> de <strong>@Model.Produtos?.TotalCount</strong> brinquedos</span>
+    <div class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold text-dark border-start border-5 border-primary ps-3">Destaques da Semana</h3>
+            <a asp-action="Busca" class="btn btn-outline-primary rounded-pill">Ver Todos</a>
+        </div>
 
-                <form asp-action="Index" method="get" class="d-flex" style="max-width: 300px;">
-                    <input class="form-control form-control-sm me-2" type="search" placeholder="O que você procura?" name="termoBusca" value="@Model.TermoBusca">
-                    <button class="btn btn-outline-primary btn-sm" type="submit"><i class="bi bi-search"></i></button>
-                </form>
-            </div>
-
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                @if (Model.Produtos != null && Model.Produtos.Items.Any())
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @if (Model.Produtos != null && Model.Produtos.Items.Any())
+            {
+                @foreach (var item in Model.Produtos.Items.Take(6))
                 {
-                    @foreach (var item in Model.Produtos.Items)
-                    {
-                        <div class="col">
-                            <div class="card h-100 shadow-sm border-0 position-relative hover-card">
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 position-relative hover-card rounded-4 overflow-hidden">
 
-                                <div class="text-center p-3 bg-light rounded-top position-relative overflow-hidden">
+                            <div class="position-relative text-center p-4 bg-light">
+                                <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.Id" class="d-block text-decoration-none">
                                     <img src="@(item.ImagemUrl ?? "https://placehold.co/200?text=Sem+Foto")"
-                                         class="img-fluid transition-scale"
-                                         alt="@item.Nome"
+                                         class="img-fluid transition-scale" alt="@item.Nome"
                                          style="height: 180px; object-fit: contain;">
-                                </div>
+                                </a>
 
-                                <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-2 shadow-sm btn-favorito"
-                                        style="z-index: 10;"
+                                <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-3 shadow-sm btn-favorito"
                                         onclick="toggleFavorito(this, @item.Id)"
-                                        data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()"
-                                        title="Favoritar">
+                                        data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()">
                                     <i class="bi bi-heart fs-5 text-secondary"></i>
                                 </button>
+                            </div>
 
-                                <div class="card-body d-flex flex-column">
-                                    <div class="mb-2">
-                                        <span class="badge bg-secondary bg-opacity-10 text-secondary" style="font-size: 0.7rem;">@item.Categoria</span>
-                                        <span class="badge bg-secondary bg-opacity-10 text-secondary" style="font-size: 0.7rem;">@item.Marca</span>
-                                    </div>
+                            <div class="card-body d-flex flex-column text-center">
+                                <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.Id" class="text-decoration-none text-dark">
+                                    <h5 class="card-title text-truncate fw-bold mb-1">@item.Nome</h5>
+                                </a>
 
-                                    <h5 class="card-title text-truncate fw-bold" title="@item.Nome">@item.Nome</h5>
+                                <div class="mb-3">
+                                    <span class="badge bg-secondary bg-opacity-10 text-secondary">@item.Marca</span>
+                                </div>
 
-                                    <div class="mt-auto">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="fs-4 fw-bold text-primary">R$ @item.Preco.ToString("N2")</span>
+                                <div class="mt-auto">
+                                    <h4 class="fw-bold text-primary mb-3">R$ @item.Preco.ToString("N2")</h4>
 
-                                            @if (item.Estoque > 0)
-                                            {
-                                                <small class="text-success fw-bold"><i class="bi bi-check-circle-fill"></i> Estoque</small>
-                                            }
-                                            else
-                                            {
-                                                <small class="text-danger fw-bold"><i class="bi bi-x-circle-fill"></i> Esgotado</small>
-                                            }
-                                        </div>
-
-                                        @if (item.Estoque > 0)
-                                        {
-                                            <button class="btn btn-primary w-100 rounded-pill fw-bold shadow-sm"
-                                                    onclick="adicionarAoCarrinho(this, @item.Id)">
-                                                <i class="bi bi-cart-plus me-1"></i> Adicionar
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button class="btn btn-secondary w-100 rounded-pill disabled">
-                                                Indisponível
-                                            </button>
-                                        }
-                                    </div>
+                                    @if (item.Estoque > 0)
+                                    {
+                                        <button class="btn btn-success w-100 rounded-pill fw-bold shadow-sm hover-scale"
+                                                onclick="adicionarAoCarrinho(this, @item.Id)">
+                                            <i class="bi bi-cart-plus me-1"></i> Comprar
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-secondary w-100 rounded-pill disabled">Esgotado</button>
+                                    }
                                 </div>
                             </div>
                         </div>
-                    }
-                }
-                else
-                {
-                    <div class="col-12 text-center py-5">
-                        <div class="py-5 bg-light rounded-3">
-                            <i class="bi bi-emoji-frown fs-1 text-muted"></i>
-                            <h4 class="mt-3 text-muted">Ops! Nenhum brinquedo encontrado.</h4>
-                            <p class="text-muted">Tente mudar os filtros ou buscar por outra coisa.</p>
-                            <a asp-action="Index" class="btn btn-primary mt-2">Limpar tudo</a>
-                        </div>
                     </div>
                 }
-            </div>
-
-            @if (Model.Produtos != null && Model.Produtos.TotalPages > 1)
-            {
-                <nav class="mt-5">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item @(Model.PageIndex == 1 ? "disabled" : "")">
-                            <a class="page-link" asp-route-pageIndex="@(Model.PageIndex - 1)"
-                               asp-route-termoBusca="@Model.TermoBusca"
-                               asp-route-marcaId="@Model.MarcaId"
-                               asp-route-categoriaId="@Model.CategoriaId"
-                               asp-route-faixaEtariaId="@Model.FaixaEtariaId"
-                               asp-route-personagemId="@Model.PersonagemId">Anterior</a>
-                        </li>
-
-                        @for (int i = 1; i <= Model.Produtos.TotalPages; i++)
-                        {
-                            <li class="page-item @(Model.PageIndex == i ? "active" : "")">
-                                <a class="page-link" asp-route-pageIndex="@i"
-                                   asp-route-termoBusca="@Model.TermoBusca"
-                                   asp-route-marcaId="@Model.MarcaId"
-                                   asp-route-categoriaId="@Model.CategoriaId"
-                                   asp-route-faixaEtariaId="@Model.FaixaEtariaId"
-                                   asp-route-personagemId="@Model.PersonagemId">@i</a>
-                            </li>
-                        }
-
-                        <li class="page-item @(Model.PageIndex == Model.Produtos.TotalPages ? "disabled" : "")">
-                            <a class="page-link" asp-route-pageIndex="@(Model.PageIndex + 1)"
-                               asp-route-termoBusca="@Model.TermoBusca"
-                               asp-route-marcaId="@Model.MarcaId"
-                               asp-route-categoriaId="@Model.CategoriaId"
-                               asp-route-faixaEtariaId="@Model.FaixaEtariaId"
-                               asp-route-personagemId="@Model.PersonagemId">Próximo</a>
-                        </li>
-                    </ul>
-                </nav>
             }
         </div>
     </div>
 </div>
 
 <style>
-    /* Efeitinho de Hover no Card */
-    .hover-card {
-        transition: transform 0.2s, box-shadow 0.2s;
+    /* Estilos das Categorias */
+    .cat-card {
+        border-radius: 20px;
+        padding: 20px 10px;
+        transition: transform 0.2s;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
-        .hover-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+    .bg-pink {
+        background-color: #ff69b4;
+    }
+
+    .bg-cyan {
+        background-color: #00bfff;
+    }
+
+    .bg-yellow {
+        background-color: #ffd700;
+    }
+
+    .bg-green {
+        background-color: #32cd32;
+    }
+
+    .bg-navy {
+        background-color: #000080;
+    }
+
+    /* Banner do Jogo */
+    .game-banner {
+        background: linear-gradient(135deg, #fce38a 0%, #f38181 100%);
+    }
+
+    .text-shadow {
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    /* Efeitos */
+    .hover-scale {
+        transition: transform 0.2s;
+    }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
         }
-    /* Efeito na Imagem */
+
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
     .transition-scale {
         transition: transform 0.3s ease;
     }
 
     .hover-card:hover .transition-scale {
-        transform: scale(1.05);
+        transform: scale(1.1);
     }
 </style>

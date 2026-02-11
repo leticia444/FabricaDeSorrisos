@@ -16,10 +16,11 @@ public class EfFavoritoRepository : IFavoritoRepository
 
     public async Task<List<Favorito>> GetByUsuarioIdAsync(int usuarioId)
     {
-        // O Include(f => f.Brinquedo) é ESSENCIAL para mostrar o nome e foto na tela de favoritos
+        // ATUALIZADO: Agora filtramos também por Brinquedo.Ativo
+        // Assim, se o admin desativar o brinquedo, ele some dos favoritos do cliente
         return await _context.Favoritos
             .Include(f => f.Brinquedo)
-            .Where(f => f.UsuarioId == usuarioId)
+            .Where(f => f.UsuarioId == usuarioId && f.Brinquedo.Ativo)
             .OrderByDescending(f => f.DataFavoritado)
             .ToListAsync();
     }
