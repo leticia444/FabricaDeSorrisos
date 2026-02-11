@@ -1,27 +1,27 @@
 ﻿using FabricaDeSorrisos.UI.Models;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
+using FabricaDeSorrisos.UI.Models.Services;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        private readonly UserService _userService;
+
+        public frmMain(UserService userService)
         {
             InitializeComponent();
-
-            // Recalcula posição ao redimensionar
+            _userService = userService;
             this.Resize += FrmMain_Resize;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // 🔒 Segurança centralizada
-            if (!UserSession.IsAuthenticated || UserSession.Role != "Admin")
+            if (!UserSession.IsAuthenticated)
             {
                 MessageBox.Show(
-                    "Sessão inválida ou acesso não autorizado.",
+                    "Sessão inválida.",
                     "Acesso negado",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
@@ -31,17 +31,14 @@ namespace FabricaDeSorrisos.UI.Forms
                 return;
             }
 
-            // 👤 Mostra apenas o nome (antes do @)
             lblUsuario.Text = ObterNomeUsuario();
-
-            // Ajustes visuais do label
-            lblUsuario.AutoSize = true;
-            lblUsuario.TextAlignment = ContentAlignment.MiddleCenter;
-
             CentralizarLblUsuario();
-
             AplicarPermissoes();
         }
+
+        // =====================
+        // AJUSTES DE LAYOUT
+        // =====================
 
         private void FrmMain_Resize(object sender, EventArgs e)
         {
@@ -50,11 +47,8 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private void CentralizarLblUsuario()
         {
-            // Centraliza horizontalmente em relação ao pbIcon
             lblUsuario.Left = pbIcon.Left + (pbIcon.Width - lblUsuario.Width) / 2;
-
-            // Posiciona logo abaixo do ícone
-            lblUsuario.Top = pbIcon.Bottom + 8; // espaço de 8px
+            lblUsuario.Top = pbIcon.Bottom + 8;
         }
 
         private string ObterNomeUsuario()
@@ -62,7 +56,6 @@ namespace FabricaDeSorrisos.UI.Forms
             if (string.IsNullOrWhiteSpace(UserSession.UserName))
                 return "Usuário";
 
-            // Se for email, pega só o nome
             if (UserSession.UserName.Contains("@"))
                 return UserSession.UserName.Split('@')[0];
 
@@ -71,24 +64,42 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private void AplicarPermissoes()
         {
-            // Somente Admin vê usuários
-            btnUsuarios.Visible = UserSession.Role == "Admin";
+            bool isAdmin = UserSession.Role == "Admin";
+
+            btnUsuario.Visible = isAdmin;
+            lblUsuários.Visible = isAdmin;
         }
 
-        private void btnUsuarios_Click(object sender, EventArgs e)
+        // =====================
+        // BOTÕES → FORMULÁRIOS
+        // =====================
+
+        private void btnUsuario_Click(object sender, EventArgs e)
         {
-            AbrirFormNoPainel(new frmCriarUsuarios());
+            new frmUsuarios(_userService).ShowDialog();
         }
 
-        private void btnProdutos_Click(object sender, EventArgs e)
-        {
-            AbrirFormNoPainel(new frmCriarProdutos());
-        }
+        private void btnCategorias_Click(object sender, EventArgs e)
+            => AbrirFormulario(new frmCategorias());
 
-        private void pbLogo_Click(object sender, EventArgs e)
-        {
-            FecharFormsDoPainel();
-        }
+        private void btnSubCategoria_Click(object sender, EventArgs e)
+            => AbrirFormulario(new frmSubCategorias());
+
+        private void btnPersonagem_Click(object sender, EventArgs e)
+            => AbrirFormulario(new frmPersonagens());
+
+        private void btnBrinquedos_Click(object sender, EventArgs e)
+            => AbrirFormulario(new frmBrinquedos());
+
+        private void btnMarcas_Click(object sender, EventArgs e)
+            => AbrirFormulario(new frmMarcas());
+
+        private void btnPedidos_Click(object sender, EventArgs e)
+            => AbrirFormulario(new frmPedidos());
+
+        // =====================
+        // CONTROLES GERAIS
+        // =====================
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
@@ -106,38 +117,19 @@ namespace FabricaDeSorrisos.UI.Forms
             }
         }
 
-        private void AbrirFormNoPainel(Form form)
+        private void AbrirFormulario(Form form)
         {
-            FecharFormsDoPainel();
+            Hide();
 
-            form.TopLevel = false;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Dock = DockStyle.Fill;
-
-            panel.Controls.Add(form);
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.FormClosed += (s, e) => Show();
             form.Show();
-        }
-
-        private void FecharFormsDoPainel()
-        {
-            foreach (Control c in panel.Controls)
-            {
-                if (c is Form f)
-                    f.Close();
-            }
-
-            panel.Controls.Clear();
         }
 
         private void VoltarParaLogin()
         {
             new frmLogin().Show();
             Close();
-        }
-
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -8,21 +8,11 @@ using System.Windows.Forms;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
-    public partial class frmUsuarios : Form
+    public partial class frmPersonagens : Form
     {
-        public frmUsuarios()
+        public frmPersonagens()
         {
             InitializeComponent();
-        }
-
-        private void guna2Button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

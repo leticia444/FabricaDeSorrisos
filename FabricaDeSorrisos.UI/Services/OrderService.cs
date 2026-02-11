@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FabricaDeSorrisos.UI.Services
+namespace FabricaDeSorrisos.UI.Models.Services
 {
     internal class OrderService
     {

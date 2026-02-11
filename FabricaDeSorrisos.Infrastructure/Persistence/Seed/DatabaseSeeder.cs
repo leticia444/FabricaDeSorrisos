@@ -137,7 +137,6 @@ public static class DatabaseSeeder
                     {
                         NomeCompleto = seedUser.NomeCompleto,
                         Email = seedUser.Email,
-                        Cpf = "00000000000",
                         IdentityUserId = user.Id,
                         TipoUsuario = tipoUsuario
                     });
