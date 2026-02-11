@@ -1,10 +1,13 @@
 using FabricaDeSorrisos.Application.Abstractions.Repositories;
 using FabricaDeSorrisos.Application.DTOs;
+using FabricaDeSorrisos.Domain.Entities;
 using FabricaDeSorrisos.Infrastructure.Persistence;
 using FabricaDeSorrisos.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace FabricaDeSorrisos.Web.Controllers;
 
@@ -16,6 +19,7 @@ public class HomeController : Controller
     private readonly ICategoriaRepository _categoriaRepo;
     private readonly IFaixaEtariaRepository _faixaRepo;
     private readonly IPersonagemRepository _personagemRepo;
+    private readonly IFeedbackRepository _feedbackRepo; // 1. NOVO REPOSITÓRIO
     private readonly AppDbContext _context;
 
     public HomeController(
@@ -25,6 +29,7 @@ public class HomeController : Controller
         ICategoriaRepository categoriaRepo,
         IFaixaEtariaRepository faixaRepo,
         IPersonagemRepository personagemRepo,
+        IFeedbackRepository feedbackRepo, // Injeção aqui
         AppDbContext context)
     {
         _logger = logger;
@@ -33,20 +38,19 @@ public class HomeController : Controller
         _categoriaRepo = categoriaRepo;
         _faixaRepo = faixaRepo;
         _personagemRepo = personagemRepo;
+        _feedbackRepo = feedbackRepo; // Atribuição aqui
         _context = context;
     }
 
     // =============================================================
-    // 1. HOME (VITRINE) - A página bonitona com carrossel
+    // 1. HOME (VITRINE)
     // =============================================================
     public async Task<IActionResult> Index()
     {
-        // Pega apenas alguns destaques para a Home
         var destaques = await _brinquedoRepo.GetAllAsync();
 
         var viewModel = new CatalogViewModel
         {
-            // Pega os 6 primeiros produtos para mostrar em "Destaques"
             Produtos = new PagedResult<BrinquedoDto>
             {
                 Items = destaques.Take(6).Select(b => new BrinquedoDto
@@ -67,7 +71,7 @@ public class HomeController : Controller
     }
 
     // =============================================================
-    // 2. BUSCA (CATÁLOGO) - A página nova com filtros laterais
+    // 2. BUSCA (CATÁLOGO)
     // =============================================================
     [HttpGet]
     public async Task<IActionResult> Busca(
@@ -75,14 +79,13 @@ public class HomeController : Controller
             string? termoBusca = null,
             int? marcaId = null,
             int? categoriaId = null,
-            int? subCategoriaId = null, // <--- Novo parâmetro
+            int? subCategoriaId = null,
             int? faixaEtariaId = null,
             int? personagemId = null)
     {
         var todosBrinquedos = await _brinquedoRepo.GetAllAsync();
         var query = todosBrinquedos.Where(b => b.Ativo).AsEnumerable();
 
-        // 1. Aplica Filtros Principais
         if (!string.IsNullOrEmpty(termoBusca))
         {
             query = query.Where(b =>
@@ -93,46 +96,34 @@ public class HomeController : Controller
         }
 
         if (marcaId.HasValue) query = query.Where(b => b.MarcaId == marcaId.Value);
-
-        // Se tiver Categoria, filtra por ela
         if (categoriaId.HasValue) query = query.Where(b => b.CategoriaId == categoriaId.Value);
-
-        // Se tiver Subcategoria, filtra por ela
         if (subCategoriaId.HasValue) query = query.Where(b => b.SubCategoriaId == subCategoriaId.Value);
-
         if (faixaEtariaId.HasValue) query = query.Where(b => b.FaixaEtariaId == faixaEtariaId.Value);
         if (personagemId.HasValue) query = query.Where(b => b.PersonagemId == personagemId.Value);
 
-        // 2. Lógica Dinâmica da Sidebar (Categorias vs Subcategorias)
         var listaCategorias = (await _categoriaRepo.GetAllAsync()).Select(c => new CategoriaDto { Id = c.Id, Nome = c.Nome }).ToList();
         var listaSubCategorias = new List<SubCategoriaDto>();
 
-        // Se uma categoria foi selecionada, buscamos as subcategorias DELA no banco
         if (categoriaId.HasValue)
         {
-            // Usando o _context direto para agilizar, já que não temos SubCategoriaRepo injetado ainda
-            // Se você tiver o repo, use ele. Aqui vou usar o Context que injetamos antes.
             listaSubCategorias = await _context.SubCategorias
                 .Where(s => s.CategoriaId == categoriaId.Value)
                 .Select(s => new SubCategoriaDto { Id = s.Id, Nome = s.Nome })
                 .ToListAsync();
         }
 
-        // 3. Paginação
         int pageSize = 12;
         int totalItems = query.Count();
         var itensPagina = query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
         var viewModel = new CatalogViewModel
         {
-            // Listas
             Marcas = (await _marcaRepo.GetAllAsync()).Select(m => new MarcaDto { Id = m.Id, Nome = m.Nome }).ToList(),
             FaixasEtarias = (await _faixaRepo.GetAllAsync()).Select(f => new FaixaEtariaDto { Id = f.Id, Descricao = f.Descricao }).ToList(),
             Personagens = (await _personagemRepo.GetAllAsync()).Select(p => new PersonagemDto { Id = p.Id, Nome = p.Nome }).ToList(),
             Categorias = listaCategorias,
-            SubCategorias = listaSubCategorias, // Lista nova populada dinamicamente
+            SubCategorias = listaSubCategorias,
 
-            // Estado dos Filtros
             TermoBusca = termoBusca,
             MarcaId = marcaId,
             CategoriaId = categoriaId,
@@ -141,7 +132,6 @@ public class HomeController : Controller
             PersonagemId = personagemId,
             PageIndex = pageIndex,
 
-            // Produtos
             Produtos = new PagedResult<BrinquedoDto>
             {
                 Items = itensPagina.Select(b => new BrinquedoDto
@@ -165,7 +155,7 @@ public class HomeController : Controller
     }
 
     // =============================================================
-    // 3. AUTOCOMPLETE (Usado pelo JS)
+    // 3. AUTOCOMPLETE
     // =============================================================
     [HttpGet]
     public async Task<IActionResult> BuscarSugestoes(string termo)
@@ -188,6 +178,119 @@ public class HomeController : Controller
             if (item.Categoria.Contains(termo, StringComparison.OrdinalIgnoreCase)) sugestoes.Add(item.Categoria);
         }
         return Json(sugestoes.Distinct().Take(6));
+    }
+
+    // =============================================================
+    // 4. DETALHES DO PRODUTO (PDP) - ATUALIZADO
+    // =============================================================
+    [HttpGet]
+    public async Task<IActionResult> Detalhes(int id)
+    {
+        var produto = await _context.Brinquedos
+            .Include(b => b.Marca)
+            .Include(b => b.Categoria)
+            .Include(b => b.SubCategoria)
+            .Include(b => b.FaixaEtaria)
+            .Include(b => b.Personagem)
+            .FirstOrDefaultAsync(b => b.Id == id);
+
+        if (produto == null) return NotFound();
+
+        var relacionados = await _context.Brinquedos
+            .Where(b => b.CategoriaId == produto.CategoriaId && b.Id != id && b.Ativo)
+            .Take(4)
+            .Select(b => new BrinquedoDto
+            {
+                Id = b.Id,
+                Nome = b.Nome,
+                Preco = b.Preco,
+                ImagemUrl = b.ImagemUrl,
+                Estoque = b.Estoque,
+                Ativo = b.Ativo,
+                Marca = b.Marca.Nome,
+                Categoria = b.Categoria.Nome
+            })
+            .ToListAsync();
+
+        // --- CARREGA DADOS DE FEEDBACK ---
+        var comentarios = await _feedbackRepo.GetComentariosByBrinquedoIdAsync(id);
+        var media = await _feedbackRepo.GetMediaAvaliacaoAsync(id);
+        var qtd = await _feedbackRepo.GetQuantidadeAvaliacoesAsync(id);
+
+        var viewModel = new ProdutoDetalhesViewModel
+        {
+            Produto = new BrinquedoDto
+            {
+                Id = produto.Id,
+                Nome = produto.Nome,
+                Descricao = produto.Descricao,
+                Preco = produto.Preco,
+                ImagemUrl = produto.ImagemUrl,
+                Estoque = produto.Estoque,
+                Marca = produto.Marca?.Nome,
+                Categoria = produto.Categoria?.Nome
+            },
+            Relacionados = relacionados,
+
+            // Novos Campos
+            Comentarios = comentarios,
+            MediaNota = media,
+            TotalAvaliacoes = qtd
+        };
+
+        ViewBag.FaixaEtaria = produto.FaixaEtaria?.Descricao;
+        ViewBag.Personagem = produto.Personagem?.Nome;
+        ViewBag.SubCategoria = produto.SubCategoria?.Nome;
+
+        return View(viewModel);
+    }
+
+    // =============================================================
+    // 5. ENVIAR FEEDBACK (NOVO MÉTODO)
+    // =============================================================
+    [HttpPost]
+    [Authorize] // Só usuário logado pode comentar/avaliar
+    public async Task<IActionResult> EnviarFeedback(int brinquedoId, int? nota, string? comentarioTexto)
+    {
+        // Recupera o ID do usuário logado através dos Claims
+        var usuarioIdClaim = User.FindFirstValue("UsuarioSistemaId");
+
+        // Se por algum motivo o claim não vier, tenta redirecionar pro login ou pegar pelo Identity
+        if (string.IsNullOrEmpty(usuarioIdClaim))
+            return RedirectToAction("Login", "Account");
+
+        int usuarioId = int.Parse(usuarioIdClaim);
+
+        // 1. Salvar Avaliação (Nota) se tiver sido enviada
+        if (nota.HasValue && nota > 0)
+        {
+            // Verifica se já avaliou para evitar duplicidade
+            if (!await _feedbackRepo.UsuarioJaAvaliouAsync(usuarioId, brinquedoId))
+            {
+                await _feedbackRepo.AddAvaliacaoAsync(new Avaliacao
+                {
+                    BrinquedoId = brinquedoId,
+                    UsuarioId = usuarioId,
+                    Nota = nota.Value,
+                    DataAvaliacao = DateTime.Now
+                });
+            }
+        }
+
+        // 2. Salvar Comentário se tiver texto
+        if (!string.IsNullOrWhiteSpace(comentarioTexto))
+        {
+            await _feedbackRepo.AddComentarioAsync(new Comentario
+            {
+                BrinquedoId = brinquedoId,
+                UsuarioId = usuarioId,
+                Texto = comentarioTexto,
+                DataComentario = DateTime.Now
+            });
+        }
+
+        // Recarrega a página de detalhes para mostrar o novo comentário
+        return RedirectToAction(nameof(Detalhes), new { id = brinquedoId });
     }
 
     public IActionResult Privacy() => View();

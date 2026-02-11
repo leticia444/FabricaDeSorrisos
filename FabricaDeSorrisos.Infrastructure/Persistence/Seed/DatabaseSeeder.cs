@@ -43,7 +43,7 @@ public static class DatabaseSeeder
         // 5. CATEGORIAS E SUBCATEGORIAS
         await SeedCategoriasAsync(context);
 
-        // 6. BRINQUEDOS (PRODUTOS) - Agora com Subcategorias!
+        // 6. BRINQUEDOS (PRODUTOS) - Agora com Subcategorias e Imagens Locais!
         await SeedBrinquedosAsync(context);
     }
 
@@ -201,21 +201,20 @@ public static class DatabaseSeeder
             var catJogos = await context.Categorias.FirstAsync(c => c.Nome == "Jogos");
             var catEducativos = await context.Categorias.FirstAsync(c => c.Nome == "Educativos");
 
-            // 2. RECUPERA AS SUBCATEGORIAS (IMPORTANTE!)
-            // Usamos FirstOrDefault para evitar erro caso a string esteja ligeiramente diferente, mas idealmente deve ser igual ao SeedCategoriasAsync
+            // 2. RECUPERA AS SUBCATEGORIAS
             var subBlocos = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Blocos de Montar");
             var subBonecas = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Bonecas e Acessórios");
             var subVeiculos = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Veículos e Pistas");
             var subAcao = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Ação e Aventura");
             var subTabuleiro = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Tabuleiro");
-            var subEducativo = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome.Contains("Alfabetização")); // Pega por parte do nome para ser mais seguro
+            var subEducativo = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome.Contains("Alfabetização"));
 
             var faixa5a7 = await context.FaixasEtarias.FirstAsync(f => f.Descricao.Contains("5 a 7"));
             var faixa7a10 = await context.FaixasEtarias.FirstAsync(f => f.Descricao.Contains("7 a 10"));
             var faixa10mais = await context.FaixasEtarias.FirstAsync(f => f.Descricao.Contains("+10"));
             var faixaBebe = await context.FaixasEtarias.FirstAsync(f => f.Descricao.Contains("1 a 3"));
 
-            // 3. Criação dos Brinquedos com SubCategoriaId preenchido
+            // 3. Criação dos Brinquedos com SubCategoriaId preenchido e Imagens LOCAIS
             var produtos = new List<Brinquedo>
             {
                 // Lego -> Blocos
@@ -227,10 +226,10 @@ public static class DatabaseSeeder
                     Ativo = true,
                     MarcaId = lego.Id,
                     CategoriaId = catBrinquedos.Id,
-                    SubCategoriaId = subBlocos?.Id, // Vincula à Subcategoria
+                    SubCategoriaId = subBlocos?.Id,
                     PersonagemId = starWars.Id,
                     FaixaEtariaId = faixa10mais.Id,
-                    ImagemUrl = "https://m.media-amazon.com/images/I/81X8gK1M+xL._AC_SX679_.jpg"
+                    ImagemUrl = "/imagens/produtos/legostarwars.jpg" // CAMINHO AJUSTADO
                 },
                 // Barbie -> Bonecas
                 new Brinquedo {
@@ -241,10 +240,10 @@ public static class DatabaseSeeder
                     Ativo = true,
                     MarcaId = mattel.Id,
                     CategoriaId = catBrinquedos.Id,
-                    SubCategoriaId = subBonecas?.Id, // Vincula à Subcategoria
+                    SubCategoriaId = subBonecas?.Id,
                     PersonagemId = barbie.Id,
                     FaixaEtariaId = faixa5a7.Id,
-                    ImagemUrl = "https://m.media-amazon.com/images/I/81x1pA-xHUL._AC_SX679_.jpg"
+                    ImagemUrl = "/imagens/produtos/barbiecasadossonhos.png" // CAMINHO AJUSTADO
                 },
                 // Hot Wheels -> Veículos
                 new Brinquedo {
@@ -255,10 +254,10 @@ public static class DatabaseSeeder
                     Ativo = true,
                     MarcaId = mattel.Id,
                     CategoriaId = catBrinquedos.Id,
-                    SubCategoriaId = subVeiculos?.Id, // Vincula à Subcategoria
+                    SubCategoriaId = subVeiculos?.Id,
                     PersonagemId = hotWheels.Id,
                     FaixaEtariaId = faixa5a7.Id,
-                    ImagemUrl = "https://m.media-amazon.com/images/I/81-y4+XgJHL._AC_SX679_.jpg"
+                    ImagemUrl = "/imagens/produtos/hotwheels.webp" // CAMINHO AJUSTADO
                 },
                 // Banco Imobiliário -> Tabuleiro
                 new Brinquedo {
@@ -269,10 +268,10 @@ public static class DatabaseSeeder
                     Ativo = true,
                     MarcaId = estrela.Id,
                     CategoriaId = catJogos.Id,
-                    SubCategoriaId = subTabuleiro?.Id, // Vincula à Subcategoria
+                    SubCategoriaId = subTabuleiro?.Id,
                     PersonagemId = semPers.Id,
                     FaixaEtariaId = faixa7a10.Id,
-                    ImagemUrl = "https://m.media-amazon.com/images/I/81g7V5-g15L._AC_SX679_.jpg"
+                    ImagemUrl = "/imagens/produtos/bancoimobiliario.jpg" // CAMINHO AJUSTADO
                 },
                 // Homem-Aranha -> Ação
                 new Brinquedo {
@@ -283,10 +282,10 @@ public static class DatabaseSeeder
                     Ativo = true,
                     MarcaId = hasbro.Id,
                     CategoriaId = catBrinquedos.Id,
-                    SubCategoriaId = subAcao?.Id, // Vincula à Subcategoria
+                    SubCategoriaId = subAcao?.Id,
                     PersonagemId = aranha.Id,
                     FaixaEtariaId = faixa5a7.Id,
-                    ImagemUrl = "https://m.media-amazon.com/images/I/71VjM5LOeYL._AC_SX679_.jpg"
+                    ImagemUrl = "/imagens/produtos/homemaranha.jpg" // CAMINHO AJUSTADO
                 },
                 // Fisher Price -> Educativo
                 new Brinquedo {
@@ -297,10 +296,10 @@ public static class DatabaseSeeder
                     Ativo = true,
                     MarcaId = fisher.Id,
                     CategoriaId = catEducativos.Id,
-                    SubCategoriaId = subEducativo?.Id, // Vincula à Subcategoria
+                    SubCategoriaId = subEducativo?.Id,
                     PersonagemId = semPers.Id,
                     FaixaEtariaId = faixaBebe.Id,
-                    ImagemUrl = "https://m.media-amazon.com/images/I/71P4d+lqWUL._AC_SX679_.jpg"
+                    ImagemUrl = "/imagens/produtos/cachorrinho.jpg" // CAMINHO AJUSTADO
                 }
             };
 

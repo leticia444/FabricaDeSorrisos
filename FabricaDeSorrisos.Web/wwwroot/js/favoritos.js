@@ -1,50 +1,56 @@
-﻿async function toggleFavorito(btn, brinquedoId) {
-    // Verifica se o usuário está logado (truque visual rápido)
-    // Se o botão tiver a classe 'disabled' ou atributo data-auth="false", redireciona
-    const isAuthenticated = btn.getAttribute("data-auth") === "true";
+﻿function toggleFavorito(btn, brinquedoId) {
+    // 1. Verificação de Login
+    var isAuth = $(btn).data('auth');
 
-    if (!isAuthenticated) {
+    if (!isAuth || isAuth.toString().toLowerCase() === "false") {
         window.location.href = "/Account/Login";
         return;
     }
 
-    try {
-        // Chama a nossa API interna
-        const response = await fetch(`/api/favoritos/toggle/${brinquedoId}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
+    // Pega o ícone para mudar visualmente
+    var icon = $(btn).find("i");
+    // Verifica se estamos na página de "Meus Favoritos" (se for lixeira)
+    var isTrash = icon.hasClass("bi-trash") || $(btn).hasClass("btn-remover");
+
+    // 2. Chamada à API (Endereço Corrigido)
+    // Atenção: A URL agora é /api/Favoritos/toggle/ + o ID
+    $.post("/api/Favoritos/toggle/" + brinquedoId)
+        .done(function (response) {
+
+            if (response.success) {
+                // === AÇÃO DE REMOVER (LIXEIRA) ===
+                if (isTrash) {
+                    // Seleciona o card pelo ID que colocamos no HTML
+                    var card = $("#card-favorito-" + brinquedoId);
+
+                    // Faz sumir suavemente
+                    card.fadeOut(400, function () {
+                        $(this).remove(); // Remove do HTML
+
+                        // Se a lista ficar vazia, recarrega para mostrar a mensagem "Você não tem favoritos"
+                        // Verifica quantos cards sobraram na div pai #lista-favoritos
+                        if ($("#lista-favoritos").children(":visible").length === 0) {
+                            location.reload();
+                        }
+                    });
+                }
+                // === AÇÃO DE TOGGLE (CORAÇÃO NA HOME/BUSCA) ===
+                else {
+                    if (response.action === "added") {
+                        icon.removeClass("bi-heart").addClass("bi-heart-fill text-danger");
+                    } else {
+                        icon.removeClass("bi-heart-fill text-danger").addClass("bi-heart");
+                    }
+                }
+            }
+        })
+        .fail(function (xhr) {
+            console.error("Erro API:", xhr.responseText);
+            if (xhr.status === 401) {
+                window.location.href = "/Account/Login";
+            } else {
+                // Feedback visual de erro (opcional)
+                alert("Não foi possível atualizar o favorito.");
             }
         });
-
-        if (response.status === 401) {
-            window.location.href = "/Account/Login";
-            return;
-        }
-
-        const data = await response.json();
-
-        if (data.success) {
-            // Acha o ícone dentro do botão
-            const icon = btn.querySelector("i");
-
-            if (data.action === "added") {
-                // Virou Favorito: Coração Cheio e Vermelho
-                icon.classList.remove("bi-heart");
-                icon.classList.add("bi-heart-fill", "text-danger");
-                // Animaçãozinha opcional
-                icon.style.transform = "scale(1.2)";
-                setTimeout(() => icon.style.transform = "scale(1)", 200);
-            } else {
-                // Removeu Favorito: Coração Vazio e Preto/Cinza
-                icon.classList.remove("bi-heart-fill", "text-danger");
-                icon.classList.add("bi-heart");
-            }
-        } else {
-            alert(data.message || "Erro ao favoritar.");
-        }
-    } catch (error) {
-        console.error("Erro:", error);
-        alert("Ocorreu um erro ao processar sua solicitação.");
-    }
 }

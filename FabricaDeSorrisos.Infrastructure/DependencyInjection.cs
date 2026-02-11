@@ -60,6 +60,7 @@ public static class DependencyInjection
         // Adicione os de Avaliação e Favorito se criou os arquivos
         services.AddScoped<IUsuarioRepository, EfUsuarioRepository>();
         services.AddScoped<IPedidoRepository, EfPedidoRepository>();
+        services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 
         // 4. Registrar Serviços de Leitura
         services.AddScoped<IBrinquedoQueryService, BrinquedoQueryService>();
