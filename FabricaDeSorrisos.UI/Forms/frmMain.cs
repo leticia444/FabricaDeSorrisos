@@ -1,4 +1,4 @@
-﻿using FabricaDeSorrisos.UI.Models;
+using FabricaDeSorrisos.UI.Models;
 using System;
 using System.Windows.Forms;
 using FabricaDeSorrisos.UI.Models.Services;
@@ -76,7 +76,7 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
-            new frmUsuarios(_userService).ShowDialog();
+            AbrirFormulario(new frmUsuarios(_userService));
         }
 
         private void btnCategorias_Click(object sender, EventArgs e)

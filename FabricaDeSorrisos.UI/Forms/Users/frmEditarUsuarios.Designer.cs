@@ -1,4 +1,4 @@
-﻿namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms
 {
     partial class frmEditarUsuarios
     {
@@ -73,12 +73,12 @@
             txtEmail.Font = new Font("Segoe UI", 9F);
             txtEmail.ForeColor = Color.Black;
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(528, 347);
+            txtEmail.Location = new Point(700, 347);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "E-mail";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges13;
-            txtEmail.Size = new Size(220, 50);
+            txtEmail.Size = new Size(300, 50);
             txtEmail.TabIndex = 1;
             // 
             // txtSenha
@@ -94,12 +94,12 @@
             txtSenha.Font = new Font("Segoe UI", 9F);
             txtSenha.ForeColor = Color.Black;
             txtSenha.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSenha.Location = new Point(528, 403);
+            txtSenha.Location = new Point(700, 403);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Senha";
             txtSenha.SelectedText = "";
             txtSenha.ShadowDecoration.CustomizableEdges = customizableEdges11;
-            txtSenha.Size = new Size(220, 50);
+            txtSenha.Size = new Size(300, 50);
             txtSenha.TabIndex = 2;
             // 
             // btnEntrar
@@ -112,10 +112,10 @@
             btnEntrar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnEntrar.Font = new Font("Segoe UI", 9F);
             btnEntrar.ForeColor = Color.Black;
-            btnEntrar.Location = new Point(528, 527);
+            btnEntrar.Location = new Point(700, 527);
             btnEntrar.Name = "btnEntrar";
             btnEntrar.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            btnEntrar.Size = new Size(210, 55);
+            btnEntrar.Size = new Size(300, 55);
             btnEntrar.TabIndex = 6;
             btnEntrar.Text = "Confirmar edição";
             // 
@@ -131,10 +131,10 @@
             cbTipoUsuario.Font = new Font("Segoe UI", 10F);
             cbTipoUsuario.ForeColor = Color.Black;
             cbTipoUsuario.ItemHeight = 30;
-            cbTipoUsuario.Location = new Point(528, 474);
+            cbTipoUsuario.Location = new Point(700, 474);
             cbTipoUsuario.Name = "cbTipoUsuario";
             cbTipoUsuario.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            cbTipoUsuario.Size = new Size(220, 36);
+            cbTipoUsuario.Size = new Size(300, 36);
             cbTipoUsuario.TabIndex = 7;
             // 
             // txtNome
@@ -150,12 +150,12 @@
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.ForeColor = Color.Black;
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(528, 282);
+            txtNome.Location = new Point(700, 282);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Nome";
             txtNome.SelectedText = "";
             txtNome.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            txtNome.Size = new Size(220, 50);
+            txtNome.Size = new Size(300, 50);
             txtNome.TabIndex = 8;
             // 
             // btnFechar

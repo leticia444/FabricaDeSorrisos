@@ -128,23 +128,35 @@ namespace FabricaDeSorrisos.UI.Forms
         {
             // PASSANDO O USERSERVICE PARA O FORM
             var frm = new frmCriarUsuarios(_userService);
-            frm.ShowDialog();
+            Hide();
+            frm.ShowDialog(this);
+            Show();
 
             await CarregarUsuarios();
         }
 
         private async void btnEditarUsuario_Click(object sender, EventArgs e)
         {
-            var frm = new frmEditarUsuarios();
-            frm.ShowDialog();
+            var selecionado = ObterUsuarioSelecionado();
+            var frm = selecionado != null
+                ? new frmEditarUsuarios(_userService, selecionado.Id)
+                : new frmEditarUsuarios(_userService);
+            Hide();
+            frm.ShowDialog(this);
+            Show();
 
             await CarregarUsuarios();
         }
 
         private async void btnExcluirUsuario_Click(object sender, EventArgs e)
         {
-            var frm = new frmExcluirUsuarios();
-            frm.ShowDialog();
+            var selecionado = ObterUsuarioSelecionado();
+            var frm = selecionado != null
+                ? new frmExcluirUsuarios(_userService, selecionado.Id)
+                : new frmExcluirUsuarios(_userService);
+            Hide();
+            frm.ShowDialog(this);
+            Show();
 
             await CarregarUsuarios();
         }
@@ -152,6 +164,20 @@ namespace FabricaDeSorrisos.UI.Forms
         private void btnSair_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private UserViewModel? ObterUsuarioSelecionado()
+        {
+            var grids = new[] { guna2DataGridView1, guna2DataGridView2, guna2DataGridView3 };
+            foreach (var g in grids)
+            {
+                if (g.SelectedRows.Count > 0)
+                {
+                    var item = g.SelectedRows[0].DataBoundItem as UserViewModel;
+                    if (item != null) return item;
+                }
+            }
+            return null;
         }
     }
 }

@@ -113,6 +113,16 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dolar_icon {
+            get {
+                object obj = ResourceManager.GetObject("dolar_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit_user {
             get {
                 object obj = ResourceManager.GetObject("edit_user", resourceCulture);
@@ -166,6 +176,26 @@ namespace FabricaDeSorrisos.UI.Properties {
         internal static System.Drawing.Bitmap pedidos_icon {
             get {
                 object obj = ResourceManager.GetObject("pedidos_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap review_icon {
+            get {
+                object obj = ResourceManager.GetObject("review_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap review_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("review_icon1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
