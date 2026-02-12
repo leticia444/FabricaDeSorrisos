@@ -3,7 +3,7 @@ using FabricaDeSorrisos.UI.Models;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace FabricaDeSorrisos.UI.Services
+namespace FabricaDeSorrisos.UI.Models.Services
 {
     public class AuthService
     {

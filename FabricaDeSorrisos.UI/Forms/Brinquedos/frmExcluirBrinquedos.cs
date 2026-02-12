@@ -6,11 +6,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms.Brinquedos
 {
-    public partial class frmExcluirUsuario : Form
+    public partial class frmExcluirBrinquedos : Form
     {
-        public frmExcluirUsuario()
+        public frmExcluirBrinquedos()
         {
             InitializeComponent();
         }

@@ -35,15 +35,16 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             txtSenha = new Guna.UI2.WinForms.Guna2TextBox();
-            pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
             btnEntrar = new Guna.UI2.WinForms.Guna2Button();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
+            pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
+            lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             SuspendLayout();
             // 
@@ -57,14 +58,16 @@
             txtEmail.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtEmail.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtEmail.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Font = new Font("Segoe UI", 9F);
+            txtEmail.Font = new Font("Segoe UI", 12F);
+            txtEmail.ForeColor = Color.Black;
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(273, 227);
+            txtEmail.Location = new Point(447, 246);
+            txtEmail.Margin = new Padding(4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "E-mail";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtEmail.Size = new Size(200, 36);
+            txtEmail.Size = new Size(359, 72);
             txtEmail.TabIndex = 0;
             // 
             // txtSenha
@@ -77,45 +80,33 @@
             txtSenha.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtSenha.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtSenha.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSenha.Font = new Font("Segoe UI", 9F);
+            txtSenha.Font = new Font("Segoe UI", 12F);
+            txtSenha.ForeColor = Color.Black;
             txtSenha.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSenha.Location = new Point(273, 279);
+            txtSenha.Location = new Point(447, 347);
+            txtSenha.Margin = new Padding(4);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Senha";
             txtSenha.SelectedText = "";
             txtSenha.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtSenha.Size = new Size(200, 36);
+            txtSenha.Size = new Size(359, 69);
             txtSenha.TabIndex = 1;
-            // 
-            // pbLogo
-            // 
-            pbLogo.BackgroundImageLayout = ImageLayout.Zoom;
-            pbLogo.CustomizableEdges = customizableEdges5;
-            pbLogo.Image = Properties.Resources.ChatGPT_Image_5_de_fev__de_2026__14_50_26;
-            pbLogo.ImageRotate = 0F;
-            pbLogo.InitialImage = null;
-            pbLogo.Location = new Point(223, 12);
-            pbLogo.Name = "pbLogo";
-            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            pbLogo.Size = new Size(299, 196);
-            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLogo.TabIndex = 3;
-            pbLogo.TabStop = false;
             // 
             // btnEntrar
             // 
             btnEntrar.BorderRadius = 10;
-            btnEntrar.CustomizableEdges = customizableEdges7;
+            btnEntrar.CustomizableEdges = customizableEdges5;
             btnEntrar.DisabledState.BorderColor = Color.DarkGray;
             btnEntrar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEntrar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnEntrar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnEntrar.Font = new Font("Segoe UI", 9F);
-            btnEntrar.ForeColor = Color.White;
-            btnEntrar.Location = new Point(273, 334);
+            btnEntrar.FillColor = Color.Cyan;
+            btnEntrar.Font = new Font("Segoe UI", 12F);
+            btnEntrar.ForeColor = Color.Black;
+            btnEntrar.Location = new Point(522, 444);
             btnEntrar.Name = "btnEntrar";
-            btnEntrar.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnEntrar.Size = new Size(200, 45);
+            btnEntrar.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnEntrar.Size = new Size(223, 55);
             btnEntrar.TabIndex = 5;
             btnEntrar.Text = "Entrar";
             // 
@@ -135,22 +126,47 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(738, 2);
+            btnFechar.Location = new Point(1215, 2);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges9;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnFechar.Size = new Size(59, 56);
+            btnFechar.Size = new Size(38, 36);
             btnFechar.TabIndex = 6;
             btnFechar.Text = "X";
+            // 
+            // pbLogo
+            // 
+            pbLogo.CustomizableEdges = customizableEdges7;
+            pbLogo.Image = Properties.Resources.logo_oficial1;
+            pbLogo.ImageRotate = 0F;
+            pbLogo.Location = new Point(471, 2);
+            pbLogo.Name = "pbLogo";
+            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            pbLogo.Size = new Size(300, 200);
+            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            pbLogo.TabIndex = 7;
+            pbLogo.TabStop = false;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.BackColor = Color.Transparent;
+            lblTitulo.Font = new Font("Verdana", 20F);
+            lblTitulo.Location = new Point(392, 191);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(454, 34);
+            lblTitulo.TabIndex = 9;
+            lblTitulo.Text = "Bem-Vindo à Área Administrativa";
             // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.Ivory;
+            ClientSize = new Size(1265, 728);
+            Controls.Add(lblTitulo);
+            Controls.Add(pbLogo);
             Controls.Add(btnFechar);
             Controls.Add(btnEntrar);
-            Controls.Add(pbLogo);
             Controls.Add(txtSenha);
             Controls.Add(txtEmail);
             FormBorderStyle = FormBorderStyle.None;
@@ -158,15 +174,17 @@
             Text = "frmLogin";
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
         private Guna.UI2.WinForms.Guna2TextBox txtSenha;
-        private Guna.UI2.WinForms.Guna2PictureBox pbLogo;
         private Guna.UI2.WinForms.Guna2Button btnEntrar;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
+        private Guna.UI2.WinForms.Guna2PictureBox pbLogo;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
     }
 }

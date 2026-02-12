@@ -1,27 +1,25 @@
-﻿using FabricaDeSorrisos.UI.Auth;
-using FabricaDeSorrisos.UI.Models;
-using FabricaDeSorrisos.UI.Services;
-using System;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using FabricaDeSorrisos.UI.Models;
+using FabricaDeSorrisos.UI.Models.Services;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
     public partial class frmLogin : Form
     {
         private readonly AuthService _authService;
+        private readonly UserService _userService;
 
         public frmLogin()
         {
             InitializeComponent();
 
             _authService = new AuthService();
+            _userService = new UserService(); // 🔥 Agora é o da UI (sem DbContext)
 
             txtSenha.PasswordChar = '●';
             this.AcceptButton = btnEntrar;
 
             btnEntrar.Click += btnEntrar_Click;
-            btnFechar.Click += btnFechar_Click; // 👈 AQUI
+            btnFechar.Click += btnFechar_Click;
         }
 
         private async void btnEntrar_Click(object sender, EventArgs e)
@@ -31,7 +29,17 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private void btnFechar_Click(object sender, EventArgs e)
         {
-            Application.Exit(); // 👈 Fecha a aplicação inteira
+            var resultado = MessageBox.Show(
+                "Deseja realmente encerrar a aplicação?",
+                "Encerrar aplicação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private async Task RealizarLogin()
@@ -62,7 +70,6 @@ namespace FabricaDeSorrisos.UI.Forms
 
                 var response = await _authService.LoginAsync(request);
 
-                // 🚫 Cliente não acessa o sistema administrativo
                 if (response.Role == "Cliente")
                 {
                     MessageBox.Show(
@@ -81,7 +88,7 @@ namespace FabricaDeSorrisos.UI.Forms
                 UserSession.UserName = response.UserName;
                 UserSession.Role = response.Role;
 
-                var main = new frmMain();
+                var main = new frmMain(_userService);
                 main.Show();
 
                 this.Hide();

@@ -34,23 +34,22 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditarUsuarios));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
             txtSenha = new Guna.UI2.WinForms.Guna2TextBox();
-            pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
             btnEntrar = new Guna.UI2.WinForms.Guna2Button();
             cbTipoUsuario = new Guna.UI2.WinForms.Guna2ComboBox();
             txtNome = new Guna.UI2.WinForms.Guna2TextBox();
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
+            pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             SuspendLayout();
             // 
@@ -72,13 +71,14 @@
             txtEmail.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtEmail.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtEmail.Font = new Font("Segoe UI", 9F);
+            txtEmail.ForeColor = Color.Black;
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(300, 250);
+            txtEmail.Location = new Point(528, 347);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "E-mail";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges13;
-            txtEmail.Size = new Size(200, 36);
+            txtEmail.Size = new Size(220, 50);
             txtEmail.TabIndex = 1;
             // 
             // txtSenha
@@ -92,44 +92,30 @@
             txtSenha.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtSenha.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSenha.Font = new Font("Segoe UI", 9F);
+            txtSenha.ForeColor = Color.Black;
             txtSenha.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSenha.Location = new Point(300, 292);
+            txtSenha.Location = new Point(528, 403);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Senha";
             txtSenha.SelectedText = "";
             txtSenha.ShadowDecoration.CustomizableEdges = customizableEdges11;
-            txtSenha.Size = new Size(200, 36);
+            txtSenha.Size = new Size(220, 50);
             txtSenha.TabIndex = 2;
-            // 
-            // pbLogo
-            // 
-            pbLogo.BackgroundImageLayout = ImageLayout.Zoom;
-            pbLogo.CustomizableEdges = customizableEdges8;
-            pbLogo.Image = (Image)resources.GetObject("pbLogo.Image");
-            pbLogo.ImageRotate = 0F;
-            pbLogo.InitialImage = null;
-            pbLogo.Location = new Point(249, 12);
-            pbLogo.Name = "pbLogo";
-            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            pbLogo.Size = new Size(299, 169);
-            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLogo.TabIndex = 4;
-            pbLogo.TabStop = false;
             // 
             // btnEntrar
             // 
             btnEntrar.BorderRadius = 10;
-            btnEntrar.CustomizableEdges = customizableEdges6;
+            btnEntrar.CustomizableEdges = customizableEdges8;
             btnEntrar.DisabledState.BorderColor = Color.DarkGray;
             btnEntrar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEntrar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnEntrar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnEntrar.Font = new Font("Segoe UI", 9F);
-            btnEntrar.ForeColor = Color.White;
-            btnEntrar.Location = new Point(300, 383);
+            btnEntrar.ForeColor = Color.Black;
+            btnEntrar.Location = new Point(528, 527);
             btnEntrar.Name = "btnEntrar";
-            btnEntrar.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            btnEntrar.Size = new Size(200, 45);
+            btnEntrar.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            btnEntrar.Size = new Size(210, 55);
             btnEntrar.TabIndex = 6;
             btnEntrar.Text = "Confirmar edição";
             // 
@@ -137,24 +123,24 @@
             // 
             cbTipoUsuario.BackColor = Color.Transparent;
             cbTipoUsuario.BorderRadius = 10;
-            cbTipoUsuario.CustomizableEdges = customizableEdges4;
+            cbTipoUsuario.CustomizableEdges = customizableEdges6;
             cbTipoUsuario.DrawMode = DrawMode.OwnerDrawFixed;
             cbTipoUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
             cbTipoUsuario.FocusedColor = Color.FromArgb(94, 148, 255);
             cbTipoUsuario.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             cbTipoUsuario.Font = new Font("Segoe UI", 10F);
-            cbTipoUsuario.ForeColor = Color.FromArgb(68, 88, 112);
+            cbTipoUsuario.ForeColor = Color.Black;
             cbTipoUsuario.ItemHeight = 30;
-            cbTipoUsuario.Location = new Point(300, 334);
+            cbTipoUsuario.Location = new Point(528, 474);
             cbTipoUsuario.Name = "cbTipoUsuario";
-            cbTipoUsuario.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            cbTipoUsuario.Size = new Size(200, 36);
+            cbTipoUsuario.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            cbTipoUsuario.Size = new Size(220, 36);
             cbTipoUsuario.TabIndex = 7;
             // 
             // txtNome
             // 
             txtNome.BorderRadius = 10;
-            txtNome.CustomizableEdges = customizableEdges2;
+            txtNome.CustomizableEdges = customizableEdges4;
             txtNome.DefaultText = "";
             txtNome.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtNome.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -162,13 +148,14 @@
             txtNome.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtNome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNome.Font = new Font("Segoe UI", 9F);
+            txtNome.ForeColor = Color.Black;
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(300, 208);
+            txtNome.Location = new Point(528, 282);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Nome";
             txtNome.SelectedText = "";
-            txtNome.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            txtNome.Size = new Size(200, 36);
+            txtNome.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            txtNome.Size = new Size(220, 50);
             txtNome.TabIndex = 8;
             // 
             // btnFechar
@@ -180,24 +167,38 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(757, 12);
+            btnFechar.Location = new Point(1215, 12);
             btnFechar.Name = "btnFechar";
-            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnFechar.Size = new Size(31, 28);
+            btnFechar.Size = new Size(38, 36);
             btnFechar.TabIndex = 9;
             btnFechar.Text = "X";
+            // 
+            // pbLogo
+            // 
+            pbLogo.CustomizableEdges = customizableEdges1;
+            pbLogo.Image = Properties.Resources.edit_user;
+            pbLogo.ImageRotate = 0F;
+            pbLogo.Location = new Point(500, 37);
+            pbLogo.Name = "pbLogo";
+            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            pbLogo.Size = new Size(300, 200);
+            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            pbLogo.TabIndex = 10;
+            pbLogo.TabStop = false;
             // 
             // frmEditarUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.Ivory;
+            ClientSize = new Size(1265, 728);
+            Controls.Add(pbLogo);
             Controls.Add(btnFechar);
             Controls.Add(txtNome);
             Controls.Add(cbTipoUsuario);
             Controls.Add(btnEntrar);
-            Controls.Add(pbLogo);
             Controls.Add(txtSenha);
             Controls.Add(txtEmail);
             FormBorderStyle = FormBorderStyle.None;
@@ -212,10 +213,10 @@
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
         private Guna.UI2.WinForms.Guna2TextBox txtSenha;
-        private Guna.UI2.WinForms.Guna2PictureBox pbLogo;
         private Guna.UI2.WinForms.Guna2Button btnEntrar;
         private Guna.UI2.WinForms.Guna2TextBox txtNome;
         private Guna.UI2.WinForms.Guna2ComboBox cbTipoUsuario;
         private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
+        private Guna.UI2.WinForms.Guna2PictureBox pbLogo;
     }
 }
