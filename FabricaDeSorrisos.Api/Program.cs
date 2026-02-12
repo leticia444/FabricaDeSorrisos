@@ -3,15 +3,11 @@ using FabricaDeSorrisos.Infrastructure.Identity;
 using FabricaDeSorrisos.Infrastructure.Persistence;
 using FabricaDeSorrisos.Infrastructure.Persistence.Seed;
 using Microsoft.AspNetCore.Identity;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. Services (Controllers, Swagger)
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<JwtTokenService>();
