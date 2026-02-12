@@ -30,10 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -166,12 +164,12 @@
             // 
             // pbLogo
             // 
-            pbLogo.CustomizableEdges = customizableEdges12;
+            pbLogo.CustomizableEdges = customizableEdges43;
             pbLogo.Image = Properties.Resources.logo_oficial;
             pbLogo.ImageRotate = 0F;
             pbLogo.Location = new Point(526, -6);
             pbLogo.Name = "pbLogo";
-            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges13;
+            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges44;
             pbLogo.Size = new Size(369, 158);
             pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
             pbLogo.TabIndex = 13;
@@ -190,7 +188,7 @@
             btnUsuario.ImageSize = new Size(100, 100);
             btnUsuario.Location = new Point(370, 116);
             btnUsuario.Name = "btnUsuario";
-            btnUsuario.ShadowDecoration.CustomizableEdges = customizableEdges11;
+            btnUsuario.ShadowDecoration.CustomizableEdges = customizableEdges42;
             btnUsuario.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnUsuario.Size = new Size(148, 148);
             btnUsuario.TabIndex = 14;
@@ -209,7 +207,7 @@
             btnCategorias.ImageSize = new Size(100, 100);
             btnCategorias.Location = new Point(652, 116);
             btnCategorias.Name = "btnCategorias";
-            btnCategorias.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnCategorias.ShadowDecoration.CustomizableEdges = customizableEdges41;
             btnCategorias.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnCategorias.Size = new Size(158, 148);
             btnCategorias.TabIndex = 15;
@@ -228,7 +226,7 @@
             btnSubCategoria.ImageSize = new Size(100, 100);
             btnSubCategoria.Location = new Point(953, 116);
             btnSubCategoria.Name = "btnSubCategoria";
-            btnSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            btnSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges40;
             btnSubCategoria.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnSubCategoria.Size = new Size(148, 148);
             btnSubCategoria.TabIndex = 16;
@@ -248,7 +246,7 @@
             btnBrinquedos.ImageSize = new Size(100, 100);
             btnBrinquedos.Location = new Point(662, 311);
             btnBrinquedos.Name = "btnBrinquedos";
-            btnBrinquedos.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnBrinquedos.ShadowDecoration.CustomizableEdges = customizableEdges39;
             btnBrinquedos.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnBrinquedos.Size = new Size(148, 148);
             btnBrinquedos.TabIndex = 17;
@@ -267,7 +265,7 @@
             btnMarcas.ImageSize = new Size(100, 100);
             btnMarcas.Location = new Point(953, 311);
             btnMarcas.Name = "btnMarcas";
-            btnMarcas.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            btnMarcas.ShadowDecoration.CustomizableEdges = customizableEdges38;
             btnMarcas.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnMarcas.Size = new Size(148, 148);
             btnMarcas.TabIndex = 19;
@@ -286,7 +284,7 @@
             btnPersonagem.ImageSize = new Size(100, 100);
             btnPersonagem.Location = new Point(370, 311);
             btnPersonagem.Name = "btnPersonagem";
-            btnPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges37;
             btnPersonagem.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnPersonagem.Size = new Size(148, 148);
             btnPersonagem.TabIndex = 20;
@@ -299,7 +297,7 @@
             pbIcon.ImageRotate = 0F;
             pbIcon.Location = new Point(12, 12);
             pbIcon.Name = "pbIcon";
-            pbIcon.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            pbIcon.ShadowDecoration.CustomizableEdges = customizableEdges36;
             pbIcon.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pbIcon.Size = new Size(205, 149);
             pbIcon.SizeMode = PictureBoxSizeMode.Zoom;
@@ -329,49 +327,10 @@
             btnPedidos.ImageSize = new Size(100, 100);
             btnPedidos.Location = new Point(370, 514);
             btnPedidos.Name = "btnPedidos";
-            btnPedidos.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnPedidos.ShadowDecoration.CustomizableEdges = customizableEdges35;
             btnPedidos.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnPedidos.Size = new Size(148, 148);
             btnPedidos.TabIndex = 24;
-            btnPedidos.Click += btnPedidos_Click;
-            // 
-            // guna2HtmlLabel1
-            // 
-            guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Font = new Font("Segoe UI", 15F);
-            guna2HtmlLabel1.Location = new Point(664, 668);
-            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(146, 30);
-            guna2HtmlLabel1.TabIndex = 25;
-            guna2HtmlLabel1.Text = "Visualizar Lucros";
-            // 
-            // guna2HtmlLabel2
-            // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Segoe UI", 15F);
-            guna2HtmlLabel2.Location = new Point(943, 668);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(198, 30);
-            guna2HtmlLabel2.TabIndex = 26;
-            guna2HtmlLabel2.Text = "Visualizar comentários";
-            // 
-            // guna2CircleButton1
-            // 
-            guna2CircleButton1.DisabledState.BorderColor = Color.DarkGray;
-            guna2CircleButton1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2CircleButton1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2CircleButton1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2CircleButton1.FillColor = Color.Transparent;
-            guna2CircleButton1.Font = new Font("Segoe UI", 9F);
-            guna2CircleButton1.ForeColor = Color.White;
-            guna2CircleButton1.Image = Properties.Resources.dolar_icon;
-            guna2CircleButton1.ImageSize = new Size(100, 100);
-            guna2CircleButton1.Location = new Point(652, 526);
-            guna2CircleButton1.Name = "guna2CircleButton1";
-            guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            guna2CircleButton1.Size = new Size(148, 148);
-            guna2CircleButton1.TabIndex = 27;
             // 
             // guna2CircleButton2
             // 

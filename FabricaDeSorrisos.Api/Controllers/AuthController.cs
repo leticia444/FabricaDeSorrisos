@@ -18,8 +18,7 @@ namespace FabricaDeSorrisos.Api.Controllers.Auth
 
         public AuthController(
             UserManager<ApplicationUser> userManager,
-            JwtTokenService jwtTokenService,
-            AppDbContext context)
+            JwtTokenService jwtTokenService)
         {
             _userManager = userManager;
             _jwtTokenService = jwtTokenService;
