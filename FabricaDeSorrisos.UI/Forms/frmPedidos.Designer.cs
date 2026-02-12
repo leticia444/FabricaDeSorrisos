@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
@@ -38,8 +38,8 @@
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
             btnPedidos = new Guna.UI2.WinForms.Guna2CircleButton();
             lblPedido = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            dgvMarca = new Guna.UI2.WinForms.Guna2DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dgvMarca).BeginInit();
+            dgvPedido = new Guna.UI2.WinForms.Guna2DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvPedido).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -60,7 +60,7 @@
             btnFechar.ForeColor = Color.White;
             btnFechar.Location = new Point(750, 12);
             btnFechar.Name = "btnFechar";
-            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnFechar.Size = new Size(38, 36);
             btnFechar.TabIndex = 6;
@@ -79,7 +79,7 @@
             btnPedidos.ImageSize = new Size(100, 100);
             btnPedidos.Location = new Point(326, 15);
             btnPedidos.Name = "btnPedidos";
-            btnPedidos.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            btnPedidos.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnPedidos.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnPedidos.Size = new Size(148, 115);
             btnPedidos.TabIndex = 25;
@@ -94,10 +94,10 @@
             lblPedido.TabIndex = 26;
             lblPedido.Text = "Adicione, Edite ou Exclua um Pedido";
             // 
-            // dgvMarca
+            // dgvPedido
             // 
             dataGridViewCellStyle4.BackColor = Color.White;
-            dgvMarca.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvPedido.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
@@ -105,9 +105,9 @@
             dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvMarca.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dgvMarca.ColumnHeadersHeight = 4;
-            dgvMarca.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvPedido.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dgvPedido.ColumnHeadersHeight = 4;
+            dgvPedido.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.White;
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
@@ -115,48 +115,48 @@
             dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvMarca.DefaultCellStyle = dataGridViewCellStyle6;
-            dgvMarca.GridColor = Color.FromArgb(231, 229, 255);
-            dgvMarca.Location = new Point(141, 187);
-            dgvMarca.Name = "dgvMarca";
-            dgvMarca.RowHeadersVisible = false;
-            dgvMarca.Size = new Size(510, 234);
-            dgvMarca.TabIndex = 27;
-            dgvMarca.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            dgvMarca.ThemeStyle.AlternatingRowsStyle.Font = null;
-            dgvMarca.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
-            dgvMarca.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
-            dgvMarca.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
-            dgvMarca.ThemeStyle.BackColor = Color.White;
-            dgvMarca.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
-            dgvMarca.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-            dgvMarca.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvMarca.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            dgvMarca.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            dgvMarca.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvMarca.ThemeStyle.HeaderStyle.Height = 4;
-            dgvMarca.ThemeStyle.ReadOnly = false;
-            dgvMarca.ThemeStyle.RowsStyle.BackColor = Color.White;
-            dgvMarca.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvMarca.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            dgvMarca.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            dgvMarca.ThemeStyle.RowsStyle.Height = 25;
-            dgvMarca.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dgvMarca.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvPedido.DefaultCellStyle = dataGridViewCellStyle6;
+            dgvPedido.GridColor = Color.FromArgb(231, 229, 255);
+            dgvPedido.Location = new Point(141, 187);
+            dgvPedido.Name = "dgvPedido";
+            dgvPedido.RowHeadersVisible = false;
+            dgvPedido.Size = new Size(510, 234);
+            dgvPedido.TabIndex = 27;
+            dgvPedido.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvPedido.ThemeStyle.AlternatingRowsStyle.Font = null;
+            dgvPedido.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            dgvPedido.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            dgvPedido.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            dgvPedido.ThemeStyle.BackColor = Color.White;
+            dgvPedido.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            dgvPedido.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvPedido.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvPedido.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            dgvPedido.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvPedido.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvPedido.ThemeStyle.HeaderStyle.Height = 4;
+            dgvPedido.ThemeStyle.ReadOnly = false;
+            dgvPedido.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvPedido.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvPedido.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            dgvPedido.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvPedido.ThemeStyle.RowsStyle.Height = 25;
+            dgvPedido.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvPedido.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
             // frmPedidos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dgvMarca);
+            Controls.Add(dgvPedido);
             Controls.Add(lblPedido);
             Controls.Add(btnPedidos);
             Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmPedidos";
             Text = "frmPedidos";
-            ((System.ComponentModel.ISupportInitialize)dgvMarca).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPedido).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -167,6 +167,6 @@
         private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
         private Guna.UI2.WinForms.Guna2CircleButton btnPedidos;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPedido;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvMarca;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvPedido;
     }
 }

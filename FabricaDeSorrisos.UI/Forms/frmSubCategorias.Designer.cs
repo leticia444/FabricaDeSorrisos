@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
             btnSubCategoria = new Guna.UI2.WinForms.Guna2CircleButton();
-            lblPersonagem = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblSubcategoria = new Guna.UI2.WinForms.Guna2HtmlLabel();
             dgvSubcategoria = new Guna.UI2.WinForms.Guna2DataGridView();
             ((System.ComponentModel.ISupportInitialize)dgvSubcategoria).BeginInit();
             SuspendLayout();
@@ -60,7 +60,7 @@
             btnFechar.ForeColor = Color.White;
             btnFechar.Location = new Point(750, 12);
             btnFechar.Name = "btnFechar";
-            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnFechar.Size = new Size(38, 36);
             btnFechar.TabIndex = 6;
@@ -79,43 +79,43 @@
             btnSubCategoria.ImageSize = new Size(100, 100);
             btnSubCategoria.Location = new Point(326, 14);
             btnSubCategoria.Name = "btnSubCategoria";
-            btnSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            btnSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnSubCategoria.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             btnSubCategoria.Size = new Size(148, 112);
             btnSubCategoria.TabIndex = 17;
             // 
-            // lblPersonagem
+            // lblSubcategoria
             // 
-            lblPersonagem.BackColor = Color.Transparent;
-            lblPersonagem.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPersonagem.Location = new Point(235, 139);
-            lblPersonagem.Name = "lblPersonagem";
-            lblPersonagem.Size = new Size(351, 23);
-            lblPersonagem.TabIndex = 23;
-            lblPersonagem.Text = "Adicione, Edite ou Exclua uma Subcategoria";
+            lblSubcategoria.BackColor = Color.Transparent;
+            lblSubcategoria.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubcategoria.Location = new Point(235, 139);
+            lblSubcategoria.Name = "lblSubcategoria";
+            lblSubcategoria.Size = new Size(351, 23);
+            lblSubcategoria.TabIndex = 23;
+            lblSubcategoria.Text = "Adicione, Edite ou Exclua uma Subcategoria";
             // 
             // dgvSubcategoria
             // 
-            dataGridViewCellStyle7.BackColor = Color.White;
-            dgvSubcategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgvSubcategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dgvSubcategoria.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvSubcategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvSubcategoria.ColumnHeadersHeight = 4;
             dgvSubcategoria.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.White;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle9.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle9.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            dgvSubcategoria.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgvSubcategoria.DefaultCellStyle = dataGridViewCellStyle6;
             dgvSubcategoria.GridColor = Color.FromArgb(231, 229, 255);
             dgvSubcategoria.Location = new Point(141, 187);
             dgvSubcategoria.Name = "dgvSubcategoria";
@@ -150,7 +150,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(dgvSubcategoria);
-            Controls.Add(lblPersonagem);
+            Controls.Add(lblSubcategoria);
             Controls.Add(btnSubCategoria);
             Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
@@ -166,7 +166,7 @@
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
         private Guna.UI2.WinForms.Guna2CircleButton btnSubCategoria;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblPersonagem;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblSubcategoria;
         private Guna.UI2.WinForms.Guna2DataGridView dgvSubcategoria;
     }
 }
