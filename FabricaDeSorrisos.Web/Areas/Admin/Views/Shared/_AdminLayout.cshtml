@@ -127,6 +127,14 @@
                 </a>
 
                 <div class="sidebar-heading text-uppercase text-white-50 fs-6 mt-3 py-2 ps-4 text-start border-0" style="background: none; font-size: 0.75rem !important;">
+                    Moderação
+                </div>
+
+                <a asp-area="Admin" asp-controller="Feedback" asp-action="Index"
+                   class="list-group-item list-group-item-action @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Feedback" ? "active" : "")">
+                    <i class="bi bi-chat-dots-fill me-2"></i> Comentários
+                </a>
+                <div class="sidebar-heading text-uppercase text-white-50 fs-6 mt-3 py-2 ps-4 text-start border-0" style="background: none; font-size: 0.75rem !important;">
                     Sistema
                 </div>
 

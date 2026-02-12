@@ -1,4 +1,5 @@
-﻿@model FabricaDeSorrisos.Web.Models.ProdutoDetalhesViewModel
+﻿@using System.Security.Claims
+@model FabricaDeSorrisos.Web.Models.ProdutoDetalhesViewModel
 @{
     ViewData["Title"] = Model.Produto.Nome;
 }
@@ -33,13 +34,20 @@
             <h5 class="text-muted text-uppercase small fw-bold mb-2">@ViewBag.SubCategoria</h5>
             <h1 class="fw-bold mb-3 display-6" style="color: #333;">@Model.Produto.Nome</h1>
 
-            <div class="mb-3 text-warning">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-half"></i>
-                <span class="text-muted small ms-2 text-dark">(42 avaliações)</span>
+            <div class="mb-3 text-warning d-flex align-items-center">
+                <span class="fw-bold fs-5 me-2 text-dark">@Model.MediaNota.ToString("0.0")</span>
+                @for (int i = 1; i <= 5; i++)
+                {
+                    if (i <= Math.Round(Model.MediaNota))
+                    {
+                        <i class="bi bi-star-fill"></i>
+                    }
+                    else
+                    {
+                        <i class="bi bi-star text-secondary opacity-25"></i>
+                    }
+                }
+                <span class="text-muted small ms-2">(@Model.TotalAvaliacoes avaliações)</span>
             </div>
 
             <div class="mb-4">
@@ -113,8 +121,13 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link rounded-pill px-4 border" id="pills-specs-tab" data-bs-toggle="pill" data-bs-target="#pills-specs" type="button" role="tab">Características</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill px-4 border" id="pills-reviews-tab" data-bs-toggle="pill" data-bs-target="#pills-reviews" type="button" role="tab">Avaliações (@Model.TotalAvaliacoes)</button>
+                </li>
             </ul>
+
             <div class="tab-content" id="pills-tabContent">
+
                 <div class="tab-pane fade show active" id="pills-desc" role="tabpanel">
                     <div class="bg-white p-5 rounded-4 border text-secondary lh-lg">
                         <h4 class="fw-bold text-dark mb-3">Sobre o Produto</h4>
@@ -122,6 +135,7 @@
                         <p>Ideal para estimular a criatividade e proporcionar horas de diversão. Fabricado com materiais de alta qualidade e segurança certificada.</p>
                     </div>
                 </div>
+
                 <div class="tab-pane fade" id="pills-specs" role="tabpanel">
                     <div class="bg-white p-5 rounded-4 border">
                         <h4 class="fw-bold text-dark mb-3">Ficha Técnica</h4>
@@ -147,6 +161,126 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="tab-pane fade" id="pills-reviews" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+
+                            <div class="bg-light p-4 rounded-4 mb-4 text-center">
+                                <h1 class="fw-bold display-4 text-warning">@Model.MediaNota.ToString("0.0")</h1>
+                                <div class="mb-2">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= Math.Round(Model.MediaNota))
+                                        {
+                                            <i class="bi bi-star-fill text-warning fs-4"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-star text-secondary opacity-25 fs-4"></i>
+                                        }
+                                    }
+                                </div>
+                                <p class="text-muted">Baseado em @Model.TotalAvaliacoes avaliações</p>
+                            </div>
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="card border-0 shadow-sm mb-5">
+                                    <div class="card-body p-4">
+                                        <h5 class="fw-bold mb-3">Deixe sua opinião</h5>
+                                        <form asp-action="EnviarFeedback" method="post">
+                                            <input type="hidden" name="brinquedoId" value="@Model.Produto.Id" />
+
+                                            <div class="mb-3">
+                                                <label class="form-label d-block text-muted small">Sua Nota:</label>
+                                                <div class="rating">
+                                                    <input type="radio" name="nota" value="5" id="5"><label for="5">☆</label>
+                                                    <input type="radio" name="nota" value="4" id="4"><label for="4">☆</label>
+                                                    <input type="radio" name="nota" value="3" id="3"><label for="3">☆</label>
+                                                    <input type="radio" name="nota" value="2" id="2"><label for="2">☆</label>
+                                                    <input type="radio" name="nota" value="1" id="1"><label for="1">☆</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <textarea name="comentarioTexto" class="form-control bg-light" rows="3" placeholder="O que você achou do produto?"></textarea>
+                                            </div>
+                                            <div class="text-end">
+                                                <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold">Enviar Avaliação</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-info text-center rounded-pill py-3">
+                                    <i class="bi bi-person-lock me-2"></i>
+                                    <a asp-controller="Account" asp-action="Login" class="fw-bold text-decoration-underline">Faça login</a> para avaliar este produto.
+                                </div>
+                            }
+
+                            <div class="d-flex flex-column gap-3">
+                                @if (Model.Comentarios.Any())
+                                {
+                                    // Pega o ID do usuário logado (se houver) para comparar
+                                    var currentUserIdStr = User.FindFirstValue("UsuarioSistemaId");
+                                    int currentUserId = string.IsNullOrEmpty(currentUserIdStr) ? 0 : int.Parse(currentUserIdStr);
+
+                                    @foreach (var c in Model.Comentarios)
+                                    {
+                                        <div class="card border-0 shadow-sm rounded-4">
+                                            <div class="card-body p-4 position-relative">
+
+                                                @if (User.Identity.IsAuthenticated && c.UsuarioId == currentUserId)
+                                                {
+                                                    <form asp-action="ExcluirComentario" method="post" class="position-absolute top-0 end-0 m-3"
+                                                          onsubmit="return confirm('Tem certeza que deseja apagar seu comentário?');">
+
+                                                        <input type="hidden" name="comentarioId" value="@c.Id" />
+                                                        <input type="hidden" name="brinquedoId" value="@Model.Produto.Id" />
+
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger border-0" title="Apagar meu comentário">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                }
+
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <div>
+                                                        <h6 class="fw-bold mb-0 text-primary">@c.Usuario?.NomeCompleto</h6>
+                                                    </div>
+                                                    <small class="text-muted pe-4">@c.DataComentario.ToString("dd/MM/yyyy")</small>
+                                                </div>
+
+                                                <p class="mb-0 text-secondary">@c.Texto</p>
+
+                                                @if (!string.IsNullOrEmpty(c.Resposta))
+                                                {
+                                                    <div class="bg-light p-3 rounded-3 mt-3 border-start border-4 border-warning">
+                                                        <div class="d-flex align-items-center mb-1 text-warning fw-bold small">
+                                                            <i class="bi bi-patch-check-fill me-1"></i> Resposta da Loja
+                                                        </div>
+                                                        <p class="mb-0 small text-dark">@c.Resposta</p>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="text-center text-muted py-4">
+                                        <i class="bi bi-chat-square-text fs-1 mb-2 d-block opacity-50"></i>
+                                        <p>Ainda não há comentários. Seja o primeiro a avaliar!</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -185,13 +319,45 @@
         transition: transform 0.5s ease;
         cursor: zoom-in;
     }
-    .zoom-effect:hover {
-        transform: scale(1.1);
-    }
+
+        .zoom-effect:hover {
+            transform: scale(1.1);
+        }
+
     .nav-pills .nav-link.active {
         background-color: #00bfff; /* Azul Fábrica */
     }
+
     .nav-pills .nav-link {
         color: #555;
     }
+
+    /* Estrelas do Formulário */
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            cursor: pointer;
+            width: 30px;
+            font-size: 30px;
+            color: #ccc;
+            transition: color 0.2s;
+        }
+
+            .rating label:before {
+                content: '\2605';
+            }
+
+            .rating input:checked ~ label,
+            .rating label:hover,
+            .rating label:hover ~ label {
+                color: #ffd700; /* Dourado */
+            }
 </style>

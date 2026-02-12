@@ -15,4 +15,11 @@ public interface IFeedbackRepository
 
     // Verifica se usuário já avaliou este produto (para não avaliar 2x)
     Task<bool> UsuarioJaAvaliouAsync(int usuarioId, int brinquedoId);
+
+    // Adicione estes métodos novos no final da interface:
+    Task<List<Comentario>> GetAllComentariosAsync();
+    Task DeleteComentarioAsync(int id);
+    Task ResponderComentarioAsync(int id, string resposta);
+
+    Task<bool> DeleteComentarioPeloUsuarioAsync(int comentarioId, int usuarioId);
 }
