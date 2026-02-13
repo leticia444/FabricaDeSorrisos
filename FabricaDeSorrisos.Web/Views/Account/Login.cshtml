@@ -1,45 +1,56 @@
 ﻿@model FabricaDeSorrisos.Web.Models.LoginViewModel
 @{
     ViewData["Title"] = "Entrar";
+    Layout = null; // Isso remove a Navbar e o Footer padrão
 }
 
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card shadow-lg border-0 rounded-3">
-                <div class="card-body p-5">
-                    <h2 class="text-center mb-4 fw-bold text-primary">Bem-vindo de volta! 🐻</h2>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Fábrica de Sorrisos</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/account/account.css" />
+</head>
+<body>
 
-                    <form asp-action="Login">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    <div class="login-wrapper">
+        <div class="login-content">
+            <a href="@Url.Action("Index", "Home")">
+                <img src="~/img/logo.png" alt="Logo Fábrica de Sorrisos" class="logo-img" />
+            </a>
 
-                        <div class="mb-3">
-                            <label class="form-label">E-mail</label>
-                            <input asp-for="Email" class="form-control form-control-lg" placeholder="seu@email.com" />
-                            <span asp-validation-for="Email" class="text-danger small"></span>
-                        </div>
+            <div class="login-card">
+                <h2 class="titulo-login">Bem-vindo à fábrica de sorrisos!</h2>
 
-                        <div class="mb-3">
-                            <label class="form-label">Senha</label>
-                            <input asp-for="Senha" class="form-control form-control-lg" placeholder="******" />
-                            <span asp-validation-for="Senha" class="text-danger small"></span>
-                        </div>
-
-                        <div class="form-check mb-3">
-                            <input asp-for="LembrarMe" class="form-check-input" />
-                            <label class="form-check-label" asp-for="LembrarMe">Lembrar de mim</label>
-                        </div>
-
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
-                        </div>
-                    </form>
-
-                    <div class="text-center mt-4">
-                        <p class="text-muted">Ainda não tem conta? <a asp-action="Register" class="fw-bold">Cadastre-se aqui</a></p>
+                <form asp-action="Login">
+                    <div class="input-group-custom">
+                        <label>E-mail</label>
+                        <input asp-for="Email" placeholder="Digite seu E-mail" />
                     </div>
-                </div>
+
+                    <div class="input-group-custom">
+                        <label>Senha</label>
+                        <input asp-for="Senha" type="password" placeholder="Digite sua senha" />
+                    </div>
+
+                    <div class="checkbox-area">
+                        <input asp-for="LembrarMe" type="checkbox" id="keep" />
+                        <label for="keep">Permanecer conectado?</label>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn-logar">Logar</button>
+                    </div>
+                </form>
+
+                <p class="footer-text-login">
+                    Não possui uma conta? <a asp-action="Register">Cadastre-se</a>
+                </p>
             </div>
         </div>
     </div>
-</div>
+
+</body>
+</html>
