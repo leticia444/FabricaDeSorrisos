@@ -1,6 +1,6 @@
-﻿namespace FabricaDeSorrisos.UI.Forms
+﻿namespace FabricaDeSorrisos.UI.Forms.Categorias
 {
-    partial class frmExcluirUsuarios
+    partial class frmExcluirCategoria
     {
         /// <summary>
         /// Required designer variable.
@@ -28,30 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
-            btnVoltar = new Guna.UI2.WinForms.Guna2CircleButton();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
             btnExcluir = new Guna.UI2.WinForms.Guna2Button();
+            guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
+            pbLogoExcluir = new Guna.UI2.WinForms.Guna2PictureBox();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbLogoExcluir).BeginInit();
             SuspendLayout();
             // 
-            // guna2BorderlessForm1
+            // btnFechar
             // 
-            guna2BorderlessForm1.BorderRadius = 20;
-            guna2BorderlessForm1.ContainerControl = this;
-            guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
-            guna2BorderlessForm1.TransparentWhileDrag = true;
+            btnFechar.DisabledState.BorderColor = Color.DarkGray;
+            btnFechar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnFechar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnFechar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnFechar.FillColor = Color.Red;
+            btnFechar.Font = new Font("Segoe UI", 9F);
+            btnFechar.ForeColor = Color.White;
+            btnFechar.Location = new Point(1215, 12);
+            btnFechar.Name = "btnFechar";
+            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            btnFechar.Size = new Size(38, 36);
+            btnFechar.TabIndex = 0;
+            btnFechar.Text = "X";
+            // 
+            // btnExcluir
+            // 
+            btnExcluir.BorderRadius = 10;
+            btnExcluir.CustomizableEdges = customizableEdges2;
+            btnExcluir.DisabledState.BorderColor = Color.DarkGray;
+            btnExcluir.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnExcluir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnExcluir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnExcluir.FillColor = Color.Red;
+            btnExcluir.Font = new Font("Segoe UI", 9F);
+            btnExcluir.ForeColor = Color.White;
+            btnExcluir.Location = new Point(566, 640);
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            btnExcluir.Size = new Size(186, 53);
+            btnExcluir.TabIndex = 1;
+            btnExcluir.Text = "Excluir Categoria";
             // 
             // guna2DataGridView1
             // 
@@ -65,8 +95,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            guna2DataGridView1.ColumnHeadersHeight = 4;
-            guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -76,11 +105,11 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(495, 241);
+            guna2DataGridView1.Location = new Point(523, 178);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
-            guna2DataGridView1.Size = new Size(269, 413);
-            guna2DataGridView1.TabIndex = 1;
+            guna2DataGridView1.Size = new Size(270, 437);
+            guna2DataGridView1.TabIndex = 2;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
@@ -92,7 +121,7 @@
             guna2DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 4;
             guna2DataGridView1.ThemeStyle.ReadOnly = false;
             guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.White;
@@ -103,77 +132,58 @@
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
-            // btnVoltar
-            // 
-            btnVoltar.DisabledState.BorderColor = Color.DarkGray;
-            btnVoltar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnVoltar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnVoltar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnVoltar.FillColor = Color.Red;
-            btnVoltar.Font = new Font("Segoe UI", 9F);
-            btnVoltar.ForeColor = Color.White;
-            btnVoltar.Location = new Point(1215, 12);
-            btnVoltar.Name = "btnVoltar";
-            btnVoltar.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            btnVoltar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnVoltar.Size = new Size(38, 36);
-            btnVoltar.TabIndex = 3;
-            btnVoltar.Text = "X";
-            // 
-            // btnExcluir
-            // 
-            btnExcluir.BorderRadius = 10;
-            btnExcluir.CustomizableEdges = customizableEdges3;
-            btnExcluir.DisabledState.BorderColor = Color.DarkGray;
-            btnExcluir.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnExcluir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnExcluir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnExcluir.FillColor = Color.Red;
-            btnExcluir.Font = new Font("Segoe UI", 9F);
-            btnExcluir.ForeColor = Color.Snow;
-            btnExcluir.Location = new Point(528, 660);
-            btnExcluir.Name = "btnExcluir";
-            btnExcluir.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnExcluir.Size = new Size(201, 56);
-            btnExcluir.TabIndex = 5;
-            btnExcluir.Text = "Excluir Usuário";
-            // 
             // pbLogo
             // 
-            pbLogo.CustomizableEdges = customizableEdges1;
-            pbLogo.Image = Properties.Resources.delet_user;
+            pbLogo.CustomizableEdges = customizableEdges4;
+            pbLogo.Image = Properties.Resources.delete_category_icon1;
             pbLogo.ImageRotate = 0F;
-            pbLogo.Location = new Point(495, 2);
+            pbLogo.Location = new Point(523, 3);
             pbLogo.Name = "pbLogo";
-            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            pbLogo.Size = new Size(300, 200);
+            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            pbLogo.Size = new Size(270, 169);
             pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLogo.TabIndex = 6;
+            pbLogo.TabIndex = 3;
             pbLogo.TabStop = false;
             // 
-            // frmExcluirUsuarios
+            // pbLogoExcluir
+            // 
+            pbLogoExcluir.CustomizableEdges = customizableEdges6;
+            pbLogoExcluir.Image = Properties.Resources.x;
+            pbLogoExcluir.ImageRotate = 0F;
+            pbLogoExcluir.Location = new Point(754, 3);
+            pbLogoExcluir.Name = "pbLogoExcluir";
+            pbLogoExcluir.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            pbLogoExcluir.Size = new Size(118, 88);
+            pbLogoExcluir.SizeMode = PictureBoxSizeMode.Zoom;
+            pbLogoExcluir.TabIndex = 4;
+            pbLogoExcluir.TabStop = false;
+            // 
+            // frmExcluirCategoria
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
             ClientSize = new Size(1265, 728);
+            Controls.Add(pbLogoExcluir);
             Controls.Add(pbLogo);
-            Controls.Add(btnExcluir);
-            Controls.Add(btnVoltar);
             Controls.Add(guna2DataGridView1);
+            Controls.Add(btnExcluir);
+            Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmExcluirUsuarios";
-            Text = "frmExcluirUsuario";
+            Name = "frmExcluirCategoria";
+            Text = "frmExcluirCategoria";
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbLogoExcluir).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
+
+        private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
         private Guna.UI2.WinForms.Guna2Button btnExcluir;
-        private Guna.UI2.WinForms.Guna2CircleButton btnVoltar;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
         private Guna.UI2.WinForms.Guna2PictureBox pbLogo;
+        private Guna.UI2.WinForms.Guna2PictureBox pbLogoExcluir;
     }
 }

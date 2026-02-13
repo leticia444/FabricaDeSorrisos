@@ -6,21 +6,16 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FabricaDeSorrisos.UI
+namespace FabricaDeSorrisos.UI.Forms.Marcas
 {
-    public partial class frmCriarProdutos : Form
+    public partial class frmExcluirMarca : Form
     {
-        public frmCriarProdutos()
+        public frmExcluirMarca()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
+        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

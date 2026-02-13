@@ -53,7 +53,7 @@
             txtEmail.CustomizableEdges = customizableEdges12;
             txtEmail.DefaultText = "";
             txtEmail.Font = new Font("Segoe UI", 9F);
-            txtEmail.Location = new Point(484, 311);
+            txtEmail.Location = new Point(480, 312);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "E-mail";
             txtEmail.SelectedText = "";
@@ -67,7 +67,7 @@
             txtSenha.CustomizableEdges = customizableEdges10;
             txtSenha.DefaultText = "";
             txtSenha.Font = new Font("Segoe UI", 9F);
-            txtSenha.Location = new Point(484, 375);
+            txtSenha.Location = new Point(480, 376);
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '●';
             txtSenha.PlaceholderText = "Senha";
@@ -83,7 +83,7 @@
             btnCriarUsuario.FillColor = Color.Lime;
             btnCriarUsuario.Font = new Font("Segoe UI", 9F);
             btnCriarUsuario.ForeColor = Color.Black;
-            btnCriarUsuario.Location = new Point(493, 480);
+            btnCriarUsuario.Location = new Point(489, 481);
             btnCriarUsuario.Name = "btnCriarUsuario";
             btnCriarUsuario.ShadowDecoration.CustomizableEdges = customizableEdges9;
             btnCriarUsuario.Size = new Size(210, 55);
@@ -102,7 +102,7 @@
             cbTipoUsuario.Font = new Font("Segoe UI", 10F);
             cbTipoUsuario.ForeColor = Color.FromArgb(68, 88, 112);
             cbTipoUsuario.ItemHeight = 30;
-            cbTipoUsuario.Location = new Point(484, 438);
+            cbTipoUsuario.Location = new Point(481, 439);
             cbTipoUsuario.Name = "cbTipoUsuario";
             cbTipoUsuario.ShadowDecoration.CustomizableEdges = customizableEdges7;
             cbTipoUsuario.Size = new Size(220, 36);
@@ -114,7 +114,7 @@
             txtNome.CustomizableEdges = customizableEdges4;
             txtNome.DefaultText = "";
             txtNome.Font = new Font("Segoe UI", 9F);
-            txtNome.Location = new Point(484, 255);
+            txtNome.Location = new Point(480, 256);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Nome";
             txtNome.SelectedText = "";
@@ -140,7 +140,7 @@
             pbLogo.CustomizableEdges = customizableEdges1;
             pbLogo.Image = Properties.Resources.add_user;
             pbLogo.ImageRotate = 0F;
-            pbLogo.Location = new Point(441, 17);
+            pbLogo.Location = new Point(459, 12);
             pbLogo.Name = "pbLogo";
             pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges2;
             pbLogo.Size = new Size(300, 200);
@@ -150,6 +150,7 @@
             // 
             // frmCriarUsuarios
             // 
+            BackColor = Color.Ivory;
             ClientSize = new Size(1265, 728);
             Controls.Add(pbLogo);
             Controls.Add(btnFechar);

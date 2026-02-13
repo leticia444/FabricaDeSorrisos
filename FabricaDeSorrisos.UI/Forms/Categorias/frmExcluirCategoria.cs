@@ -6,11 +6,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms.Categorias
 {
-    public partial class frmPedidos : Form
+    public partial class frmExcluirCategoria : Form
     {
-        public frmPedidos()
+        public frmExcluirCategoria()
         {
             InitializeComponent();
         }
