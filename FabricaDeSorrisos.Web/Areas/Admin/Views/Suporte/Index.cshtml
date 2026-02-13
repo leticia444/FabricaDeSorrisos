@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Suporte ao Cliente";
+}
+
+<div class="container-fluid">
+    <div class="row" style="height: 70vh;">
+        <div class="col-md-4 border-end bg-white p-0">
+            <div class="p-3 bg-light border-bottom">
+                <h5 class="mb-0"><i class="bi bi-people-fill me-2"></i>Conversas</h5>
+            </div>
+            <div id="listaUsuarios" class="list-group list-group-flush overflow-auto" style="max-height: 100%;">
+                <div class="text-center p-4">Carregando usuários...</div>
+            </div>
+        </div>
+
+        <div class="col-md-8 d-flex flex-column bg-white p-0">
+            <div id="chatHeader" class="p-3 bg-light border-bottom d-none">
+                <h5 class="mb-0" id="nomeUsuarioChat">Selecionar conversa</h5>
+            </div>
+
+            <div id="adminChatBody" class="flex-grow-1 p-4 overflow-auto bg-light" style="display:none;">
+            </div>
+
+            <div id="adminChatInput" class="p-3 border-top d-none">
+                <form onsubmit="enviarResposta(event)" class="d-flex gap-2">
+                    <input type="hidden" id="selectedUserId" />
+                    <input type="text" id="adminMsgInput" class="form-control" placeholder="Digite a resposta...">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const API_URL = "/api/Suporte";
+        let currentUser = null;
+
+        // Carregar lista de usuários que mandaram mensagem
+        async function carregarUsuarios() {
+            const resp = await fetch(`${API_URL}/pendentes`); // Usando o endpoint de pendentes que já existe
+            const ids = await resp.json();
+            const lista = document.getElementById("listaUsuarios");
+            lista.innerHTML = "";
+
+            ids.forEach(id => {
+                const item = document.createElement("button");
+                item.className = "list-group-item list-group-item-action p-3";
+                item.innerHTML = `<i class="bi bi-person-circle me-2"></i> Usuário #${id}`;
+                item.onclick = () => abrirChatAdmin(id);
+                lista.appendChild(item);
+            });
+        }
+
+        async function abrirChatAdmin(userId) {
+            currentUser = userId;
+            document.getElementById("selectedUserId").value = userId;
+            document.getElementById("chatHeader").classList.remove("d-none");
+            document.getElementById("adminChatBody").style.display = "block";
+            document.getElementById("adminChatInput").classList.remove("d-none");
+            document.getElementById("nomeUsuarioChat").innerText = `Conversa com #${userId}`;
+
+            const resp = await fetch(`${API_URL}/historico?targetUserId=${userId}`);
+            const mensagens = await resp.json();
+            renderizarMensagensAdmin(mensagens);
+        }
+
+        function renderizarMensagensAdmin(lista) {
+            const body = document.getElementById("adminChatBody");
+            body.innerHTML = "";
+            lista.forEach(m => {
+                const div = document.createElement("div");
+                div.className = m.respondidoPorAdmin ? "text-end mb-2" : "text-start mb-2";
+                div.innerHTML = `<span class="badge ${m.respondidoPorAdmin ? 'bg-primary' : 'bg-secondary'} p-2" style="font-size:1rem;">${m.texto}</span>`;
+                body.appendChild(div);
+            });
+            body.scrollTop = body.scrollHeight;
+        }
+
+        async function enviarResposta(e) {
+            e.preventDefault();
+            const input = document.getElementById("adminMsgInput");
+            const texto = input.value;
+            if(!texto) return;
+
+            const resp = await fetch(`${API_URL}/enviar`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ texto: texto, destinatarioId: currentUser })
+            });
+
+            if(resp.ok) {
+                input.value = "";
+                abrirChatAdmin(currentUser);
+            }
+        }
+
+        carregarUsuarios();
+        setInterval(() => { if(currentUser) abrirChatAdmin(currentUser); }, 5000);
+    </script>
+}

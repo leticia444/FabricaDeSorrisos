@@ -1,0 +1,109 @@
+﻿@model IEnumerable<FabricaDeSorrisos.Domain.Entities.Comentario>
+@{
+    ViewData["Title"] = "Moderação de Comentários";
+}
+
+<div class="container-fluid px-4">
+    <h2 class="mt-4">💬 Moderação de Comentários</h2>
+
+    <div class="card mb-4 mt-3">
+        <div class="card-header bg-primary text-white">
+            <i class="bi bi-table me-1"></i>
+            Lista de Comentários Recentes
+        </div>
+        <div class="card-body">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Usuário</th>
+                        <th>Produto</th>
+                        <th width="30%">Comentário</th>
+                        <th width="20%">Sua Resposta</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.DataComentario.ToString("dd/MM/yy HH:mm")</td>
+                            <td>
+                                <strong>@item.Usuario?.NomeCompleto</strong><br>
+                                <small class="text-muted">@item.Usuario?.Email</small>
+                            </td>
+                            <td>
+                                <a asp-area="" asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.BrinquedoId" target="_blank" class="text-decoration-none">
+                                    @item.Brinquedo?.Nome <i class="bi bi-box-arrow-up-right small"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <div class="bg-light p-2 rounded border">@item.Texto</div>
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Resposta))
+                                {
+                                    <div class="text-success small border-start border-3 border-success ps-2">
+                                        <strong>Resp:</strong> @item.Resposta
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Pendente</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-sm btn-primary"
+                                            onclick="abrirModalResposta(@item.Id, '@item.Usuario?.NomeCompleto')">
+                                        <i class="bi bi-reply-fill"></i>
+                                    </button>
+
+                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Tem certeza que deseja apagar este comentário?');">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalResposta" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="Responder" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Responder Comentário</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="comentarioIdInput" />
+                    <p>Respondendo ao usuário: <strong id="nomeUsuarioTexto"></strong></p>
+                    <div class="mb-3">
+                        <label class="form-label">Sua Resposta:</label>
+                        <textarea name="respostaTexto" class="form-control" rows="4" placeholder="Olá! Agradecemos o contato..." required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Enviar Resposta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function abrirModalResposta(id, nome) {
+        document.getElementById('comentarioIdInput').value = id;
+        document.getElementById('nomeUsuarioTexto').innerText = nome;
+        var myModal = new bootstrap.Modal(document.getElementById('modalResposta'));
+        myModal.show();
+    }
+</script>}

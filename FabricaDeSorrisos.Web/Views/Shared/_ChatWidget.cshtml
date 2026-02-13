@@ -1,0 +1,103 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <button id="btnAbrirChat" onclick="toggleChat()" class="btn-chat-float shadow-lg">
+        <i class="bi bi-chat-dots-fill fs-4"></i>
+        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle notification-dot d-none"></span>
+    </button>
+
+    <div id="janelaChat" class="card shadow-lg chat-window d-none">
+
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-headset fs-5"></i>
+                <span class="fw-bold">Suporte Online</span>
+            </div>
+            <button onclick="toggleChat()" class="btn btn-sm text-white"><i class="bi bi-x-lg"></i></button>
+        </div>
+
+        <div id="chatBody" class="card-body bg-light overflow-auto" style="height: 300px;">
+            <div class="text-center text-muted small mt-5">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p>Carregando conversa...</p>
+            </div>
+        </div>
+
+        <div class="card-footer bg-white">
+            <form id="formChat" onsubmit="enviarMensagem(event)" class="d-flex gap-2">
+                <input type="text" id="msgInput" class="form-control form-control-sm rounded-pill" placeholder="Digite sua dúvida..." autocomplete="off">
+                <button type="submit" class="btn btn-primary btn-sm rounded-circle">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        .btn-chat-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            z-index: 9999;
+            transition: transform 0.2s;
+        }
+
+            .btn-chat-float:hover {
+                transform: scale(1.1);
+                background-color: #0b5ed7;
+            }
+
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            z-index: 9999;
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+        }
+
+        /* Balões de Mensagem */
+        .msg-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .msg-bala {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        /* Minha Mensagem (Direita - Azul) */
+        .msg-me {
+            justify-content: flex-end;
+        }
+
+            .msg-me .msg-bala {
+                background-color: #d1e7dd; /* Verde claro */
+                color: #0f5132;
+                border-bottom-right-radius: 2px;
+            }
+
+        /* Mensagem do Admin (Esquerda - Branco/Cinza) */
+        .msg-admin {
+            justify-content: flex-start;
+        }
+
+            .msg-admin .msg-bala {
+                background-color: #fff;
+                border: 1px solid #dee2e6;
+                color: #444;
+                border-bottom-left-radius: 2px;
+            }
+    </style>
+}

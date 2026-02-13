@@ -19,7 +19,7 @@ public class HomeController : Controller
     private readonly ICategoriaRepository _categoriaRepo;
     private readonly IFaixaEtariaRepository _faixaRepo;
     private readonly IPersonagemRepository _personagemRepo;
-    private readonly IFeedbackRepository _feedbackRepo; // 1. NOVO REPOSITÓRIO
+    private readonly IFeedbackRepository _feedbackRepo;
     private readonly AppDbContext _context;
 
     public HomeController(
@@ -29,7 +29,7 @@ public class HomeController : Controller
         ICategoriaRepository categoriaRepo,
         IFaixaEtariaRepository faixaRepo,
         IPersonagemRepository personagemRepo,
-        IFeedbackRepository feedbackRepo, // Injeção aqui
+        IFeedbackRepository feedbackRepo,
         AppDbContext context)
     {
         _logger = logger;
@@ -38,7 +38,7 @@ public class HomeController : Controller
         _categoriaRepo = categoriaRepo;
         _faixaRepo = faixaRepo;
         _personagemRepo = personagemRepo;
-        _feedbackRepo = feedbackRepo; // Atribuição aqui
+        _feedbackRepo = feedbackRepo;
         _context = context;
     }
 
@@ -181,7 +181,7 @@ public class HomeController : Controller
     }
 
     // =============================================================
-    // 4. DETALHES DO PRODUTO (PDP) - ATUALIZADO
+    // 4. DETALHES DO PRODUTO (PDP)
     // =============================================================
     [HttpGet]
     public async Task<IActionResult> Detalhes(int id)
@@ -212,7 +212,7 @@ public class HomeController : Controller
             })
             .ToListAsync();
 
-        // --- CARREGA DADOS DE FEEDBACK ---
+        // Dados de Feedback
         var comentarios = await _feedbackRepo.GetComentariosByBrinquedoIdAsync(id);
         var media = await _feedbackRepo.GetMediaAvaliacaoAsync(id);
         var qtd = await _feedbackRepo.GetQuantidadeAvaliacoesAsync(id);
@@ -231,8 +231,6 @@ public class HomeController : Controller
                 Categoria = produto.Categoria?.Nome
             },
             Relacionados = relacionados,
-
-            // Novos Campos
             Comentarios = comentarios,
             MediaNota = media,
             TotalAvaliacoes = qtd
@@ -246,25 +244,22 @@ public class HomeController : Controller
     }
 
     // =============================================================
-    // 5. ENVIAR FEEDBACK (NOVO MÉTODO)
+    // 5. ENVIAR FEEDBACK
     // =============================================================
     [HttpPost]
-    [Authorize] // Só usuário logado pode comentar/avaliar
+    [Authorize]
     public async Task<IActionResult> EnviarFeedback(int brinquedoId, int? nota, string? comentarioTexto)
     {
-        // Recupera o ID do usuário logado através dos Claims
         var usuarioIdClaim = User.FindFirstValue("UsuarioSistemaId");
 
-        // Se por algum motivo o claim não vier, tenta redirecionar pro login ou pegar pelo Identity
         if (string.IsNullOrEmpty(usuarioIdClaim))
             return RedirectToAction("Login", "Account");
 
         int usuarioId = int.Parse(usuarioIdClaim);
 
-        // 1. Salvar Avaliação (Nota) se tiver sido enviada
+        // 1. Salvar Avaliação
         if (nota.HasValue && nota > 0)
         {
-            // Verifica se já avaliou para evitar duplicidade
             if (!await _feedbackRepo.UsuarioJaAvaliouAsync(usuarioId, brinquedoId))
             {
                 await _feedbackRepo.AddAvaliacaoAsync(new Avaliacao
@@ -277,7 +272,7 @@ public class HomeController : Controller
             }
         }
 
-        // 2. Salvar Comentário se tiver texto
+        // 2. Salvar Comentário
         if (!string.IsNullOrWhiteSpace(comentarioTexto))
         {
             await _feedbackRepo.AddComentarioAsync(new Comentario
@@ -289,7 +284,26 @@ public class HomeController : Controller
             });
         }
 
-        // Recarrega a página de detalhes para mostrar o novo comentário
+        return RedirectToAction(nameof(Detalhes), new { id = brinquedoId });
+    }
+
+    // =============================================================
+    // 6. EXCLUIR COMENTÁRIO (Pelo Próprio Usuário) - NOVO!
+    // =============================================================
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> ExcluirComentario(int comentarioId, int brinquedoId)
+    {
+        // 1. Identifica quem está logado
+        var usuarioIdClaim = User.FindFirstValue("UsuarioSistemaId");
+        if (string.IsNullOrEmpty(usuarioIdClaim)) return RedirectToAction("Login", "Account");
+        int usuarioId = int.Parse(usuarioIdClaim);
+
+        // 2. Tenta excluir (O Repositório garante que só apaga se for dono)
+        // Certifique-se de que você já adicionou DeleteComentarioPeloUsuarioAsync no FeedbackRepository
+        await _feedbackRepo.DeleteComentarioPeloUsuarioAsync(comentarioId, usuarioId);
+
+        // 3. Volta para a página do produto
         return RedirectToAction(nameof(Detalhes), new { id = brinquedoId });
     }
 
