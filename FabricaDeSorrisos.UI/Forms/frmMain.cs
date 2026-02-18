@@ -94,9 +94,6 @@ namespace FabricaDeSorrisos.UI.Forms
         private void btnMarcas_Click(object sender, EventArgs e)
             => AbrirFormulario(new frmMarcas());
 
-        private void btnPedidos_Click(object sender, EventArgs e)
-            => AbrirFormulario(new frmPedidos());
-
         // =====================
         // CONTROLES GERAIS
         // =====================
