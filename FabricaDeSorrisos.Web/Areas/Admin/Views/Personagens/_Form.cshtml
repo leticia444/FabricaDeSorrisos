@@ -1,28 +1,47 @@
 ﻿@model FabricaDeSorrisos.Domain.Entities.Personagem
 
-<div class="mb-3">
-    <label class="form-label fw-bold">Nome do Personagem</label>
-    <input asp-for="Nome" class="form-control" placeholder="Ex: Woody, Buzz Lightyear, Peppa Pig" required />
-    <span asp-validation-for="Nome" class="text-danger small"></span>
-</div>
-
-<div class="mb-3">
-    <label class="form-label fw-bold">Imagem / Ícone</label>
-
-    @if (!string.IsNullOrEmpty(Model.ImagemUrl))
-    {
-        <div class="card p-2 mb-2 d-inline-block bg-light border">
-            <img src="@Model.ImagemUrl" style="height: 100px; width: 100px; object-fit: contain;" />
-            <div class="text-center mt-1"><small class="text-muted">Atual</small></div>
+<div class="card-custom p-5">
+    <h6 class="label-custom text-uppercase text-muted border-bottom pb-2 mb-4">
+        <i class="bi bi-info-circle-fill me-2"></i>Dados do Personagem
+    </h6>
+    
+    <div class="mb-4">
+        <label class="label-custom">Nome do Personagem</label>
+        <div class="input-group">
+            <span class="input-group-text bg-light border border-end-0 rounded-start-3 text-muted">
+                <i class="bi bi-emoji-laughing-fill"></i>
+            </span>
+            <input asp-for="Nome" class="input-custom form-control border-start-0 ps-2" placeholder="Ex: Woody, Barbie, Homem-Aranha" required />
         </div>
-        <input type="hidden" asp-for="ImagemUrl" />
-    }
+        <span asp-validation-for="Nome" class="text-danger small fw-bold mt-1 d-block"></span>
+    </div>
 
-    <input type="file" name="arquivo" class="form-control" accept="image/*" />
-    <div class="form-text">Use imagens com fundo transparente (PNG) para ficar bonito na Home.</div>
-</div>
+    <div class="mb-4">
+        <label class="label-custom">Imagem / Ícone</label>
+        <div class="bg-light p-4 rounded-3 border text-center">
+            @if (!string.IsNullOrEmpty(Model.ImagemUrl))
+            {
+                <div class="mb-3">
+                    <img src="@Model.ImagemUrl" class="rounded-circle shadow-sm border border-warning p-1 bg-white" style="width: 100px; height: 100px; object-fit: cover;" />
+                    <p class="small text-muted mt-2 mb-0">Imagem Atual</p>
+                </div>
+                <input type="hidden" asp-for="ImagemUrl" />
+            }
+            else
+            {
+                <div class="mb-3 text-muted opacity-50">
+                    <i class="bi bi-person-bounding-box fs-1"></i>
+                    <p class="small">Sem imagem definida</p>
+                </div>
+            }
+            <input type="file" name="arquivo" class="input-custom form-control form-control-sm w-75 mx-auto" accept="image/*" />
+            <div class="form-text mt-2 small">Recomendado: Imagens quadradas (PNG/JPG) com fundo transparente.</div>
+        </div>
+    </div>
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a asp-action="Index" class="btn btn-light me-md-2">Cancelar</a>
-    <button type="submit" class="btn btn-primary px-4">Salvar</button>
+    <div class="d-flex justify-content-end pt-3">
+        <button type="submit" class="btn-gradient-blue">
+            <i class="bi bi-check-lg me-2"></i> Salvar Personagem
+        </button>
+    </div>
 </div>

@@ -13,7 +13,7 @@ public class EfUsuarioRepository : IUsuarioRepository
     public async Task<List<Usuario>> GetAllAsync()
     {
         return await _context.UsuariosDoSistema
-            .Include(u => u.TipoUsuario) // Para mostrar se é Admin ou Cliente
+            .Include(u => u.TipoUsuario)
             .OrderBy(u => u.NomeCompleto)
             .ToListAsync();
     }
@@ -25,9 +25,27 @@ public class EfUsuarioRepository : IUsuarioRepository
             .FirstOrDefaultAsync(u => u.Id == id);
     }
 
+    // --- NOVAS IMPLEMENTAÇÕES ---
+    public async Task AddAsync(Usuario usuario)
+    {
+        _context.UsuariosDoSistema.Add(usuario);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(Usuario usuario)
+    {
+        _context.UsuariosDoSistema.Update(usuario);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task DeleteAsync(Usuario usuario)
     {
         _context.UsuariosDoSistema.Remove(usuario);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<TipoUsuario>> GetTiposUsuariosAsync()
+    {
+        return await _context.TiposUsuarios.ToListAsync();
     }
 }

@@ -1,10 +1,12 @@
 ﻿using FabricaDeSorrisos.Application.Abstractions.Repositories;
 using FabricaDeSorrisos.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles = "Admin")]
 public class MarcasController : Controller
 {
     private readonly IMarcaRepository _repository;

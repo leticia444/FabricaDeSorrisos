@@ -7,5 +7,9 @@ public interface IUsuarioRepository
     Task<List<Usuario>> GetAllAsync();
     Task<Usuario?> GetByIdAsync(int id);
     Task DeleteAsync(Usuario usuario);
-    // Não vamos fazer Add/Update aqui por enquanto, pois isso envolve Senha/Identity
+
+    // NOVOS MÉTODOS PARA O CRUD
+    Task AddAsync(Usuario usuario);
+    Task UpdateAsync(Usuario usuario);
+    Task<List<TipoUsuario>> GetTiposUsuariosAsync(); // Para o Dropdown
 }

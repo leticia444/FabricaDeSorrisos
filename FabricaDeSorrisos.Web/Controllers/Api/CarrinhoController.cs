@@ -81,3 +81,4 @@ public class CarrinhoController : ControllerBase
         return Ok(new { totalItens = carrinho.Sum(c => c.Quantidade) });
     }
 }
+

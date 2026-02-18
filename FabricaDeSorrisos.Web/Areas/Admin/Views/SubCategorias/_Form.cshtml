@@ -1,20 +1,37 @@
 ﻿@model FabricaDeSorrisos.Domain.Entities.SubCategoria
 
-<div class="mb-3">
-    <label class="form-label fw-bold">Categoria Principal (Pai)</label>
-    <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId">
-        <option value="">Selecione uma categoria...</option>
-    </select>
-    <span asp-validation-for="CategoriaId" class="text-danger small"></span>
-</div>
+<div class="card-custom p-5">
+    <h6 class="label-custom text-uppercase text-muted border-bottom pb-2 mb-4">
+        <i class="bi bi-info-circle-fill me-2"></i>Detalhes da Subcategoria
+    </h6>
+    
+    <div class="mb-4">
+        <label class="label-custom">Categoria Principal (Pai)</label>
+        <div class="input-group">
+            <span class="input-group-text bg-light border border-end-0 rounded-start-3 text-muted">
+                <i class="bi bi-folder-fill"></i>
+            </span>
+            <select asp-for="CategoriaId" class="select-custom form-select border-start-0 ps-2" asp-items="ViewBag.CategoriaId">
+                <option value="">Selecione a categoria pai...</option>
+            </select>
+        </div>
+        <span asp-validation-for="CategoriaId" class="text-danger small fw-bold mt-1 d-block"></span>
+    </div>
 
-<div class="mb-3">
-    <label class="form-label fw-bold">Nome da Subcategoria</label>
-    <input asp-for="Nome" class="form-control" placeholder="Ex: Barbie, Hot Wheels, Quebra-Cabeça" required />
-    <span asp-validation-for="Nome" class="text-danger small"></span>
-</div>
+    <div class="mb-4">
+        <label class="label-custom">Nome da Subcategoria</label>
+        <div class="input-group">
+            <span class="input-group-text bg-light border border-end-0 rounded-start-3 text-muted">
+                <i class="bi bi-diagram-2"></i>
+            </span>
+            <input asp-for="Nome" class="input-custom form-control border-start-0 ps-2" placeholder="Ex: Quebra-Cabeças, Bonecas Fashion..." required />
+        </div>
+        <span asp-validation-for="Nome" class="text-danger small fw-bold mt-1 d-block"></span>
+    </div>
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a asp-action="Index" class="btn btn-light me-md-2">Cancelar</a>
-    <button type="submit" class="btn btn-primary px-4">Salvar</button>
+    <div class="d-flex justify-content-end pt-3">
+        <button type="submit" class="btn-gradient-blue">
+            <i class="bi bi-check-lg me-2"></i> Salvar Subcategoria
+        </button>
+    </div>
 </div>

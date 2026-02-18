@@ -1,11 +1,13 @@
 ﻿using FabricaDeSorrisos.Application.Abstractions.Repositories;
 using FabricaDeSorrisos.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering; // Necessário para SelectList
 
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles = "Admin")]
 public class SubCategoriasController : Controller
 {
     private readonly ISubCategoriaRepository _repository;

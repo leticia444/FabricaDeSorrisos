@@ -13,15 +13,18 @@ public class CarrinhoController : Controller
     private readonly ICarrinhoRepository _carrinhoRepo;
     private readonly IPedidoRepository _pedidoRepo;
     private readonly IBrinquedoRepository _brinquedoRepo;
+    private readonly IUsuarioRepository _usuarioRepo; // <--- NOVA INJEÇÃO
 
     public CarrinhoController(
         ICarrinhoRepository carrinhoRepo,
         IPedidoRepository pedidoRepo,
-        IBrinquedoRepository brinquedoRepo)
+        IBrinquedoRepository brinquedoRepo,
+        IUsuarioRepository usuarioRepo) // <--- NOVO PARÂMETRO
     {
         _carrinhoRepo = carrinhoRepo;
         _pedidoRepo = pedidoRepo;
         _brinquedoRepo = brinquedoRepo;
+        _usuarioRepo = usuarioRepo;
     }
 
     // --- PARTE 1: CARRINHO ---
@@ -85,23 +88,25 @@ public class CarrinhoController : Controller
 
         if (!itens.Any()) return RedirectToAction(nameof(Index));
 
+        // Tenta buscar dados do usuário para pré-preencher (Opcional)
+        var usuario = await _usuarioRepo.GetByIdAsync(usuarioId);
+
         var viewModel = new CheckoutViewModel
         {
             Itens = itens,
-            ValorFrete = 0 // Inicia zerado
+            ValorFrete = 0,
+            CPF = usuario?.Cpf // Se já tiver CPF, já traz preenchido
         };
 
         return View(viewModel);
     }
 
-    // Simulação de Cálculo de Frete (API)
     [HttpPost]
     public IActionResult CalcularFrete([FromBody] string cep)
     {
         decimal frete = 0;
         if (string.IsNullOrEmpty(cep) || cep.Length < 8) return BadRequest("CEP inválido");
 
-        // Lógica Fake: Par = barato, Ímpar = caro
         var ultimoDigito = int.Parse(cep.Substring(cep.Length - 1));
         frete = ultimoDigito % 2 == 0 ? 15.00m : 25.50m;
 
@@ -111,14 +116,12 @@ public class CarrinhoController : Controller
     [HttpPost]
     public async Task<IActionResult> ProcessarPedido(CheckoutViewModel model)
     {
-
-        // 1. VALIDAÇÃO: Se o formulário estiver inválido (sem CEP/Endereço), volta pra tela
+        // 1. VALIDAÇÃO
         if (!ModelState.IsValid)
         {
-            // Precisamos recarregar os itens para não quebrar a tela
             var uId = GetUsuarioId();
             model.Itens = await _carrinhoRepo.GetCarrinhoDoUsuarioAsync(uId);
-            return View("Checkout", model); // Retorna para a View Checkout mostrando os erros
+            return View("Checkout", model);
         }
 
         var usuarioId = GetUsuarioId();
@@ -126,7 +129,23 @@ public class CarrinhoController : Controller
 
         if (!itensCarrinho.Any()) return RedirectToAction(nameof(Index));
 
-        // 1. Cria o Pedido
+        // --- PASSO NOVO: SALVAR O CPF NO CADASTRO DO USUÁRIO ---
+        var usuario = await _usuarioRepo.GetByIdAsync(usuarioId);
+        if (usuario != null)
+        {
+            // Atualiza o CPF com o que veio do formulário
+            usuario.Cpf = model.CPF;
+            await _usuarioRepo.UpdateAsync(usuario);
+        }
+        // -------------------------------------------------------
+
+        var enderecoCompleto = $"{model.Logradouro}, {model.Numero} - {model.Bairro}, {model.Cidade}/{model.UF}";
+        if (!string.IsNullOrEmpty(model.Complemento))
+        {
+            enderecoCompleto += $" ({model.Complemento})";
+        }
+
+        // 2. Cria o Pedido
         var pedido = new Pedido
         {
             UsuarioId = usuarioId,
@@ -134,18 +153,17 @@ public class CarrinhoController : Controller
             Status = "Aguardando Pagamento",
             ValorFrete = model.ValorFrete,
             ValorTotal = itensCarrinho.Sum(i => i.Quantidade * i.Brinquedo.Preco) + model.ValorFrete,
-            EnderecoEntrega = model.Endereco,
+            EnderecoEntrega = enderecoCompleto,
             CEP = model.CEP,
             FormaPagamento = model.FormaPagamento,
             Itens = new List<PedidoItem>()
         };
 
-        // 2. Transfere Itens e Baixa Estoque
+        // 3. Transfere Itens e Baixa Estoque
         foreach (var item in itensCarrinho)
         {
             var brinquedo = await _brinquedoRepo.GetByIdAsync(item.BrinquedoId);
 
-            // Validação final de segurança
             if (brinquedo == null || brinquedo.Estoque < item.Quantidade)
             {
                 TempData["Erro"] = $"Ops! O produto {item.Brinquedo.Nome} acabou agora.";
@@ -160,12 +178,10 @@ public class CarrinhoController : Controller
             };
             pedido.Itens.Add(pedidoItem);
 
-            // Baixa estoque
             brinquedo.Estoque -= item.Quantidade;
             await _brinquedoRepo.UpdateAsync(brinquedo);
         }
 
-        // 3. Salva Pedido e Limpa Carrinho
         await _pedidoRepo.AddAsync(pedido);
         await _carrinhoRepo.LimparCarrinhoAsync(usuarioId);
 

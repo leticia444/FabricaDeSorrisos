@@ -1,34 +1,47 @@
 ﻿@model FabricaDeSorrisos.Domain.Entities.Marca
 
-<div class="mb-3">
-    <label class="form-label fw-bold">Nome da Marca</label>
-    <input asp-for="Nome" class="form-control" placeholder="Ex: LEGO" required />
-    <span asp-validation-for="Nome" class="text-danger small"></span>
-</div>
-
-<div class="mb-3">
-    <label class="form-label fw-bold">Logotipo</label>
-
-    @if (!string.IsNullOrEmpty(Model.LogotipoUrl))
-    {
-        <div class="card p-2 mb-2 d-inline-block bg-light border">
-            <img src="@Model.LogotipoUrl" style="height: 80px; object-fit: contain;" />
-            <div class="text-center mt-1">
-                <small class="text-muted">Atual</small>
-            </div>
+<div class="card-custom p-5">
+    <h6 class="label-custom text-uppercase text-muted border-bottom pb-2 mb-4">
+        <i class="bi bi-info-circle-fill me-2"></i>Dados da Marca
+    </h6>
+    
+    <div class="mb-4">
+        <label class="label-custom">Nome da Marca</label>
+        <div class="input-group">
+            <span class="input-group-text bg-light border border-end-0 rounded-start-3 text-muted">
+                <i class="bi bi-tag-fill"></i>
+            </span>
+            <input asp-for="Nome" class="input-custom form-control border-start-0 ps-2" placeholder="Ex: LEGO, Mattel, Estrela" required />
         </div>
-        <input type="hidden" asp-for="LogotipoUrl" />
-    }
+        <span asp-validation-for="Nome" class="text-danger small fw-bold mt-1 d-block"></span>
+    </div>
 
-    <input type="file" name="arquivo" class="form-control" accept="image/*" />
-    <div class="form-text">Formatos aceitos: JPG, PNG, WEBP.</div>
-</div>
+    <div class="mb-4">
+        <label class="label-custom">Logotipo</label>
+        <div class="bg-light p-4 rounded-3 border text-center">
+            @if (!string.IsNullOrEmpty(Model.LogotipoUrl))
+            {
+                <div class="mb-3">
+                    <img src="@Model.LogotipoUrl" style="max-height: 100px; max-width: 100%; object-fit: contain;" class="shadow-sm rounded bg-white p-2 border" />
+                    <p class="small text-muted mt-1 mb-0">Logo Atual</p>
+                </div>
+                <input type="hidden" asp-for="LogotipoUrl" />
+            }
+            else
+            {
+                <div class="mb-3 text-muted opacity-50">
+                    <i class="bi bi-image fs-1"></i>
+                    <p class="small">Sem logotipo</p>
+                </div>
+            }
+            <input type="file" name="arquivo" class="input-custom form-control form-control-sm w-75 mx-auto" accept="image/*" />
+            <div class="form-text mt-2 small">Formatos aceitos: JPG, PNG, WEBP.</div>
+        </div>
+    </div>
 
-<div class="d-grid gap-2">
-    <button type="submit" class="btn btn-primary btn-lg">
-        <i class="bi bi-check-lg"></i> Salvar Dados
-    </button>
-    <a asp-action="Index" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Cancelar
-    </a>
+    <div class="d-flex justify-content-end pt-3">
+        <button type="submit" class="btn-gradient-blue">
+            <i class="bi bi-check-lg me-2"></i> Salvar Marca
+        </button>
+    </div>
 </div>

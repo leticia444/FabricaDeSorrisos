@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin,Gerente")] // Só Admin acessa
+[Authorize(Roles = "Admin")]
 public class FeedbackController : Controller
 {
     private readonly IFeedbackRepository _repo;

@@ -1,23 +1,39 @@
 ﻿// Localizado em wwwroot/js/chat.js no projeto WEB
-// Usamos um caminho relativo para que ele use automaticamente a mesma porta do site (5179)
 const API_URL = "/api/Suporte";
 
 var chatAberto = false;
 var intervaloAtualizacao = null;
+var intervaloNotificacao = null; // Variável para controlar o poll de notificações
 
 function toggleChat() {
     var janela = document.getElementById("janelaChat");
+    var badge = document.getElementById("chatBadge");
 
     if (chatAberto) {
+        // FECHANDO O CHAT
         janela.classList.add("d-none");
         chatAberto = false;
         clearInterval(intervaloAtualizacao);
+
+        // Volta a verificar notificações
+        verificarNotificacoes();
     } else {
+        // ABRINDO O CHAT
         janela.classList.remove("d-none");
         chatAberto = true;
+
+        // Esconde o badge imediatamente
+        if (badge) badge.classList.add("d-none");
+
+        // Carrega mensagens e marca como lidas (no localStorage)
         carregarMensagens();
-        // Atualiza a conversa a cada 5 segundos
-        intervaloAtualizacao = setInterval(carregarMensagens, 5000);
+        atualizarContadorLidas();
+
+        // Atualiza o chat a cada 5 segundos enquanto estiver aberto
+        intervaloAtualizacao = setInterval(() => {
+            carregarMensagens();
+            atualizarContadorLidas(); // Mantém o contador sincronizado enquanto lê
+        }, 5000);
 
         setTimeout(() => {
             const input = document.getElementById("msgInput");
@@ -28,7 +44,6 @@ function toggleChat() {
 
 async function carregarMensagens() {
     try {
-        // Agora não precisamos de 'https://localhost...' nem de 'credentials'
         const response = await fetch(`${API_URL}/historico`);
 
         if (!response.ok) {
@@ -103,6 +118,8 @@ async function enviarMensagem(e) {
 
         if (response.ok) {
             carregarMensagens();
+            // Ao enviar, atualizamos o contador também para não notificar a própria ação (embora o back filtre)
+            atualizarContadorLidas();
         } else {
             console.error("Falha ao enviar mensagem.");
         }
@@ -111,3 +128,55 @@ async function enviarMensagem(e) {
         console.error("Erro no envio:", error);
     }
 }
+
+// --- SISTEMA DE NOTIFICAÇÕES (BADGE) ---
+
+async function verificarNotificacoes() {
+    // Se o chat já estiver aberto, não precisa mostrar badge
+    if (chatAberto) return;
+
+    try {
+        const response = await fetch(`${API_URL}/notificacoes`);
+        if (response.ok) {
+            const totalAdminNoServer = await response.json();
+
+            // Pega quantas mensagens o usuário já leu anteriormente
+            const lidasLocal = parseInt(localStorage.getItem('msgsAdminLidas') || '0');
+
+            // Se tiver mais mensagens no servidor do que o usuário leu, mostra badge
+            const naoLidas = totalAdminNoServer - lidasLocal;
+
+            const badge = document.getElementById("chatBadge");
+            if (badge) {
+                if (naoLidas > 0) {
+                    badge.innerText = naoLidas;
+                    badge.classList.remove("d-none");
+                    badge.classList.add("animate__animated", "animate__bounceIn"); // Efeito opcional se usar Animate.css
+                } else {
+                    badge.classList.add("d-none");
+                }
+            }
+        }
+    } catch (e) {
+        // Silencia erro de conexão para não poluir console do cliente
+    }
+}
+
+async function atualizarContadorLidas() {
+    // Chama o servidor para saber o total atual e salva no LocalStorage
+    // Assim sabemos que o usuário "viu" tudo até agora
+    try {
+        const response = await fetch(`${API_URL}/notificacoes`);
+        if (response.ok) {
+            const total = await response.json();
+            localStorage.setItem('msgsAdminLidas', total);
+        }
+    } catch (e) { }
+}
+
+// Inicia o sistema de notificação assim que o site carrega
+document.addEventListener("DOMContentLoaded", () => {
+    verificarNotificacoes();
+    // Verifica a cada 10 segundos
+    intervaloNotificacao = setInterval(verificarNotificacoes, 10000);
+});

@@ -3,8 +3,15 @@ header.fixed-top {
     z-index: 1030;
 }
 
+/* Logo aumentada conforme solicitado */
 .nav-logo {
-    max-height: 55px;
+    max-height: 85px !important;
+    transition: 0.3s;
+}
+
+.bg-fabrica {
+    background-color: #00bfff;
+    color: white;
 }
 
 .search-rounded {
@@ -40,9 +47,20 @@ header.fixed-top {
         font-weight: 700;
     }
 
+/* Badge Área Admin */
+.badge-admin-header {
+    background-color: #ffc107;
+    color: #212529;
+    text-decoration: none;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
 /* --- CARROSSEL --- */
 #carouselHome {
-    margin-top: 175px; /* Espaço para não ficar sob a navbar fixa */
+    margin-top: 175px;
     width: 100%;
     overflow: hidden;
 }
@@ -54,12 +72,16 @@ header.fixed-top {
 }
 
 /* --- CONTEÚDO --- */
+body {
+    padding-top: 160px; /* Ajuste para o conteúdo não ficar sob a navbar */
+}
+
 .content-main {
     padding-top: 30px;
     min-height: 40vh;
 }
 
-/* --- RODAPÉ (ROSA F66CD8) --- */
+/* --- RODAPÉ --- */
 .footer-fabrica {
     background-color: #F66CD8;
     padding: 30px 0 0 0;
@@ -91,8 +113,77 @@ header.fixed-top {
         opacity: 0.7;
     }
 
+/* --- CHAT WIDGET (CSS movido para cá) --- */
+.btn-chat-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    z-index: 9999;
+    transition: transform 0.2s;
+}
+
+    .btn-chat-float:hover {
+        transform: scale(1.1);
+        background-color: #0b5ed7;
+    }
+
+.chat-window {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    z-index: 9999;
+    border-radius: 15px;
+    overflow: hidden;
+    border: none;
+}
+
+.msg-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.msg-bala {
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.msg-me {
+    justify-content: flex-end;
+}
+
+    .msg-me .msg-bala {
+        background-color: #d1e7dd;
+        color: #0f5132;
+        border-bottom-right-radius: 2px;
+    }
+
+.msg-admin {
+    justify-content: flex-start;
+}
+
+    .msg-admin .msg-bala {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        color: #444;
+        border-bottom-left-radius: 2px;
+    }
+
 /* --- AJUSTES MOBILE --- */
 @media (max-width: 768px) {
+    body {
+        padding-top: 240px;
+    }
+
     #carouselHome {
         margin-top: 250px;
     }

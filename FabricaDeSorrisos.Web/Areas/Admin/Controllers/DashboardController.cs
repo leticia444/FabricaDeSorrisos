@@ -1,15 +1,16 @@
 ﻿using FabricaDeSorrisos.Application.Abstractions.Repositories;
-using FabricaDeSorrisos.Infrastructure.Identity; // Necessário para ApplicationUser
+using FabricaDeSorrisos.Domain.Entities;
+using FabricaDeSorrisos.Infrastructure.Identity;
 using FabricaDeSorrisos.Web.Areas.Admin.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; // Necessário para o .CountAsync()
+using Microsoft.EntityFrameworkCore;
 
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,Gerente")]
 public class DashboardController : Controller
 {
     private readonly IBrinquedoRepository _brinquedoRepo;
@@ -28,28 +29,62 @@ public class DashboardController : Controller
 
     public async Task<IActionResult> Index()
     {
-        // 1. Busca os dados
-        // Nota: O ideal seria ter métodos "Count" nos repositórios para performance,
-        // mas usar o GetAll e contar funciona bem para este estágio do projeto.
-
         var brinquedos = await _brinquedoRepo.GetAllAsync();
-        var pedidos = await _pedidoRepo.GetTodosPedidosAsync();
-
-        // Contando usuários direto do Identity
+        var todosPedidos = await _pedidoRepo.GetTodosPedidosAsync();
         var qtdUsuarios = await _userManager.Users.CountAsync();
 
-        // 2. Monta a ViewModel
+        // --- LÓGICA: BRINQUEDOS MAIS VENDIDOS ---
+        var maisPopulares = new List<ItemPopular>();
+        if (todosPedidos.Any())
+        {
+            maisPopulares = todosPedidos
+                .SelectMany(p => p.Itens ?? new List<PedidoItem>())
+                .GroupBy(i => i.Brinquedo?.Nome ?? "Item")
+                .Select(g => new ItemPopular
+                {
+                    Nome = g.Key,
+                    Quantidade = g.Sum(x => x.Quantidade)
+                })
+                .OrderByDescending(x => x.Quantidade)
+                .Take(5) // Top 5
+                .ToList();
+        }
+
+        var recentes = new List<ItemRecente>();
+        if (todosPedidos.Any())
+        {
+            recentes = todosPedidos
+                .OrderByDescending(p => p.DataPedido)
+                .Take(5)
+                .Select(p => new ItemRecente
+                {
+                    Nome = p.Usuario != null ? p.Usuario.NomeCompleto : $"Pedido #{p.Id}",
+                    Data = p.DataPedido.ToString("dd/MM/yyyy")
+                })
+                .ToList();
+        }
+
+        var categoriasData = brinquedos
+            .GroupBy(b => b.Categoria?.Nome ?? "Outros")
+            .Select(g => new { Categoria = g.Key, Qtd = g.Count() })
+            .ToList();
+
         var viewModel = new DashboardViewModel
         {
             QtdBrinquedos = brinquedos.Count,
-
             QtdUsuarios = qtdUsuarios,
+            QtdPedidos = todosPedidos.Count,
+            FaturamentoTotal = todosPedidos.Sum(p => p.ValorTotal),
 
-            QtdPedidos = pedidos.Count,
+            MaisPopulares = maisPopulares,
+            MaisRecentes = recentes,
 
-            // Soma o total de todos os pedidos que NÃO foram cancelados (se houver essa lógica)
-            // Aqui estamos somando tudo para simplificar
-            FaturamentoTotal = pedidos.Sum(p => p.ValorTotal)
+            GraficoColunasLabels = categoriasData.Select(x => x.Categoria).ToArray(),
+            GraficoColunasValores = categoriasData.Select(x => x.Qtd).ToArray(),
+
+            // AGORA MANDAMOS OS DADOS DOS BRINQUEDOS PARA O SEGUNDO GRÁFICO
+            GraficoBrinquedosLabels = maisPopulares.Select(x => x.Nome).ToArray(),
+            GraficoBrinquedosValores = maisPopulares.Select(x => x.Quantidade).ToArray()
         };
 
         return View(viewModel);
