@@ -91,7 +91,7 @@
             // pbLogo
             // 
             pbLogo.CustomizableEdges = customizableEdges10;
-            pbLogo.Image = Properties.Resources.logo_oficial4;
+            pbLogo.Image = Properties.Resources.logo_oficial;
             pbLogo.ImageRotate = 0F;
             pbLogo.Location = new Point(454, -29);
             pbLogo.Name = "pbLogo";
@@ -183,7 +183,7 @@
             // guna2PictureBox1
             // 
             guna2PictureBox1.CustomizableEdges = customizableEdges8;
-            guna2PictureBox1.Image = Properties.Resources.lapis4;
+            guna2PictureBox1.Image = Properties.Resources.lapis;
             guna2PictureBox1.ImageRotate = 0F;
             guna2PictureBox1.Location = new Point(683, 204);
             guna2PictureBox1.Name = "guna2PictureBox1";
@@ -196,7 +196,7 @@
             // pbCriar
             // 
             pbCriar.CustomizableEdges = customizableEdges6;
-            pbCriar.Image = Properties.Resources.mais2;
+            pbCriar.Image = Properties.Resources.mais;
             pbCriar.ImageRotate = 0F;
             pbCriar.Location = new Point(358, 204);
             pbCriar.Name = "pbCriar";
@@ -228,7 +228,7 @@
             btnExcluirMarca.FillColor = Color.Transparent;
             btnExcluirMarca.Font = new Font("Segoe UI", 9F);
             btnExcluirMarca.ForeColor = Color.White;
-            btnExcluirMarca.Image = Properties.Resources.delet_marca_icon1;
+            btnExcluirMarca.Image = Properties.Resources.delet_marca_icon;
             btnExcluirMarca.ImageSize = new Size(100, 100);
             btnExcluirMarca.Location = new Point(851, 233);
             btnExcluirMarca.Name = "btnExcluirMarca";
@@ -264,7 +264,7 @@
             btnEditarMarca.FillColor = Color.Transparent;
             btnEditarMarca.Font = new Font("Segoe UI", 9F);
             btnEditarMarca.ForeColor = Color.White;
-            btnEditarMarca.Image = Properties.Resources.marca2;
+            btnEditarMarca.Image = Properties.Resources.marca;
             btnEditarMarca.ImageSize = new Size(100, 100);
             btnEditarMarca.Location = new Point(529, 233);
             btnEditarMarca.Name = "btnEditarMarca";

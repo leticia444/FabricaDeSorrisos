@@ -69,7 +69,8 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            guna2DataGridView1.ColumnHeadersHeight = 4;
+            guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -79,10 +80,13 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(375, 193);
+            guna2DataGridView1.Location = new Point(190, 230);
+            guna2DataGridView1.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
-            guna2DataGridView1.Size = new Size(545, 415);
+            guna2DataGridView1.RowHeadersWidth = 51;
+            guna2DataGridView1.RowTemplate.Height = 25;
+            guna2DataGridView1.Size = new Size(623, 553);
             guna2DataGridView1.TabIndex = 0;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -95,7 +99,7 @@
             guna2DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 4;
             guna2DataGridView1.ThemeStyle.ReadOnly = false;
             guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.White;
@@ -115,16 +119,18 @@
             guna2CircleButton1.FillColor = Color.Red;
             guna2CircleButton1.Font = new Font("Segoe UI", 9F);
             guna2CircleButton1.ForeColor = Color.White;
-            guna2CircleButton1.Location = new Point(1215, 12);
+            guna2CircleButton1.Location = new Point(922, 13);
+            guna2CircleButton1.Margin = new Padding(3, 4, 3, 4);
             guna2CircleButton1.Name = "guna2CircleButton1";
             guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges7;
             guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            guna2CircleButton1.Size = new Size(38, 36);
+            guna2CircleButton1.Size = new Size(43, 48);
             guna2CircleButton1.TabIndex = 1;
             guna2CircleButton1.Text = "X";
             // 
             // btnExcluirBrinquedo
             // 
+            btnExcluirBrinquedo.BorderRadius = 10;
             btnExcluirBrinquedo.CustomizableEdges = customizableEdges5;
             btnExcluirBrinquedo.DisabledState.BorderColor = Color.DarkGray;
             btnExcluirBrinquedo.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -133,22 +139,24 @@
             btnExcluirBrinquedo.FillColor = Color.Red;
             btnExcluirBrinquedo.Font = new Font("Segoe UI", 9F);
             btnExcluirBrinquedo.ForeColor = Color.White;
-            btnExcluirBrinquedo.Location = new Point(566, 634);
+            btnExcluirBrinquedo.Location = new Point(370, 825);
+            btnExcluirBrinquedo.Margin = new Padding(3, 4, 3, 4);
             btnExcluirBrinquedo.Name = "btnExcluirBrinquedo";
             btnExcluirBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnExcluirBrinquedo.Size = new Size(180, 45);
+            btnExcluirBrinquedo.Size = new Size(206, 60);
             btnExcluirBrinquedo.TabIndex = 2;
             btnExcluirBrinquedo.Text = "Excluir Brinquedo";
             // 
             // pbLogo
             // 
             pbLogo.CustomizableEdges = customizableEdges3;
-            pbLogo.Image = Properties.Resources.remove_toy_icon1;
+            pbLogo.Image = Properties.Resources.remove_toy_icon;
             pbLogo.ImageRotate = 0F;
-            pbLogo.Location = new Point(529, 12);
+            pbLogo.Location = new Point(381, 13);
+            pbLogo.Margin = new Padding(3, 4, 3, 4);
             pbLogo.Name = "pbLogo";
             pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            pbLogo.Size = new Size(263, 159);
+            pbLogo.Size = new Size(226, 178);
             pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
             pbLogo.TabIndex = 3;
             pbLogo.TabStop = false;
@@ -156,28 +164,31 @@
             // guna2PictureBox2
             // 
             guna2PictureBox2.CustomizableEdges = customizableEdges1;
-            guna2PictureBox2.Image = Properties.Resources.x1;
+            guna2PictureBox2.Image = Properties.Resources.x;
             guna2PictureBox2.ImageRotate = 0F;
-            guna2PictureBox2.Location = new Point(754, -1);
+            guna2PictureBox2.Location = new Point(653, 13);
+            guna2PictureBox2.Margin = new Padding(3, 4, 3, 4);
             guna2PictureBox2.Name = "guna2PictureBox2";
             guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2PictureBox2.Size = new Size(117, 76);
+            guna2PictureBox2.Size = new Size(86, 48);
             guna2PictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             guna2PictureBox2.TabIndex = 4;
             guna2PictureBox2.TabStop = false;
+            guna2PictureBox2.Click += guna2PictureBox2_Click;
             // 
             // frmExcluirBrinquedos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1265, 728);
+            ClientSize = new Size(1003, 898);
             Controls.Add(guna2PictureBox2);
             Controls.Add(pbLogo);
             Controls.Add(btnExcluirBrinquedo);
             Controls.Add(guna2CircleButton1);
             Controls.Add(guna2DataGridView1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmExcluirBrinquedos";
             Text = "frmExcluirBrinquedos";
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).EndInit();

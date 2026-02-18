@@ -14,5 +14,10 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
         {
             InitializeComponent();
         }
+
+        private void guna2PictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -92,7 +92,7 @@
             // guna2PictureBox1
             // 
             guna2PictureBox1.CustomizableEdges = customizableEdges4;
-            guna2PictureBox1.Image = Properties.Resources.lapis3;
+            guna2PictureBox1.Image = Properties.Resources.lapis;
             guna2PictureBox1.ImageRotate = 0F;
             guna2PictureBox1.Location = new Point(766, 3);
             guna2PictureBox1.Name = "guna2PictureBox1";
@@ -106,7 +106,7 @@
             // guna2PictureBox2
             // 
             guna2PictureBox2.CustomizableEdges = customizableEdges6;
-            guna2PictureBox2.Image = Properties.Resources.edit_category_icon1;
+            guna2PictureBox2.Image = Properties.Resources.edit_category_icon;
             guna2PictureBox2.ImageRotate = 0F;
             guna2PictureBox2.Location = new Point(540, 3);
             guna2PictureBox2.Name = "guna2PictureBox2";

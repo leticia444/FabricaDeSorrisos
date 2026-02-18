@@ -106,7 +106,7 @@
             // pbLogoCriar
             // 
             pbLogoCriar.CustomizableEdges = customizableEdges6;
-            pbLogoCriar.Image = Properties.Resources.mais1;
+            pbLogoCriar.Image = Properties.Resources.mais;
             pbLogoCriar.ImageRotate = 0F;
             pbLogoCriar.Location = new Point(664, 12);
             pbLogoCriar.Name = "pbLogoCriar";

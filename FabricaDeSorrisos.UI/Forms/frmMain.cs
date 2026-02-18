@@ -1,19 +1,19 @@
 using FabricaDeSorrisos.UI.Models;
+using FabricaDeSorrisos.UI.Models.Services;
 using System;
 using System.Windows.Forms;
-using FabricaDeSorrisos.UI.Models.Services;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
     public partial class frmMain : Form
     {
         private readonly UserService _userService;
+        private Form _formAtivo;
 
         public frmMain(UserService userService)
         {
             InitializeComponent();
             _userService = userService;
-            this.Resize += FrmMain_Resize;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -29,26 +29,11 @@ namespace FabricaDeSorrisos.UI.Forms
 
                 VoltarParaLogin();
                 return;
-            }
-
-            lblUsuario.Text = ObterNomeUsuario();
-            CentralizarLblUsuario();
+            };
             AplicarPermissoes();
-        }
 
-        // =====================
-        // AJUSTES DE LAYOUT
-        // =====================
-
-        private void FrmMain_Resize(object sender, EventArgs e)
-        {
-            CentralizarLblUsuario();
-        }
-
-        private void CentralizarLblUsuario()
-        {
-            lblUsuario.Left = pbIcon.Left + (pbIcon.Width - lblUsuario.Width) / 2;
-            lblUsuario.Top = pbIcon.Bottom + 8;
+            // Abre uma tela padrão ao entrar (opcional)
+            AbrirFormularioNoPanel(new frmBrinquedos());
         }
 
         private string ObterNomeUsuario()
@@ -66,33 +51,67 @@ namespace FabricaDeSorrisos.UI.Forms
         {
             bool isAdmin = UserSession.Role == "Admin";
 
-            btnUsuario.Visible = isAdmin;
-            lblUsuários.Visible = isAdmin;
+            btnUsuarios.Visible = isAdmin;
+        }
+
+        // =====================
+        // NAVEGAÇÃO (PANEL)
+        // =====================
+
+        private void AbrirFormularioNoPanel(Form form)
+        {
+            if (_formAtivo != null)
+            {
+                _formAtivo.Close();
+                _formAtivo.Dispose();
+            }
+
+            _formAtivo = form;
+
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+
+            panelDashboard.Controls.Clear();
+            panelDashboard.Controls.Add(form);
+
+            form.BringToFront();
+            form.Show();
         }
 
         // =====================
         // BOTÕES → FORMULÁRIOS
         // =====================
 
-        private void btnUsuario_Click(object sender, EventArgs e)
+        private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(new frmUsuarios(_userService));
+            AbrirFormularioNoPanel(new frmUsuarios(_userService));
         }
 
         private void btnCategorias_Click(object sender, EventArgs e)
-            => AbrirFormulario(new frmCategorias());
+        {
+            AbrirFormularioNoPanel(new frmCategorias());
+        }
 
-        private void btnSubCategoria_Click(object sender, EventArgs e)
-            => AbrirFormulario(new frmSubCategorias());
-
-        private void btnPersonagem_Click(object sender, EventArgs e)
-            => AbrirFormulario(new frmPersonagens());
-
-        private void btnBrinquedos_Click(object sender, EventArgs e)
-            => AbrirFormulario(new frmBrinquedos());
+        private void btnSubCategorias_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioNoPanel(new frmSubCategorias());
+        }
 
         private void btnMarcas_Click(object sender, EventArgs e)
-            => AbrirFormulario(new frmMarcas());
+        {
+            AbrirFormularioNoPanel(new frmMarcas());
+        }
+
+        private void btnPersonagens_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioNoPanel(new frmPersonagens());
+        }
+
+        private void btnBrinquedos_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioNoPanel(new frmBrinquedos());
+        }
 
         // =====================
         // CONTROLES GERAIS
@@ -112,15 +131,6 @@ namespace FabricaDeSorrisos.UI.Forms
                 UserSession.Logout();
                 VoltarParaLogin();
             }
-        }
-
-        private void AbrirFormulario(Form form)
-        {
-            Hide();
-
-            form.StartPosition = FormStartPosition.CenterScreen;
-            form.FormClosed += (s, e) => Show();
-            form.Show();
         }
 
         private void VoltarParaLogin()

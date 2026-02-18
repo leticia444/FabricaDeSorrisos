@@ -146,7 +146,7 @@
             // pbLogo
             // 
             pbLogo.CustomizableEdges = customizableEdges3;
-            pbLogo.Image = Properties.Resources.delet_marca_icon2;
+            pbLogo.Image = Properties.Resources.delet_marca_icon;
             pbLogo.ImageRotate = 0F;
             pbLogo.Location = new Point(491, 43);
             pbLogo.Name = "pbLogo";
@@ -159,7 +159,7 @@
             // pbLogoDelet
             // 
             pbLogoDelet.CustomizableEdges = customizableEdges1;
-            pbLogoDelet.Image = Properties.Resources.x2;
+            pbLogoDelet.Image = Properties.Resources.x;
             pbLogoDelet.ImageRotate = 0F;
             pbLogoDelet.Location = new Point(659, 12);
             pbLogoDelet.Name = "pbLogoDelet";

@@ -109,7 +109,7 @@
             // pbLogoEdit
             // 
             pbLogoEdit.CustomizableEdges = customizableEdges25;
-            pbLogoEdit.Image = Properties.Resources.lapis2;
+            pbLogoEdit.Image = Properties.Resources.lapis;
             pbLogoEdit.ImageRotate = 0F;
             pbLogoEdit.Location = new Point(730, 9);
             pbLogoEdit.Name = "pbLogoEdit";
@@ -122,7 +122,7 @@
             // pbLogo
             // 
             pbLogo.CustomizableEdges = customizableEdges27;
-            pbLogo.Image = Properties.Resources.edit_toy_icon2;
+            pbLogo.Image = Properties.Resources.edit_toy_icon;
             pbLogo.ImageRotate = 0F;
             pbLogo.Location = new Point(528, 12);
             pbLogo.Name = "pbLogo";

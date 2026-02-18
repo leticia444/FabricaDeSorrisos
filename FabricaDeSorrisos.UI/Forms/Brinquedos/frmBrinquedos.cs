@@ -64,5 +64,20 @@ namespace FabricaDeSorrisos.UI.Forms
             frm.ShowDialog(this);
             Show();
         }
+
+        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblBrinquedosCadastrados_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

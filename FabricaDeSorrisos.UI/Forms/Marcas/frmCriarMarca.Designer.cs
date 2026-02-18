@@ -76,7 +76,7 @@
             // pbLogo
             // 
             pbLogo.CustomizableEdges = customizableEdges8;
-            pbLogo.Image = Properties.Resources.add_marca_icon1;
+            pbLogo.Image = Properties.Resources.add_marca_icon;
             pbLogo.ImageRotate = 0F;
             pbLogo.Location = new Point(523, 12);
             pbLogo.Name = "pbLogo";
@@ -89,7 +89,7 @@
             // guna2PictureBox2
             // 
             guna2PictureBox2.CustomizableEdges = customizableEdges6;
-            guna2PictureBox2.Image = Properties.Resources.mais3;
+            guna2PictureBox2.Image = Properties.Resources.mais;
             guna2PictureBox2.ImageRotate = 0F;
             guna2PictureBox2.Location = new Point(692, 12);
             guna2PictureBox2.Name = "guna2PictureBox2";
