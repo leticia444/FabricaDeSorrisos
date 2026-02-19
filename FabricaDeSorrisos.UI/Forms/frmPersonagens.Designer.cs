@@ -29,16 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
-            btnPersonagem = new Guna.UI2.WinForms.Guna2CircleButton();
-            lblPersonagem = new Guna.UI2.WinForms.Guna2HtmlLabel();
             dgvPersonagem = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)dgvPersonagem).BeginInit();
             SuspendLayout();
             // 
@@ -48,51 +44,6 @@
             guna2BorderlessForm1.ContainerControl = this;
             guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             guna2BorderlessForm1.TransparentWhileDrag = true;
-            // 
-            // btnFechar
-            // 
-            btnFechar.DisabledState.BorderColor = Color.DarkGray;
-            btnFechar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnFechar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnFechar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnFechar.FillColor = Color.Red;
-            btnFechar.Font = new Font("Segoe UI", 9F);
-            btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(750, 12);
-            btnFechar.Name = "btnFechar";
-            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnFechar.Size = new Size(38, 36);
-            btnFechar.TabIndex = 6;
-            btnFechar.Text = "X";
-            // 
-            // btnPersonagem
-            // 
-            btnPersonagem.DisabledState.BorderColor = Color.DarkGray;
-            btnPersonagem.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnPersonagem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnPersonagem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnPersonagem.FillColor = Color.Transparent;
-            btnPersonagem.Font = new Font("Segoe UI", 9F);
-            btnPersonagem.ForeColor = Color.White;
-            btnPersonagem.Image = Properties.Resources.character_icon;
-            btnPersonagem.ImageSize = new Size(100, 100);
-            btnPersonagem.Location = new Point(329, 9);
-            btnPersonagem.Name = "btnPersonagem";
-            btnPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges1;
-            btnPersonagem.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnPersonagem.Size = new Size(148, 116);
-            btnPersonagem.TabIndex = 21;
-            // 
-            // lblPersonagem
-            // 
-            lblPersonagem.BackColor = Color.Transparent;
-            lblPersonagem.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPersonagem.Location = new Point(244, 139);
-            lblPersonagem.Name = "lblPersonagem";
-            lblPersonagem.Size = new Size(330, 23);
-            lblPersonagem.TabIndex = 22;
-            lblPersonagem.Text = "Adicione, Edite ou Exclua um Personagem";
             // 
             // dgvPersonagem
             // 
@@ -117,10 +68,10 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvPersonagem.DefaultCellStyle = dataGridViewCellStyle3;
             dgvPersonagem.GridColor = Color.FromArgb(231, 229, 255);
-            dgvPersonagem.Location = new Point(141, 187);
+            dgvPersonagem.Location = new Point(-5, 275);
             dgvPersonagem.Name = "dgvPersonagem";
             dgvPersonagem.RowHeadersVisible = false;
-            dgvPersonagem.Size = new Size(510, 234);
+            dgvPersonagem.Size = new Size(838, 235);
             dgvPersonagem.TabIndex = 23;
             dgvPersonagem.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvPersonagem.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -144,15 +95,23 @@
             dgvPersonagem.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvPersonagem.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Location = new Point(233, 114);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(170, 17);
+            guna2HtmlLabel1.TabIndex = 24;
+            guna2HtmlLabel1.Text = "Gerenciamento de Personagens";
+            // 
             // frmPersonagens
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.Ivory;
+            ClientSize = new Size(833, 506);
+            Controls.Add(guna2HtmlLabel1);
             Controls.Add(dgvPersonagem);
-            Controls.Add(lblPersonagem);
-            Controls.Add(btnPersonagem);
-            Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmPersonagens";
             Text = "frmPersonagens";
@@ -164,9 +123,7 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
-        private Guna.UI2.WinForms.Guna2CircleButton btnPersonagem;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblPersonagem;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPersonagem;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
     }
 }
