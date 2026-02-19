@@ -1,6 +1,8 @@
 using FabricaDeSorrisos.Infrastructure;
 using FabricaDeSorrisos.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,6 +81,11 @@ using (var scope = app.Services.CreateScope())
         var context = services.GetRequiredService<FabricaDeSorrisos.Infrastructure.Persistence.AppDbContext>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        DbConnection conn = context.Database.GetDbConnection();
+        logger.LogInformation("Conectando ao banco: {DataSource} / {Database}", conn.DataSource, conn.Database);
+        await context.Database.MigrateAsync();
 
         // Roda o Seeder (Cria Admin, Faixas Etárias, etc.)
         await FabricaDeSorrisos.Infrastructure.Persistence.Seed.DatabaseSeeder.SeedAsync(userManager, roleManager, context);
