@@ -75,7 +75,7 @@
             txtNomeProduto.CustomizableEdges = customizableEdges3;
             txtNomeProduto.DefaultText = "";
             txtNomeProduto.Font = new Font("Segoe UI", 9F);
-            txtNomeProduto.Location = new Point(261, 139);
+            txtNomeProduto.Location = new Point(124, 131);
             txtNomeProduto.Margin = new Padding(3, 4, 3, 4);
             txtNomeProduto.Name = "txtNomeProduto";
             txtNomeProduto.PlaceholderText = "";
@@ -95,7 +95,7 @@
             cbCategoria.Font = new Font("Segoe UI", 10F);
             cbCategoria.ForeColor = Color.FromArgb(68, 88, 112);
             cbCategoria.ItemHeight = 30;
-            cbCategoria.Location = new Point(477, 139);
+            cbCategoria.Location = new Point(340, 131);
             cbCategoria.Name = "cbCategoria";
             cbCategoria.ShadowDecoration.CustomizableEdges = customizableEdges6;
             cbCategoria.Size = new Size(200, 36);
@@ -107,7 +107,7 @@
             txtPreco.CustomizableEdges = customizableEdges7;
             txtPreco.DefaultText = "";
             txtPreco.Font = new Font("Segoe UI", 9F);
-            txtPreco.Location = new Point(261, 212);
+            txtPreco.Location = new Point(124, 204);
             txtPreco.Margin = new Padding(3, 4, 3, 4);
             txtPreco.Name = "txtPreco";
             txtPreco.PlaceholderText = "";
@@ -122,7 +122,7 @@
             txtEstoque.CustomizableEdges = customizableEdges9;
             txtEstoque.DefaultText = "";
             txtEstoque.Font = new Font("Segoe UI", 9F);
-            txtEstoque.Location = new Point(477, 212);
+            txtEstoque.Location = new Point(340, 204);
             txtEstoque.Margin = new Padding(3, 4, 3, 4);
             txtEstoque.Name = "txtEstoque";
             txtEstoque.PlaceholderText = "";
@@ -138,7 +138,7 @@
             btnCriar.FillColor = Color.LimeGreen;
             btnCriar.Font = new Font("Segoe UI", 9F);
             btnCriar.ForeColor = Color.White;
-            btnCriar.Location = new Point(987, 572);
+            btnCriar.Location = new Point(686, 572);
             btnCriar.Name = "btnCriar";
             btnCriar.ShadowDecoration.CustomizableEdges = customizableEdges20;
             btnCriar.Size = new Size(220, 57);
@@ -150,7 +150,7 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(1215, 12);
+            btnFechar.Location = new Point(914, 12);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges21;
             btnFechar.Size = new Size(38, 36);
@@ -160,7 +160,7 @@
             // lblNomeProduto
             // 
             lblNomeProduto.Font = new Font("Segoe UI", 15F);
-            lblNomeProduto.Location = new Point(261, 97);
+            lblNomeProduto.Location = new Point(124, 89);
             lblNomeProduto.Name = "lblNomeProduto";
             lblNomeProduto.Size = new Size(100, 30);
             lblNomeProduto.TabIndex = 7;
@@ -170,7 +170,7 @@
             // lblCategoria
             // 
             lblCategoria.Font = new Font("Segoe UI", 15F);
-            lblCategoria.Location = new Point(477, 97);
+            lblCategoria.Location = new Point(340, 89);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(133, 39);
             lblCategoria.TabIndex = 8;
@@ -179,7 +179,7 @@
             // lblPreco
             // 
             lblPreco.Font = new Font("Segoe UI", 15F);
-            lblPreco.Location = new Point(261, 178);
+            lblPreco.Location = new Point(124, 170);
             lblPreco.Name = "lblPreco";
             lblPreco.Size = new Size(100, 32);
             lblPreco.TabIndex = 9;
@@ -188,7 +188,7 @@
             // lblEstoque
             // 
             lblEstoque.Font = new Font("Segoe UI", 15F);
-            lblEstoque.Location = new Point(477, 178);
+            lblEstoque.Location = new Point(340, 170);
             lblEstoque.Name = "lblEstoque";
             lblEstoque.Size = new Size(116, 32);
             lblEstoque.TabIndex = 10;
@@ -197,7 +197,7 @@
             // lblMarca
             // 
             lblMarca.Font = new Font("Segoe UI", 15F);
-            lblMarca.Location = new Point(261, 262);
+            lblMarca.Location = new Point(124, 254);
             lblMarca.Name = "lblMarca";
             lblMarca.Size = new Size(100, 31);
             lblMarca.TabIndex = 11;
@@ -206,7 +206,7 @@
             // lblFaixaEtaria
             // 
             lblFaixaEtaria.Font = new Font("Segoe UI", 15F);
-            lblFaixaEtaria.Location = new Point(477, 262);
+            lblFaixaEtaria.Location = new Point(340, 254);
             lblFaixaEtaria.Name = "lblFaixaEtaria";
             lblFaixaEtaria.Size = new Size(133, 33);
             lblFaixaEtaria.TabIndex = 12;
@@ -223,7 +223,7 @@
             cbFaixaEtaria.Font = new Font("Segoe UI", 10F);
             cbFaixaEtaria.ForeColor = Color.FromArgb(68, 88, 112);
             cbFaixaEtaria.ItemHeight = 30;
-            cbFaixaEtaria.Location = new Point(477, 298);
+            cbFaixaEtaria.Location = new Point(340, 290);
             cbFaixaEtaria.Name = "cbFaixaEtaria";
             cbFaixaEtaria.ShadowDecoration.CustomizableEdges = customizableEdges14;
             cbFaixaEtaria.Size = new Size(200, 36);
@@ -235,7 +235,7 @@
             txtDescricao.CustomizableEdges = customizableEdges15;
             txtDescricao.DefaultText = "";
             txtDescricao.Font = new Font("Segoe UI", 9F);
-            txtDescricao.Location = new Point(271, 461);
+            txtDescricao.Location = new Point(134, 453);
             txtDescricao.Margin = new Padding(3, 4, 3, 4);
             txtDescricao.Name = "txtDescricao";
             txtDescricao.PlaceholderText = "";
@@ -248,7 +248,7 @@
             // 
             lblDescricao.BackColor = Color.Transparent;
             lblDescricao.Font = new Font("Segoe UI", 15F);
-            lblDescricao.Location = new Point(271, 423);
+            lblDescricao.Location = new Point(134, 415);
             lblDescricao.Name = "lblDescricao";
             lblDescricao.Size = new Size(135, 34);
             lblDescricao.TabIndex = 13;
@@ -261,7 +261,7 @@
             btnEscolherImagem.FillColor = Color.Blue;
             btnEscolherImagem.Font = new Font("Segoe UI", 9F);
             btnEscolherImagem.ForeColor = Color.White;
-            btnEscolherImagem.Location = new Point(987, 289);
+            btnEscolherImagem.Location = new Point(686, 289);
             btnEscolherImagem.Name = "btnEscolherImagem";
             btnEscolherImagem.ShadowDecoration.CustomizableEdges = customizableEdges18;
             btnEscolherImagem.Size = new Size(220, 60);
@@ -279,7 +279,7 @@
             cbMarca.Font = new Font("Segoe UI", 10F);
             cbMarca.ForeColor = Color.FromArgb(68, 88, 112);
             cbMarca.ItemHeight = 30;
-            cbMarca.Location = new Point(261, 297);
+            cbMarca.Location = new Point(124, 289);
             cbMarca.Name = "cbMarca";
             cbMarca.ShadowDecoration.CustomizableEdges = customizableEdges12;
             cbMarca.Size = new Size(200, 36);
@@ -289,7 +289,7 @@
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 15F);
-            lblTitulo.Location = new Point(1002, 62);
+            lblTitulo.Location = new Point(701, 62);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(229, 37);
             lblTitulo.TabIndex = 19;
@@ -306,7 +306,7 @@
             cbPersonagem.Font = new Font("Segoe UI", 10F);
             cbPersonagem.ForeColor = Color.FromArgb(68, 88, 112);
             cbPersonagem.ItemHeight = 30;
-            cbPersonagem.Location = new Point(337, 383);
+            cbPersonagem.Location = new Point(200, 375);
             cbPersonagem.Name = "cbPersonagem";
             cbPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges2;
             cbPersonagem.Size = new Size(200, 36);
@@ -316,9 +316,9 @@
             // 
             lblPersonagem.BackColor = Color.Transparent;
             lblPersonagem.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPersonagem.Location = new Point(337, 343);
+            lblPersonagem.Location = new Point(200, 335);
             lblPersonagem.Name = "lblPersonagem";
-            lblPersonagem.Size = new Size(134, 37);
+            lblPersonagem.Size = new Size(163, 37);
             lblPersonagem.TabIndex = 21;
             lblPersonagem.Text = "Personagem";
             lblPersonagem.Click += lblPersonagem_Click;
@@ -326,7 +326,7 @@
             // frmCriarBrinquedos
             // 
             BackColor = Color.Ivory;
-            ClientSize = new Size(1265, 654);
+            ClientSize = new Size(1014, 654);
             Controls.Add(lblPersonagem);
             Controls.Add(cbPersonagem);
             Controls.Add(lblTitulo);

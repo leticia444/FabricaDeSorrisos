@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
-    public partial class frmPersonagens : Form
+    public partial class frmCadastro : Form
     {
-        public frmPersonagens()
+        public frmCadastro()
         {
             InitializeComponent();
         }

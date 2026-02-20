@@ -30,9 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -53,7 +50,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             lblNome = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblPreco = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblEstoque = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -71,7 +67,6 @@
             cbPersonagem = new Guna.UI2.WinForms.Guna2ComboBox();
             cbFaixaEtaria = new Guna.UI2.WinForms.Guna2ComboBox();
             cbMarca = new Guna.UI2.WinForms.Guna2ComboBox();
-            ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             SuspendLayout();
             // 
             // guna2CircleButton1
@@ -83,7 +78,7 @@
             guna2CircleButton1.FillColor = Color.Red;
             guna2CircleButton1.Font = new Font("Segoe UI", 9F);
             guna2CircleButton1.ForeColor = Color.White;
-            guna2CircleButton1.Location = new Point(1389, 12);
+            guna2CircleButton1.Location = new Point(1046, 26);
             guna2CircleButton1.Margin = new Padding(3, 4, 3, 4);
             guna2CircleButton1.Name = "guna2CircleButton1";
             guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges1;
@@ -99,64 +94,11 @@
             guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
-            // guna2DataGridView1
-            // 
-            dataGridViewCellStyle1.BackColor = Color.White;
-            guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            guna2DataGridView1.ColumnHeadersHeight = 4;
-            guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(87, 99);
-            guna2DataGridView1.Margin = new Padding(3, 4, 3, 4);
-            guna2DataGridView1.Name = "guna2DataGridView1";
-            guna2DataGridView1.RowHeadersVisible = false;
-            guna2DataGridView1.RowHeadersWidth = 51;
-            guna2DataGridView1.RowTemplate.Height = 25;
-            guna2DataGridView1.Size = new Size(313, 557);
-            guna2DataGridView1.TabIndex = 3;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
-            guna2DataGridView1.ThemeStyle.BackColor = Color.White;
-            guna2DataGridView1.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-            guna2DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 4;
-            guna2DataGridView1.ThemeStyle.ReadOnly = false;
-            guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.White;
-            guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            guna2DataGridView1.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            guna2DataGridView1.ThemeStyle.RowsStyle.Height = 25;
-            guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
             // lblNome
             // 
             lblNome.BackColor = Color.Transparent;
             lblNome.Font = new Font("Segoe UI", 15F);
-            lblNome.Location = new Point(712, 97);
+            lblNome.Location = new Point(243, 80);
             lblNome.Margin = new Padding(3, 4, 3, 4);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(72, 37);
@@ -167,7 +109,7 @@
             // 
             lblPreco.BackColor = Color.Transparent;
             lblPreco.Font = new Font("Segoe UI", 15F);
-            lblPreco.Location = new Point(1247, 97);
+            lblPreco.Location = new Point(778, 80);
             lblPreco.Margin = new Padding(3, 4, 3, 4);
             lblPreco.Name = "lblPreco";
             lblPreco.Size = new Size(66, 37);
@@ -178,7 +120,7 @@
             // 
             lblEstoque.BackColor = Color.Transparent;
             lblEstoque.Font = new Font("Segoe UI", 15F);
-            lblEstoque.Location = new Point(971, 97);
+            lblEstoque.Location = new Point(502, 80);
             lblEstoque.Margin = new Padding(3, 4, 3, 4);
             lblEstoque.Name = "lblEstoque";
             lblEstoque.Size = new Size(92, 37);
@@ -189,7 +131,7 @@
             // 
             lblCategoria.BackColor = Color.Transparent;
             lblCategoria.Font = new Font("Segoe UI", 15F);
-            lblCategoria.Location = new Point(712, 248);
+            lblCategoria.Location = new Point(203, 226);
             lblCategoria.Margin = new Padding(3, 4, 3, 4);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(110, 37);
@@ -200,7 +142,7 @@
             // 
             lblMarca.BackColor = Color.Transparent;
             lblMarca.Font = new Font("Segoe UI", 15F);
-            lblMarca.Location = new Point(989, 248);
+            lblMarca.Location = new Point(480, 226);
             lblMarca.Margin = new Padding(3, 4, 3, 4);
             lblMarca.Name = "lblMarca";
             lblMarca.Size = new Size(72, 37);
@@ -211,7 +153,7 @@
             // 
             lblFaixaEtária.BackColor = Color.Transparent;
             lblFaixaEtária.Font = new Font("Segoe UI", 15F);
-            lblFaixaEtária.Location = new Point(1226, 248);
+            lblFaixaEtária.Location = new Point(717, 226);
             lblFaixaEtária.Margin = new Padding(3, 4, 3, 4);
             lblFaixaEtária.Name = "lblFaixaEtária";
             lblFaixaEtária.Size = new Size(127, 37);
@@ -222,7 +164,7 @@
             // 
             lblPersonagem.BackColor = Color.Transparent;
             lblPersonagem.Font = new Font("Segoe UI", 15F);
-            lblPersonagem.Location = new Point(971, 369);
+            lblPersonagem.Location = new Point(463, 348);
             lblPersonagem.Margin = new Padding(3, 4, 3, 4);
             lblPersonagem.Name = "lblPersonagem";
             lblPersonagem.Size = new Size(142, 37);
@@ -233,7 +175,7 @@
             // 
             lblDescricao.BackColor = Color.Transparent;
             lblDescricao.Font = new Font("Segoe UI", 15F);
-            lblDescricao.Location = new Point(641, 475);
+            lblDescricao.Location = new Point(281, 468);
             lblDescricao.Margin = new Padding(3, 4, 3, 4);
             lblDescricao.Name = "lblDescricao";
             lblDescricao.Size = new Size(112, 37);
@@ -252,7 +194,7 @@
             txtNome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(632, 145);
+            txtNome.Location = new Point(163, 128);
             txtNome.Margin = new Padding(3, 5, 3, 5);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "";
@@ -273,7 +215,7 @@
             txtDescricao.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDescricao.Font = new Font("Segoe UI", 9F);
             txtDescricao.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDescricao.Location = new Point(617, 523);
+            txtDescricao.Location = new Point(257, 516);
             txtDescricao.Margin = new Padding(3, 5, 3, 5);
             txtDescricao.Name = "txtDescricao";
             txtDescricao.PlaceholderText = "";
@@ -294,7 +236,7 @@
             txtEstoque.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtEstoque.Font = new Font("Segoe UI", 9F);
             txtEstoque.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEstoque.Location = new Point(896, 145);
+            txtEstoque.Location = new Point(427, 128);
             txtEstoque.Margin = new Padding(3, 5, 3, 5);
             txtEstoque.Name = "txtEstoque";
             txtEstoque.PlaceholderText = "";
@@ -315,7 +257,7 @@
             txtPreço.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPreço.Font = new Font("Segoe UI", 9F);
             txtPreço.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPreço.Location = new Point(1164, 145);
+            txtPreço.Location = new Point(695, 128);
             txtPreço.Margin = new Padding(3, 5, 3, 5);
             txtPreço.Name = "txtPreço";
             txtPreço.PlaceholderText = "";
@@ -334,7 +276,7 @@
             btnEditar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnEditar.Font = new Font("Segoe UI", 9F);
             btnEditar.ForeColor = Color.White;
-            btnEditar.Location = new Point(656, 735);
+            btnEditar.Location = new Point(371, 709);
             btnEditar.Margin = new Padding(3, 4, 3, 4);
             btnEditar.Name = "btnEditar";
             btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges11;
@@ -354,7 +296,7 @@
             cbCategoria.Font = new Font("Segoe UI", 10F);
             cbCategoria.ForeColor = Color.FromArgb(68, 88, 112);
             cbCategoria.ItemHeight = 30;
-            cbCategoria.Location = new Point(656, 296);
+            cbCategoria.Location = new Point(147, 274);
             cbCategoria.Margin = new Padding(3, 4, 3, 4);
             cbCategoria.Name = "cbCategoria";
             cbCategoria.ShadowDecoration.CustomizableEdges = customizableEdges9;
@@ -373,7 +315,7 @@
             cbPersonagem.Font = new Font("Segoe UI", 10F);
             cbPersonagem.ForeColor = Color.FromArgb(68, 88, 112);
             cbPersonagem.ItemHeight = 30;
-            cbPersonagem.Location = new Point(924, 417);
+            cbPersonagem.Location = new Point(416, 396);
             cbPersonagem.Margin = new Padding(3, 4, 3, 4);
             cbPersonagem.Name = "cbPersonagem";
             cbPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges7;
@@ -392,7 +334,7 @@
             cbFaixaEtaria.Font = new Font("Segoe UI", 10F);
             cbFaixaEtaria.ForeColor = Color.FromArgb(68, 88, 112);
             cbFaixaEtaria.ItemHeight = 30;
-            cbFaixaEtaria.Location = new Point(1176, 296);
+            cbFaixaEtaria.Location = new Point(667, 274);
             cbFaixaEtaria.Margin = new Padding(3, 4, 3, 4);
             cbFaixaEtaria.Name = "cbFaixaEtaria";
             cbFaixaEtaria.ShadowDecoration.CustomizableEdges = customizableEdges5;
@@ -411,7 +353,7 @@
             cbMarca.Font = new Font("Segoe UI", 10F);
             cbMarca.ForeColor = Color.FromArgb(68, 88, 112);
             cbMarca.ItemHeight = 30;
-            cbMarca.Location = new Point(924, 296);
+            cbMarca.Location = new Point(415, 274);
             cbMarca.Margin = new Padding(3, 4, 3, 4);
             cbMarca.Name = "cbMarca";
             cbMarca.ShadowDecoration.CustomizableEdges = customizableEdges3;
@@ -423,7 +365,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1446, 828);
+            ClientSize = new Size(1103, 788);
             Controls.Add(cbMarca);
             Controls.Add(cbFaixaEtaria);
             Controls.Add(cbPersonagem);
@@ -441,13 +383,11 @@
             Controls.Add(lblEstoque);
             Controls.Add(lblPreco);
             Controls.Add(lblNome);
-            Controls.Add(guna2DataGridView1);
             Controls.Add(guna2CircleButton1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "frmEditarBrinquedos";
             Text = "frmEditBrinquedos";
-            ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -458,7 +398,6 @@
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPreco;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblNome;
-        private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDescricao;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPersonagem;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblFaixaEtária;

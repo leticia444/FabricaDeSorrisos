@@ -36,22 +36,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnSalvarEdicao = new Guna.UI2.WinForms.Guna2Button();
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
-            guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
-            guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             txtNomeCategoria = new Guna.UI2.WinForms.Guna2TextBox();
             lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
+            cbEscolherCategoria = new Guna.UI2.WinForms.Guna2ComboBox();
             SuspendLayout();
             // 
             // btnSalvarEdicao
@@ -65,10 +55,11 @@
             btnSalvarEdicao.FillColor = Color.DeepSkyBlue;
             btnSalvarEdicao.Font = new Font("Segoe UI", 9F);
             btnSalvarEdicao.ForeColor = Color.White;
-            btnSalvarEdicao.Location = new Point(540, 585);
+            btnSalvarEdicao.Location = new Point(340, 301);
+            btnSalvarEdicao.Margin = new Padding(3, 4, 3, 4);
             btnSalvarEdicao.Name = "btnSalvarEdicao";
             btnSalvarEdicao.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnSalvarEdicao.Size = new Size(189, 45);
+            btnSalvarEdicao.Size = new Size(216, 60);
             btnSalvarEdicao.TabIndex = 0;
             btnSalvarEdicao.Text = "Salvar Edição";
             // 
@@ -81,7 +72,8 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(1199, 12);
+            btnFechar.Location = new Point(850, 13);
+            btnFechar.Margin = new Padding(3, 4, 3, 4);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -89,86 +81,10 @@
             btnFechar.TabIndex = 1;
             btnFechar.Text = "X";
             // 
-            // guna2PictureBox1
-            // 
-            guna2PictureBox1.CustomizableEdges = customizableEdges4;
-            guna2PictureBox1.Image = Properties.Resources.lapis;
-            guna2PictureBox1.ImageRotate = 0F;
-            guna2PictureBox1.Location = new Point(766, 3);
-            guna2PictureBox1.Name = "guna2PictureBox1";
-            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            guna2PictureBox1.Size = new Size(93, 59);
-            guna2PictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            guna2PictureBox1.TabIndex = 2;
-            guna2PictureBox1.TabStop = false;
-            guna2PictureBox1.Click += guna2PictureBox1_Click;
-            // 
-            // guna2PictureBox2
-            // 
-            guna2PictureBox2.CustomizableEdges = customizableEdges6;
-            guna2PictureBox2.Image = Properties.Resources.edit_category_icon;
-            guna2PictureBox2.ImageRotate = 0F;
-            guna2PictureBox2.Location = new Point(540, 3);
-            guna2PictureBox2.Name = "guna2PictureBox2";
-            guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            guna2PictureBox2.Size = new Size(241, 145);
-            guna2PictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            guna2PictureBox2.TabIndex = 3;
-            guna2PictureBox2.TabStop = false;
-            // 
-            // guna2DataGridView1
-            // 
-            dataGridViewCellStyle1.BackColor = Color.White;
-            guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(192, 130);
-            guna2DataGridView1.Name = "guna2DataGridView1";
-            guna2DataGridView1.RowHeadersVisible = false;
-            guna2DataGridView1.Size = new Size(240, 445);
-            guna2DataGridView1.TabIndex = 4;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
-            guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
-            guna2DataGridView1.ThemeStyle.BackColor = Color.White;
-            guna2DataGridView1.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-            guna2DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 4;
-            guna2DataGridView1.ThemeStyle.ReadOnly = false;
-            guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.White;
-            guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            guna2DataGridView1.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            guna2DataGridView1.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            guna2DataGridView1.ThemeStyle.RowsStyle.Height = 25;
-            guna2DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
             // txtNomeCategoria
             // 
             txtNomeCategoria.BorderRadius = 10;
-            txtNomeCategoria.CustomizableEdges = customizableEdges8;
+            txtNomeCategoria.CustomizableEdges = customizableEdges4;
             txtNomeCategoria.DefaultText = "";
             txtNomeCategoria.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtNomeCategoria.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -177,21 +93,23 @@
             txtNomeCategoria.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNomeCategoria.Font = new Font("Segoe UI", 9F);
             txtNomeCategoria.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNomeCategoria.Location = new Point(540, 247);
+            txtNomeCategoria.Location = new Point(332, 216);
+            txtNomeCategoria.Margin = new Padding(3, 5, 3, 5);
             txtNomeCategoria.Name = "txtNomeCategoria";
             txtNomeCategoria.PlaceholderText = "Digite o novo nome da Categoria";
             txtNomeCategoria.SelectedText = "";
-            txtNomeCategoria.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            txtNomeCategoria.Size = new Size(200, 36);
+            txtNomeCategoria.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            txtNomeCategoria.Size = new Size(229, 48);
             txtNomeCategoria.TabIndex = 5;
             // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
-            lblTitulo.Font = new Font("Segoe UI", 15F);
-            lblTitulo.Location = new Point(540, 211);
+            lblTitulo.Font = new Font("Segoe UI", 20F);
+            lblTitulo.Location = new Point(332, 36);
+            lblTitulo.Margin = new Padding(3, 4, 3, 4);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(174, 30);
+            lblTitulo.Size = new Size(285, 47);
             lblTitulo.TabIndex = 6;
             lblTitulo.Text = "Nome da Categoria";
             // 
@@ -202,25 +120,39 @@
             guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
+            // cbEscolherCategoria
+            // 
+            cbEscolherCategoria.BackColor = Color.Transparent;
+            cbEscolherCategoria.BorderRadius = 10;
+            cbEscolherCategoria.CustomizableEdges = customizableEdges6;
+            cbEscolherCategoria.DrawMode = DrawMode.OwnerDrawFixed;
+            cbEscolherCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbEscolherCategoria.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbEscolherCategoria.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbEscolherCategoria.Font = new Font("Segoe UI", 10F);
+            cbEscolherCategoria.ForeColor = Color.FromArgb(68, 88, 112);
+            cbEscolherCategoria.ItemHeight = 30;
+            cbEscolherCategoria.Location = new Point(340, 158);
+            cbEscolherCategoria.Name = "cbEscolherCategoria";
+            cbEscolherCategoria.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            cbEscolherCategoria.Size = new Size(209, 36);
+            cbEscolherCategoria.TabIndex = 7;
+            // 
             // frmEditarCategoria
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1249, 689);
+            ClientSize = new Size(900, 450);
+            Controls.Add(cbEscolherCategoria);
             Controls.Add(lblTitulo);
             Controls.Add(txtNomeCategoria);
-            Controls.Add(guna2DataGridView1);
-            Controls.Add(guna2PictureBox2);
-            Controls.Add(guna2PictureBox1);
             Controls.Add(btnFechar);
             Controls.Add(btnSalvarEdicao);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmEditarCategoria";
             Text = "frmEditarCategoria";
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -229,11 +161,9 @@
 
         private Guna.UI2.WinForms.Guna2Button btnSalvarEdicao;
         private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
-        private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
         private Guna.UI2.WinForms.Guna2TextBox txtNomeCategoria;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
+        private Guna.UI2.WinForms.Guna2ComboBox cbEscolherCategoria;
     }
 }

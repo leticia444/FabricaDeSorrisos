@@ -36,8 +36,8 @@
             cbTipoUsuario = new Guna.UI2.WinForms.Guna2ComboBox();
             txtNome = new Guna.UI2.WinForms.Guna2TextBox();
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
-            pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
+            lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            txtSenhaNovamente = new Guna.UI2.WinForms.Guna2TextBox();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -53,7 +53,8 @@
             txtEmail.CustomizableEdges = customizableEdges12;
             txtEmail.DefaultText = "";
             txtEmail.Font = new Font("Segoe UI", 9F);
-            txtEmail.Location = new Point(480, 312);
+            txtEmail.Location = new Point(338, 148);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "E-mail";
             txtEmail.SelectedText = "";
@@ -67,7 +68,8 @@
             txtSenha.CustomizableEdges = customizableEdges10;
             txtSenha.DefaultText = "";
             txtSenha.Font = new Font("Segoe UI", 9F);
-            txtSenha.Location = new Point(480, 376);
+            txtSenha.Location = new Point(338, 222);
+            txtSenha.Margin = new Padding(3, 4, 3, 4);
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '●';
             txtSenha.PlaceholderText = "Senha";
@@ -83,7 +85,7 @@
             btnCriarUsuario.FillColor = Color.Lime;
             btnCriarUsuario.Font = new Font("Segoe UI", 9F);
             btnCriarUsuario.ForeColor = Color.Black;
-            btnCriarUsuario.Location = new Point(489, 481);
+            btnCriarUsuario.Location = new Point(348, 409);
             btnCriarUsuario.Name = "btnCriarUsuario";
             btnCriarUsuario.ShadowDecoration.CustomizableEdges = customizableEdges9;
             btnCriarUsuario.Size = new Size(210, 55);
@@ -102,7 +104,7 @@
             cbTipoUsuario.Font = new Font("Segoe UI", 10F);
             cbTipoUsuario.ForeColor = Color.FromArgb(68, 88, 112);
             cbTipoUsuario.ItemHeight = 30;
-            cbTipoUsuario.Location = new Point(481, 439);
+            cbTipoUsuario.Location = new Point(339, 354);
             cbTipoUsuario.Name = "cbTipoUsuario";
             cbTipoUsuario.ShadowDecoration.CustomizableEdges = customizableEdges7;
             cbTipoUsuario.Size = new Size(220, 36);
@@ -114,7 +116,8 @@
             txtNome.CustomizableEdges = customizableEdges4;
             txtNome.DefaultText = "";
             txtNome.Font = new Font("Segoe UI", 9F);
-            txtNome.Location = new Point(480, 256);
+            txtNome.Location = new Point(338, 81);
+            txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Nome";
             txtNome.SelectedText = "";
@@ -127,7 +130,7 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(1222, 3);
+            btnFechar.Location = new Point(940, 12);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnFechar.Size = new Size(38, 36);
@@ -135,24 +138,43 @@
             btnFechar.Text = "X";
             btnFechar.Click += btnFechar_Click;
             // 
-            // pbLogo
+            // lblTitulo
             // 
-            pbLogo.CustomizableEdges = customizableEdges1;
-            pbLogo.Image = Properties.Resources.add_user;
-            pbLogo.ImageRotate = 0F;
-            pbLogo.Location = new Point(459, 12);
-            pbLogo.Name = "pbLogo";
-            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            pbLogo.Size = new Size(300, 200);
-            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLogo.TabIndex = 0;
-            pbLogo.TabStop = false;
+            lblTitulo.BackColor = Color.Transparent;
+            lblTitulo.Font = new Font("Segoe UI", 20F);
+            lblTitulo.Location = new Point(348, 12);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(190, 47);
+            lblTitulo.TabIndex = 7;
+            lblTitulo.Text = "Criar Usuário";
+            // 
+            // txtSenhaNovamente
+            // 
+            txtSenhaNovamente.BorderRadius = 10;
+            txtSenhaNovamente.CustomizableEdges = customizableEdges1;
+            txtSenhaNovamente.DefaultText = "";
+            txtSenhaNovamente.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtSenhaNovamente.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtSenhaNovamente.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtSenhaNovamente.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtSenhaNovamente.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSenhaNovamente.Font = new Font("Segoe UI", 9F);
+            txtSenhaNovamente.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSenhaNovamente.Location = new Point(338, 288);
+            txtSenhaNovamente.Margin = new Padding(3, 4, 3, 4);
+            txtSenhaNovamente.Name = "txtSenhaNovamente";
+            txtSenhaNovamente.PlaceholderText = "Digite a Senha novamente";
+            txtSenhaNovamente.SelectedText = "";
+            txtSenhaNovamente.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtSenhaNovamente.Size = new Size(220, 50);
+            txtSenhaNovamente.TabIndex = 8;
             // 
             // frmCriarUsuarios
             // 
             BackColor = Color.Ivory;
-            ClientSize = new Size(1265, 728);
-            Controls.Add(pbLogo);
+            ClientSize = new Size(990, 489);
+            Controls.Add(txtSenhaNovamente);
+            Controls.Add(lblTitulo);
             Controls.Add(btnFechar);
             Controls.Add(txtNome);
             Controls.Add(cbTipoUsuario);
@@ -162,8 +184,8 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmCriarUsuarios";
             Load += frmCriarUsuarios_Load;
-            ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
@@ -173,6 +195,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtNome;
         private Guna.UI2.WinForms.Guna2ComboBox cbTipoUsuario;
         private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
-        private Guna.UI2.WinForms.Guna2PictureBox pbLogo;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
+        private Guna.UI2.WinForms.Guna2TextBox txtSenhaNovamente;
     }
 }

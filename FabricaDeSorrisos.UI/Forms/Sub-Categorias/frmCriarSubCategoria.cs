@@ -6,18 +6,13 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms.Sub_Categorias
 {
-    public partial class frmMarcas : Form
+    public partial class frmCriarSubCategoria : Form
     {
-        public frmMarcas()
+        public frmCriarSubCategoria()
         {
             InitializeComponent();
-        }
-
-        private void btnFechar_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
