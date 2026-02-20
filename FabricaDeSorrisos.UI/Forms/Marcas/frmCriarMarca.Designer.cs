@@ -53,8 +53,7 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(845, 13);
-            btnFechar.Margin = new Padding(3, 4, 3, 4);
+            btnFechar.Location = new Point(739, 10);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges1;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -81,13 +80,13 @@
             txtNomeCategoria.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNomeCategoria.Font = new Font("Segoe UI", 9F);
             txtNomeCategoria.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNomeCategoria.Location = new Point(306, 180);
-            txtNomeCategoria.Margin = new Padding(3, 5, 3, 5);
+            txtNomeCategoria.Location = new Point(268, 135);
+            txtNomeCategoria.Margin = new Padding(3, 4, 3, 4);
             txtNomeCategoria.Name = "txtNomeCategoria";
             txtNomeCategoria.PlaceholderText = "Digite o nome da marca";
             txtNomeCategoria.SelectedText = "";
             txtNomeCategoria.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            txtNomeCategoria.Size = new Size(254, 64);
+            txtNomeCategoria.Size = new Size(222, 48);
             txtNomeCategoria.TabIndex = 3;
             // 
             // btnCriar
@@ -101,11 +100,10 @@
             btnCriar.FillColor = Color.LimeGreen;
             btnCriar.Font = new Font("Segoe UI", 9F);
             btnCriar.ForeColor = Color.White;
-            btnCriar.Location = new Point(571, 760);
-            btnCriar.Margin = new Padding(3, 4, 3, 4);
+            btnCriar.Location = new Point(500, 570);
             btnCriar.Name = "btnCriar";
             btnCriar.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            btnCriar.Size = new Size(233, 76);
+            btnCriar.Size = new Size(204, 57);
             btnCriar.TabIndex = 5;
             btnCriar.Text = "Criar Marca";
             // 
@@ -113,9 +111,10 @@
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(354, 13);
+            lblTitulo.Location = new Point(310, 10);
+            lblTitulo.Margin = new Padding(3, 2, 3, 2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(169, 47);
+            lblTitulo.Size = new Size(139, 39);
             lblTitulo.TabIndex = 6;
             lblTitulo.Text = "Criar Marca";
             // 
@@ -130,26 +129,26 @@
             guna2Button1.FillColor = Color.LimeGreen;
             guna2Button1.Font = new Font("Segoe UI", 9F);
             guna2Button1.ForeColor = Color.Black;
-            guna2Button1.Location = new Point(319, 290);
+            guna2Button1.Location = new Point(279, 218);
+            guna2Button1.Margin = new Padding(3, 2, 3, 2);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            guna2Button1.Size = new Size(225, 56);
+            guna2Button1.Size = new Size(197, 42);
             guna2Button1.TabIndex = 7;
             guna2Button1.Text = "Criar Marca";
             // 
             // frmCriarMarca
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(900, 450);
+            ClientSize = new Size(788, 338);
             Controls.Add(guna2Button1);
             Controls.Add(lblTitulo);
             Controls.Add(btnCriar);
             Controls.Add(txtNomeCategoria);
             Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmCriarMarca";
             Text = "frmCriarMarca";
             ResumeLayout(false);

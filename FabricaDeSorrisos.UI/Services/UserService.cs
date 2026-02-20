@@ -1,4 +1,4 @@
-﻿using FabricaDeSorrisos.UI.Api;
+using FabricaDeSorrisos.UI.Api;
 using FabricaDeSorrisos.UI.ViewModels.UserViewModels;
 using System.Net.Http.Json;
 
@@ -10,20 +10,7 @@ namespace FabricaDeSorrisos.UI.Models.Services
 
         public UserService()
         {
-            var handler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback =
-                    (message, cert, chain, errors) => true
-            };
-
-            var baseUrl = ApiSettings.BaseUrl.EndsWith("/")
-                ? ApiSettings.BaseUrl
-                : ApiSettings.BaseUrl + "/";
-
-            _httpClient = new HttpClient(handler)
-            {
-                BaseAddress = new Uri(baseUrl)
-            };
+            _httpClient = ApiClient.GetClient();
         }
 
         // ================================

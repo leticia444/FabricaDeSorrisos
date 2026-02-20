@@ -50,8 +50,7 @@
             guna2CircleButton1.FillColor = Color.Red;
             guna2CircleButton1.Font = new Font("Segoe UI", 9F);
             guna2CircleButton1.ForeColor = Color.White;
-            guna2CircleButton1.Location = new Point(850, 13);
-            guna2CircleButton1.Margin = new Padding(3, 4, 3, 4);
+            guna2CircleButton1.Location = new Point(738, 10);
             guna2CircleButton1.Name = "guna2CircleButton1";
             guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges1;
             guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -78,23 +77,22 @@
             txtNomeCategoria.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNomeCategoria.Font = new Font("Segoe UI", 9F);
             txtNomeCategoria.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNomeCategoria.Location = new Point(312, 149);
-            txtNomeCategoria.Margin = new Padding(3, 5, 3, 5);
+            txtNomeCategoria.Location = new Point(273, 112);
+            txtNomeCategoria.Margin = new Padding(3, 4, 3, 4);
             txtNomeCategoria.Name = "txtNomeCategoria";
             txtNomeCategoria.PlaceholderText = "Digite o nome da Categoria";
             txtNomeCategoria.SelectedText = "";
             txtNomeCategoria.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            txtNomeCategoria.Size = new Size(231, 63);
+            txtNomeCategoria.Size = new Size(202, 47);
             txtNomeCategoria.TabIndex = 1;
             // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(295, 13);
-            lblTitulo.Margin = new Padding(3, 4, 3, 4);
+            lblTitulo.Location = new Point(258, 10);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(285, 47);
+            lblTitulo.Size = new Size(236, 39);
             lblTitulo.TabIndex = 2;
             lblTitulo.Text = "Nome da Categoria";
             // 
@@ -108,27 +106,25 @@
             btnCriarCategoria.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnCriarCategoria.FillColor = Color.LimeGreen;
             btnCriarCategoria.Font = new Font("Segoe UI", 9F);
-            btnCriarCategoria.ForeColor = Color.White;
-            btnCriarCategoria.Location = new Point(312, 240);
-            btnCriarCategoria.Margin = new Padding(3, 4, 3, 4);
+            btnCriarCategoria.ForeColor = Color.Black;
+            btnCriarCategoria.Location = new Point(273, 180);
             btnCriarCategoria.Name = "btnCriarCategoria";
             btnCriarCategoria.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            btnCriarCategoria.Size = new Size(231, 73);
+            btnCriarCategoria.Size = new Size(202, 55);
             btnCriarCategoria.TabIndex = 6;
             btnCriarCategoria.Text = "Criar Categoria";
             // 
             // frmCriarCategoria
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(900, 450);
+            ClientSize = new Size(790, 340);
             Controls.Add(btnCriarCategoria);
             Controls.Add(lblTitulo);
             Controls.Add(txtNomeCategoria);
             Controls.Add(guna2CircleButton1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmCriarCategoria";
             Text = "frmCriarCategoria";
             ResumeLayout(false);

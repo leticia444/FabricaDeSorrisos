@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -49,8 +50,9 @@
             btnCriar = new Guna.UI2.WinForms.Guna2Button();
             lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblCadastrado = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            btnVoltarLogin = new Guna.UI2.WinForms.Guna2Button();
             pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
+            btnVoltarLogin = new Guna.UI2.WinForms.Guna2Button();
+            guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             SuspendLayout();
             // 
@@ -66,13 +68,12 @@
             txtNome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(404, 187);
-            txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.Location = new Point(374, 141);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Digite seu Nome";
             txtNome.SelectedText = "";
             txtNome.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtNome.Size = new Size(286, 60);
+            txtNome.Size = new Size(250, 45);
             txtNome.TabIndex = 0;
             // 
             // txtEmail
@@ -87,13 +88,12 @@
             txtEmail.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtEmail.Font = new Font("Segoe UI", 9F);
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(404, 255);
-            txtEmail.Margin = new Padding(3, 4, 3, 4);
+            txtEmail.Location = new Point(374, 192);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Digite seu E-mail";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtEmail.Size = new Size(286, 60);
+            txtEmail.Size = new Size(250, 45);
             txtEmail.TabIndex = 1;
             // 
             // txtSenha
@@ -108,13 +108,12 @@
             txtSenha.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSenha.Font = new Font("Segoe UI", 9F);
             txtSenha.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSenha.Location = new Point(404, 323);
-            txtSenha.Margin = new Padding(3, 4, 3, 4);
+            txtSenha.Location = new Point(374, 243);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Digite uam Senha";
             txtSenha.SelectedText = "";
             txtSenha.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtSenha.Size = new Size(286, 60);
+            txtSenha.Size = new Size(250, 45);
             txtSenha.TabIndex = 2;
             // 
             // txtSenhaNovamente
@@ -129,13 +128,12 @@
             txtSenhaNovamente.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSenhaNovamente.Font = new Font("Segoe UI", 9F);
             txtSenhaNovamente.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSenhaNovamente.Location = new Point(404, 391);
-            txtSenhaNovamente.Margin = new Padding(3, 4, 3, 4);
+            txtSenhaNovamente.Location = new Point(374, 294);
             txtSenhaNovamente.Name = "txtSenhaNovamente";
             txtSenhaNovamente.PlaceholderText = "Digite a Senha Novamente";
             txtSenhaNovamente.SelectedText = "";
             txtSenhaNovamente.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txtSenhaNovamente.Size = new Size(286, 60);
+            txtSenhaNovamente.Size = new Size(250, 45);
             txtSenhaNovamente.TabIndex = 3;
             // 
             // btnCriar
@@ -149,36 +147,54 @@
             btnCriar.FillColor = Color.LimeGreen;
             btnCriar.Font = new Font("Segoe UI", 9F);
             btnCriar.ForeColor = Color.Black;
-            btnCriar.Location = new Point(425, 581);
+            btnCriar.Location = new Point(397, 423);
+            btnCriar.Margin = new Padding(3, 2, 3, 2);
             btnCriar.Name = "btnCriar";
             btnCriar.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnCriar.Size = new Size(231, 62);
+            btnCriar.Size = new Size(202, 46);
             btnCriar.TabIndex = 4;
-            btnCriar.Text = "Aperte para criar seu Usuário";
+            btnCriar.Text = "Clique aqui para criar seu Usuário";
             // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(287, 133);
+            lblTitulo.Location = new Point(271, 101);
+            lblTitulo.Margin = new Padding(3, 2, 3, 2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(593, 47);
+            lblTitulo.Size = new Size(487, 39);
             lblTitulo.TabIndex = 5;
             lblTitulo.Text = "Seja Bem-Vindo ao Sistema de Cadastro!";
             // 
             // lblCadastrado
             // 
             lblCadastrado.BackColor = Color.Transparent;
-            lblCadastrado.Location = new Point(477, 489);
+            lblCadastrado.Location = new Point(437, 368);
+            lblCadastrado.Margin = new Padding(3, 2, 3, 2);
             lblCadastrado.Name = "lblCadastrado";
-            lblCadastrado.Size = new Size(127, 22);
+            lblCadastrado.Size = new Size(102, 17);
             lblCadastrado.TabIndex = 6;
             lblCadastrado.Text = "Já tem uma conta?";
+            // 
+            // pbLogo
+            // 
+            pbLogo.BackColor = Color.Transparent;
+            pbLogo.CustomizableEdges = customizableEdges11;
+            pbLogo.Image = Properties.Resources.logo_oficial1;
+            pbLogo.ImageRotate = 0F;
+            pbLogo.Location = new Point(354, -20);
+            pbLogo.Margin = new Padding(3, 2, 3, 2);
+            pbLogo.Name = "pbLogo";
+            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            pbLogo.Size = new Size(293, 128);
+            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            pbLogo.TabIndex = 8;
+            pbLogo.TabStop = false;
             // 
             // btnVoltarLogin
             // 
             btnVoltarLogin.BorderRadius = 10;
-            btnVoltarLogin.CustomizableEdges = customizableEdges11;
+            btnVoltarLogin.CustomizableEdges = customizableEdges13;
             btnVoltarLogin.DisabledState.BorderColor = Color.DarkGray;
             btnVoltarLogin.DisabledState.CustomBorderColor = Color.DarkGray;
             btnVoltarLogin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -186,33 +202,27 @@
             btnVoltarLogin.FillColor = Color.Turquoise;
             btnVoltarLogin.Font = new Font("Segoe UI", 9F);
             btnVoltarLogin.ForeColor = Color.Black;
-            btnVoltarLogin.Location = new Point(446, 517);
+            btnVoltarLogin.Location = new Point(410, 389);
+            btnVoltarLogin.Margin = new Padding(3, 2, 3, 2);
             btnVoltarLogin.Name = "btnVoltarLogin";
-            btnVoltarLogin.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnVoltarLogin.Size = new Size(189, 27);
+            btnVoltarLogin.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnVoltarLogin.Size = new Size(165, 30);
             btnVoltarLogin.TabIndex = 7;
             btnVoltarLogin.Text = "Clique aqui!";
             // 
-            // pbLogo
+            // guna2BorderlessForm1
             // 
-            pbLogo.BackColor = Color.Transparent;
-            pbLogo.CustomizableEdges = customizableEdges13;
-            pbLogo.Image = Properties.Resources.logo_oficial1;
-            pbLogo.ImageRotate = 0F;
-            pbLogo.Location = new Point(404, -26);
-            pbLogo.Name = "pbLogo";
-            pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            pbLogo.Size = new Size(335, 170);
-            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLogo.TabIndex = 8;
-            pbLogo.TabStop = false;
+            guna2BorderlessForm1.BorderRadius = 10;
+            guna2BorderlessForm1.ContainerControl = this;
+            guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
+            guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
             // frmCadastro
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1165, 663);
+            ClientSize = new Size(1019, 497);
             Controls.Add(pbLogo);
             Controls.Add(btnVoltarLogin);
             Controls.Add(lblCadastrado);
@@ -223,6 +233,7 @@
             Controls.Add(txtEmail);
             Controls.Add(txtNome);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmCadastro";
             Text = "frmCadastro";
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
@@ -239,7 +250,8 @@
         private Guna.UI2.WinForms.Guna2Button btnCriar;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblCadastrado;
-        private Guna.UI2.WinForms.Guna2Button btnVoltarLogin;
         private Guna.UI2.WinForms.Guna2PictureBox pbLogo;
+        private Guna.UI2.WinForms.Guna2Button btnVoltarLogin;
+        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
     }
 }

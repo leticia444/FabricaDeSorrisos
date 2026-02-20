@@ -54,12 +54,11 @@
             btnSalvarEdicao.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnSalvarEdicao.FillColor = Color.DeepSkyBlue;
             btnSalvarEdicao.Font = new Font("Segoe UI", 9F);
-            btnSalvarEdicao.ForeColor = Color.White;
-            btnSalvarEdicao.Location = new Point(340, 301);
-            btnSalvarEdicao.Margin = new Padding(3, 4, 3, 4);
+            btnSalvarEdicao.ForeColor = Color.Black;
+            btnSalvarEdicao.Location = new Point(298, 226);
             btnSalvarEdicao.Name = "btnSalvarEdicao";
             btnSalvarEdicao.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnSalvarEdicao.Size = new Size(216, 60);
+            btnSalvarEdicao.Size = new Size(189, 45);
             btnSalvarEdicao.TabIndex = 0;
             btnSalvarEdicao.Text = "Salvar Edição";
             // 
@@ -72,8 +71,7 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(850, 13);
-            btnFechar.Margin = new Padding(3, 4, 3, 4);
+            btnFechar.Location = new Point(744, 10);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -93,23 +91,22 @@
             txtNomeCategoria.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNomeCategoria.Font = new Font("Segoe UI", 9F);
             txtNomeCategoria.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNomeCategoria.Location = new Point(332, 216);
-            txtNomeCategoria.Margin = new Padding(3, 5, 3, 5);
+            txtNomeCategoria.Location = new Point(290, 162);
+            txtNomeCategoria.Margin = new Padding(3, 4, 3, 4);
             txtNomeCategoria.Name = "txtNomeCategoria";
             txtNomeCategoria.PlaceholderText = "Digite o novo nome da Categoria";
             txtNomeCategoria.SelectedText = "";
             txtNomeCategoria.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            txtNomeCategoria.Size = new Size(229, 48);
+            txtNomeCategoria.Size = new Size(200, 36);
             txtNomeCategoria.TabIndex = 5;
             // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(332, 36);
-            lblTitulo.Margin = new Padding(3, 4, 3, 4);
+            lblTitulo.Location = new Point(290, 27);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(285, 47);
+            lblTitulo.Size = new Size(236, 39);
             lblTitulo.TabIndex = 6;
             lblTitulo.Text = "Nome da Categoria";
             // 
@@ -132,25 +129,25 @@
             cbEscolherCategoria.Font = new Font("Segoe UI", 10F);
             cbEscolherCategoria.ForeColor = Color.FromArgb(68, 88, 112);
             cbEscolherCategoria.ItemHeight = 30;
-            cbEscolherCategoria.Location = new Point(340, 158);
+            cbEscolherCategoria.Location = new Point(298, 118);
+            cbEscolherCategoria.Margin = new Padding(3, 2, 3, 2);
             cbEscolherCategoria.Name = "cbEscolherCategoria";
             cbEscolherCategoria.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            cbEscolherCategoria.Size = new Size(209, 36);
+            cbEscolherCategoria.Size = new Size(183, 36);
             cbEscolherCategoria.TabIndex = 7;
             // 
             // frmEditarCategoria
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(900, 450);
+            ClientSize = new Size(790, 340);
             Controls.Add(cbEscolherCategoria);
             Controls.Add(lblTitulo);
             Controls.Add(txtNomeCategoria);
             Controls.Add(btnFechar);
             Controls.Add(btnSalvarEdicao);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmEditarCategoria";
             Text = "frmEditarCategoria";
             ResumeLayout(false);

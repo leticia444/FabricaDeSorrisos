@@ -57,7 +57,8 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(940, 12);
+            btnFechar.Location = new Point(740, 11);
+            btnFechar.Margin = new Padding(3, 2, 3, 2);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges5;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -69,9 +70,10 @@
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(341, 52);
+            lblTitulo.Location = new Point(298, 39);
+            lblTitulo.Margin = new Padding(3, 2, 3, 2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(258, 47);
+            lblTitulo.Size = new Size(213, 39);
             lblTitulo.TabIndex = 1;
             lblTitulo.Text = "Criar Personagem";
             // 
@@ -87,13 +89,12 @@
             btnNomePersonagem.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             btnNomePersonagem.Font = new Font("Segoe UI", 9F);
             btnNomePersonagem.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            btnNomePersonagem.Location = new Point(322, 181);
-            btnNomePersonagem.Margin = new Padding(3, 4, 3, 4);
+            btnNomePersonagem.Location = new Point(282, 136);
             btnNomePersonagem.Name = "btnNomePersonagem";
             btnNomePersonagem.PlaceholderText = "Digite o Nome do Personagem";
             btnNomePersonagem.SelectedText = "";
             btnNomePersonagem.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnNomePersonagem.Size = new Size(286, 60);
+            btnNomePersonagem.Size = new Size(250, 45);
             btnNomePersonagem.TabIndex = 2;
             // 
             // btnCriarPersonagem
@@ -107,24 +108,26 @@
             btnCriarPersonagem.FillColor = Color.LimeGreen;
             btnCriarPersonagem.Font = new Font("Segoe UI", 9F);
             btnCriarPersonagem.ForeColor = Color.Black;
-            btnCriarPersonagem.Location = new Point(341, 279);
+            btnCriarPersonagem.Location = new Point(298, 209);
+            btnCriarPersonagem.Margin = new Padding(3, 2, 3, 2);
             btnCriarPersonagem.Name = "btnCriarPersonagem";
             btnCriarPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnCriarPersonagem.Size = new Size(225, 56);
+            btnCriarPersonagem.Size = new Size(197, 42);
             btnCriarPersonagem.TabIndex = 3;
             btnCriarPersonagem.Text = "Criar Personagem";
             // 
             // frmCriarPersonagens
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(990, 530);
+            ClientSize = new Size(790, 340);
             Controls.Add(btnCriarPersonagem);
             Controls.Add(btnNomePersonagem);
             Controls.Add(lblTitulo);
             Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmCriarPersonagens";
             Text = "frmCriarPersonagens";
             ResumeLayout(false);

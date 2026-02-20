@@ -53,8 +53,8 @@ namespace FabricaDeSorrisos.UI.Forms
             btnBrinquedos = new Guna.UI2.WinForms.Guna2GradientButton();
             pbLogo = new Guna.UI2.WinForms.Guna2PictureBox();
             panelBotões = new Guna.UI2.WinForms.Guna2GradientPanel();
-            lblGestão = new Guna.UI2.WinForms.Guna2HtmlLabel();
             txtCatálogo = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblGestão = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             panelBotões.SuspendLayout();
             SuspendLayout();
@@ -70,10 +70,10 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             panelDashboard.BorderRadius = 10;
             panelDashboard.CustomizableEdges = customizableEdges1;
-            panelDashboard.Location = new Point(261, 0);
+            panelDashboard.Location = new Point(268, 3);
             panelDashboard.Name = "panelDashboard";
             panelDashboard.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            panelDashboard.Size = new Size(1184, 1075);
+            panelDashboard.Size = new Size(1176, 678);
             panelDashboard.TabIndex = 0;
             // 
             // btnVoltar
@@ -85,7 +85,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnVoltar.FillColor2 = Color.Blue;
             btnVoltar.Font = new Font("Segoe UI", 9F);
             btnVoltar.ForeColor = Color.White;
-            btnVoltar.Location = new Point(-3, 562);
+            btnVoltar.Location = new Point(0, 602);
             btnVoltar.Name = "btnVoltar";
             btnVoltar.ShadowDecoration.CustomizableEdges = customizableEdges18;
             btnVoltar.Size = new Size(250, 56);
@@ -119,7 +119,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnPersonagens.ForeColor = Color.White;
             btnPersonagens.Image = Properties.Resources.robo_do_usuario1;
             btnPersonagens.ImageAlign = HorizontalAlignment.Left;
-            btnPersonagens.Location = new Point(0, 384);
+            btnPersonagens.Location = new Point(0, 379);
             btnPersonagens.Name = "btnPersonagens";
             btnPersonagens.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnPersonagens.Size = new Size(253, 56);
@@ -225,35 +225,37 @@ namespace FabricaDeSorrisos.UI.Forms
             panelBotões.CustomizableEdges = customizableEdges19;
             panelBotões.FillColor = Color.SkyBlue;
             panelBotões.FillColor2 = Color.Blue;
-            panelBotões.Location = new Point(12, 3);
+            panelBotões.Location = new Point(7, 12);
             panelBotões.Name = "panelBotões";
             panelBotões.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            panelBotões.Size = new Size(250, 631);
+            panelBotões.Size = new Size(255, 658);
             panelBotões.TabIndex = 1;
-            // 
-            // lblGestão
-            // 
-            lblGestão.BackColor = Color.Transparent;
-            lblGestão.Font = new Font("Segoe UI", 12F);
-            lblGestão.Location = new Point(0, 431);
-            lblGestão.Name = "lblGestão";
-            lblGestão.Size = new Size(64, 30);
-            lblGestão.TabIndex = 9;
-            lblGestão.Text = "Gestão";
             // 
             // txtCatálogo
             // 
             txtCatálogo.BackColor = Color.Transparent;
-            txtCatálogo.Font = new Font("Segoe UI", 12F);
-            txtCatálogo.Location = new Point(0, 119);
+            txtCatálogo.Font = new Font("Mongolian Baiti", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCatálogo.ForeColor = Color.White;
+            txtCatálogo.Location = new Point(83, 126);
             txtCatálogo.Name = "txtCatálogo";
-            txtCatálogo.Size = new Size(83, 30);
+            txtCatálogo.Size = new Size(76, 23);
             txtCatálogo.TabIndex = 1;
             txtCatálogo.Text = "Catálogo";
             // 
+            // lblGestão
+            // 
+            lblGestão.BackColor = Color.Transparent;
+            lblGestão.Font = new Font("Mongolian Baiti", 15F);
+            lblGestão.ForeColor = Color.White;
+            lblGestão.Location = new Point(83, 450);
+            lblGestão.Name = "lblGestão";
+            lblGestão.Size = new Size(59, 23);
+            lblGestão.TabIndex = 9;
+            lblGestão.Text = "Gestão";
+            // 
             // frmMain
             // 
-            ClientSize = new Size(1446, 1070);
+            ClientSize = new Size(1446, 682);
             Controls.Add(panelDashboard);
             Controls.Add(panelBotões);
             FormBorderStyle = FormBorderStyle.None;

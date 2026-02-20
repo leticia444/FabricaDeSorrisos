@@ -53,13 +53,13 @@
             txtEmail.CustomizableEdges = customizableEdges12;
             txtEmail.DefaultText = "";
             txtEmail.Font = new Font("Segoe UI", 9F);
-            txtEmail.Location = new Point(338, 148);
+            txtEmail.Location = new Point(338, 127);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "E-mail";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges13;
-            txtEmail.Size = new Size(220, 50);
+            txtEmail.Size = new Size(192, 38);
             txtEmail.TabIndex = 6;
             // 
             // txtSenha
@@ -68,14 +68,14 @@
             txtSenha.CustomizableEdges = customizableEdges10;
             txtSenha.DefaultText = "";
             txtSenha.Font = new Font("Segoe UI", 9F);
-            txtSenha.Location = new Point(338, 222);
+            txtSenha.Location = new Point(339, 173);
             txtSenha.Margin = new Padding(3, 4, 3, 4);
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '●';
             txtSenha.PlaceholderText = "Senha";
             txtSenha.SelectedText = "";
             txtSenha.ShadowDecoration.CustomizableEdges = customizableEdges11;
-            txtSenha.Size = new Size(220, 50);
+            txtSenha.Size = new Size(192, 38);
             txtSenha.TabIndex = 5;
             // 
             // btnCriarUsuario
@@ -85,10 +85,10 @@
             btnCriarUsuario.FillColor = Color.Lime;
             btnCriarUsuario.Font = new Font("Segoe UI", 9F);
             btnCriarUsuario.ForeColor = Color.Black;
-            btnCriarUsuario.Location = new Point(348, 409);
+            btnCriarUsuario.Location = new Point(334, 347);
             btnCriarUsuario.Name = "btnCriarUsuario";
             btnCriarUsuario.ShadowDecoration.CustomizableEdges = customizableEdges9;
-            btnCriarUsuario.Size = new Size(210, 55);
+            btnCriarUsuario.Size = new Size(197, 42);
             btnCriarUsuario.TabIndex = 4;
             btnCriarUsuario.Text = "Criar Usuário";
             btnCriarUsuario.Click += btnEntrar_Click;
@@ -104,10 +104,10 @@
             cbTipoUsuario.Font = new Font("Segoe UI", 10F);
             cbTipoUsuario.ForeColor = Color.FromArgb(68, 88, 112);
             cbTipoUsuario.ItemHeight = 30;
-            cbTipoUsuario.Location = new Point(339, 354);
+            cbTipoUsuario.Location = new Point(337, 264);
             cbTipoUsuario.Name = "cbTipoUsuario";
             cbTipoUsuario.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            cbTipoUsuario.Size = new Size(220, 36);
+            cbTipoUsuario.Size = new Size(193, 36);
             cbTipoUsuario.TabIndex = 3;
             // 
             // txtNome
@@ -122,7 +122,7 @@
             txtNome.PlaceholderText = "Nome";
             txtNome.SelectedText = "";
             txtNome.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            txtNome.Size = new Size(220, 50);
+            txtNome.Size = new Size(192, 38);
             txtNome.TabIndex = 2;
             // 
             // btnFechar
@@ -142,9 +142,9 @@
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(348, 12);
+            lblTitulo.Location = new Point(357, 12);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(190, 47);
+            lblTitulo.Size = new Size(157, 39);
             lblTitulo.TabIndex = 7;
             lblTitulo.Text = "Criar Usuário";
             // 
@@ -160,19 +160,19 @@
             txtSenhaNovamente.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSenhaNovamente.Font = new Font("Segoe UI", 9F);
             txtSenhaNovamente.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSenhaNovamente.Location = new Point(338, 288);
+            txtSenhaNovamente.Location = new Point(338, 219);
             txtSenhaNovamente.Margin = new Padding(3, 4, 3, 4);
             txtSenhaNovamente.Name = "txtSenhaNovamente";
             txtSenhaNovamente.PlaceholderText = "Digite a Senha novamente";
             txtSenhaNovamente.SelectedText = "";
             txtSenhaNovamente.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtSenhaNovamente.Size = new Size(220, 50);
+            txtSenhaNovamente.Size = new Size(192, 38);
             txtSenhaNovamente.TabIndex = 8;
             // 
             // frmCriarUsuarios
             // 
             BackColor = Color.Ivory;
-            ClientSize = new Size(990, 489);
+            ClientSize = new Size(990, 485);
             Controls.Add(txtSenhaNovamente);
             Controls.Add(lblTitulo);
             Controls.Add(btnFechar);

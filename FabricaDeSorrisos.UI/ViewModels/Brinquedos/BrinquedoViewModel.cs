@@ -13,5 +13,7 @@ namespace FabricaDeSorrisos.UI.ViewModels.Brinquedos
         public string? SubCategoria { get; set; }
         public string? Personagem { get; set; }
         public string FaixaEtaria { get; set; } = string.Empty;
+        public bool Ativo { get; set; }
+        public string Status => Ativo ? "Ativo" : "Inativo";
     }
 }

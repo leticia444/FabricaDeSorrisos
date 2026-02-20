@@ -61,11 +61,12 @@
             btnConfirmarEdição.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnConfirmarEdição.FillColor = Color.DeepSkyBlue;
             btnConfirmarEdição.Font = new Font("Segoe UI", 9F);
-            btnConfirmarEdição.ForeColor = Color.White;
-            btnConfirmarEdição.Location = new Point(333, 295);
+            btnConfirmarEdição.ForeColor = Color.Black;
+            btnConfirmarEdição.Location = new Point(291, 221);
+            btnConfirmarEdição.Margin = new Padding(3, 2, 3, 2);
             btnConfirmarEdição.Name = "btnConfirmarEdição";
             btnConfirmarEdição.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            btnConfirmarEdição.Size = new Size(225, 56);
+            btnConfirmarEdição.Size = new Size(197, 42);
             btnConfirmarEdição.TabIndex = 0;
             btnConfirmarEdição.Text = "Confirmar Edição";
             // 
@@ -78,7 +79,8 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(857, 12);
+            btnFechar.Location = new Point(738, 9);
+            btnFechar.Margin = new Padding(3, 2, 3, 2);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges5;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -98,22 +100,22 @@
             txtNomePersonagem.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNomePersonagem.Font = new Font("Segoe UI", 9F);
             txtNomePersonagem.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNomePersonagem.Location = new Point(296, 182);
-            txtNomePersonagem.Margin = new Padding(3, 4, 3, 4);
+            txtNomePersonagem.Location = new Point(259, 136);
             txtNomePersonagem.Name = "txtNomePersonagem";
             txtNomePersonagem.PlaceholderText = "Digite o novo Nome para o Personagem";
             txtNomePersonagem.SelectedText = "";
             txtNomePersonagem.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtNomePersonagem.Size = new Size(305, 60);
+            txtNomePersonagem.Size = new Size(267, 45);
             txtNomePersonagem.TabIndex = 2;
             // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(301, 12);
+            lblTitulo.Location = new Point(263, 9);
+            lblTitulo.Margin = new Padding(3, 2, 3, 2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(319, 47);
+            lblTitulo.Size = new Size(262, 39);
             lblTitulo.TabIndex = 3;
             lblTitulo.Text = "Edite um Personagem";
             // 
@@ -130,25 +132,27 @@
             cbEscolherPersonagem.Font = new Font("Segoe UI", 10F);
             cbEscolherPersonagem.ForeColor = Color.FromArgb(68, 88, 112);
             cbEscolherPersonagem.ItemHeight = 30;
-            cbEscolherPersonagem.Location = new Point(304, 139);
+            cbEscolherPersonagem.Location = new Point(263, 95);
+            cbEscolherPersonagem.Margin = new Padding(3, 2, 3, 2);
             cbEscolherPersonagem.Name = "cbEscolherPersonagem";
             cbEscolherPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            cbEscolherPersonagem.Size = new Size(286, 36);
+            cbEscolherPersonagem.Size = new Size(251, 36);
             cbEscolherPersonagem.TabIndex = 4;
             // 
-            // frmEditarBrinquedo
+            // frmEditarPersonagens
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(900, 450);
+            ClientSize = new Size(790, 340);
             Controls.Add(cbEscolherPersonagem);
             Controls.Add(lblTitulo);
             Controls.Add(txtNomePersonagem);
             Controls.Add(btnFechar);
             Controls.Add(btnConfirmarEdição);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "frmEditarBrinquedo";
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "frmEditarPersonagens";
             Text = "frmEditarBrinquedo";
             ResumeLayout(false);
             PerformLayout();

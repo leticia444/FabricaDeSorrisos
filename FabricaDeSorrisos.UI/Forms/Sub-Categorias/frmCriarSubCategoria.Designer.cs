@@ -57,7 +57,8 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(850, 12);
+            btnFechar.Location = new Point(740, 12);
+            btnFechar.Margin = new Padding(3, 2, 3, 2);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges5;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -76,10 +77,11 @@
             btnCriar.FillColor = Color.LimeGreen;
             btnCriar.Font = new Font("Segoe UI", 9F);
             btnCriar.ForeColor = Color.Black;
-            btnCriar.Location = new Point(319, 175);
+            btnCriar.Location = new Point(280, 187);
+            btnCriar.Margin = new Padding(3, 2, 3, 2);
             btnCriar.Name = "btnCriar";
             btnCriar.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnCriar.Size = new Size(225, 56);
+            btnCriar.Size = new Size(197, 42);
             btnCriar.TabIndex = 1;
             btnCriar.Text = "Criar Sub-Categoria";
             // 
@@ -87,9 +89,10 @@
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(291, 12);
+            lblTitulo.Location = new Point(255, 9);
+            lblTitulo.Margin = new Padding(3, 2, 3, 2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(287, 47);
+            lblTitulo.Size = new Size(238, 39);
             lblTitulo.TabIndex = 2;
             lblTitulo.Text = "Criar Sub-Categoria";
             // 
@@ -105,26 +108,26 @@
             txtNome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(291, 98);
-            txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.Location = new Point(255, 124);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Digite o Nome da Sub-Categoria";
             txtNome.SelectedText = "";
             txtNome.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtNome.Size = new Size(286, 60);
+            txtNome.Size = new Size(250, 45);
             txtNome.TabIndex = 3;
             // 
             // frmCriarSubCategoria
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(900, 390);
+            ClientSize = new Size(790, 340);
             Controls.Add(txtNome);
             Controls.Add(lblTitulo);
             Controls.Add(btnCriar);
             Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmCriarSubCategoria";
             Text = "frmCriarSubCategoria";
             ResumeLayout(false);

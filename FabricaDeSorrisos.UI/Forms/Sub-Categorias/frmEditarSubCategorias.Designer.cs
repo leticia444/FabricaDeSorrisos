@@ -50,7 +50,8 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(850, 12);
+            btnFechar.Location = new Point(740, 9);
+            btnFechar.Margin = new Padding(3, 2, 3, 2);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges1;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -69,10 +70,11 @@
             btnSalvarEdição.FillColor = Color.DeepSkyBlue;
             btnSalvarEdição.Font = new Font("Segoe UI", 9F);
             btnSalvarEdição.ForeColor = Color.Black;
-            btnSalvarEdição.Location = new Point(295, 216);
+            btnSalvarEdição.Location = new Point(261, 178);
+            btnSalvarEdição.Margin = new Padding(3, 2, 3, 2);
             btnSalvarEdição.Name = "btnSalvarEdição";
             btnSalvarEdição.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            btnSalvarEdição.Size = new Size(225, 56);
+            btnSalvarEdição.Size = new Size(197, 42);
             btnSalvarEdição.TabIndex = 1;
             btnSalvarEdição.Text = "Salvar Edição";
             // 
@@ -80,9 +82,10 @@
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(266, 12);
+            lblTitulo.Location = new Point(233, 9);
+            lblTitulo.Margin = new Padding(3, 2, 3, 2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(303, 47);
+            lblTitulo.Size = new Size(251, 39);
             lblTitulo.TabIndex = 2;
             lblTitulo.Text = "Editar Sub-Categoria";
             // 
@@ -98,13 +101,12 @@
             txtNome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(264, 130);
-            txtNome.Margin = new Padding(3, 4, 3, 4);
+            txtNome.Location = new Point(234, 114);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "Digite o Novo Nome";
             txtNome.SelectedText = "";
             txtNome.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            txtNome.Size = new Size(286, 60);
+            txtNome.Size = new Size(250, 45);
             txtNome.TabIndex = 3;
             // 
             // guna2BorderlessForm1
@@ -116,15 +118,16 @@
             // 
             // frmEditarSubCategorias
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(900, 398);
+            ClientSize = new Size(790, 340);
             Controls.Add(txtNome);
             Controls.Add(lblTitulo);
             Controls.Add(btnSalvarEdição);
             Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmEditarSubCategorias";
             Text = "frmEditarSubCategorias";
             ResumeLayout(false);

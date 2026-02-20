@@ -46,10 +46,23 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 // CORS precisa vir antes de Auth
 app.UseCors("AllowWeb");
+
+// Servir arquivos estáticos do projeto Web (wwwroot) como fallback em /static
+try
+{
+    var webRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "FabricaDeSorrisos.Web", "wwwroot"));
+    if (Directory.Exists(webRoot))
+    {
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(webRoot),
+            RequestPath = "/static"
+        });
+    }
+}
+catch { }
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -65,13 +65,13 @@
             txtEmail.Font = new Font("Segoe UI", 12F);
             txtEmail.ForeColor = Color.Black;
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(511, 328);
-            txtEmail.Margin = new Padding(5, 5, 5, 5);
+            txtEmail.Location = new Point(383, 225);
+            txtEmail.Margin = new Padding(4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "E-mail";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtEmail.Size = new Size(410, 96);
+            txtEmail.Size = new Size(250, 45);
             txtEmail.TabIndex = 0;
             // 
             // txtSenha
@@ -87,13 +87,13 @@
             txtSenha.Font = new Font("Segoe UI", 12F);
             txtSenha.ForeColor = Color.Black;
             txtSenha.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSenha.Location = new Point(511, 463);
-            txtSenha.Margin = new Padding(5, 5, 5, 5);
+            txtSenha.Location = new Point(383, 287);
+            txtSenha.Margin = new Padding(4);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Senha";
             txtSenha.SelectedText = "";
             txtSenha.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtSenha.Size = new Size(410, 92);
+            txtSenha.Size = new Size(250, 45);
             txtSenha.TabIndex = 1;
             // 
             // btnEntrar
@@ -107,13 +107,13 @@
             btnEntrar.FillColor = Color.Cyan;
             btnEntrar.Font = new Font("Segoe UI", 12F);
             btnEntrar.ForeColor = Color.Black;
-            btnEntrar.Location = new Point(583, 644);
-            btnEntrar.Margin = new Padding(3, 4, 3, 4);
+            btnEntrar.Location = new Point(419, 423);
             btnEntrar.Name = "btnEntrar";
             btnEntrar.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnEntrar.Size = new Size(255, 73);
+            btnEntrar.Size = new Size(202, 46);
             btnEntrar.TabIndex = 5;
             btnEntrar.Text = "Entrar";
+            btnEntrar.Click += btnEntrar_Click_1;
             // 
             // guna2BorderlessForm1
             // 
@@ -131,12 +131,11 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(1389, 3);
-            btnFechar.Margin = new Padding(3, 4, 3, 4);
+            btnFechar.Location = new Point(969, 12);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges11;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnFechar.Size = new Size(43, 48);
+            btnFechar.Size = new Size(38, 36);
             btnFechar.TabIndex = 6;
             btnFechar.Text = "X";
             // 
@@ -145,11 +144,10 @@
             pbLogo.CustomizableEdges = customizableEdges9;
             pbLogo.Image = Properties.Resources.logo_oficial;
             pbLogo.ImageRotate = 0F;
-            pbLogo.Location = new Point(538, 3);
-            pbLogo.Margin = new Padding(3, 4, 3, 4);
+            pbLogo.Location = new Point(400, 12);
             pbLogo.Name = "pbLogo";
             pbLogo.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            pbLogo.Size = new Size(343, 267);
+            pbLogo.Size = new Size(233, 150);
             pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
             pbLogo.TabIndex = 7;
             pbLogo.TabStop = false;
@@ -158,10 +156,9 @@
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Verdana", 20F);
-            lblTitulo.Location = new Point(448, 255);
-            lblTitulo.Margin = new Padding(3, 4, 3, 4);
+            lblTitulo.Location = new Point(317, 168);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(561, 42);
+            lblTitulo.Size = new Size(454, 34);
             lblTitulo.TabIndex = 9;
             lblTitulo.Text = "Bem-Vindo à Área Administrativa";
             // 
@@ -169,9 +166,10 @@
             // 
             txtCadastro.BackColor = Color.Transparent;
             txtCadastro.Font = new Font("Segoe UI", 12F);
-            txtCadastro.Location = new Point(607, 563);
+            txtCadastro.Location = new Point(435, 335);
+            txtCadastro.Margin = new Padding(3, 2, 3, 2);
             txtCadastro.Name = "txtCadastro";
-            txtCadastro.Size = new Size(213, 30);
+            txtCadastro.Size = new Size(170, 23);
             txtCadastro.TabIndex = 10;
             txtCadastro.Text = "Deseja fazer o cadastro?";
             // 
@@ -186,19 +184,20 @@
             btnCadastro.FillColor = Color.Yellow;
             btnCadastro.Font = new Font("Segoe UI", 9F);
             btnCadastro.ForeColor = Color.Black;
-            btnCadastro.Location = new Point(614, 599);
+            btnCadastro.Location = new Point(431, 362);
+            btnCadastro.Margin = new Padding(3, 2, 3, 2);
             btnCadastro.Name = "btnCadastro";
             btnCadastro.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnCadastro.Size = new Size(199, 38);
+            btnCadastro.Size = new Size(174, 28);
             btnCadastro.TabIndex = 11;
             btnCadastro.Text = "Clique Aqui!";
             // 
             // frmLogin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1446, 736);
+            ClientSize = new Size(1019, 497);
             Controls.Add(btnCadastro);
             Controls.Add(txtCadastro);
             Controls.Add(lblTitulo);
@@ -208,7 +207,6 @@
             Controls.Add(txtSenha);
             Controls.Add(txtEmail);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmLogin";
             Text = "frmLogin";
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();

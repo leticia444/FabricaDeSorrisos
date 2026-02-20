@@ -150,7 +150,7 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(914, 12);
+            btnFechar.Location = new Point(964, 12);
             btnFechar.Name = "btnFechar";
             btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges21;
             btnFechar.Size = new Size(38, 36);
@@ -291,7 +291,7 @@
             lblTitulo.Font = new Font("Segoe UI", 15F);
             lblTitulo.Location = new Point(701, 62);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(229, 37);
+            lblTitulo.Size = new Size(180, 30);
             lblTitulo.TabIndex = 19;
             lblTitulo.Text = "Imagem do Produto";
             // 
