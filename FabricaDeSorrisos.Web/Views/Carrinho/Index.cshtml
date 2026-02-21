@@ -4,6 +4,12 @@
 }
 
 <div class="container py-5">
+    @* Botão Voltar adicionado aqui *@
+    <div class="mb-4">
+        <a href="javascript:history.back()" class="btn btn-voltar-carrinho rounded-pill px-4 fw-bold">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+    </div>
 
     @if (TempData["Aviso"] != null)
     {
@@ -12,26 +18,24 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     }
-    @if (TempData["Erro"] != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="bi bi-x-circle-fill me-2"></i> @TempData["Erro"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    }
+
+    @* ... (mantenha os blocos de erro se houver) ... *@
 
     <h2 class="fw-bold mb-4">🛒 Meu Carrinho</h2>
 
     @if (!Model.Itens.Any())
     {
-        <div class="text-center py-5 bg-light rounded-3">
-            <i class="bi bi-cart-x fs-1 text-muted"></i>
+        <div class="text-center py-5 shadow-sm border" style="background-color: #ffffff; border-radius: 30px;">
+            @* Substituição do ícone pela imagem cart.png *@
+            <img src="~/img/cart.png" alt="Carrinho Vazio" class="img-fluid mb-4" style="max-height: 250px;">
+
             <h3 class="mt-3 text-muted">Seu carrinho está vazio.</h3>
-            <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3">Ir às Compras</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3 btn-lg rounded-pill px-4">Ir para a Loja</a>
         </div>
     }
     else
     {
+        @* ... resto do código do carrinho (tabela, resumo, etc) continua igual ... *@
         <div class="row">
             <div class="col-lg-8">
                 <div class="card border-0 shadow-sm">

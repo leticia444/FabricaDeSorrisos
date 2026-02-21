@@ -1,6 +1,22 @@
 ﻿@model FabricaDeSorrisos.Web.Models.CatalogViewModel
 @{
     ViewData["Title"] = "Resultados da Busca";
+
+    // Lógica para definir a cor das Subcategorias conforme a Categoria principal selecionada
+    string corSubcategoria = "#ff69b4"; // Rosa (Padrão para Brinquedos)
+
+    if (Model.CategoriaId.HasValue)
+    {
+        switch (Model.CategoriaId.Value)
+        {
+            case 2: corSubcategoria = "#f3dd24"; break; // Educativos -> Amarelo
+            case 4: corSubcategoria = "#28a745"; break; // Pets -> Verde
+            case 3: corSubcategoria = "#000269"; break; // Jogos -> Azul Escuro
+        }
+    }
+
+    // Se estiver na tela de Ofertas (via filtro de ofertas)
+    if (Context.Request.Query["ofertas"] == "true") { corSubcategoria = "#ff0000"; } // Vermelho
 }
 
 <div class="container py-4">
@@ -15,7 +31,7 @@
                 <span>Catálogo Completo</span>
             }
         </h4>
-        <a asp-action="Busca" class="btn btn-sm btn-outline-secondary rounded-pill">Limpar Filtros</a>
+        <a asp-action="Busca" class="btn btn-sm btn-limpar-degrade rounded-pill">Limpar Filtros</a>
     </div>
 
     <div class="row">
@@ -24,7 +40,7 @@
             @if (Model.CategoriaId.HasValue && Model.SubCategorias.Any())
             {
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="fw-bold text-primary mb-0">Subcategorias</h5>
+                    <h5 class="titulo-filtro-sub">Subcategorias</h5>
                     <a asp-action="Busca" asp-route-categoriaId="" class="small text-muted text-decoration-none"><i class="bi bi-arrow-left"></i> Voltar</a>
                 </div>
 
@@ -32,7 +48,7 @@
                     <a asp-action="Busca"
                        asp-route-categoriaId="@Model.CategoriaId"
                        asp-route-subCategoriaId=""
-                       class="btn btn-filter @(Model.SubCategoriaId == null ? "active" : "")">
+                       class="btn-filter-custom @(Model.SubCategoriaId == null ? "active" : "")">
                         Ver Tudo
                     </a>
 
@@ -42,7 +58,7 @@
                            asp-route-categoriaId="@Model.CategoriaId"
                            asp-route-subCategoriaId="@sub.Id"
                            asp-route-termoBusca="@Model.TermoBusca"
-                           class="btn btn-filter @(Model.SubCategoriaId == sub.Id ? "active" : "")">
+                           class="btn-filter-custom @(Model.SubCategoriaId == sub.Id ? "active" : "")">
                             @sub.Nome
                         </a>
                     }
@@ -50,16 +66,16 @@
             }
             else
             {
-                <h5 class="fw-bold mb-3 text-dark">Categorias</h5>
+                <h5 class="titulo-filtro-sub">Categorias</h5>
                 <div class="d-flex flex-column gap-2 mb-4">
-                    <a asp-action="Busca" class="btn btn-filter @(Model.CategoriaId == null ? "active" : "")">Todas</a>
+                    <a asp-action="Busca" class="btn-filter-custom @(Model.CategoriaId == null ? "active" : "")">Todas</a>
 
                     @foreach (var cat in Model.Categorias)
                     {
                         <a asp-action="Busca"
                            asp-route-categoriaId="@cat.Id"
                            asp-route-termoBusca="@Model.TermoBusca"
-                           class="btn btn-filter @(Model.CategoriaId == cat.Id ? "active" : "")">
+                           class="btn-filter-custom @(Model.CategoriaId == cat.Id ? "active" : "")">
                             @cat.Nome
                         </a>
                     }
@@ -68,7 +84,7 @@
 
             <hr class="text-muted opacity-25">
 
-            <h6 class="fw-bold mt-3 mb-2 text-dark">Por Idade</h6>
+            <h6 class="titulo-filtro-idade">Por Idade</h6>
             <div class="d-flex flex-wrap gap-2 mb-4">
                 @foreach (var idade in Model.FaixasEtarias)
                 {
@@ -77,14 +93,13 @@
                        asp-route-subCategoriaId="@Model.SubCategoriaId"
                        asp-route-faixaEtariaId="@idade.Id"
                        asp-route-termoBusca="@Model.TermoBusca"
-                       class="badge rounded-pill text-decoration-none p-2 border
-                                  @(Model.FaixaEtariaId == idade.Id ? "bg-warning text-dark border-warning" : "bg-light text-secondary border-light")">
+                       class="badge rounded-pill text-decoration-none p-2 badge-idade-custom @(Model.FaixaEtariaId == idade.Id ? "active" : "")">
                         @idade.Descricao
                     </a>
                 }
             </div>
 
-            <h6 class="fw-bold mt-3 mb-2 text-dark">Personagens</h6>
+            <h6 class="titulo-filtro-pers">Personagens</h6>
             <div class="d-flex flex-wrap gap-2 mb-4">
                 @foreach (var pers in Model.Personagens)
                 {
@@ -93,14 +108,13 @@
                        asp-route-subCategoriaId="@Model.SubCategoriaId"
                        asp-route-personagemId="@pers.Id"
                        asp-route-termoBusca="@Model.TermoBusca"
-                       class="badge rounded-pill text-decoration-none p-2 border
-                                  @(Model.PersonagemId == pers.Id ? "bg-info text-white border-info" : "bg-light text-secondary border-light")">
+                       class="badge rounded-pill text-decoration-none p-2 badge-pers-custom @(Model.PersonagemId == pers.Id ? "active" : "")">
                         @pers.Nome
                     </a>
                 }
             </div>
 
-            <h6 class="fw-bold mt-3 mb-2 text-dark">Marcas</h6>
+            <h6 class="titulo-filtro-marcas">Marcas</h6>
             <div class="d-flex flex-wrap gap-2">
                 @foreach (var marca in Model.Marcas)
                 {
@@ -109,8 +123,7 @@
                        asp-route-subCategoriaId="@Model.SubCategoriaId"
                        asp-route-marcaId="@marca.Id"
                        asp-route-termoBusca="@Model.TermoBusca"
-                       class="badge rounded-pill text-decoration-none p-2 border
-                                  @(Model.MarcaId == marca.Id ? "bg-primary text-white border-primary" : "bg-white text-secondary border-secondary")">
+                       class="badge rounded-pill text-decoration-none p-2 badge-marcas-custom @(Model.MarcaId == marca.Id ? "active" : "")">
                         @marca.Nome
                     </a>
                 }
@@ -123,44 +136,54 @@
                 {
                     @foreach (var item in Model.Produtos.Items)
                     {
-                        <div class="col">
-                            <div class="card h-100 shadow-sm border-0 hover-card rounded-4 overflow-hidden">
+                        <div class="col d-flex justify-content-center">
+                            @* Card com o tamanho global de 276x450.07 e sombra azul *@
+                            <div class="card product-card-wireframe shadow-custom-blue border-0 position-relative rounded-5 overflow-hidden p-3" style="width: 276px; height: 450.07px;">
 
-                                <div class="position-relative text-center p-4 bg-light">
+                                <div class="position-relative text-center mb-2">
                                     <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.Id" class="d-block text-decoration-none">
                                         <img src="@(item.ImagemUrl ?? "https://placehold.co/200?text=Foto")"
-                                             class="img-fluid transition-scale" alt="@item.Nome"
+                                             class="img-fluid" alt="@item.Nome"
                                              style="height: 180px; object-fit: contain;">
                                     </a>
+
+                                    <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
+                                            onclick="toggleFavorito(this, @item.Id)"
+                                            data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()">
+                                        <i class="bi bi-heart fs-5 text-secondary"></i>
+                                    </button>
                                 </div>
 
-                                <div class="card-body">
-                                    <span class="badge bg-warning text-dark mb-2">@item.Categoria</span>
-
-                                    <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.Id" class="text-decoration-none text-dark">
-                                        <h6 class="card-title fw-bold text-truncate">@item.Nome</h6>
-                                    </a>
-
-                                    <div class="text-warning small mb-2">
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
+                                <div class="card-body p-0 d-flex flex-column text-start">
+                                    <div class="text-warning mb-1" style="font-size: 0.8rem;">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                                     </div>
 
-                                    <h5 class="fw-bold text-primary mb-3">R$ @item.Preco.ToString("N2")</h5>
+                                    <h5 class="fw-bold text-dark mb-1 fs-6 text-truncate">@item.Nome</h5>
 
-                                    @if (item.Estoque > 0)
-                                    {
-                                        <button class="btn btn-success w-100 rounded-pill fw-bold" onclick="adicionarAoCarrinho(this, @item.Id)">
-                                            Comprar
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        <button class="btn btn-secondary w-100 rounded-pill disabled">Esgotado</button>
-                                    }
+                                    <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                                        <small class="text-muted d-block">@item.Marca</small>
+                                        <span class="badge-categoria-amarela">@item.Categoria</span>
+                                    </div>
+
+                                    <div class="mt-auto">
+                                        <h4 class="fw-bold text-dark mb-0">R$ @item.Preco.ToString("N2")</h4>
+                                        <p class="text-muted" style="font-size: 0.75rem; margin-bottom: 10px;">
+                                            ou 10x R$ @((item.Preco / 10).ToString("N2")) s/juros
+                                        </p>
+
+                                        @if (item.Estoque > 0)
+                                        {
+                                            <button class="btn btn-success-custom w-100 rounded-4 py-2"
+                                                    onclick="adicionarAoCarrinho(this, @item.Id)">
+                                                <i class="bi bi-cart-fill me-1"></i> adicionar
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-secondary w-100 rounded-4 disabled py-2">Esgotado</button>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -179,9 +202,40 @@
 </div>
 
 <style>
-    /* Estilo Botão Rosa (Menu Lateral) */
-    .btn-filter {
-        border: 2px solid #ff69b4; /* Rosa Choque */
+    /* --- TÍTULOS DOS FILTROS --- */
+    .titulo-filtro-sub {
+        color: @corSubcategoria !important;
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .titulo-filtro-idade {
+        color: #f3dd24 !important;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+
+    .titulo-filtro-pers {
+        color: #00ccff !important;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+
+    .titulo-filtro-marcas {
+        color: #000269 !important;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+
+    /* --- ESTILO DAS SUBCATEGORIAS (DINÂMICO) --- */
+    .btn-filter-custom {
+        border: 2px solid @corSubcategoria !important;
         color: #333;
         background-color: white;
         border-radius: 50px;
@@ -189,31 +243,65 @@
         text-align: left;
         transition: all 0.3s;
         font-weight: 500;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 8px;
     }
 
-        .btn-filter:hover {
-            background-color: #fff0f5;
-            color: #d63384;
+        .btn-filter-custom:hover {
+            background-color: rgba(0,0,0,0.03);
             transform: translateX(5px);
+            color: @corSubcategoria;
         }
 
-        .btn-filter.active {
-            background-color: #ff69b4;
-            color: white;
+        .btn-filter-custom.active {
+            background-color: @corSubcategoria !important;
+            color: white !important;
             font-weight: bold;
-            box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
         }
 
-    .hover-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    /* --- FILTRO POR IDADE (AMARELO) --- */
+    .badge-idade-custom {
+        border: 2px solid #f3dd24 !important;
+        color: #333;
+        background: white;
+        transition: 0.3s;
     }
 
-    .transition-scale {
-        transition: transform 0.3s ease;
+        .badge-idade-custom:hover {
+            background-color: #fffde7 !important;
+            border-color: #f3dd24 !important;
+        }
+
+        .badge-idade-custom.active {
+            background-color: #f3dd24 !important;
+            color: #000 !important;
+            font-weight: bold;
+        }
+
+    /* --- FILTRO PERSONAGENS (AZUL CLARO) --- */
+    .badge-pers-custom {
+        border: 2px solid #00ccff !important;
+        color: #333;
+        background: white;
+        transition: 0.3s;
     }
 
-    .hover-card:hover .transition-scale {
-        transform: scale(1.1);
+        .badge-pers-custom.active {
+            background-color: #00ccff !important;
+            color: white !important;
+        }
+
+    /* --- FILTRO MARCAS (AZUL ROYAL) --- */
+    .badge-marcas-custom {
+        border: 2px solid #000269 !important;
+        color: #333;
+        background: white;
+        transition: 0.3s;
     }
+
+        .badge-marcas-custom.active {
+            background-color: #000269 !important;
+            color: white !important;
+        }
 </style>
