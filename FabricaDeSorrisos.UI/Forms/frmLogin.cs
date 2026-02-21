@@ -1,4 +1,4 @@
-﻿using FabricaDeSorrisos.UI.Models;
+﻿﻿﻿﻿﻿﻿using FabricaDeSorrisos.UI.Models;
 using FabricaDeSorrisos.UI.Models.Services;
 
 namespace FabricaDeSorrisos.UI.Forms
@@ -13,33 +13,13 @@ namespace FabricaDeSorrisos.UI.Forms
             InitializeComponent();
 
             _authService = new AuthService();
-            _userService = new UserService(); // 🔥 Agora é o da UI (sem DbContext)
+            _userService = new UserService();
 
             txtSenha.PasswordChar = '●';
             this.AcceptButton = btnEntrar;
 
-            btnEntrar.Click += btnEntrar_Click;
             btnFechar.Click += btnFechar_Click;
-        }
-
-        private async void btnEntrar_Click(object sender, EventArgs e)
-        {
-            await RealizarLogin();
-        }
-
-        private void btnFechar_Click(object sender, EventArgs e)
-        {
-            var resultado = MessageBox.Show(
-                "Deseja realmente encerrar a aplicação?",
-                "Encerrar aplicação",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (resultado == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            btnCadastro.Click += btnCadastro_Click;
         }
 
         private async Task RealizarLogin()
@@ -104,6 +84,33 @@ namespace FabricaDeSorrisos.UI.Forms
 
                 btnEntrar.Enabled = true;
             }
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show(
+                "Deseja realmente encerrar a aplicação?",
+                "Encerrar aplicação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnEntrar_Click_1(object sender, EventArgs e)
+        {
+            _ = RealizarLogin();
+        }
+
+        private void btnCadastro_Click(object sender, EventArgs e)
+        {
+            var cadastro = new frmCadastro();
+            cadastro.Show();
+            this.Hide();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace FabricaDeSorrisos.UI.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         ///   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FabricaDeSorrisos.UI.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         ///   pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_marca_icon {
+        public static System.Drawing.Bitmap add_marca_icon {
             get {
                 object obj = ResourceManager.GetObject("add_marca_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,17 +73,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_marca_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("add_marca_icon1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap add_toy_icon {
+        public static System.Drawing.Bitmap add_toy_icon {
             get {
                 object obj = ResourceManager.GetObject("add_toy_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,17 +83,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_toy_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("add_toy_icon1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap add_user {
+        public static System.Drawing.Bitmap add_user {
             get {
                 object obj = ResourceManager.GetObject("add_user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +93,27 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap brinquedo_icon {
+        public static System.Drawing.Bitmap box_open {
+            get {
+                object obj = ResourceManager.GetObject("box-open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap box_open1 {
+            get {
+                object obj = ResourceManager.GetObject("box-open1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap brinquedo_icon {
             get {
                 object obj = ResourceManager.GetObject("brinquedo_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,67 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap categorias {
+        public static System.Drawing.Bitmap categoria {
+            get {
+                object obj = ResourceManager.GetObject("categoria", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap categoria__1_ {
+            get {
+                object obj = ResourceManager.GetObject("categoria (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap categoria__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("categoria (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap categoria1 {
+            get {
+                object obj = ResourceManager.GetObject("categoria1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap categoria2 {
+            get {
+                object obj = ResourceManager.GetObject("categoria2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap categoria3 {
+            get {
+                object obj = ResourceManager.GetObject("categoria3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap categorias {
             get {
                 object obj = ResourceManager.GetObject("categorias", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +193,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap categorias1 {
+        public static System.Drawing.Bitmap categorias1 {
             get {
                 object obj = ResourceManager.GetObject("categorias1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +203,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap character_icon {
+        public static System.Drawing.Bitmap character_icon {
             get {
                 object obj = ResourceManager.GetObject("character_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +213,27 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delet_marca_icon {
+        public static System.Drawing.Bitmap comment {
+            get {
+                object obj = ResourceManager.GetObject("comment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap comment1 {
+            get {
+                object obj = ResourceManager.GetObject("comment1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap delet_marca_icon {
             get {
                 object obj = ResourceManager.GetObject("delet_marca_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,27 +243,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delet_marca_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("delet_marca_icon1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap delet_marca_icon2 {
-            get {
-                object obj = ResourceManager.GetObject("delet_marca_icon2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap delet_user {
+        public static System.Drawing.Bitmap delet_user {
             get {
                 object obj = ResourceManager.GetObject("delet_user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,17 +253,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delet_user1 {
-            get {
-                object obj = ResourceManager.GetObject("delet_user1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap delete_category_icon {
+        public static System.Drawing.Bitmap delete_category_icon {
             get {
                 object obj = ResourceManager.GetObject("delete_category_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,17 +263,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete_category_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("delete_category_icon1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap dolar_icon {
+        public static System.Drawing.Bitmap dolar_icon {
             get {
                 object obj = ResourceManager.GetObject("dolar_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +273,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap edit_category_icon {
+        public static System.Drawing.Bitmap edit_category_icon {
             get {
                 object obj = ResourceManager.GetObject("edit_category_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,17 +283,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap edit_category_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("edit_category_icon1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap edit_toy_icon {
+        public static System.Drawing.Bitmap edit_toy_icon {
             get {
                 object obj = ResourceManager.GetObject("edit_toy_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,27 +293,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap edit_toy_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("edit_toy_icon1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap edit_toy_icon2 {
-            get {
-                object obj = ResourceManager.GetObject("edit_toy_icon2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap edit_user {
+        public static System.Drawing.Bitmap edit_user {
             get {
                 object obj = ResourceManager.GetObject("edit_user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +303,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_user {
+        public static System.Drawing.Bitmap icon_user {
             get {
                 object obj = ResourceManager.GetObject("icon_user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +313,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lapis {
+        public static System.Drawing.Bitmap lapis {
             get {
                 object obj = ResourceManager.GetObject("lapis", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +323,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lapis1 {
+        public static System.Drawing.Bitmap lapis1 {
             get {
                 object obj = ResourceManager.GetObject("lapis1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +333,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lapis2 {
+        public static System.Drawing.Bitmap lapis2 {
             get {
                 object obj = ResourceManager.GetObject("lapis2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -333,7 +343,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lapis3 {
+        public static System.Drawing.Bitmap lapis3 {
             get {
                 object obj = ResourceManager.GetObject("lapis3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -343,7 +353,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lapis4 {
+        public static System.Drawing.Bitmap lapis4 {
             get {
                 object obj = ResourceManager.GetObject("lapis4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -353,7 +363,37 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_oficial {
+        public static System.Drawing.Bitmap lapis5 {
+            get {
+                object obj = ResourceManager.GetObject("lapis5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap lapis6 {
+            get {
+                object obj = ResourceManager.GetObject("lapis6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap lapis7 {
+            get {
+                object obj = ResourceManager.GetObject("lapis7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap logo_oficial {
             get {
                 object obj = ResourceManager.GetObject("logo_oficial", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -363,7 +403,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_oficial1 {
+        public static System.Drawing.Bitmap logo_oficial1 {
             get {
                 object obj = ResourceManager.GetObject("logo_oficial1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -373,37 +413,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_oficial2 {
-            get {
-                object obj = ResourceManager.GetObject("logo_oficial2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo_oficial3 {
-            get {
-                object obj = ResourceManager.GetObject("logo_oficial3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo_oficial4 {
-            get {
-                object obj = ResourceManager.GetObject("logo_oficial4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap mais {
+        public static System.Drawing.Bitmap mais {
             get {
                 object obj = ResourceManager.GetObject("mais", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -413,37 +423,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mais1 {
-            get {
-                object obj = ResourceManager.GetObject("mais1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap mais2 {
-            get {
-                object obj = ResourceManager.GetObject("mais2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap mais3 {
-            get {
-                object obj = ResourceManager.GetObject("mais3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap marca {
+        public static System.Drawing.Bitmap marca {
             get {
                 object obj = ResourceManager.GetObject("marca", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -453,9 +433,9 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap marca1 {
+        public static System.Drawing.Bitmap marca_de_verificacao {
             get {
-                object obj = ResourceManager.GetObject("marca1", resourceCulture);
+                object obj = ResourceManager.GetObject("marca-de-verificacao", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -463,9 +443,9 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap marca2 {
+        public static System.Drawing.Bitmap marca_de_verificacao1 {
             get {
-                object obj = ResourceManager.GetObject("marca2", resourceCulture);
+                object obj = ResourceManager.GetObject("marca-de-verificacao1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -473,7 +453,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pedidos_icon {
+        public static System.Drawing.Bitmap pedidos_icon {
             get {
                 object obj = ResourceManager.GetObject("pedidos_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -483,7 +463,77 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap remove_toy_icon {
+        public static System.Drawing.Bitmap pedidos_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("pedidos_icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plus {
+            get {
+                object obj = ResourceManager.GetObject("plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plus1 {
+            get {
+                object obj = ResourceManager.GetObject("plus1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plus2 {
+            get {
+                object obj = ResourceManager.GetObject("plus2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plus3 {
+            get {
+                object obj = ResourceManager.GetObject("plus3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plus4 {
+            get {
+                object obj = ResourceManager.GetObject("plus4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plus5 {
+            get {
+                object obj = ResourceManager.GetObject("plus5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap remove_toy_icon {
             get {
                 object obj = ResourceManager.GetObject("remove_toy_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -493,17 +543,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap remove_toy_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("remove_toy_icon1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap review_icon {
+        public static System.Drawing.Bitmap review_icon {
             get {
                 object obj = ResourceManager.GetObject("review_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -513,9 +553,9 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap review_icon1 {
+        public static System.Drawing.Bitmap robo_do_usuario {
             get {
-                object obj = ResourceManager.GetObject("review_icon1", resourceCulture);
+                object obj = ResourceManager.GetObject("robo-do-usuario", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -523,7 +563,37 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sub_categorias {
+        public static System.Drawing.Bitmap robo_do_usuario1 {
+            get {
+                object obj = ResourceManager.GetObject("robo-do-usuario1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap star {
+            get {
+                object obj = ResourceManager.GetObject("star", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap star1 {
+            get {
+                object obj = ResourceManager.GetObject("star1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sub_categorias {
             get {
                 object obj = ResourceManager.GetObject("sub_categorias", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -533,9 +603,9 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user_icon {
+        public static System.Drawing.Bitmap urso_teddy {
             get {
-                object obj = ResourceManager.GetObject("user_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("urso-teddy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -543,7 +613,37 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap x {
+        public static System.Drawing.Bitmap urso_teddy1 {
+            get {
+                object obj = ResourceManager.GetObject("urso-teddy1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap user {
+            get {
+                object obj = ResourceManager.GetObject("user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap user1 {
+            get {
+                object obj = ResourceManager.GetObject("user1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap x {
             get {
                 object obj = ResourceManager.GetObject("x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -553,7 +653,7 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap x1 {
+        public static System.Drawing.Bitmap x1 {
             get {
                 object obj = ResourceManager.GetObject("x1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -563,9 +663,39 @@ namespace FabricaDeSorrisos.UI.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap x2 {
+        public static System.Drawing.Bitmap x2 {
             get {
                 object obj = ResourceManager.GetObject("x2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap x3 {
+            get {
+                object obj = ResourceManager.GetObject("x3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap x4 {
+            get {
+                object obj = ResourceManager.GetObject("x4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap x5 {
+            get {
+                object obj = ResourceManager.GetObject("x5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

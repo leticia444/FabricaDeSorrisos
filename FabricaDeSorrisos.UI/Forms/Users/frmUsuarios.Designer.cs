@@ -44,12 +44,12 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             panelGerente = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -60,22 +60,18 @@
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2DataGridView2 = new Guna.UI2.WinForms.Guna2DataGridView();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            btnSair = new Guna.UI2.WinForms.Guna2CircleButton();
             lblUsuario = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblUsário = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblExcluirUsuario = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblEditarUsuario = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            btnEditarUsuario = new Guna.UI2.WinForms.Guna2CircleButton();
-            btnCriarUsuario = new Guna.UI2.WinForms.Guna2CircleButton();
-            btnExcluirUsuario = new Guna.UI2.WinForms.Guna2CircleButton();
+            lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblTodosUsuarios = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            btnCriarUsario = new Guna.UI2.WinForms.Guna2GradientButton();
+            btnEditarUsuario = new Guna.UI2.WinForms.Guna2GradientButton();
+            btnExcluirUsuario = new Guna.UI2.WinForms.Guna2GradientButton();
             panelGerente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             panelAdministrador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView3).BeginInit();
             guna2CustomGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -90,10 +86,11 @@
             panelGerente.Controls.Add(guna2DataGridView1);
             panelGerente.Controls.Add(lblGerentes);
             panelGerente.CustomizableEdges = customizableEdges11;
-            panelGerente.Location = new Point(412, 358);
+            panelGerente.Location = new Point(523, 477);
+            panelGerente.Margin = new Padding(3, 4, 3, 4);
             panelGerente.Name = "panelGerente";
             panelGerente.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            panelGerente.Size = new Size(384, 328);
+            panelGerente.Size = new Size(450, 480);
             panelGerente.TabIndex = 4;
             // 
             // guna2DataGridView1
@@ -119,10 +116,13 @@
             dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(0, 47);
+            guna2DataGridView1.Location = new Point(0, 63);
+            guna2DataGridView1.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
-            guna2DataGridView1.Size = new Size(384, 284);
+            guna2DataGridView1.RowHeadersWidth = 51;
+            guna2DataGridView1.RowTemplate.Height = 25;
+            guna2DataGridView1.Size = new Size(450, 418);
             guna2DataGridView1.TabIndex = 1;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -150,9 +150,10 @@
             // 
             lblGerentes.BackColor = Color.Transparent;
             lblGerentes.Font = new Font("Segoe UI", 16F);
-            lblGerentes.Location = new Point(146, 9);
+            lblGerentes.Location = new Point(167, 12);
+            lblGerentes.Margin = new Padding(3, 4, 3, 4);
             lblGerentes.Name = "lblGerentes";
-            lblGerentes.Size = new Size(85, 32);
+            lblGerentes.Size = new Size(108, 39);
             lblGerentes.TabIndex = 0;
             lblGerentes.Text = "Gerentes";
             // 
@@ -161,10 +162,11 @@
             panelAdministrador.Controls.Add(guna2DataGridView3);
             panelAdministrador.Controls.Add(lblAdministradores);
             panelAdministrador.CustomizableEdges = customizableEdges9;
-            panelAdministrador.Location = new Point(815, 361);
+            panelAdministrador.Location = new Point(1035, 477);
+            panelAdministrador.Margin = new Padding(3, 4, 3, 4);
             panelAdministrador.Name = "panelAdministrador";
             panelAdministrador.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            panelAdministrador.Size = new Size(414, 328);
+            panelAdministrador.Size = new Size(450, 480);
             panelAdministrador.TabIndex = 5;
             // 
             // guna2DataGridView3
@@ -190,10 +192,13 @@
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             guna2DataGridView3.DefaultCellStyle = dataGridViewCellStyle6;
             guna2DataGridView3.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView3.Location = new Point(0, 41);
+            guna2DataGridView3.Location = new Point(0, 55);
+            guna2DataGridView3.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView3.Name = "guna2DataGridView3";
             guna2DataGridView3.RowHeadersVisible = false;
-            guna2DataGridView3.Size = new Size(414, 287);
+            guna2DataGridView3.RowHeadersWidth = 51;
+            guna2DataGridView3.RowTemplate.Height = 25;
+            guna2DataGridView3.Size = new Size(450, 426);
             guna2DataGridView3.TabIndex = 1;
             guna2DataGridView3.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView3.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -221,9 +226,10 @@
             // 
             lblAdministradores.BackColor = Color.Transparent;
             lblAdministradores.Font = new Font("Segoe UI", 16F);
-            lblAdministradores.Location = new Point(131, 6);
+            lblAdministradores.Location = new Point(150, 8);
+            lblAdministradores.Margin = new Padding(3, 4, 3, 4);
             lblAdministradores.Name = "lblAdministradores";
-            lblAdministradores.Size = new Size(154, 32);
+            lblAdministradores.Size = new Size(197, 39);
             lblAdministradores.TabIndex = 0;
             lblAdministradores.Text = "Administradores";
             // 
@@ -232,10 +238,11 @@
             guna2CustomGradientPanel1.Controls.Add(guna2DataGridView2);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel1);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges7;
-            guna2CustomGradientPanel1.Location = new Point(12, 358);
+            guna2CustomGradientPanel1.Location = new Point(14, 477);
+            guna2CustomGradientPanel1.Margin = new Padding(3, 4, 3, 4);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2CustomGradientPanel1.Size = new Size(381, 328);
+            guna2CustomGradientPanel1.Size = new Size(450, 480);
             guna2CustomGradientPanel1.TabIndex = 6;
             // 
             // guna2DataGridView2
@@ -261,10 +268,13 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView2.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView2.Location = new Point(0, 41);
+            guna2DataGridView2.Location = new Point(0, 55);
+            guna2DataGridView2.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView2.Name = "guna2DataGridView2";
             guna2DataGridView2.RowHeadersVisible = false;
-            guna2DataGridView2.Size = new Size(381, 287);
+            guna2DataGridView2.RowHeadersWidth = 51;
+            guna2DataGridView2.RowTemplate.Height = 25;
+            guna2DataGridView2.Size = new Size(450, 426);
             guna2DataGridView2.TabIndex = 1;
             guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -292,29 +302,12 @@
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Segoe UI", 16F);
-            guna2HtmlLabel1.Location = new Point(139, 3);
+            guna2HtmlLabel1.Location = new Point(159, 4);
+            guna2HtmlLabel1.Margin = new Padding(3, 4, 3, 4);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(76, 32);
+            guna2HtmlLabel1.Size = new Size(97, 39);
             guna2HtmlLabel1.TabIndex = 0;
             guna2HtmlLabel1.Text = "Clientes";
-            // 
-            // btnSair
-            // 
-            btnSair.DisabledState.BorderColor = Color.DarkGray;
-            btnSair.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnSair.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnSair.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnSair.FillColor = Color.Red;
-            btnSair.Font = new Font("Segoe UI", 9F);
-            btnSair.ForeColor = Color.White;
-            btnSair.Location = new Point(1215, 12);
-            btnSair.Name = "btnSair";
-            btnSair.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnSair.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnSair.Size = new Size(38, 36);
-            btnSair.TabIndex = 7;
-            btnSair.Text = "X";
-            btnSair.Click += btnSair_Click;
             // 
             // lblUsuario
             // 
@@ -322,128 +315,112 @@
             lblUsuario.Font = new Font("Segoe UI", 12F);
             lblUsuario.Location = new Point(31, 92);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(125, 23);
+            lblUsuario.Size = new Size(156, 30);
             lblUsuario.TabIndex = 0;
             lblUsuario.Text = "Nome de Usuário";
             // 
-            // lblUsário
+            // lblTitulo
             // 
-            lblUsário.BackColor = Color.Transparent;
-            lblUsário.Font = new Font("Segoe UI", 15F);
-            lblUsário.Location = new Point(577, 294);
-            lblUsário.Name = "lblUsário";
-            lblUsário.Size = new Size(116, 30);
-            lblUsário.TabIndex = 8;
-            lblUsário.Text = "Criar Usuário";
+            lblTitulo.BackColor = Color.Transparent;
+            lblTitulo.Font = new Font("Segoe UI", 20F);
+            lblTitulo.Location = new Point(12, 12);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(403, 47);
+            lblTitulo.TabIndex = 7;
+            lblTitulo.Text = "Gerenciamento de Usuários";
             // 
-            // lblExcluirUsuario
+            // lblTodosUsuarios
             // 
-            lblExcluirUsuario.BackColor = Color.Transparent;
-            lblExcluirUsuario.Font = new Font("Segoe UI", 15F);
-            lblExcluirUsuario.Location = new Point(772, 294);
-            lblExcluirUsuario.Name = "lblExcluirUsuario";
-            lblExcluirUsuario.Size = new Size(131, 30);
-            lblExcluirUsuario.TabIndex = 9;
-            lblExcluirUsuario.Text = "Excluir Usuário";
+            lblTodosUsuarios.BackColor = Color.Transparent;
+            lblTodosUsuarios.Font = new Font("Segoe UI", 15F);
+            lblTodosUsuarios.Location = new Point(551, 330);
+            lblTodosUsuarios.Name = "lblTodosUsuarios";
+            lblTodosUsuarios.Size = new Size(353, 37);
+            lblTodosUsuarios.TabIndex = 8;
+            lblTodosUsuarios.Text = "Todos os Usuários Cadastrados";
             // 
-            // lblEditarUsuario
+            // btnCriarUsario
             // 
-            lblEditarUsuario.BackColor = Color.Transparent;
-            lblEditarUsuario.Font = new Font("Segoe UI", 15F);
-            lblEditarUsuario.Location = new Point(347, 294);
-            lblEditarUsuario.Name = "lblEditarUsuario";
-            lblEditarUsuario.Size = new Size(126, 30);
-            lblEditarUsuario.TabIndex = 10;
-            lblEditarUsuario.Text = "Editar Usuário";
-            // 
-            // guna2PictureBox1
-            // 
-            guna2PictureBox1.CustomizableEdges = customizableEdges4;
-            guna2PictureBox1.Image = Properties.Resources.logo_oficial;
-            guna2PictureBox1.ImageRotate = 0F;
-            guna2PictureBox1.Location = new Point(453, -36);
-            guna2PictureBox1.Name = "guna2PictureBox1";
-            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            guna2PictureBox1.Size = new Size(343, 218);
-            guna2PictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            guna2PictureBox1.TabIndex = 11;
-            guna2PictureBox1.TabStop = false;
+            btnCriarUsario.BorderRadius = 10;
+            btnCriarUsario.CustomizableEdges = customizableEdges5;
+            btnCriarUsario.DisabledState.BorderColor = Color.DarkGray;
+            btnCriarUsario.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCriarUsario.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCriarUsario.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            btnCriarUsario.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCriarUsario.FillColor = Color.HotPink;
+            btnCriarUsario.FillColor2 = Color.Yellow;
+            btnCriarUsario.Font = new Font("Segoe UI", 9F);
+            btnCriarUsario.ForeColor = Color.Black;
+            btnCriarUsario.Image = Properties.Resources.plus4;
+            btnCriarUsario.ImageAlign = HorizontalAlignment.Left;
+            btnCriarUsario.Location = new Point(1260, 12);
+            btnCriarUsario.Name = "btnCriarUsario";
+            btnCriarUsario.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnCriarUsario.Size = new Size(225, 56);
+            btnCriarUsario.TabIndex = 9;
+            btnCriarUsario.Text = "Criar Usuário";
             // 
             // btnEditarUsuario
             // 
+            btnEditarUsuario.BorderRadius = 10;
+            btnEditarUsuario.CustomizableEdges = customizableEdges3;
             btnEditarUsuario.DisabledState.BorderColor = Color.DarkGray;
             btnEditarUsuario.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEditarUsuario.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnEditarUsuario.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             btnEditarUsuario.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnEditarUsuario.FillColor = Color.Transparent;
+            btnEditarUsuario.FillColor = Color.Aqua;
+            btnEditarUsuario.FillColor2 = Color.Yellow;
             btnEditarUsuario.Font = new Font("Segoe UI", 9F);
-            btnEditarUsuario.ForeColor = Color.White;
-            btnEditarUsuario.Image = Properties.Resources.edit_user;
-            btnEditarUsuario.ImageSize = new Size(100, 100);
-            btnEditarUsuario.Location = new Point(325, 140);
+            btnEditarUsuario.ForeColor = Color.Black;
+            btnEditarUsuario.Image = Properties.Resources.lapis5;
+            btnEditarUsuario.ImageAlign = HorizontalAlignment.Left;
+            btnEditarUsuario.Location = new Point(1260, 88);
             btnEditarUsuario.Name = "btnEditarUsuario";
-            btnEditarUsuario.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            btnEditarUsuario.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnEditarUsuario.Size = new Size(148, 148);
-            btnEditarUsuario.TabIndex = 12;
-            btnEditarUsuario.Click += btnEditarUsuario_Click;
-            // 
-            // btnCriarUsuario
-            // 
-            btnCriarUsuario.DisabledState.BorderColor = Color.DarkGray;
-            btnCriarUsuario.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnCriarUsuario.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnCriarUsuario.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnCriarUsuario.FillColor = Color.Transparent;
-            btnCriarUsuario.Font = new Font("Segoe UI", 9F);
-            btnCriarUsuario.ForeColor = Color.White;
-            btnCriarUsuario.Image = Properties.Resources.add_user;
-            btnCriarUsuario.ImageSize = new Size(100, 100);
-            btnCriarUsuario.Location = new Point(558, 140);
-            btnCriarUsuario.Name = "btnCriarUsuario";
-            btnCriarUsuario.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnCriarUsuario.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnCriarUsuario.Size = new Size(148, 148);
-            btnCriarUsuario.TabIndex = 13;
-            btnCriarUsuario.Click += btnCriarUsuario_Click;
+            btnEditarUsuario.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnEditarUsuario.Size = new Size(225, 56);
+            btnEditarUsuario.TabIndex = 10;
+            btnEditarUsuario.Text = "Editar Usuário";
             // 
             // btnExcluirUsuario
             // 
+            btnExcluirUsuario.BorderRadius = 10;
+            btnExcluirUsuario.CustomizableEdges = customizableEdges1;
             btnExcluirUsuario.DisabledState.BorderColor = Color.DarkGray;
             btnExcluirUsuario.DisabledState.CustomBorderColor = Color.DarkGray;
             btnExcluirUsuario.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnExcluirUsuario.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             btnExcluirUsuario.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnExcluirUsuario.FillColor = Color.Transparent;
+            btnExcluirUsuario.FillColor = Color.Red;
+            btnExcluirUsuario.FillColor2 = Color.Blue;
             btnExcluirUsuario.Font = new Font("Segoe UI", 9F);
-            btnExcluirUsuario.ForeColor = Color.White;
-            btnExcluirUsuario.Image = Properties.Resources.delet_user;
-            btnExcluirUsuario.ImageSize = new Size(100, 100);
-            btnExcluirUsuario.Location = new Point(772, 140);
+            btnExcluirUsuario.ForeColor = Color.Black;
+            btnExcluirUsuario.Image = Properties.Resources.x3;
+            btnExcluirUsuario.ImageAlign = HorizontalAlignment.Left;
+            btnExcluirUsuario.Location = new Point(1260, 165);
             btnExcluirUsuario.Name = "btnExcluirUsuario";
-            btnExcluirUsuario.ShadowDecoration.CustomizableEdges = customizableEdges1;
-            btnExcluirUsuario.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnExcluirUsuario.Size = new Size(148, 148);
-            btnExcluirUsuario.TabIndex = 14;
-            btnExcluirUsuario.Click += btnExcluirUsuario_Click;
+            btnExcluirUsuario.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnExcluirUsuario.Size = new Size(225, 56);
+            btnExcluirUsuario.TabIndex = 11;
+            btnExcluirUsuario.Text = "Excluir Usuário";
             // 
             // frmUsuarios
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1265, 728);
+            ClientSize = new Size(1506, 971);
             Controls.Add(btnExcluirUsuario);
-            Controls.Add(btnCriarUsuario);
             Controls.Add(btnEditarUsuario);
-            Controls.Add(guna2PictureBox1);
-            Controls.Add(lblEditarUsuario);
-            Controls.Add(lblExcluirUsuario);
-            Controls.Add(lblUsário);
-            Controls.Add(btnSair);
+            Controls.Add(btnCriarUsario);
+            Controls.Add(lblTodosUsuarios);
+            Controls.Add(lblTitulo);
             Controls.Add(guna2CustomGradientPanel1);
             Controls.Add(panelAdministrador);
             Controls.Add(panelGerente);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmUsuarios";
             Text = "frmUsuarios";
             Load += frmUsuarios_Load;
@@ -456,7 +433,6 @@
             guna2CustomGradientPanel1.ResumeLayout(false);
             guna2CustomGradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -470,16 +446,13 @@
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView1;
-        private Guna.UI2.WinForms.Guna2CircleButton btnSair;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView2;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView3;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblUsuario;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblEditarUsuario;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblExcluirUsuario;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblUsário;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2CircleButton btnExcluirUsuario;
-        private Guna.UI2.WinForms.Guna2CircleButton btnCriarUsuario;
-        private Guna.UI2.WinForms.Guna2CircleButton btnEditarUsuario;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTodosUsuarios;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
+        private Guna.UI2.WinForms.Guna2GradientButton btnExcluirUsuario;
+        private Guna.UI2.WinForms.Guna2GradientButton btnEditarUsuario;
+        private Guna.UI2.WinForms.Guna2GradientButton btnCriarUsario;
     }
 }

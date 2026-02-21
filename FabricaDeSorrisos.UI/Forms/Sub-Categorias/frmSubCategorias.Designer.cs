@@ -1,6 +1,6 @@
 ﻿namespace FabricaDeSorrisos.UI.Forms
 {
-    partial class frmCategorias
+    partial class frmSubCategorias
     {
         /// <summary>
         /// Required designer variable.
@@ -40,11 +40,11 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             gridCategorias = new Guna.UI2.WinForms.Guna2DataGridView();
+            btnEditarSubCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
+            btnExcluirSubCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
+            btnCriarSubCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
             lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblCategoriasCadastradas = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            btnCriarCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
-            btnEditarCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
-            btnExcluirCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
+            lblSubCategoriasCadastradas = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)gridCategorias).BeginInit();
             SuspendLayout();
             // 
@@ -78,14 +78,14 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             gridCategorias.DefaultCellStyle = dataGridViewCellStyle3;
             gridCategorias.GridColor = Color.FromArgb(231, 229, 255);
-            gridCategorias.Location = new Point(0, 331);
+            gridCategorias.Location = new Point(-3, 317);
             gridCategorias.Margin = new Padding(3, 4, 3, 4);
             gridCategorias.Name = "gridCategorias";
             gridCategorias.RowHeadersVisible = false;
             gridCategorias.RowHeadersWidth = 51;
             gridCategorias.RowTemplate.Height = 25;
-            gridCategorias.Size = new Size(1314, 293);
-            gridCategorias.TabIndex = 18;
+            gridCategorias.Size = new Size(1324, 312);
+            gridCategorias.TabIndex = 24;
             gridCategorias.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             gridCategorias.ThemeStyle.AlternatingRowsStyle.Font = null;
             gridCategorias.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
@@ -108,109 +108,108 @@
             gridCategorias.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             gridCategorias.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
+            // btnEditarSubCategoria
+            // 
+            btnEditarSubCategoria.BorderRadius = 10;
+            btnEditarSubCategoria.CustomizableEdges = customizableEdges5;
+            btnEditarSubCategoria.DisabledState.BorderColor = Color.DarkGray;
+            btnEditarSubCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnEditarSubCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnEditarSubCategoria.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            btnEditarSubCategoria.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnEditarSubCategoria.FillColor = Color.Aqua;
+            btnEditarSubCategoria.FillColor2 = Color.Yellow;
+            btnEditarSubCategoria.Font = new Font("Segoe UI", 9F);
+            btnEditarSubCategoria.ForeColor = Color.Black;
+            btnEditarSubCategoria.Image = Properties.Resources.lapis7;
+            btnEditarSubCategoria.ImageAlign = HorizontalAlignment.Left;
+            btnEditarSubCategoria.Location = new Point(1076, 84);
+            btnEditarSubCategoria.Name = "btnEditarSubCategoria";
+            btnEditarSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnEditarSubCategoria.Size = new Size(225, 56);
+            btnEditarSubCategoria.TabIndex = 25;
+            btnEditarSubCategoria.Text = "Editar Sub-Categoria";
+            // 
+            // btnExcluirSubCategoria
+            // 
+            btnExcluirSubCategoria.BorderRadius = 10;
+            btnExcluirSubCategoria.CustomizableEdges = customizableEdges3;
+            btnExcluirSubCategoria.DisabledState.BorderColor = Color.DarkGray;
+            btnExcluirSubCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnExcluirSubCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnExcluirSubCategoria.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            btnExcluirSubCategoria.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnExcluirSubCategoria.FillColor = Color.Red;
+            btnExcluirSubCategoria.FillColor2 = Color.Blue;
+            btnExcluirSubCategoria.Font = new Font("Segoe UI", 9F);
+            btnExcluirSubCategoria.ForeColor = Color.Black;
+            btnExcluirSubCategoria.Image = Properties.Resources.x5;
+            btnExcluirSubCategoria.ImageAlign = HorizontalAlignment.Left;
+            btnExcluirSubCategoria.Location = new Point(1076, 156);
+            btnExcluirSubCategoria.Name = "btnExcluirSubCategoria";
+            btnExcluirSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnExcluirSubCategoria.Size = new Size(225, 56);
+            btnExcluirSubCategoria.TabIndex = 26;
+            btnExcluirSubCategoria.Text = "Excluir Categoria";
+            // 
+            // btnCriarSubCategoria
+            // 
+            btnCriarSubCategoria.BorderRadius = 10;
+            btnCriarSubCategoria.CustomizableEdges = customizableEdges1;
+            btnCriarSubCategoria.DisabledState.BorderColor = Color.DarkGray;
+            btnCriarSubCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnCriarSubCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnCriarSubCategoria.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            btnCriarSubCategoria.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnCriarSubCategoria.FillColor = Color.HotPink;
+            btnCriarSubCategoria.FillColor2 = Color.Yellow;
+            btnCriarSubCategoria.Font = new Font("Segoe UI", 9F);
+            btnCriarSubCategoria.ForeColor = Color.Black;
+            btnCriarSubCategoria.Image = Properties.Resources.plus5;
+            btnCriarSubCategoria.ImageAlign = HorizontalAlignment.Left;
+            btnCriarSubCategoria.Location = new Point(1076, 12);
+            btnCriarSubCategoria.Name = "btnCriarSubCategoria";
+            btnCriarSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnCriarSubCategoria.Size = new Size(225, 56);
+            btnCriarSubCategoria.TabIndex = 27;
+            btnCriarSubCategoria.Text = "Criar Sub-Categoria";
+            // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
             lblTitulo.Location = new Point(12, 12);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(431, 47);
-            lblTitulo.TabIndex = 19;
-            lblTitulo.Text = "Gerenciamento de Categorias";
+            lblTitulo.Size = new Size(500, 47);
+            lblTitulo.TabIndex = 28;
+            lblTitulo.Text = "Gerenciamento de Sub-Categorias";
             // 
-            // lblCategoriasCadastradas
+            // lblSubCategoriasCadastradas
             // 
-            lblCategoriasCadastradas.BackColor = Color.Transparent;
-            lblCategoriasCadastradas.Font = new Font("Segoe UI", 15F);
-            lblCategoriasCadastradas.ForeColor = Color.Black;
-            lblCategoriasCadastradas.Location = new Point(0, 331);
-            lblCategoriasCadastradas.Name = "lblCategoriasCadastradas";
-            lblCategoriasCadastradas.Size = new Size(264, 37);
-            lblCategoriasCadastradas.TabIndex = 20;
-            lblCategoriasCadastradas.Text = "Categorias Cadastradas";
+            lblSubCategoriasCadastradas.BackColor = Color.Transparent;
+            lblSubCategoriasCadastradas.Font = new Font("Segoe UI", 15F);
+            lblSubCategoriasCadastradas.Location = new Point(2, 274);
+            lblSubCategoriasCadastradas.Name = "lblSubCategoriasCadastradas";
+            lblSubCategoriasCadastradas.Size = new Size(316, 37);
+            lblSubCategoriasCadastradas.TabIndex = 29;
+            lblSubCategoriasCadastradas.Text = "Sub-Categorias Cadastradas";
             // 
-            // btnCriarCategoria
-            // 
-            btnCriarCategoria.BorderRadius = 10;
-            btnCriarCategoria.CustomizableEdges = customizableEdges5;
-            btnCriarCategoria.DisabledState.BorderColor = Color.DarkGray;
-            btnCriarCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnCriarCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnCriarCategoria.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            btnCriarCategoria.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnCriarCategoria.FillColor = Color.HotPink;
-            btnCriarCategoria.FillColor2 = Color.Yellow;
-            btnCriarCategoria.Font = new Font("Segoe UI", 9F);
-            btnCriarCategoria.ForeColor = Color.Black;
-            btnCriarCategoria.Image = Properties.Resources.plus1;
-            btnCriarCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnCriarCategoria.Location = new Point(1076, 22);
-            btnCriarCategoria.Name = "btnCriarCategoria";
-            btnCriarCategoria.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnCriarCategoria.Size = new Size(225, 56);
-            btnCriarCategoria.TabIndex = 21;
-            btnCriarCategoria.Text = "Criar Categoria";
-            // 
-            // btnEditarCategoria
-            // 
-            btnEditarCategoria.BorderRadius = 10;
-            btnEditarCategoria.CustomizableEdges = customizableEdges3;
-            btnEditarCategoria.DisabledState.BorderColor = Color.DarkGray;
-            btnEditarCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnEditarCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnEditarCategoria.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            btnEditarCategoria.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnEditarCategoria.FillColor = Color.Aqua;
-            btnEditarCategoria.FillColor2 = Color.Yellow;
-            btnEditarCategoria.Font = new Font("Segoe UI", 9F);
-            btnEditarCategoria.ForeColor = Color.Black;
-            btnEditarCategoria.Image = Properties.Resources.lapis2;
-            btnEditarCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnEditarCategoria.Location = new Point(1076, 97);
-            btnEditarCategoria.Name = "btnEditarCategoria";
-            btnEditarCategoria.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnEditarCategoria.Size = new Size(225, 56);
-            btnEditarCategoria.TabIndex = 22;
-            btnEditarCategoria.Text = "Editar Categoria";
-            // 
-            // btnExcluirCategoria
-            // 
-            btnExcluirCategoria.BorderRadius = 10;
-            btnExcluirCategoria.CustomizableEdges = customizableEdges1;
-            btnExcluirCategoria.DisabledState.BorderColor = Color.DarkGray;
-            btnExcluirCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnExcluirCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnExcluirCategoria.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            btnExcluirCategoria.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnExcluirCategoria.FillColor = Color.Red;
-            btnExcluirCategoria.FillColor2 = Color.Blue;
-            btnExcluirCategoria.Font = new Font("Segoe UI", 9F);
-            btnExcluirCategoria.ForeColor = Color.Black;
-            btnExcluirCategoria.Image = Properties.Resources.x2;
-            btnExcluirCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnExcluirCategoria.Location = new Point(1076, 170);
-            btnExcluirCategoria.Name = "btnExcluirCategoria";
-            btnExcluirCategoria.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnExcluirCategoria.Size = new Size(225, 56);
-            btnExcluirCategoria.TabIndex = 23;
-            btnExcluirCategoria.Text = "Excluir Categoria";
-            // 
-            // frmCategorias
+            // frmSubCategorias
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
             ClientSize = new Size(1313, 629);
-            Controls.Add(btnExcluirCategoria);
-            Controls.Add(btnEditarCategoria);
-            Controls.Add(btnCriarCategoria);
-            Controls.Add(lblCategoriasCadastradas);
+            Controls.Add(lblSubCategoriasCadastradas);
             Controls.Add(lblTitulo);
+            Controls.Add(btnCriarSubCategoria);
+            Controls.Add(btnExcluirSubCategoria);
+            Controls.Add(btnEditarSubCategoria);
             Controls.Add(gridCategorias);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
-            Name = "frmCategorias";
-            Text = "frmCategorias";
+            Name = "frmSubCategorias";
+            Text = "frmSubCategorias";
             ((System.ComponentModel.ISupportInitialize)gridCategorias).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -220,10 +219,10 @@
 
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2DataGridView gridCategorias;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblSubCategoriasCadastradas;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblCategoriasCadastradas;
-        private Guna.UI2.WinForms.Guna2GradientButton btnCriarCategoria;
-        private Guna.UI2.WinForms.Guna2GradientButton btnExcluirCategoria;
-        private Guna.UI2.WinForms.Guna2GradientButton btnEditarCategoria;
+        private Guna.UI2.WinForms.Guna2GradientButton btnCriarSubCategoria;
+        private Guna.UI2.WinForms.Guna2GradientButton btnExcluirSubCategoria;
+        private Guna.UI2.WinForms.Guna2GradientButton btnEditarSubCategoria;
     }
 }

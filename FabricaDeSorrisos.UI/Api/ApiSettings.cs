@@ -1,8 +1,9 @@
-﻿namespace FabricaDeSorrisos.UI.Api
+namespace FabricaDeSorrisos.UI.Api
 {
     public static class ApiSettings
     {
-        // Altere para a URL real da sua API
-        public static string BaseUrl { get; } = "https://localhost:7244/api/";
+        public static string BaseUrl { get; } = "http://localhost:5259/api/";
+        public static string WebBaseUrl { get; } = "http://localhost:5179";
+        public static string WebBaseUrlHttps { get; } = "https://localhost:5179";
     }
 }

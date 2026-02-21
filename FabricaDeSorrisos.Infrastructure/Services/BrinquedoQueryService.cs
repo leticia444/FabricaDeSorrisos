@@ -1,4 +1,4 @@
-﻿using FabricaDeSorrisos.Application.Abstractions.Services;
+using FabricaDeSorrisos.Application.Abstractions.Services;
 using FabricaDeSorrisos.Application.DTOs;
 using FabricaDeSorrisos.Application.Filters;
 using FabricaDeSorrisos.Infrastructure.Persistence;
@@ -20,11 +20,11 @@ public class BrinquedoQueryService : IBrinquedoQueryService
         // 1. Começa a query base
         var query = _context.Brinquedos.AsNoTracking().AsQueryable();
 
-        // --- ADICIONE ISSO: REGRA DE OURO ---
-        // Só mostra se estiver Ativo. 
-        // Opcional: && b.Estoque > 0 (se quiser esconder sem estoque automaticamente)
-        query = query.Where(b => b.Ativo == true);
-        // ------------------------------------
+        // Exibe apenas ativos por padrão; admins podem incluir inativos via filtro
+        if (!filter.IncluirInativos)
+        {
+            query = query.Where(b => b.Ativo == true);
+        }
 
         // 2. Aplica os filtros se eles existirem (Dinâmico)
         if (!string.IsNullOrWhiteSpace(filter.TermoBusca))
@@ -55,9 +55,11 @@ public class BrinquedoQueryService : IBrinquedoQueryService
             {
                 Id = b.Id,
                 Nome = b.Nome,
+                Descricao = b.Descricao,
                 Preco = b.Preco,
                 ImagemUrl = b.ImagemUrl,
                 Estoque = b.Estoque,
+                Ativo = b.Ativo,
                 Marca = b.Marca.Nome,
                 Categoria = b.Categoria.Nome,
                 SubCategoria = b.SubCategoria != null ? b.SubCategoria.Nome : "",
@@ -89,6 +91,7 @@ public class BrinquedoQueryService : IBrinquedoQueryService
                 Preco = b.Preco,
                 ImagemUrl = b.ImagemUrl,
                 Estoque = b.Estoque,
+                Ativo = b.Ativo,
                 Marca = b.Marca.Nome,
                 Categoria = b.Categoria.Nome,
                 SubCategoria = b.SubCategoria != null ? b.SubCategoria.Nome : "",

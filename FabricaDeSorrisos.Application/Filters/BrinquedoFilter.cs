@@ -1,4 +1,4 @@
-﻿using FabricaDeSorrisos.Application.DTOs;
+using FabricaDeSorrisos.Application.DTOs;
 
 namespace FabricaDeSorrisos.Application.Filters;
 
@@ -17,4 +17,7 @@ public class BrinquedoFilter : PagingParams
     // Ordenação (Preço, Nome, Recentes)
     public string SortBy { get; set; } = "Nome"; // Padrão
     public bool IsDesc { get; set; } = false;
+
+    // Administração: incluir também itens inativos
+    public bool IncluirInativos { get; set; } = false;
 }

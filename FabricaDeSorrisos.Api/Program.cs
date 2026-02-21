@@ -3,8 +3,16 @@ using FabricaDeSorrisos.Infrastructure.Identity;
 using FabricaDeSorrisos.Infrastructure.Persistence;
 using FabricaDeSorrisos.Infrastructure.Persistence.Seed;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var configuredUrls = builder.Configuration["ASPNETCORE_URLS"];
+if (string.IsNullOrWhiteSpace(configuredUrls))
+{
+    builder.WebHost.UseUrls("http://localhost:5259");
+}
 
 // 1. Services (Controllers, Swagger)
 builder.Services.AddControllers();
@@ -38,10 +46,23 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 // CORS precisa vir antes de Auth
 app.UseCors("AllowWeb");
+
+// Servir arquivos estáticos do projeto Web (wwwroot) como fallback em /static
+try
+{
+    var webRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "FabricaDeSorrisos.Web", "wwwroot"));
+    if (Directory.Exists(webRoot))
+    {
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(webRoot),
+            RequestPath = "/static"
+        });
+    }
+}
+catch { }
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -56,12 +77,17 @@ using (var scope = app.Services.CreateScope())
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var context = services.GetRequiredService<AppDbContext>();
 
+        var startLogger = services.GetRequiredService<ILogger<Program>>();
+        DbConnection conn = context.Database.GetDbConnection();
+        startLogger.LogInformation("Conectando ao banco: {DataSource} / {Database}", conn.DataSource, conn.Database);
+
+        await context.Database.MigrateAsync();
         await DatabaseSeeder.SeedAsync(userManager, roleManager, context);
     }
     catch (Exception ex)
     {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Erro ao executar o seed do banco de dados.");
+        var errLogger = services.GetRequiredService<ILogger<Program>>();
+        errLogger.LogError(ex, "Erro ao executar o seed do banco de dados.");
     }
 }
 
