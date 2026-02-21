@@ -1,10 +1,23 @@
-﻿/* --- CABEÇALHO --- */
+﻿/* --- CONFIGURAÇÃO ESTRUTURAL --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-main {
+    flex: 1 0 auto;
+    padding-top: 30px;
+}
+
+/* --- CABEÇALHO --- */
 header.fixed-top {
     z-index: 1030;
 }
 
-/* Logo aumentada conforme solicitado */
-.nav-logo {
+/* Logo do topo independente */
+header .nav-logo {
     max-height: 85px !important;
     transition: 0.3s;
 }
@@ -47,7 +60,6 @@ header.fixed-top {
         font-weight: 700;
     }
 
-/* Badge Área Admin */
 .badge-admin-header {
     background-color: #ffc107;
     color: #212529;
@@ -58,11 +70,16 @@ header.fixed-top {
     font-weight: bold;
 }
 
-/* --- CARROSSEL --- */
+/* --- CARROSSEL FULL WIDTH (100% da tela) --- */
 #carouselHome {
-    margin-top: 175px;
-    width: 100%;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     overflow: hidden;
+    margin-bottom: 3rem;
 }
 
 .carousel-item img {
@@ -73,24 +90,22 @@ header.fixed-top {
 
 /* --- CONTEÚDO --- */
 body {
-    padding-top: 160px; /* Ajuste para o conteúdo não ficar sob a navbar */
+    padding-top: 160px;
 }
 
-.content-main {
-    padding-top: 30px;
-    min-height: 40vh;
-}
-
-/* --- RODAPÉ --- */
+/* --- RODAPÉ (FOOTER) --- */
 .footer-fabrica {
+    flex-shrink: 0;
     background-color: #F66CD8;
-    padding: 30px 0 0 0;
-    margin-top: 50px;
+    padding: 30px 0 10px 0;
+    margin-top: auto;
     width: 100%;
+    margin-bottom: 0 !important;
 }
 
 .footer-logo {
     max-width: 250px;
+    height: auto;
 }
 
 .slogan-footer h3 {
@@ -113,7 +128,7 @@ body {
         opacity: 0.7;
     }
 
-/* --- CHAT WIDGET (CSS movido para cá) --- */
+/* --- CHAT WIDGET --- */
 .btn-chat-float {
     position: fixed;
     bottom: 30px;
@@ -125,13 +140,7 @@ body {
     color: white;
     border: none;
     z-index: 9999;
-    transition: transform 0.2s;
 }
-
-    .btn-chat-float:hover {
-        transform: scale(1.1);
-        background-color: #0b5ed7;
-    }
 
 .chat-window {
     position: fixed;
@@ -141,42 +150,7 @@ body {
     z-index: 9999;
     border-radius: 15px;
     overflow: hidden;
-    border: none;
 }
-
-.msg-row {
-    display: flex;
-    margin-bottom: 10px;
-}
-
-.msg-bala {
-    max-width: 80%;
-    padding: 8px 12px;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    position: relative;
-}
-
-.msg-me {
-    justify-content: flex-end;
-}
-
-    .msg-me .msg-bala {
-        background-color: #d1e7dd;
-        color: #0f5132;
-        border-bottom-right-radius: 2px;
-    }
-
-.msg-admin {
-    justify-content: flex-start;
-}
-
-    .msg-admin .msg-bala {
-        background-color: #fff;
-        border: 1px solid #dee2e6;
-        color: #444;
-        border-bottom-left-radius: 2px;
-    }
 
 /* --- AJUSTES MOBILE --- */
 @media (max-width: 768px) {
@@ -185,10 +159,6 @@ body {
     }
 
     #carouselHome {
-        margin-top: 250px;
-    }
-
-    .slogan-footer h3 {
-        font-size: 1.1rem;
+        max-height: 300px;
     }
 }
