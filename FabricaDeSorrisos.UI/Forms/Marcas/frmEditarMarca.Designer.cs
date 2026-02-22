@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -39,7 +37,6 @@
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
             btnSalvarEdição = new Guna.UI2.WinForms.Guna2Button();
-            cbEdcolherMarca = new Guna.UI2.WinForms.Guna2ComboBox();
             txtEditarMarca = new Guna.UI2.WinForms.Guna2TextBox();
             lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             SuspendLayout();
@@ -60,19 +57,18 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(744, 9);
-            btnFechar.Margin = new Padding(3, 2, 3, 2);
+            btnFechar.Location = new Point(850, 12);
             btnFechar.Name = "btnFechar";
-            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges5;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnFechar.Size = new Size(38, 36);
+            btnFechar.Size = new Size(43, 48);
             btnFechar.TabIndex = 0;
             btnFechar.Text = "X";
             // 
             // btnSalvarEdição
             // 
             btnSalvarEdição.BorderRadius = 10;
-            btnSalvarEdição.CustomizableEdges = customizableEdges5;
+            btnSalvarEdição.CustomizableEdges = customizableEdges3;
             btnSalvarEdição.DisabledState.BorderColor = Color.DarkGray;
             btnSalvarEdição.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSalvarEdição.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -80,32 +76,12 @@
             btnSalvarEdição.FillColor = Color.DeepSkyBlue;
             btnSalvarEdição.Font = new Font("Segoe UI", 9F);
             btnSalvarEdição.ForeColor = Color.Black;
-            btnSalvarEdição.Location = new Point(256, 224);
-            btnSalvarEdição.Margin = new Padding(3, 2, 3, 2);
+            btnSalvarEdição.Location = new Point(293, 213);
             btnSalvarEdição.Name = "btnSalvarEdição";
-            btnSalvarEdição.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnSalvarEdição.Size = new Size(197, 42);
+            btnSalvarEdição.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnSalvarEdição.Size = new Size(225, 56);
             btnSalvarEdição.TabIndex = 1;
             btnSalvarEdição.Text = "Salvar Edição";
-            // 
-            // cbEdcolherMarca
-            // 
-            cbEdcolherMarca.BackColor = Color.Transparent;
-            cbEdcolherMarca.BorderRadius = 10;
-            cbEdcolherMarca.CustomizableEdges = customizableEdges3;
-            cbEdcolherMarca.DrawMode = DrawMode.OwnerDrawFixed;
-            cbEdcolherMarca.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbEdcolherMarca.FocusedColor = Color.FromArgb(94, 148, 255);
-            cbEdcolherMarca.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            cbEdcolherMarca.Font = new Font("Segoe UI", 10F);
-            cbEdcolherMarca.ForeColor = Color.FromArgb(68, 88, 112);
-            cbEdcolherMarca.ItemHeight = 30;
-            cbEdcolherMarca.Location = new Point(253, 104);
-            cbEdcolherMarca.Margin = new Padding(3, 2, 3, 2);
-            cbEdcolherMarca.Name = "cbEdcolherMarca";
-            cbEdcolherMarca.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            cbEdcolherMarca.Size = new Size(201, 36);
-            cbEdcolherMarca.TabIndex = 2;
             // 
             // txtEditarMarca
             // 
@@ -119,37 +95,37 @@
             txtEditarMarca.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtEditarMarca.Font = new Font("Segoe UI", 9F);
             txtEditarMarca.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEditarMarca.Location = new Point(236, 158);
+            txtEditarMarca.Location = new Point(265, 118);
+            txtEditarMarca.Margin = new Padding(3, 5, 3, 5);
             txtEditarMarca.Name = "txtEditarMarca";
             txtEditarMarca.PlaceholderText = "Digite um Novo Nome";
             txtEditarMarca.SelectedText = "";
             txtEditarMarca.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtEditarMarca.Size = new Size(250, 45);
+            txtEditarMarca.Size = new Size(286, 60);
             txtEditarMarca.TabIndex = 3;
             // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(256, 9);
-            lblTitulo.Margin = new Padding(3, 2, 3, 2);
+            lblTitulo.Location = new Point(293, 12);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(202, 39);
+            lblTitulo.Size = new Size(247, 47);
             lblTitulo.TabIndex = 4;
             lblTitulo.Text = "Edite uma Marca";
             // 
             // frmEditarMarca
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(788, 338);
+            ClientSize = new Size(901, 451);
             Controls.Add(lblTitulo);
             Controls.Add(txtEditarMarca);
-            Controls.Add(cbEdcolherMarca);
             Controls.Add(btnSalvarEdição);
             Controls.Add(btnFechar);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmEditarMarca";
             Text = "frmEditarMarca";
             ResumeLayout(false);
@@ -161,7 +137,6 @@
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
         private Guna.UI2.WinForms.Guna2TextBox txtEditarMarca;
-        private Guna.UI2.WinForms.Guna2ComboBox cbEdcolherMarca;
         private Guna.UI2.WinForms.Guna2Button btnSalvarEdição;
         private Guna.UI2.WinForms.Guna2CircleButton btnFechar;
     }

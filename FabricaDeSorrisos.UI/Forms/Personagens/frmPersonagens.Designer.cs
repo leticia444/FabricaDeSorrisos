@@ -1,4 +1,4 @@
-﻿namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms
 {
     partial class frmPersonagens
     {
@@ -67,8 +67,10 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvPersonagem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvPersonagem.ColumnHeadersHeight = 4;
+            dgvPersonagem.ColumnHeadersHeight = 36;
             dgvPersonagem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvPersonagem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPersonagem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -98,7 +100,7 @@
             dgvPersonagem.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             dgvPersonagem.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             dgvPersonagem.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvPersonagem.ThemeStyle.HeaderStyle.Height = 4;
+            dgvPersonagem.ThemeStyle.HeaderStyle.Height = 36;
             dgvPersonagem.ThemeStyle.ReadOnly = false;
             dgvPersonagem.ThemeStyle.RowsStyle.BackColor = Color.White;
             dgvPersonagem.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -118,6 +120,7 @@
             lblTitulo.Size = new Size(462, 47);
             lblTitulo.TabIndex = 24;
             lblTitulo.Text = "Gerenciamento de Personagens";
+            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // lblPersonagensCadastrados
             // 
@@ -150,6 +153,7 @@
             btnCriarPersonagem.Size = new Size(225, 56);
             btnCriarPersonagem.TabIndex = 26;
             btnCriarPersonagem.Text = "Criar Personagem";
+            btnCriarPersonagem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnEditarPersonagem
             // 
@@ -172,6 +176,7 @@
             btnEditarPersonagem.Size = new Size(225, 56);
             btnEditarPersonagem.TabIndex = 27;
             btnEditarPersonagem.Text = "Editar Personagem";
+            btnEditarPersonagem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnExcluirPersonagem
             // 
@@ -194,11 +199,12 @@
             btnExcluirPersonagem.Size = new Size(225, 56);
             btnExcluirPersonagem.TabIndex = 28;
             btnExcluirPersonagem.Text = "Excluir Personagem";
+            btnExcluirPersonagem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // frmPersonagens
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
             ClientSize = new Size(1446, 681);
             Controls.Add(btnExcluirPersonagem);

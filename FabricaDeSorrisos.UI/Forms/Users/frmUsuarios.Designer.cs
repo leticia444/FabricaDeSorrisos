@@ -1,4 +1,4 @@
-﻿namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms
 {
     partial class frmUsuarios
     {
@@ -86,6 +86,7 @@
             panelGerente.Controls.Add(guna2DataGridView1);
             panelGerente.Controls.Add(lblGerentes);
             panelGerente.CustomizableEdges = customizableEdges11;
+            panelGerente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panelGerente.Location = new Point(523, 477);
             panelGerente.Margin = new Padding(3, 4, 3, 4);
             panelGerente.Name = "panelGerente";
@@ -105,8 +106,10 @@
             dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            guna2DataGridView1.ColumnHeadersHeight = 4;
+            guna2DataGridView1.ColumnHeadersHeight = 36;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = Color.White;
             dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
@@ -136,7 +139,7 @@
             guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 4;
+            guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 36;
             guna2DataGridView1.ThemeStyle.ReadOnly = false;
             guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -162,6 +165,7 @@
             panelAdministrador.Controls.Add(guna2DataGridView3);
             panelAdministrador.Controls.Add(lblAdministradores);
             panelAdministrador.CustomizableEdges = customizableEdges9;
+            panelAdministrador.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             panelAdministrador.Location = new Point(1035, 477);
             panelAdministrador.Margin = new Padding(3, 4, 3, 4);
             panelAdministrador.Name = "panelAdministrador";
@@ -181,8 +185,10 @@
             dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
             guna2DataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            guna2DataGridView3.ColumnHeadersHeight = 4;
+            guna2DataGridView3.ColumnHeadersHeight = 36;
             guna2DataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            guna2DataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            guna2DataGridView3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.White;
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
@@ -212,7 +218,7 @@
             guna2DataGridView3.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             guna2DataGridView3.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             guna2DataGridView3.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView3.ThemeStyle.HeaderStyle.Height = 4;
+            guna2DataGridView3.ThemeStyle.HeaderStyle.Height = 36;
             guna2DataGridView3.ThemeStyle.ReadOnly = false;
             guna2DataGridView3.ThemeStyle.RowsStyle.BackColor = Color.White;
             guna2DataGridView3.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -238,6 +244,7 @@
             guna2CustomGradientPanel1.Controls.Add(guna2DataGridView2);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel1);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges7;
+            guna2CustomGradientPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             guna2CustomGradientPanel1.Location = new Point(14, 477);
             guna2CustomGradientPanel1.Margin = new Padding(3, 4, 3, 4);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
@@ -257,8 +264,10 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             guna2DataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            guna2DataGridView2.ColumnHeadersHeight = 4;
+            guna2DataGridView2.ColumnHeadersHeight = 36;
             guna2DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            guna2DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            guna2DataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -288,7 +297,7 @@
             guna2DataGridView2.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             guna2DataGridView2.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             guna2DataGridView2.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView2.ThemeStyle.HeaderStyle.Height = 4;
+            guna2DataGridView2.ThemeStyle.HeaderStyle.Height = 36;
             guna2DataGridView2.ThemeStyle.ReadOnly = false;
             guna2DataGridView2.ThemeStyle.RowsStyle.BackColor = Color.White;
             guna2DataGridView2.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -328,6 +337,7 @@
             lblTitulo.Size = new Size(403, 47);
             lblTitulo.TabIndex = 7;
             lblTitulo.Text = "Gerenciamento de Usuários";
+            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // lblTodosUsuarios
             // 
@@ -338,6 +348,7 @@
             lblTodosUsuarios.Size = new Size(353, 37);
             lblTodosUsuarios.TabIndex = 8;
             lblTodosUsuarios.Text = "Todos os Usuários Cadastrados";
+            lblTodosUsuarios.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // btnCriarUsario
             // 
@@ -360,6 +371,7 @@
             btnCriarUsario.Size = new Size(225, 56);
             btnCriarUsario.TabIndex = 9;
             btnCriarUsario.Text = "Criar Usuário";
+            btnCriarUsario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnEditarUsuario
             // 
@@ -382,6 +394,7 @@
             btnEditarUsuario.Size = new Size(225, 56);
             btnEditarUsuario.TabIndex = 10;
             btnEditarUsuario.Text = "Editar Usuário";
+            btnEditarUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnExcluirUsuario
             // 
@@ -404,11 +417,12 @@
             btnExcluirUsuario.Size = new Size(225, 56);
             btnExcluirUsuario.TabIndex = 11;
             btnExcluirUsuario.Text = "Excluir Usuário";
+            btnExcluirUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // frmUsuarios
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
             ClientSize = new Size(1506, 971);
             Controls.Add(btnExcluirUsuario);

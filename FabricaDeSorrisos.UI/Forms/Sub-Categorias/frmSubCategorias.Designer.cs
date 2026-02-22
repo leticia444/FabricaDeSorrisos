@@ -1,4 +1,4 @@
-﻿namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms
 {
     partial class frmSubCategorias
     {
@@ -67,8 +67,10 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             gridCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            gridCategorias.ColumnHeadersHeight = 4;
+            gridCategorias.ColumnHeadersHeight = 36;
             gridCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            gridCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridCategorias.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -98,7 +100,7 @@
             gridCategorias.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             gridCategorias.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             gridCategorias.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            gridCategorias.ThemeStyle.HeaderStyle.Height = 4;
+            gridCategorias.ThemeStyle.HeaderStyle.Height = 36;
             gridCategorias.ThemeStyle.ReadOnly = false;
             gridCategorias.ThemeStyle.RowsStyle.BackColor = Color.White;
             gridCategorias.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -129,6 +131,7 @@
             btnEditarSubCategoria.Size = new Size(225, 56);
             btnEditarSubCategoria.TabIndex = 25;
             btnEditarSubCategoria.Text = "Editar Sub-Categoria";
+            btnEditarSubCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnExcluirSubCategoria
             // 
@@ -151,6 +154,7 @@
             btnExcluirSubCategoria.Size = new Size(225, 56);
             btnExcluirSubCategoria.TabIndex = 26;
             btnExcluirSubCategoria.Text = "Excluir Categoria";
+            btnExcluirSubCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnCriarSubCategoria
             // 
@@ -173,6 +177,7 @@
             btnCriarSubCategoria.Size = new Size(225, 56);
             btnCriarSubCategoria.TabIndex = 27;
             btnCriarSubCategoria.Text = "Criar Sub-Categoria";
+            btnCriarSubCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // lblTitulo
             // 
@@ -183,6 +188,7 @@
             lblTitulo.Size = new Size(500, 47);
             lblTitulo.TabIndex = 28;
             lblTitulo.Text = "Gerenciamento de Sub-Categorias";
+            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // lblSubCategoriasCadastradas
             // 
@@ -196,8 +202,8 @@
             // 
             // frmSubCategorias
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
             ClientSize = new Size(1313, 629);
             Controls.Add(lblSubCategoriasCadastradas);

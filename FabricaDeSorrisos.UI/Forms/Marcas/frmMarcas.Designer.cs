@@ -1,4 +1,4 @@
-﻿namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms
 {
     partial class frmMarcas
     {
@@ -67,8 +67,10 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            guna2DataGridView1.ColumnHeadersHeight = 4;
+            guna2DataGridView1.ColumnHeadersHeight = 36;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -78,7 +80,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(-6, 308);
+            guna2DataGridView1.Location = new Point(0, 360);
             guna2DataGridView1.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
@@ -98,7 +100,7 @@
             guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             guna2DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             guna2DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 4;
+            guna2DataGridView1.ThemeStyle.HeaderStyle.Height = 36;
             guna2DataGridView1.ThemeStyle.ReadOnly = false;
             guna2DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -117,12 +119,13 @@
             guna2HtmlLabel1.Size = new Size(382, 47);
             guna2HtmlLabel1.TabIndex = 27;
             guna2HtmlLabel1.Text = "Gerenciamento de Marcas";
+            guna2HtmlLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // guna2HtmlLabel2
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 15F);
-            guna2HtmlLabel2.Location = new Point(3, 308);
+            guna2HtmlLabel2.Location = new Point(3, 320);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(226, 37);
             guna2HtmlLabel2.TabIndex = 28;
@@ -149,6 +152,7 @@
             btnCriarMarca.Size = new Size(225, 56);
             btnCriarMarca.TabIndex = 29;
             btnCriarMarca.Text = "Criar Marca";
+            btnCriarMarca.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnEditarMarca
             // 
@@ -171,6 +175,7 @@
             btnEditarMarca.Size = new Size(225, 56);
             btnEditarMarca.TabIndex = 30;
             btnEditarMarca.Text = "Editar Marca";
+            btnEditarMarca.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnExcluirMarca
             // 
@@ -193,11 +198,12 @@
             btnExcluirMarca.Size = new Size(225, 56);
             btnExcluirMarca.TabIndex = 31;
             btnExcluirMarca.Text = "Excluir Marca";
+            btnExcluirMarca.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // frmMarcas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
             ClientSize = new Size(1313, 629);
             Controls.Add(btnExcluirMarca);

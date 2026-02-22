@@ -48,12 +48,13 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         var destaques = await _brinquedoRepo.GetAllAsync();
+        var destaquesAtivos = destaques.Where(b => b.Ativo).ToList();
 
         var viewModel = new CatalogViewModel
         {
             Produtos = new PagedResult<BrinquedoDto>
             {
-                Items = destaques.Take(6).Select(b => new BrinquedoDto
+                Items = destaquesAtivos.Take(6).Select(b => new BrinquedoDto
                 {
                     Id = b.Id,
                     Nome = b.Nome,

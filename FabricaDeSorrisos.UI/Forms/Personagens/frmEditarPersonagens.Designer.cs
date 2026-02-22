@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
@@ -41,7 +39,6 @@
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
             txtNomePersonagem = new Guna.UI2.WinForms.Guna2TextBox();
             lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            cbEscolherPersonagem = new Guna.UI2.WinForms.Guna2ComboBox();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -54,7 +51,7 @@
             // btnConfirmarEdição
             // 
             btnConfirmarEdição.BorderRadius = 10;
-            btnConfirmarEdição.CustomizableEdges = customizableEdges6;
+            btnConfirmarEdição.CustomizableEdges = customizableEdges4;
             btnConfirmarEdição.DisabledState.BorderColor = Color.DarkGray;
             btnConfirmarEdição.DisabledState.CustomBorderColor = Color.DarkGray;
             btnConfirmarEdição.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -62,11 +59,10 @@
             btnConfirmarEdição.FillColor = Color.DeepSkyBlue;
             btnConfirmarEdição.Font = new Font("Segoe UI", 9F);
             btnConfirmarEdição.ForeColor = Color.Black;
-            btnConfirmarEdição.Location = new Point(291, 221);
-            btnConfirmarEdição.Margin = new Padding(3, 2, 3, 2);
+            btnConfirmarEdição.Location = new Point(326, 241);
             btnConfirmarEdição.Name = "btnConfirmarEdição";
-            btnConfirmarEdição.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            btnConfirmarEdição.Size = new Size(197, 42);
+            btnConfirmarEdição.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            btnConfirmarEdição.Size = new Size(225, 56);
             btnConfirmarEdição.TabIndex = 0;
             btnConfirmarEdição.Text = "Confirmar Edição";
             // 
@@ -79,19 +75,18 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(738, 9);
-            btnFechar.Margin = new Padding(3, 2, 3, 2);
+            btnFechar.Location = new Point(843, 12);
             btnFechar.Name = "btnFechar";
-            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges3;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnFechar.Size = new Size(38, 36);
+            btnFechar.Size = new Size(43, 48);
             btnFechar.TabIndex = 1;
             btnFechar.Text = "X";
             // 
             // txtNomePersonagem
             // 
             txtNomePersonagem.BorderRadius = 10;
-            txtNomePersonagem.CustomizableEdges = customizableEdges3;
+            txtNomePersonagem.CustomizableEdges = customizableEdges1;
             txtNomePersonagem.DefaultText = "";
             txtNomePersonagem.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtNomePersonagem.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -100,58 +95,36 @@
             txtNomePersonagem.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNomePersonagem.Font = new Font("Segoe UI", 9F);
             txtNomePersonagem.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNomePersonagem.Location = new Point(259, 136);
+            txtNomePersonagem.Location = new Point(289, 127);
+            txtNomePersonagem.Margin = new Padding(3, 5, 3, 5);
             txtNomePersonagem.Name = "txtNomePersonagem";
             txtNomePersonagem.PlaceholderText = "Digite o novo Nome para o Personagem";
             txtNomePersonagem.SelectedText = "";
-            txtNomePersonagem.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtNomePersonagem.Size = new Size(267, 45);
+            txtNomePersonagem.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtNomePersonagem.Size = new Size(305, 60);
             txtNomePersonagem.TabIndex = 2;
             // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(263, 9);
-            lblTitulo.Margin = new Padding(3, 2, 3, 2);
+            lblTitulo.Location = new Point(301, 12);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(262, 39);
+            lblTitulo.Size = new Size(319, 47);
             lblTitulo.TabIndex = 3;
             lblTitulo.Text = "Edite um Personagem";
             // 
-            // cbEscolherPersonagem
-            // 
-            cbEscolherPersonagem.AccessibleDescription = "";
-            cbEscolherPersonagem.BackColor = Color.Transparent;
-            cbEscolherPersonagem.BorderRadius = 10;
-            cbEscolherPersonagem.CustomizableEdges = customizableEdges1;
-            cbEscolherPersonagem.DrawMode = DrawMode.OwnerDrawFixed;
-            cbEscolherPersonagem.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbEscolherPersonagem.FocusedColor = Color.FromArgb(94, 148, 255);
-            cbEscolherPersonagem.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            cbEscolherPersonagem.Font = new Font("Segoe UI", 10F);
-            cbEscolherPersonagem.ForeColor = Color.FromArgb(68, 88, 112);
-            cbEscolherPersonagem.ItemHeight = 30;
-            cbEscolherPersonagem.Location = new Point(263, 95);
-            cbEscolherPersonagem.Margin = new Padding(3, 2, 3, 2);
-            cbEscolherPersonagem.Name = "cbEscolherPersonagem";
-            cbEscolherPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            cbEscolherPersonagem.Size = new Size(251, 36);
-            cbEscolherPersonagem.TabIndex = 4;
-            // 
             // frmEditarPersonagens
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(790, 340);
-            Controls.Add(cbEscolherPersonagem);
+            ClientSize = new Size(903, 453);
             Controls.Add(lblTitulo);
             Controls.Add(txtNomePersonagem);
             Controls.Add(btnFechar);
             Controls.Add(btnConfirmarEdição);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "frmEditarPersonagens";
             Text = "frmEditarBrinquedo";
             ResumeLayout(false);
@@ -161,7 +134,6 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Guna.UI2.WinForms.Guna2ComboBox cbEscolherPersonagem;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
         private Guna.UI2.WinForms.Guna2TextBox txtNomePersonagem;
         private Guna.UI2.WinForms.Guna2CircleButton btnFechar;

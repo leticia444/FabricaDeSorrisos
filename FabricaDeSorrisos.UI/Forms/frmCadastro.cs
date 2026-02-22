@@ -42,6 +42,18 @@ namespace FabricaDeSorrisos.UI.Forms
                 return;
             }
 
+            if (!EmailValido(email))
+            {
+                MessageBox.Show(
+                    "E-mail inválido. Informe um e-mail que contenha '@' e '.com'.",
+                    "Validação de e-mail",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                txtEmail.Focus();
+                return;
+            }
+
             if (!senha.Equals(senha2))
             {
                 MessageBox.Show(
@@ -56,8 +68,8 @@ namespace FabricaDeSorrisos.UI.Forms
             if (!SenhaValida(senha))
             {
                 MessageBox.Show(
-                    "A senha não atende os níveis de complexidade. Ela deve ter pelo menos 12 caracteres, incluindo maiúscula, minúscula, número e caractere especial.",
-                    "Erro",
+                    "A senha deve ter pelo menos 5 caracteres.",
+                    "Validação de senha",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
@@ -110,12 +122,13 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private bool SenhaValida(string senha)
         {
-            if (senha.Length < 12) return false;
-            var temMaiuscula = Regex.IsMatch(senha, "[A-Z]");
-            var temMinuscula = Regex.IsMatch(senha, "[a-z]");
-            var temNumero = Regex.IsMatch(senha, "[0-9]");
-            var temEspecial = Regex.IsMatch(senha, "[^a-zA-Z0-9]");
-            return temMaiuscula && temMinuscula && temNumero && temEspecial;
+            return senha?.Length >= 5;
+        }
+
+        private bool EmailValido(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            return email.Contains("@") && email.Contains(".com");
         }
     }
 }

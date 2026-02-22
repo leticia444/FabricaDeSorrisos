@@ -1,4 +1,4 @@
-﻿namespace FabricaDeSorrisos.UI.Forms
+namespace FabricaDeSorrisos.UI.Forms
 {
     partial class frmCategorias
     {
@@ -67,8 +67,10 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             gridCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            gridCategorias.ColumnHeadersHeight = 4;
+            gridCategorias.ColumnHeadersHeight = 36;
             gridCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            gridCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridCategorias.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -78,7 +80,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             gridCategorias.DefaultCellStyle = dataGridViewCellStyle3;
             gridCategorias.GridColor = Color.FromArgb(231, 229, 255);
-            gridCategorias.Location = new Point(0, 331);
+            gridCategorias.Location = new Point(0, 330);
             gridCategorias.Margin = new Padding(3, 4, 3, 4);
             gridCategorias.Name = "gridCategorias";
             gridCategorias.RowHeadersVisible = false;
@@ -98,7 +100,7 @@
             gridCategorias.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             gridCategorias.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             gridCategorias.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            gridCategorias.ThemeStyle.HeaderStyle.Height = 4;
+            gridCategorias.ThemeStyle.HeaderStyle.Height = 36;
             gridCategorias.ThemeStyle.ReadOnly = false;
             gridCategorias.ThemeStyle.RowsStyle.BackColor = Color.White;
             gridCategorias.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -117,13 +119,14 @@
             lblTitulo.Size = new Size(431, 47);
             lblTitulo.TabIndex = 19;
             lblTitulo.Text = "Gerenciamento de Categorias";
+            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // lblCategoriasCadastradas
             // 
             lblCategoriasCadastradas.BackColor = Color.Transparent;
             lblCategoriasCadastradas.Font = new Font("Segoe UI", 15F);
             lblCategoriasCadastradas.ForeColor = Color.Black;
-            lblCategoriasCadastradas.Location = new Point(0, 331);
+            lblCategoriasCadastradas.Location = new Point(0, 280);
             lblCategoriasCadastradas.Name = "lblCategoriasCadastradas";
             lblCategoriasCadastradas.Size = new Size(264, 37);
             lblCategoriasCadastradas.TabIndex = 20;
@@ -150,6 +153,7 @@
             btnCriarCategoria.Size = new Size(225, 56);
             btnCriarCategoria.TabIndex = 21;
             btnCriarCategoria.Text = "Criar Categoria";
+            btnCriarCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnEditarCategoria
             // 
@@ -172,6 +176,7 @@
             btnEditarCategoria.Size = new Size(225, 56);
             btnEditarCategoria.TabIndex = 22;
             btnEditarCategoria.Text = "Editar Categoria";
+            btnEditarCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnExcluirCategoria
             // 
@@ -194,11 +199,12 @@
             btnExcluirCategoria.Size = new Size(225, 56);
             btnExcluirCategoria.TabIndex = 23;
             btnExcluirCategoria.Text = "Excluir Categoria";
+            btnExcluirCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // frmCategorias
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
             ClientSize = new Size(1313, 629);
             Controls.Add(btnExcluirCategoria);

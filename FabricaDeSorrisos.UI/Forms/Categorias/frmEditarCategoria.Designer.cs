@@ -29,25 +29,22 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnSalvarEdicao = new Guna.UI2.WinForms.Guna2Button();
             btnFechar = new Guna.UI2.WinForms.Guna2CircleButton();
             txtNomeCategoria = new Guna.UI2.WinForms.Guna2TextBox();
             lblTitulo = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            cbEscolherCategoria = new Guna.UI2.WinForms.Guna2ComboBox();
             SuspendLayout();
             // 
             // btnSalvarEdicao
             // 
             btnSalvarEdicao.BorderRadius = 10;
-            btnSalvarEdicao.CustomizableEdges = customizableEdges1;
+            btnSalvarEdicao.CustomizableEdges = customizableEdges11;
             btnSalvarEdicao.DisabledState.BorderColor = Color.DarkGray;
             btnSalvarEdicao.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSalvarEdicao.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -55,10 +52,11 @@
             btnSalvarEdicao.FillColor = Color.DeepSkyBlue;
             btnSalvarEdicao.Font = new Font("Segoe UI", 9F);
             btnSalvarEdicao.ForeColor = Color.Black;
-            btnSalvarEdicao.Location = new Point(298, 226);
+            btnSalvarEdicao.Location = new Point(341, 256);
+            btnSalvarEdicao.Margin = new Padding(3, 4, 3, 4);
             btnSalvarEdicao.Name = "btnSalvarEdicao";
-            btnSalvarEdicao.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnSalvarEdicao.Size = new Size(189, 45);
+            btnSalvarEdicao.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnSalvarEdicao.Size = new Size(216, 60);
             btnSalvarEdicao.TabIndex = 0;
             btnSalvarEdicao.Text = "Salvar Edição";
             // 
@@ -71,18 +69,19 @@
             btnFechar.FillColor = Color.Red;
             btnFechar.Font = new Font("Segoe UI", 9F);
             btnFechar.ForeColor = Color.White;
-            btnFechar.Location = new Point(744, 10);
+            btnFechar.Location = new Point(850, 13);
+            btnFechar.Margin = new Padding(3, 4, 3, 4);
             btnFechar.Name = "btnFechar";
-            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            btnFechar.ShadowDecoration.CustomizableEdges = customizableEdges13;
             btnFechar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            btnFechar.Size = new Size(38, 36);
+            btnFechar.Size = new Size(43, 48);
             btnFechar.TabIndex = 1;
             btnFechar.Text = "X";
             // 
             // txtNomeCategoria
             // 
             txtNomeCategoria.BorderRadius = 10;
-            txtNomeCategoria.CustomizableEdges = customizableEdges4;
+            txtNomeCategoria.CustomizableEdges = customizableEdges14;
             txtNomeCategoria.DefaultText = "";
             txtNomeCategoria.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtNomeCategoria.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -91,24 +90,25 @@
             txtNomeCategoria.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNomeCategoria.Font = new Font("Segoe UI", 9F);
             txtNomeCategoria.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNomeCategoria.Location = new Point(290, 162);
-            txtNomeCategoria.Margin = new Padding(3, 4, 3, 4);
+            txtNomeCategoria.Location = new Point(331, 171);
+            txtNomeCategoria.Margin = new Padding(3, 5, 3, 5);
             txtNomeCategoria.Name = "txtNomeCategoria";
             txtNomeCategoria.PlaceholderText = "Digite o novo nome da Categoria";
             txtNomeCategoria.SelectedText = "";
-            txtNomeCategoria.ShadowDecoration.CustomizableEdges = customizableEdges5;
-            txtNomeCategoria.Size = new Size(200, 36);
+            txtNomeCategoria.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            txtNomeCategoria.Size = new Size(229, 48);
             txtNomeCategoria.TabIndex = 5;
             // 
             // lblTitulo
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(290, 27);
+            lblTitulo.Location = new Point(238, 14);
+            lblTitulo.Margin = new Padding(3, 4, 3, 4);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(236, 39);
+            lblTitulo.Size = new Size(394, 47);
             lblTitulo.TabIndex = 6;
-            lblTitulo.Text = "Nome da Categoria";
+            lblTitulo.Text = "Edite o Nome da Categoria";
             // 
             // guna2BorderlessForm1
             // 
@@ -117,37 +117,18 @@
             guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
-            // cbEscolherCategoria
-            // 
-            cbEscolherCategoria.BackColor = Color.Transparent;
-            cbEscolherCategoria.BorderRadius = 10;
-            cbEscolherCategoria.CustomizableEdges = customizableEdges6;
-            cbEscolherCategoria.DrawMode = DrawMode.OwnerDrawFixed;
-            cbEscolherCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbEscolherCategoria.FocusedColor = Color.FromArgb(94, 148, 255);
-            cbEscolherCategoria.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            cbEscolherCategoria.Font = new Font("Segoe UI", 10F);
-            cbEscolherCategoria.ForeColor = Color.FromArgb(68, 88, 112);
-            cbEscolherCategoria.ItemHeight = 30;
-            cbEscolherCategoria.Location = new Point(298, 118);
-            cbEscolherCategoria.Margin = new Padding(3, 2, 3, 2);
-            cbEscolherCategoria.Name = "cbEscolherCategoria";
-            cbEscolherCategoria.ShadowDecoration.CustomizableEdges = customizableEdges7;
-            cbEscolherCategoria.Size = new Size(183, 36);
-            cbEscolherCategoria.TabIndex = 7;
-            // 
             // frmEditarCategoria
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
-            ClientSize = new Size(790, 340);
-            Controls.Add(cbEscolherCategoria);
+            ClientSize = new Size(903, 453);
             Controls.Add(lblTitulo);
             Controls.Add(txtNomeCategoria);
             Controls.Add(btnFechar);
             Controls.Add(btnSalvarEdicao);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmEditarCategoria";
             Text = "frmEditarCategoria";
             ResumeLayout(false);
@@ -161,6 +142,5 @@
         private Guna.UI2.WinForms.Guna2TextBox txtNomeCategoria;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitulo;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Guna.UI2.WinForms.Guna2ComboBox cbEscolherCategoria;
     }
 }

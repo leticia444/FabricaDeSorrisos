@@ -75,6 +75,8 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             guna2DataGridView1.ColumnHeadersHeight = 32;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -132,6 +134,7 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2HtmlLabel1.Size = new Size(290, 39);
             guna2HtmlLabel1.TabIndex = 17;
             guna2HtmlLabel1.Text = "Catálogo de Brinquedos";
+            guna2HtmlLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             guna2HtmlLabel1.Click += guna2HtmlLabel1_Click;
             // 
             // btnCriarBrinquedo
@@ -156,6 +159,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnCriarBrinquedo.Size = new Size(197, 42);
             btnCriarBrinquedo.TabIndex = 19;
             btnCriarBrinquedo.Text = "Criar Brinquedo";
+            btnCriarBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnStatusBrinquedo
             // 
@@ -176,6 +180,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnStatusBrinquedo.Size = new Size(197, 42);
             btnStatusBrinquedo.TabIndex = 21;
             btnStatusBrinquedo.Text = "Ativar/Desativar Brinquedo";
+            btnStatusBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnEditarBrinquedo
             // 
@@ -199,6 +204,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarBrinquedo.Size = new Size(197, 42);
             btnEditarBrinquedo.TabIndex = 22;
             btnEditarBrinquedo.Text = "Editar Brinquedo";
+            btnEditarBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // lblBrinquedosCadastrados
             // 
@@ -224,8 +230,8 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             // frmBrinquedos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
             ClientSize = new Size(1176, 679);
             Controls.Add(lblBrinquedoCadastrado);

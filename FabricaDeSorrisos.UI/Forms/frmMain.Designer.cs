@@ -70,10 +70,11 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             panelDashboard.BorderRadius = 10;
             panelDashboard.CustomizableEdges = customizableEdges1;
-            panelDashboard.Location = new Point(268, 3);
+            panelDashboard.Dock = DockStyle.Fill;
+            panelDashboard.Location = new Point(262, 0);
             panelDashboard.Name = "panelDashboard";
             panelDashboard.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            panelDashboard.Size = new Size(1176, 678);
+            panelDashboard.Size = new Size(1184, 682);
             panelDashboard.TabIndex = 0;
             // 
             // btnVoltar
@@ -225,10 +226,11 @@ namespace FabricaDeSorrisos.UI.Forms
             panelBotões.CustomizableEdges = customizableEdges19;
             panelBotões.FillColor = Color.SkyBlue;
             panelBotões.FillColor2 = Color.Blue;
-            panelBotões.Location = new Point(7, 12);
+            panelBotões.Dock = DockStyle.Left;
+            panelBotões.Location = new Point(0, 0);
             panelBotões.Name = "panelBotões";
             panelBotões.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            panelBotões.Size = new Size(255, 658);
+            panelBotões.Size = new Size(262, 682);
             panelBotões.TabIndex = 1;
             // 
             // txtCatálogo
