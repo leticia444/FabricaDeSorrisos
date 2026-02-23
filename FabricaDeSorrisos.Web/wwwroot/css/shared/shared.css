@@ -1,14 +1,26 @@
 ﻿/* --- CONFIGURAÇÃO ESTRUTURAL --- */
-html, body {
-    height: 100%; /* Define que a altura total da página ocupa 100% da janela do navegador */
-    margin: 0; /* Remove margens externas padrão do navegador */
-    display: flex; /* Habilita o sistema flexbox para organizar o layout */
-    flex-direction: column; /* Organiza os elementos principais um abaixo do outro (coluna) */
+.btn-chat-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1050;
+    /* ... demais estilos do seu botão ... */
 }
 
+html, body {
+    height: 100%;
+    margin: 0 !important;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 .content-main {
-    flex: 1 0 auto; /* Faz o conteúdo principal crescer para empurrar o rodapé para o fim da tela */
-    padding-top: 30px; /* Adiciona um espaçamento no topo do conteúdo principal */
+    flex: 1 0 auto; /* O conteúdo cresce para "empurrar" o footer para baixo */
+    padding-top: 40px;
+    background-color: white; /* Garante que o fundo do corpo seja branco */
 }
 
 /* --- CABEÇALHO --- */
@@ -46,6 +58,7 @@ header .nav-logo {
     color: #F3DD24 !important; /* Cor amarela do ícone de favoritos */
 }
 
+/* --- AJUSTE NAV-LINK DESKTOP (Fixar Azul Escuro quando Ativo ou Hover) --- */
 .nav-link-custom {
     color: white !important; /* Links do menu em branco */
     text-decoration: none; /* Remove o sublinhado padrão de links */
@@ -55,9 +68,11 @@ header .nav-logo {
     transition: 0.2s; /* Suaviza o efeito ao passar o mouse */
 }
 
-    .nav-link-custom:hover, .nav-link-custom.active {
+    .nav-link-custom:hover,
+    .nav-link-custom.active,
+    .nav-link-custom.active-oferta {
         color: #000269 !important; /* Cor azul escuro ao passar o mouse ou link ativo */
-        font-weight: 700; /* Deixa a fonte em negrito no hover */
+        font-weight: 700; /* Deixa a fonte em negrito */
     }
 
 /* BOTÃO ÁREA ADMIN (AMARELO E REDONDO NOS LADOS) */
@@ -73,22 +88,33 @@ header .nav-logo {
     transition: 0.3s; /* Suaviza a mudança de cor no hover */
 }
 
-/* --- CARROSSEL FULL WIDTH (LARGURA 100% DA TELA) --- */
+/* --- CARROSSEL RESPONSIVO (MAX 1440X690) --- */
 #carouselHome {
-    width: 100vw; /* Ocupa 100% da largura da janela do navegador */
-    position: relative; /* Define a posição relativa para ajustes de margem */
-    left: 50%; /* Move o elemento para o meio da tela */
-    right: 50%; /* Ajuste de centralização */
-    margin-left: -50vw; /* Puxa o elemento para a esquerda para preencher toda a largura */
-    margin-right: -50vw; /* Puxa o elemento para a direita para preencher toda a largura */
-    overflow: hidden; /* Esconde qualquer parte da imagem que ultrapasse a tela */
-    margin-bottom: 3rem; /* Espaço entre o carrossel e o conteúdo abaixo */
+    max-width: 1440px !important; /* Tamanho máximo solicitado */
+    width: 100% !important;
+    height: auto !important; /* Permite que a altura diminua em telas menores */
+    margin: 0 auto 3rem auto !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    overflow: hidden;
+    border-radius: 30px; /* Bordas arredondadas padrão da loja */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-item img {
-    object-fit: cover; /* Faz a imagem cobrir o espaço sem distorcer */
-    width: 100%; /* Garante largura total da imagem */
-    height: 690px; /* ALTERADO: Define a altura fixa solicitada de 690px */
+    width: 100% !important;
+    height: auto !important; /* Garante que a imagem não estique ou achate */
+    max-height: 690px !important; /* Impede que passe da altura máxima em telas grandes */
+    object-fit: cover;
+}
+
+/* Ajuste para telas pequenas (Mobile) */
+@media (max-width: 768px) {
+    #carouselHome {
+        border-radius: 15px; /* Bordas menores em telas pequenas */
+        margin-bottom: 1.5rem !important;
+    }
 }
 
 /* --- CONTEÚDO --- */
@@ -98,11 +124,11 @@ body {
 
 /* --- RODAPÉ (FOOTER) --- */
 .footer-fabrica {
-    flex-shrink: 0; /* Impede que o rodapé diminua de tamanho */
-    background-color: #F66CD8; /* Cor rosa característica do rodapé */
-    padding: 30px 0 10px 0; /* Espaçamento interno superior e inferior */
-    margin-top: auto; /* Garante que o rodapé seja empurrado para o final da página */
-    width: 100%; /* Largura total do rodapé */
+    flex-shrink: 0; /* Impede que o footer seja esmagado */
+    background-color: #F66CD8;
+    width: 100%;
+    margin-top: auto; /* Força o footer para o final da página */
+    padding: 30px 0 10px 0;
 }
 
 /* Ajusta o tamanho da logo do rodapé para ser igual à do topo */
@@ -111,16 +137,24 @@ body {
     width: auto; /* Mantém a proporção correta da imagem */
 }
 
+/* --- ESTILO CATEGORIAS E HOVER FOOTER --- */
+.footer-nav-link {
+    text-decoration: none;
+    color: #ffffff !important; /* Todas brancas conforme solicitado */
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
+    .footer-nav-link:hover {
+        color: #000269 !important; /* Azul escuro no hover */
+    }
 
-
-
-
-
+.slogan-footer h3 {
+    color: white;
+}
 
 /* --- ESTILO GLOBAL DOS CARDS (Fábrica de Sorrisos) --- */
-
-/* 1. Trava o tamanho exato do wireframe e remove movimentos no hover */
 .product-card-wireframe {
     width: 276px !important; /* Largura solicitada */
     height: 450.07px !important; /* Altura solicitada */
@@ -133,18 +167,15 @@ body {
     transition: box-shadow 0.3s ease !important; /* Suaviza apenas a sombra */
 }
 
-/* 2. Sombra azul leve em volta do card */
 .shadow-custom-blue {
     box-shadow: 0 4px 15px rgba(0, 191, 255, 0.15) !important;
 }
 
-/* 3. Brilho da sombra azul quando passa o mouse (mantém o card parado) */
 .product-card-wireframe:hover {
     box-shadow: 0 4px 20px rgba(0, 191, 255, 0.35) !important;
     transform: none !important; /* Impede o card de subir ou descer */
 }
 
-/* 4. Botão 'adicionar' verde vibrante conforme o wireframe */
 .btn-success-custom {
     background-color: #00D100 !important;
     border: none !important;
@@ -159,7 +190,6 @@ body {
         color: white !important;
     }
 
-/* 5. Estilo da Categoria (Fundo Amarelo) solicitado */
 .badge-categoria-amarela {
     background-color: #ffd700 !important; /* Amarelo Vibrante */
     color: #212529 !important; /* Texto escuro para leitura CDSA */
@@ -170,29 +200,16 @@ body {
     display: inline-block !important;
 }
 
-/* 6. Reset para garantir que as imagens não cresçam no hover */
 .product-card-wireframe:hover img {
     transform: none !important;
 }
 
-
-
-
-
-
 /* --- ESTILO DA PÁGINA SOBRE NÓS --- */
-
-/* Título Verde */
 .titulo-quem-somos {
     color: #00c709 !important;
     font-weight: bold;
 }
 
-
-
-/* --- SEÇÃO AMARELA COM IMAGEM (amarelo.png) --- */
-
-/* --- SEÇÃO AMARELA COM IMAGEM (amarelo.png) --- */
 .secao-amarela-imagem {
     background-image: url('/img/amarelo.png') !important;
     background-size: 100% 100% !important;
@@ -205,30 +222,19 @@ body {
     margin-left: -50vw !important;
     margin-right: -50vw !important;
     padding: 120px 0 !important;
-    /* ADICIONE ESTA LINHA: Garante que ela fique na frente */
     z-index: 10 !important;
 }
 
-/* Título Azul - Mesma configuração de tamanho e peso do seu título verde */
 .titulo-azul-custom {
     color: #000269 !important; /* Cor Azul solicitada */
     font-weight: bold !important;
 }
 
-/* Garante que o texto dentro da seção amarela seja branco e centralizado */
 .secao-amarela-imagem p {
     color: #ffffff !important;
     text-align: center !important;
 }
 
-
-
-
-
-
-/* --- SEÇÃO NOSSA HISTÓRIA (historia.png) --- */
-
-/* --- SEÇÃO NOSSA HISTÓRIA (historia.png) --- */
 .secao-historia-full {
     background-image: url('/img/historia.png') !important;
     background-size: cover !important;
@@ -240,21 +246,17 @@ body {
     right: 50% !important;
     margin-left: -50vw !important;
     margin-right: -50vw !important;
-    /* Margem negativa para "puxar" a imagem para baixo das ondinhas */
     margin-top: -80px !important;
     padding: 150px 0 120px 0 !important;
-    /* ADICIONE ESTA LINHA: Garante que ela fique atrás da amarela */
     z-index: 1 !important;
 }
 
-/* Título da História: Cor preta ou azul escuro para leitura no fundo claro */
 .titulo-historia {
     color: #333333 !important;
     font-weight: bold;
     text-transform: uppercase;
 }
 
-/* Estilo do Texto da História (Lado Esquerdo) */
 .texto-historia-caixa {
     background-color: rgba(255, 255, 255, 0.85); /* Fundo branco suave para legibilidade */
     padding: 30px;
@@ -264,9 +266,6 @@ body {
     line-height: 1.8;
 }
 
-
-
-/* --- SEÇÃO COMPROMISSO (azul.png) --- */
 .secao-compromisso-full {
     background-image: url('/img/azul.png') !important;
     background-size: 100% 100% !important;
@@ -275,7 +274,7 @@ body {
     position: relative !important;
     left: 50% !important;
     margin-left: -50vw !important;
-    margin-top: -80px !important; /* Sobrepõe a história */
+    margin-top: -80px !important;
     padding: 120px 0 80px 0 !important;
     z-index: 5 !important;
 }
@@ -283,10 +282,8 @@ body {
 .titulo-compromisso {
     color: #f3dd24 !important; /* Amarelo solicitado */
     font-weight: bold !important;
-    text-transform: uppercase;
 }
 
-/* --- CARDS COLORIDOS COM EFEITO --- */
 .card-compromisso {
     background-color: #000269 !important; /* Azul Escuro */
     border-radius: 25px !important;
@@ -296,7 +293,6 @@ body {
     border: 3px solid transparent;
 }
 
-    /* Estilo Base dos Textos */
     .card-compromisso h5 {
         font-weight: bold;
         transition: color 0.3s;
@@ -308,7 +304,6 @@ body {
         font-size: 0.9rem;
     }
 
-/* Variações de Cores e Sombras Fortes */
 .card-rosa {
     border-color: #ff00ff !important;
     box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
@@ -354,7 +349,6 @@ body {
         color: #9900ff;
     }
 
-/* Efeito Hover (Mouse em cima) */
 .card-compromisso:hover {
     transform: scale(1.1);
 }
@@ -387,51 +381,38 @@ body {
     color: #000000 !important;
 }
 
-
 /* --- AJUSTE DAS IMAGENS DE PAGAMENTO --- */
 .img-pagamento {
-    height: 50px !important; /* Diminui a altura das imagens (ajuste conforme o gosto) */
-    width: auto !important; /* Mantém a largura proporcional */
+    height: 50px !important;
+    width: auto !important;
     object-fit: contain !important;
-    margin: 0 8px !important; /* Dá um espacinho entre as imagens */
+    margin: 0 8px !important;
     transition: transform 0.3s;
 }
 
     .img-pagamento:hover {
-        transform: scale(1.1); /* Pequeno efeito de zoom ao passar o mouse */
+        transform: scale(1.1);
     }
-
-
-
-
-
-
-
 
 /* --- ESPAÇAMENTO DO NAV BAR --- */
 .user-area-header {
-    margin-right: 25px !important; /* Afasta o 'Olá' dos ícones de favoritos */
+    margin-right: 25px !important;
 }
 
 .nav-icon-spacing {
-    margin-left: 20px !important; /* Cria um espaço igual entre Favoritos e Carrinho */
+    margin-left: 20px !important;
     display: flex;
     align-items: center;
 }
 
-/* Garante que o texto 'Olá' não fique grudado no botão Sair */
 .d-flex.flex-column.align-items-end small {
     margin-bottom: 5px !important;
 }
 
-
-
-
-
-/* --- BOTÃO LIMPAR FILTROS DEGRADÊ --- */
+/* --- BOTÕES DEGRADÊ --- */
 .btn-limpar-degrade {
     background: white;
-    color: #00bfff !important; /* Cor inicial do texto */
+    color: #00bfff !important;
     border: 2px solid transparent !important;
     background-image: linear-gradient(white, white), linear-gradient(to right, #00bfff, #00D100);
     background-origin: border-box;
@@ -447,16 +428,10 @@ body {
         transform: scale(1.05);
     }
 
-
-
-
-
-/* --- BOTÃO VOLTAR FAVORITOS (VINHO E ROSA PINK) --- */
 .btn-voltar-favoritos {
     background: white;
-    color: #800000 !important; /* Cor Vinho inicial */
+    color: #800000 !important;
     border: 2px solid transparent !important;
-    /* Cria a borda em degradê Vinho -> Rosa Pink */
     background-image: linear-gradient(white, white), linear-gradient(to right, #800000, #ff1493);
     background-origin: border-box;
     background-clip: padding-box, border-box;
@@ -464,23 +439,16 @@ body {
 }
 
     .btn-voltar-favoritos:hover {
-        /* Preenchimento total no hover */
         background: linear-gradient(to right, #800000, #ff1493) !important;
         color: white !important;
         box-shadow: 0 4px 15px rgba(128, 0, 0, 0.3);
         transform: scale(1.05);
     }
 
-
-
-
-
-/* --- BOTÃO VOLTAR CARRINHO (DEGRADÊ DOURADO) --- */
 .btn-voltar-carrinho {
     background: white;
-    color: #B8860B !important; /* Tom de dourado escuro para o texto inicial */
+    color: #B8860B !important;
     border: 2px solid transparent !important;
-    /* Cria a borda em degradê do dourado claro para o ouro */
     background-image: linear-gradient(white, white), linear-gradient(to right, #FFD700, #B8860B);
     background-origin: border-box;
     background-clip: padding-box, border-box;
@@ -488,9 +456,74 @@ body {
 }
 
     .btn-voltar-carrinho:hover {
-        /* Preenchimento total no hover com degradê dourado */
         background: linear-gradient(to right, #FFD700, #B8860B) !important;
         color: white !important;
         box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
         transform: scale(1.05);
     }
+
+/* --- CONFIGURAÇÃO EXCLUSIVA PARA MOBILE (Até 991px) --- */
+@media (max-width: 991px) {
+    .bg-fabrica-mobile {
+        background-color: #00bfff !important; /* Azul celeste da imagem */
+        border-radius: 0 0 40px 40px !important; /* Arredondamento acentuado embaixo */
+        padding-bottom: 20px !important;
+        border: none !important;
+    }
+
+    .search-rounded-mobile {
+        border: 3px solid #00C709 !important; /* Verde vibrante da referência */
+        border-radius: 50px !important;
+        background-color: #ffffff !important;
+        height: 45px !important;
+    }
+
+    .text-dark-pixel {
+        color: #000000 !important; /* Ícones pretos conforme a imagem */
+    }
+
+    .badge-admin-header,
+    .user-area-header {
+        display: none !important; /* Remove área admin e 'Olá' do topo */
+    }
+
+    body {
+        padding-top: 180px !important; /* Garante que o carrossel comece após a curva do header */
+    }
+
+    /* Botão de Filtro movido para a Esquerda conforme solicitado */
+    .btn-filtro-mobile {
+        position: fixed;
+        bottom: 25px;
+        left: 25px; /* Ajustado para a esquerda */
+        width: 65px;
+        height: 65px;
+        background-color: white;
+        color: #6f42c1; /* Roxo conforme a referência */
+        border: 1px solid #e0e0e0;
+        border-radius: 50%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 1050;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+    }
+
+        .btn-filtro-mobile:active {
+            transform: scale(0.9);
+        }
+
+    /* Ocultar botão limpar filtros no mobile conforme solicitado */
+    .btn-limpar-degrade {
+        display: none !important;
+    }
+}
+
+/* --- CHAT FIXO NA DIREITA --- */
+.chat-widget-fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2000;
+}
