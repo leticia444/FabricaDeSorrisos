@@ -32,6 +32,16 @@ namespace FabricaDeSorrisos.UI.Forms
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -45,6 +55,11 @@ namespace FabricaDeSorrisos.UI.Forms
             btnCriarCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
             btnEditarCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
             btnExcluirCategoria = new Guna.UI2.WinForms.Guna2GradientButton();
+            btnResetar = new Guna.UI2.WinForms.Guna2Button();
+            btnFiltrar = new Guna.UI2.WinForms.Guna2GradientButton();
+            btnBusca = new Guna.UI2.WinForms.Guna2GradientButton();
+            txtBusca = new Guna.UI2.WinForms.Guna2TextBox();
+            cbFiltro = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)gridCategorias).BeginInit();
             SuspendLayout();
             // 
@@ -59,6 +74,7 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             gridCategorias.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            gridCategorias.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -69,8 +85,6 @@ namespace FabricaDeSorrisos.UI.Forms
             gridCategorias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             gridCategorias.ColumnHeadersHeight = 36;
             gridCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            gridCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridCategorias.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -85,8 +99,7 @@ namespace FabricaDeSorrisos.UI.Forms
             gridCategorias.Name = "gridCategorias";
             gridCategorias.RowHeadersVisible = false;
             gridCategorias.RowHeadersWidth = 51;
-            gridCategorias.RowTemplate.Height = 25;
-            gridCategorias.Size = new Size(1314, 293);
+            gridCategorias.Size = new Size(1185, 346);
             gridCategorias.TabIndex = 18;
             gridCategorias.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             gridCategorias.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -114,12 +127,11 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(12, 12);
+            lblTitulo.Location = new Point(0, 2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(431, 47);
+            lblTitulo.Size = new Size(355, 39);
             lblTitulo.TabIndex = 19;
             lblTitulo.Text = "Gerenciamento de Categorias";
-            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // lblCategoriasCadastradas
             // 
@@ -128,14 +140,15 @@ namespace FabricaDeSorrisos.UI.Forms
             lblCategoriasCadastradas.ForeColor = Color.Black;
             lblCategoriasCadastradas.Location = new Point(0, 280);
             lblCategoriasCadastradas.Name = "lblCategoriasCadastradas";
-            lblCategoriasCadastradas.Size = new Size(264, 37);
+            lblCategoriasCadastradas.Size = new Size(207, 30);
             lblCategoriasCadastradas.TabIndex = 20;
             lblCategoriasCadastradas.Text = "Categorias Cadastradas";
             // 
             // btnCriarCategoria
             // 
+            btnCriarCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCriarCategoria.BorderRadius = 10;
-            btnCriarCategoria.CustomizableEdges = customizableEdges5;
+            btnCriarCategoria.CustomizableEdges = customizableEdges15;
             btnCriarCategoria.DisabledState.BorderColor = Color.DarkGray;
             btnCriarCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCriarCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -147,18 +160,18 @@ namespace FabricaDeSorrisos.UI.Forms
             btnCriarCategoria.ForeColor = Color.Black;
             btnCriarCategoria.Image = Properties.Resources.plus1;
             btnCriarCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnCriarCategoria.Location = new Point(1076, 22);
+            btnCriarCategoria.Location = new Point(975, 12);
             btnCriarCategoria.Name = "btnCriarCategoria";
-            btnCriarCategoria.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnCriarCategoria.Size = new Size(225, 56);
+            btnCriarCategoria.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnCriarCategoria.Size = new Size(197, 42);
             btnCriarCategoria.TabIndex = 21;
             btnCriarCategoria.Text = "Criar Categoria";
-            btnCriarCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnEditarCategoria
             // 
+            btnEditarCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditarCategoria.BorderRadius = 10;
-            btnEditarCategoria.CustomizableEdges = customizableEdges3;
+            btnEditarCategoria.CustomizableEdges = customizableEdges13;
             btnEditarCategoria.DisabledState.BorderColor = Color.DarkGray;
             btnEditarCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEditarCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -170,18 +183,18 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarCategoria.ForeColor = Color.Black;
             btnEditarCategoria.Image = Properties.Resources.lapis2;
             btnEditarCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnEditarCategoria.Location = new Point(1076, 97);
+            btnEditarCategoria.Location = new Point(975, 70);
             btnEditarCategoria.Name = "btnEditarCategoria";
-            btnEditarCategoria.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnEditarCategoria.Size = new Size(225, 56);
+            btnEditarCategoria.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnEditarCategoria.Size = new Size(197, 42);
             btnEditarCategoria.TabIndex = 22;
             btnEditarCategoria.Text = "Editar Categoria";
-            btnEditarCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnExcluirCategoria
             // 
+            btnExcluirCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnExcluirCategoria.BorderRadius = 10;
-            btnExcluirCategoria.CustomizableEdges = customizableEdges1;
+            btnExcluirCategoria.CustomizableEdges = customizableEdges11;
             btnExcluirCategoria.DisabledState.BorderColor = Color.DarkGray;
             btnExcluirCategoria.DisabledState.CustomBorderColor = Color.DarkGray;
             btnExcluirCategoria.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -193,20 +206,120 @@ namespace FabricaDeSorrisos.UI.Forms
             btnExcluirCategoria.ForeColor = Color.Black;
             btnExcluirCategoria.Image = Properties.Resources.x2;
             btnExcluirCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnExcluirCategoria.Location = new Point(1076, 170);
+            btnExcluirCategoria.Location = new Point(975, 131);
             btnExcluirCategoria.Name = "btnExcluirCategoria";
-            btnExcluirCategoria.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnExcluirCategoria.Size = new Size(225, 56);
+            btnExcluirCategoria.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnExcluirCategoria.Size = new Size(197, 42);
             btnExcluirCategoria.TabIndex = 23;
             btnExcluirCategoria.Text = "Excluir Categoria";
-            btnExcluirCategoria.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            // 
+            // btnResetar
+            // 
+            btnResetar.BorderRadius = 10;
+            btnResetar.CustomizableEdges = customizableEdges9;
+            btnResetar.DisabledState.BorderColor = Color.DarkGray;
+            btnResetar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnResetar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnResetar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnResetar.FillColor = Color.Gray;
+            btnResetar.Font = new Font("Segoe UI", 9F);
+            btnResetar.ForeColor = Color.White;
+            btnResetar.Location = new Point(584, 131);
+            btnResetar.Name = "btnResetar";
+            btnResetar.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnResetar.Size = new Size(180, 45);
+            btnResetar.TabIndex = 24;
+            btnResetar.Text = "Resetar Busca/Filtro";
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.BorderRadius = 10;
+            btnFiltrar.CustomizableEdges = customizableEdges7;
+            btnFiltrar.DisabledState.BorderColor = Color.DarkGray;
+            btnFiltrar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnFiltrar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnFiltrar.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            btnFiltrar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnFiltrar.FillColor = Color.Crimson;
+            btnFiltrar.FillColor2 = Color.Navy;
+            btnFiltrar.Font = new Font("Segoe UI", 9F);
+            btnFiltrar.ForeColor = Color.White;
+            btnFiltrar.Location = new Point(730, 76);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnFiltrar.Size = new Size(180, 45);
+            btnFiltrar.TabIndex = 25;
+            btnFiltrar.Text = "Filtrar";
+            // 
+            // btnBusca
+            // 
+            btnBusca.BorderRadius = 10;
+            btnBusca.CustomizableEdges = customizableEdges5;
+            btnBusca.DisabledState.BorderColor = Color.DarkGray;
+            btnBusca.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnBusca.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnBusca.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            btnBusca.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnBusca.FillColor = Color.PaleTurquoise;
+            btnBusca.FillColor2 = Color.SteelBlue;
+            btnBusca.Font = new Font("Segoe UI", 9F);
+            btnBusca.ForeColor = Color.White;
+            btnBusca.Location = new Point(730, 12);
+            btnBusca.Name = "btnBusca";
+            btnBusca.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnBusca.Size = new Size(180, 45);
+            btnBusca.TabIndex = 26;
+            btnBusca.Text = "Buscar";
+            // 
+            // txtBusca
+            // 
+            txtBusca.BorderRadius = 10;
+            txtBusca.CustomizableEdges = customizableEdges3;
+            txtBusca.DefaultText = "";
+            txtBusca.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtBusca.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtBusca.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtBusca.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtBusca.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBusca.Font = new Font("Segoe UI", 9F);
+            txtBusca.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBusca.Location = new Point(444, 12);
+            txtBusca.Name = "txtBusca";
+            txtBusca.PlaceholderText = "Digite para Buscar";
+            txtBusca.SelectedText = "";
+            txtBusca.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtBusca.Size = new Size(260, 44);
+            txtBusca.TabIndex = 27;
+            // 
+            // cbFiltro
+            // 
+            cbFiltro.BackColor = Color.Transparent;
+            cbFiltro.BorderRadius = 10;
+            cbFiltro.CustomizableEdges = customizableEdges1;
+            cbFiltro.DrawMode = DrawMode.OwnerDrawFixed;
+            cbFiltro.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFiltro.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbFiltro.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbFiltro.Font = new Font("Segoe UI", 10F);
+            cbFiltro.ForeColor = Color.FromArgb(68, 88, 112);
+            cbFiltro.ItemHeight = 30;
+            cbFiltro.Location = new Point(444, 76);
+            cbFiltro.Name = "cbFiltro";
+            cbFiltro.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            cbFiltro.Size = new Size(260, 36);
+            cbFiltro.TabIndex = 28;
             // 
             // frmCategorias
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1313, 629);
+            ClientSize = new Size(1184, 682);
+            Controls.Add(cbFiltro);
+            Controls.Add(txtBusca);
+            Controls.Add(btnBusca);
+            Controls.Add(btnFiltrar);
+            Controls.Add(btnResetar);
             Controls.Add(btnExcluirCategoria);
             Controls.Add(btnEditarCategoria);
             Controls.Add(btnCriarCategoria);
@@ -231,5 +344,10 @@ namespace FabricaDeSorrisos.UI.Forms
         private Guna.UI2.WinForms.Guna2GradientButton btnCriarCategoria;
         private Guna.UI2.WinForms.Guna2GradientButton btnExcluirCategoria;
         private Guna.UI2.WinForms.Guna2GradientButton btnEditarCategoria;
+        private Guna.UI2.WinForms.Guna2ComboBox cbFiltro;
+        private Guna.UI2.WinForms.Guna2TextBox txtBusca;
+        private Guna.UI2.WinForms.Guna2GradientButton btnBusca;
+        private Guna.UI2.WinForms.Guna2GradientButton btnFiltrar;
+        private Guna.UI2.WinForms.Guna2Button btnResetar;
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.Concurrent;
 using FabricaDeSorrisos.UI.Api;
+using System.Collections.Generic;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
@@ -21,6 +22,7 @@ namespace FabricaDeSorrisos.UI.Forms
         private static readonly string _webBaseUrlHttps = ApiSettings.WebBaseUrlHttps;
         private static readonly ConcurrentDictionary<string, Image> _imageCache = new();
         private static readonly Image _placeholder = new Bitmap(1, 1);
+        private List<BrinquedoViewModel> _dados = new();
 
         public frmBrinquedos()
         {
@@ -31,6 +33,13 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarBrinquedo.Click += BtnEditar_Click;
             btnStatusBrinquedo.Click += BtnStatus_Click;
             guna2DataGridView1.DataBindingComplete += Grid_DataBindingComplete;
+            btnBuscar.Click += BtnBuscar_Click;
+            btnFiltrar.Click += BtnFiltrar_Click;
+            btnResetar.Click += BtnResetar_Click;
+            txtBusca.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) BtnBuscar_Click(s, e); };
+            cbFiltro.Items.Clear();
+            cbFiltro.Items.AddRange(new object[] { "Todos", "ID", "Nome", "Marca", "Categoria", "Subcategoria", "Personagem", "Faixa Etária", "Status" });
+            if (cbFiltro.Items.Count > 0) cbFiltro.SelectedIndex = 0;
         }
 
         private async void frmBrinquedos_Load(object sender, EventArgs e)
@@ -39,10 +48,11 @@ namespace FabricaDeSorrisos.UI.Forms
             await CarregarDados();
         }
 
-        private async Task CarregarDados()
+        private async Task CarregarDados(string? termo = null)
         {
-            var paged = await _service.ListarAsync(pageIndex: 1, pageSize: 100);
-            guna2DataGridView1.DataSource = paged.Items;
+            var paged = await _service.ListarAsync(pageIndex: 1, pageSize: 100, termo: termo, incluirInativos: true);
+            _dados = paged.Items;
+            RefreshGrid(_dados);
 
             var qtd = paged.TotalCount;
             var estoqueTotal = paged.Items.Sum(i => i.Estoque);
@@ -55,6 +65,7 @@ namespace FabricaDeSorrisos.UI.Forms
             grid.MultiSelect = false;
             grid.AutoGenerateColumns = false;
             grid.RowTemplate.Height = 64;
+            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             grid.Columns.Clear();
             var imgCol = new DataGridViewImageColumn
@@ -62,21 +73,134 @@ namespace FabricaDeSorrisos.UI.Forms
                 HeaderText = "Imagem",
                 Name = "colImagem",
                 ImageLayout = DataGridViewImageCellLayout.Zoom,
-                Width = 96
+                FillWeight = 10
             };
             imgCol.DefaultCellStyle.NullValue = _placeholder;
             grid.Columns.Add(imgCol);
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Id), HeaderText = "ID", Width = 60 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Nome), HeaderText = "Nome", Width = 200 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Estoque), HeaderText = "Estoque", Width = 80 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Preco), HeaderText = "Preço", Width = 90 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Descricao), HeaderText = "Descrição", Width = 260 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.FaixaEtaria), HeaderText = "Faixa Etária", Width = 100 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Marca), HeaderText = "Marca", Width = 120 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Categoria), HeaderText = "Categoria", Width = 120 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.SubCategoria), HeaderText = "Subcategoria", Width = 120 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Personagem), HeaderText = "Personagem", Width = 120 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Status), HeaderText = "Status", Width = 90 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Id), HeaderText = "ID", FillWeight = 6, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Nome), HeaderText = "Nome", FillWeight = 16 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Estoque), HeaderText = "Estoque", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Preco), HeaderText = "Preço", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleRight } });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Descricao), HeaderText = "Descrição", FillWeight = 20 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.FaixaEtaria), HeaderText = "Faixa Etária", FillWeight = 8 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Marca), HeaderText = "Marca", FillWeight = 8 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Categoria), HeaderText = "Categoria", FillWeight = 8 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.SubCategoria), HeaderText = "Subcategoria", FillWeight = 8 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Personagem), HeaderText = "Personagem", FillWeight = 8 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Status), HeaderText = "Status", FillWeight = 6, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
+        }
+
+        private void RefreshGrid(List<BrinquedoViewModel> items)
+        {
+            guna2DataGridView1.DataSource = null;
+            guna2DataGridView1.DataSource = items;
+        }
+
+        private IEnumerable<BrinquedoViewModel> AplicarFiltroAtual()
+        {
+            var termo = txtBusca.Text?.Trim() ?? "";
+            var campo = (cbFiltro.SelectedItem as string) ?? "Todos";
+            bool temTermo = !string.IsNullOrWhiteSpace(termo);
+
+            IEnumerable<BrinquedoViewModel> items = _dados;
+
+            if (!temTermo && (campo == "Todos" || string.IsNullOrWhiteSpace(campo)))
+                return items;
+
+            StringComparison cmp = StringComparison.OrdinalIgnoreCase;
+
+            if (campo == "Todos")
+            {
+                if (!temTermo) return items;
+                int idVal;
+                bool idOk = int.TryParse(termo, out idVal);
+                return items.Where(b =>
+                    (idOk && b.Id == idVal) ||
+                    (b.Nome?.Contains(termo, cmp) ?? false) ||
+                    (b.Marca?.Contains(termo, cmp) ?? false) ||
+                    (b.Categoria?.Contains(termo, cmp) ?? false) ||
+                    (b.SubCategoria?.Contains(termo, cmp) ?? false) ||
+                    (b.Personagem?.Contains(termo, cmp) ?? false) ||
+                    (b.FaixaEtaria?.Contains(termo, cmp) ?? false) ||
+                    (b.Status?.Contains(termo, cmp) ?? false));
+            }
+
+            return campo switch
+            {
+                "ID" => (int.TryParse(termo, out var id) ? items.Where(b => b.Id == id) : items),
+                "Nome" => items.Where(b => b.Nome?.Contains(termo, cmp) ?? false),
+                "Marca" => items.Where(b => b.Marca?.Contains(termo, cmp) ?? false),
+                "Categoria" => items.Where(b => b.Categoria?.Contains(termo, cmp) ?? false),
+                "Subcategoria" => items.Where(b => b.SubCategoria?.Contains(termo, cmp) ?? false),
+                "Personagem" => items.Where(b => b.Personagem?.Contains(termo, cmp) ?? false),
+                "Faixa Etária" => items.Where(b => b.FaixaEtaria?.Contains(termo, cmp) ?? false),
+                "Status" => items.Where(b => b.Status?.Contains(termo, cmp) ?? false),
+                _ => items
+            };
+        }
+
+        private async void BtnBuscar_Click(object? sender, EventArgs e)
+        {
+            var termo = txtBusca.Text?.Trim();
+            await CarregarDados(termo);
+            var filtrados = AplicarFiltroAtual().ToList();
+            RefreshGrid(filtrados);
+        }
+
+        private void BtnFiltrar_Click(object? sender, EventArgs e)
+        {
+            var filtrados = AplicarFiltroAtual().ToList();
+            if (filtrados.Count == 0)
+            {
+                var termo = txtBusca.Text?.Trim();
+                var _ = CarregarDados(termo);
+                filtrados = AplicarFiltroAtual().ToList();
+            }
+            RefreshGrid(filtrados);
+            AjustarVisibilidadeColunas((cbFiltro.SelectedItem as string) ?? "Todos");
+        }
+
+        private async void BtnResetar_Click(object? sender, EventArgs e)
+        {
+            txtBusca.Text = "";
+            if (cbFiltro.Items.Count > 0) cbFiltro.SelectedIndex = 0;
+            await CarregarDados();
+            AjustarVisibilidadeColunas("Todos");
+        }
+
+        private string GetPropertyNameByCampo(string campo)
+        {
+            return campo switch
+            {
+                "ID" => nameof(BrinquedoViewModel.Id),
+                "Nome" => nameof(BrinquedoViewModel.Nome),
+                "Marca" => nameof(BrinquedoViewModel.Marca),
+                "Categoria" => nameof(BrinquedoViewModel.Categoria),
+                "Subcategoria" => nameof(BrinquedoViewModel.SubCategoria),
+                "Personagem" => nameof(BrinquedoViewModel.Personagem),
+                "Faixa Etária" => nameof(BrinquedoViewModel.FaixaEtaria),
+                "Status" => nameof(BrinquedoViewModel.Status),
+                _ => "Todos"
+            };
+        }
+
+        private void AjustarVisibilidadeColunas(string campo)
+        {
+            var prop = GetPropertyNameByCampo(campo);
+            if (prop == "Todos")
+            {
+                foreach (DataGridViewColumn c in guna2DataGridView1.Columns) c.Visible = true;
+                return;
+            }
+            foreach (DataGridViewColumn c in guna2DataGridView1.Columns) c.Visible = false;
+            foreach (DataGridViewColumn c in guna2DataGridView1.Columns)
+            {
+                if (string.Equals(c.DataPropertyName, prop, StringComparison.OrdinalIgnoreCase))
+                {
+                    c.Visible = true;
+                    break;
+                }
+            }
         }
 
         private async void Grid_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)

@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using FabricaDeSorrisos.UI.Services;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
@@ -14,6 +16,7 @@ namespace FabricaDeSorrisos.UI.Forms
     {
         private readonly CatalogService _catalogService = new CatalogService();
         private readonly CategoryService _categoryService = new CategoryService();
+        private List<CatalogService.CategoriaItem> _dados = new();
 
         public frmCategorias()
         {
@@ -23,6 +26,13 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarCategoria.Click += BtnEditarCategoria_Click;
             btnExcluirCategoria.Click += BtnExcluirCategoria_Click;
             gridCategorias.CellDoubleClick += (s, e) => BtnEditarCategoria_Click(s, e);
+            btnBusca.Click += BtnBuscar_Click;
+            btnFiltrar.Click += BtnFiltrar_Click;
+            btnResetar.Click += BtnResetar_Click;
+            txtBusca.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) BtnBuscar_Click(s, e); };
+            cbFiltro.Items.Clear();
+            cbFiltro.Items.AddRange(new object[] { "Todos", "ID", "Nome" });
+            if (cbFiltro.Items.Count > 0) cbFiltro.SelectedIndex = 0;
         }
 
         private void guna2HtmlLabel3_Click(object sender, EventArgs e)
@@ -33,7 +43,8 @@ namespace FabricaDeSorrisos.UI.Forms
         private async void frmCategorias_Load(object? sender, EventArgs e)
         {
             ConfigurarGrid();
-            await RecarregarAsync();
+            await CarregarDados();
+            AjustarVisibilidadeColunas("Todos");
         }
 
         private void ConfigurarGrid()
@@ -42,16 +53,28 @@ namespace FabricaDeSorrisos.UI.Forms
             gridCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridCategorias.MultiSelect = false;
             gridCategorias.AutoGenerateColumns = false;
+            gridCategorias.RowTemplate.Height = 64;
+            gridCategorias.ColumnHeadersHeight = 32;
+            gridCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             gridCategorias.Columns.Clear();
-            gridCategorias.Columns.Add(new DataGridViewTextBoxColumn { Name = "Id", DataPropertyName = "Id", HeaderText = "ID", Width = 80 });
-            gridCategorias.Columns.Add(new DataGridViewTextBoxColumn { Name = "Nome", DataPropertyName = "Nome", HeaderText = "Nome", Width = 300 });
+            var colId = new DataGridViewTextBoxColumn { Name = "Id", DataPropertyName = "Id", HeaderText = "ID", FillWeight = 12 };
+            colId.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            var colNome = new DataGridViewTextBoxColumn { Name = "Nome", DataPropertyName = "Nome", HeaderText = "Nome", FillWeight = 88 };
+            gridCategorias.Columns.Add(colId);
+            gridCategorias.Columns.Add(colNome);
         }
 
-        private async Task RecarregarAsync()
+        private async Task CarregarDados(string? termo = null)
         {
             var categorias = await _catalogService.GetCategoriasAsync();
-            var dados = categorias.Select(c => new { c.Id, c.Nome }).ToList();
-            gridCategorias.DataSource = dados;
+            _dados = categorias;
+            if (!string.IsNullOrWhiteSpace(termo))
+            {
+                int id;
+                bool isId = int.TryParse(termo, out id);
+                _dados = _dados.Where(c => (isId && c.Id == id) || (!isId && (c.Nome?.Contains(termo, System.StringComparison.OrdinalIgnoreCase) ?? false))).ToList();
+            }
+            RefreshGrid(_dados);
         }
 
         private void BtnCriarCategoria_Click(object? sender, EventArgs e)
@@ -59,7 +82,7 @@ namespace FabricaDeSorrisos.UI.Forms
             using var frm = new Categorias.frmCriarCategoria();
             if (frm.ShowDialog(this) == DialogResult.OK)
             {
-                _ = RecarregarAsync();
+                _ = CarregarDados();
             }
         }
 
@@ -84,7 +107,7 @@ namespace FabricaDeSorrisos.UI.Forms
             using var frm = new Categorias.frmEditarCategoria(sel.Value.id, sel.Value.nome);
             if (frm.ShowDialog(this) == DialogResult.OK)
             {
-                _ = RecarregarAsync();
+                _ = CarregarDados();
             }
         }
 
@@ -108,7 +131,83 @@ namespace FabricaDeSorrisos.UI.Forms
             }
 
             MessageBox.Show("Categoria excluída com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            await RecarregarAsync();
+            await CarregarDados();
+        }
+
+        private void RefreshGrid(List<CatalogService.CategoriaItem> items)
+        {
+            gridCategorias.DataSource = null;
+            gridCategorias.DataSource = items.Select(c => new { c.Id, c.Nome }).ToList();
+        }
+
+        private IEnumerable<CatalogService.CategoriaItem> AplicarFiltroAtual()
+        {
+            var termo = txtBusca.Text?.Trim() ?? "";
+            var campo = (cbFiltro.SelectedItem as string) ?? "Todos";
+            bool temTermo = !string.IsNullOrWhiteSpace(termo);
+            var items = _dados.AsEnumerable();
+
+            if (!temTermo && campo == "Todos") return items;
+
+            if (campo == "Todos")
+            {
+                if (!temTermo) return items;
+                int idVal;
+                bool idOk = int.TryParse(termo, out idVal);
+                return items.Where(c => (idOk && c.Id == idVal) || (c.Nome?.Contains(termo, System.StringComparison.OrdinalIgnoreCase) ?? false));
+            }
+
+            return campo switch
+            {
+                "ID" => (int.TryParse(termo, out var id) ? items.Where(c => c.Id == id) : items),
+                "Nome" => items.Where(c => c.Nome?.Contains(termo, System.StringComparison.OrdinalIgnoreCase) ?? false),
+                _ => items
+            };
+        }
+
+        private void BtnFiltrar_Click(object? sender, EventArgs e)
+        {
+            var filtrados = AplicarFiltroAtual().ToList();
+            RefreshGrid(filtrados);
+            AjustarVisibilidadeColunas((cbFiltro.SelectedItem as string) ?? "Todos");
+        }
+
+        private async void BtnBuscar_Click(object? sender, EventArgs e)
+        {
+            var termo = txtBusca.Text?.Trim();
+            await CarregarDados(termo);
+            var filtrados = AplicarFiltroAtual().ToList();
+            RefreshGrid(filtrados);
+            AjustarVisibilidadeColunas((cbFiltro.SelectedItem as string) ?? "Todos");
+        }
+
+        private async void BtnResetar_Click(object? sender, EventArgs e)
+        {
+            txtBusca.Text = "";
+            if (cbFiltro.Items.Count > 0) cbFiltro.SelectedIndex = 0;
+            await CarregarDados();
+            AjustarVisibilidadeColunas("Todos");
+        }
+
+        private void AjustarVisibilidadeColunas(string campo)
+        {
+            if (campo == "Todos")
+            {
+                foreach (DataGridViewColumn c in gridCategorias.Columns) c.Visible = true;
+                return;
+            }
+
+            foreach (DataGridViewColumn c in gridCategorias.Columns) c.Visible = false;
+            var target = campo == "ID" ? "Id" : "Nome";
+            foreach (DataGridViewColumn c in gridCategorias.Columns)
+            {
+                if (string.Equals(c.DataPropertyName, target, System.StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(c.Name, target, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    c.Visible = true;
+                    break;
+                }
+            }
         }
     }
 }

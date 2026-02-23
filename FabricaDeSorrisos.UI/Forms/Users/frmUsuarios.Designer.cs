@@ -83,21 +83,22 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             // panelGerente
             // 
+            panelGerente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panelGerente.Controls.Add(guna2DataGridView1);
             panelGerente.Controls.Add(lblGerentes);
             panelGerente.CustomizableEdges = customizableEdges11;
-            panelGerente.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            panelGerente.Location = new Point(523, 477);
+            panelGerente.Location = new Point(446, 216);
             panelGerente.Margin = new Padding(3, 4, 3, 4);
             panelGerente.Name = "panelGerente";
             panelGerente.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            panelGerente.Size = new Size(450, 480);
+            panelGerente.Size = new Size(293, 452);
             panelGerente.TabIndex = 4;
             // 
             // guna2DataGridView1
             // 
             dataGridViewCellStyle7.BackColor = Color.White;
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
@@ -108,8 +109,6 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             guna2DataGridView1.ColumnHeadersHeight = 36;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = Color.White;
             dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
@@ -119,13 +118,12 @@ namespace FabricaDeSorrisos.UI.Forms
             dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(0, 63);
+            guna2DataGridView1.Location = new Point(0, 44);
             guna2DataGridView1.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowHeadersWidth = 51;
-            guna2DataGridView1.RowTemplate.Height = 25;
-            guna2DataGridView1.Size = new Size(450, 418);
+            guna2DataGridView1.Size = new Size(293, 408);
             guna2DataGridView1.TabIndex = 1;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -153,30 +151,31 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             lblGerentes.BackColor = Color.Transparent;
             lblGerentes.Font = new Font("Segoe UI", 16F);
-            lblGerentes.Location = new Point(167, 12);
+            lblGerentes.Location = new Point(105, 4);
             lblGerentes.Margin = new Padding(3, 4, 3, 4);
             lblGerentes.Name = "lblGerentes";
-            lblGerentes.Size = new Size(108, 39);
+            lblGerentes.Size = new Size(85, 32);
             lblGerentes.TabIndex = 0;
             lblGerentes.Text = "Gerentes";
             // 
             // panelAdministrador
             // 
+            panelAdministrador.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             panelAdministrador.Controls.Add(guna2DataGridView3);
             panelAdministrador.Controls.Add(lblAdministradores);
             panelAdministrador.CustomizableEdges = customizableEdges9;
-            panelAdministrador.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            panelAdministrador.Location = new Point(1035, 477);
+            panelAdministrador.Location = new Point(841, 216);
             panelAdministrador.Margin = new Padding(3, 4, 3, 4);
             panelAdministrador.Name = "panelAdministrador";
             panelAdministrador.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            panelAdministrador.Size = new Size(450, 480);
+            panelAdministrador.Size = new Size(293, 452);
             panelAdministrador.TabIndex = 5;
             // 
             // guna2DataGridView3
             // 
             dataGridViewCellStyle4.BackColor = Color.White;
             guna2DataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            guna2DataGridView3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
@@ -187,8 +186,6 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2DataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             guna2DataGridView3.ColumnHeadersHeight = 36;
             guna2DataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            guna2DataGridView3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.White;
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
@@ -198,13 +195,12 @@ namespace FabricaDeSorrisos.UI.Forms
             dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
             guna2DataGridView3.DefaultCellStyle = dataGridViewCellStyle6;
             guna2DataGridView3.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView3.Location = new Point(0, 55);
+            guna2DataGridView3.Location = new Point(0, 44);
             guna2DataGridView3.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView3.Name = "guna2DataGridView3";
             guna2DataGridView3.RowHeadersVisible = false;
             guna2DataGridView3.RowHeadersWidth = 51;
-            guna2DataGridView3.RowTemplate.Height = 25;
-            guna2DataGridView3.Size = new Size(450, 426);
+            guna2DataGridView3.Size = new Size(293, 409);
             guna2DataGridView3.TabIndex = 1;
             guna2DataGridView3.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView3.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -232,30 +228,31 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             lblAdministradores.BackColor = Color.Transparent;
             lblAdministradores.Font = new Font("Segoe UI", 16F);
-            lblAdministradores.Location = new Point(150, 8);
+            lblAdministradores.Location = new Point(79, 4);
             lblAdministradores.Margin = new Padding(3, 4, 3, 4);
             lblAdministradores.Name = "lblAdministradores";
-            lblAdministradores.Size = new Size(197, 39);
+            lblAdministradores.Size = new Size(154, 32);
             lblAdministradores.TabIndex = 0;
             lblAdministradores.Text = "Administradores";
             // 
             // guna2CustomGradientPanel1
             // 
+            guna2CustomGradientPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             guna2CustomGradientPanel1.Controls.Add(guna2DataGridView2);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel1);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges7;
-            guna2CustomGradientPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            guna2CustomGradientPanel1.Location = new Point(14, 477);
+            guna2CustomGradientPanel1.Location = new Point(35, 216);
             guna2CustomGradientPanel1.Margin = new Padding(3, 4, 3, 4);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2CustomGradientPanel1.Size = new Size(450, 480);
+            guna2CustomGradientPanel1.Size = new Size(293, 452);
             guna2CustomGradientPanel1.TabIndex = 6;
             // 
             // guna2DataGridView2
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             guna2DataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            guna2DataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -266,8 +263,6 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2DataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             guna2DataGridView2.ColumnHeadersHeight = 36;
             guna2DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            guna2DataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -277,13 +272,12 @@ namespace FabricaDeSorrisos.UI.Forms
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView2.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView2.Location = new Point(0, 55);
+            guna2DataGridView2.Location = new Point(3, 44);
             guna2DataGridView2.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView2.Name = "guna2DataGridView2";
             guna2DataGridView2.RowHeadersVisible = false;
             guna2DataGridView2.RowHeadersWidth = 51;
-            guna2DataGridView2.RowTemplate.Height = 25;
-            guna2DataGridView2.Size = new Size(450, 426);
+            guna2DataGridView2.Size = new Size(293, 408);
             guna2DataGridView2.TabIndex = 1;
             guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView2.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -311,10 +305,10 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Segoe UI", 16F);
-            guna2HtmlLabel1.Location = new Point(159, 4);
+            guna2HtmlLabel1.Location = new Point(94, 4);
             guna2HtmlLabel1.Margin = new Padding(3, 4, 3, 4);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(97, 39);
+            guna2HtmlLabel1.Size = new Size(76, 32);
             guna2HtmlLabel1.TabIndex = 0;
             guna2HtmlLabel1.Text = "Clientes";
             // 
@@ -324,7 +318,7 @@ namespace FabricaDeSorrisos.UI.Forms
             lblUsuario.Font = new Font("Segoe UI", 12F);
             lblUsuario.Location = new Point(31, 92);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(156, 30);
+            lblUsuario.Size = new Size(125, 23);
             lblUsuario.TabIndex = 0;
             lblUsuario.Text = "Nome de Usuário";
             // 
@@ -332,26 +326,25 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(12, 12);
+            lblTitulo.Location = new Point(0, 2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(403, 47);
+            lblTitulo.Size = new Size(330, 39);
             lblTitulo.TabIndex = 7;
             lblTitulo.Text = "Gerenciamento de Usuários";
-            lblTitulo.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // lblTodosUsuarios
             // 
             lblTodosUsuarios.BackColor = Color.Transparent;
             lblTodosUsuarios.Font = new Font("Segoe UI", 15F);
-            lblTodosUsuarios.Location = new Point(551, 330);
+            lblTodosUsuarios.Location = new Point(464, 170);
             lblTodosUsuarios.Name = "lblTodosUsuarios";
-            lblTodosUsuarios.Size = new Size(353, 37);
+            lblTodosUsuarios.Size = new Size(275, 30);
             lblTodosUsuarios.TabIndex = 8;
             lblTodosUsuarios.Text = "Todos os Usuários Cadastrados";
-            lblTodosUsuarios.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             // 
             // btnCriarUsario
             // 
+            btnCriarUsario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCriarUsario.BorderRadius = 10;
             btnCriarUsario.CustomizableEdges = customizableEdges5;
             btnCriarUsario.DisabledState.BorderColor = Color.DarkGray;
@@ -365,16 +358,16 @@ namespace FabricaDeSorrisos.UI.Forms
             btnCriarUsario.ForeColor = Color.Black;
             btnCriarUsario.Image = Properties.Resources.plus4;
             btnCriarUsario.ImageAlign = HorizontalAlignment.Left;
-            btnCriarUsario.Location = new Point(1260, 12);
+            btnCriarUsario.Location = new Point(398, 12);
             btnCriarUsario.Name = "btnCriarUsario";
             btnCriarUsario.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnCriarUsario.Size = new Size(225, 56);
+            btnCriarUsario.Size = new Size(215, 59);
             btnCriarUsario.TabIndex = 9;
             btnCriarUsario.Text = "Criar Usuário";
-            btnCriarUsario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnEditarUsuario
             // 
+            btnEditarUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditarUsuario.BorderRadius = 10;
             btnEditarUsuario.CustomizableEdges = customizableEdges3;
             btnEditarUsuario.DisabledState.BorderColor = Color.DarkGray;
@@ -388,16 +381,16 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarUsuario.ForeColor = Color.Black;
             btnEditarUsuario.Image = Properties.Resources.lapis5;
             btnEditarUsuario.ImageAlign = HorizontalAlignment.Left;
-            btnEditarUsuario.Location = new Point(1260, 88);
+            btnEditarUsuario.Location = new Point(957, 12);
             btnEditarUsuario.Name = "btnEditarUsuario";
             btnEditarUsuario.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnEditarUsuario.Size = new Size(225, 56);
+            btnEditarUsuario.Size = new Size(215, 59);
             btnEditarUsuario.TabIndex = 10;
             btnEditarUsuario.Text = "Editar Usuário";
-            btnEditarUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnExcluirUsuario
             // 
+            btnExcluirUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnExcluirUsuario.BorderRadius = 10;
             btnExcluirUsuario.CustomizableEdges = customizableEdges1;
             btnExcluirUsuario.DisabledState.BorderColor = Color.DarkGray;
@@ -411,20 +404,19 @@ namespace FabricaDeSorrisos.UI.Forms
             btnExcluirUsuario.ForeColor = Color.Black;
             btnExcluirUsuario.Image = Properties.Resources.x3;
             btnExcluirUsuario.ImageAlign = HorizontalAlignment.Left;
-            btnExcluirUsuario.Location = new Point(1260, 165);
+            btnExcluirUsuario.Location = new Point(671, 12);
             btnExcluirUsuario.Name = "btnExcluirUsuario";
             btnExcluirUsuario.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnExcluirUsuario.Size = new Size(225, 56);
+            btnExcluirUsuario.Size = new Size(215, 59);
             btnExcluirUsuario.TabIndex = 11;
             btnExcluirUsuario.Text = "Excluir Usuário";
-            btnExcluirUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // frmUsuarios
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1506, 971);
+            ClientSize = new Size(1184, 682);
             Controls.Add(btnExcluirUsuario);
             Controls.Add(btnEditarUsuario);
             Controls.Add(btnCriarUsario);
