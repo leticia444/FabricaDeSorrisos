@@ -1,4 +1,4 @@
-﻿﻿using FabricaDeSorrisos.UI.Models.Services;
+﻿using FabricaDeSorrisos.UI.Models.Services;
 using FabricaDeSorrisos.UI.ViewModels.UserViewModels;
 using System.Drawing;
 using System.Linq;
@@ -65,6 +65,7 @@ namespace FabricaDeSorrisos.UI.Forms
             grid.ReadOnly = true;
             grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grid.MultiSelect = false;
+            grid.RowTemplate.Height = 64;
 
             grid.BorderStyle = BorderStyle.None;
             grid.RowHeadersVisible = false;
@@ -138,9 +139,7 @@ namespace FabricaDeSorrisos.UI.Forms
         private async void btnEditarUsuario_Click(object sender, EventArgs e)
         {
             var selecionado = ObterUsuarioSelecionado();
-            var frm = selecionado != null
-                ? new frmEditarUsuarios(_userService, selecionado.Id)
-                : new frmEditarUsuarios(_userService);
+            var frm = new Users.frmEditarUsuario();
             Hide();
             frm.ShowDialog(this);
             Show();
@@ -151,13 +150,20 @@ namespace FabricaDeSorrisos.UI.Forms
         private async void btnExcluirUsuario_Click(object sender, EventArgs e)
         {
             var selecionado = ObterUsuarioSelecionado();
-            var frm = selecionado != null
-                ? new frmExcluirUsuarios(_userService, selecionado.Id)
-                : new frmExcluirUsuarios(_userService);
-            Hide();
-            frm.ShowDialog(this);
-            Show();
-
+            if (selecionado == null)
+            {
+                MessageBox.Show("Selecione um usuário.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var confirmar = MessageBox.Show($"Deseja excluir o usuário \"{selecionado.Nome}\" (ID {selecionado.Id})?",
+                "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmar != DialogResult.Yes) return;
+            var ok = await _userService.Excluir(selecionado.Id);
+            if (!ok)
+            {
+                MessageBox.Show("Não foi possível excluir o usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             await CarregarUsuarios();
         }
 

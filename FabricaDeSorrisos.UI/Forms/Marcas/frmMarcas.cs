@@ -12,6 +12,7 @@ namespace FabricaDeSorrisos.UI.Forms
     {
         private readonly CatalogService _catalogService = new CatalogService();
         private readonly MarcaService _marcaService = new MarcaService();
+        private List<CatalogService.MarcaItem> _dados = new();
 
         public frmMarcas()
         {
@@ -20,12 +21,20 @@ namespace FabricaDeSorrisos.UI.Forms
             btnCriarMarca.Click += BtnCriarMarca_Click;
             btnEditarMarca.Click += BtnEditarMarca_Click;
             btnExcluirMarca.Click += BtnExcluirMarca_Click;
+            btnBuscar.Click += BtnBuscar_Click;
+            btnFiltrar.Click += BtnFiltrar_Click;
+            btnResetar.Click += BtnResetar_Click;
+            txtBusca.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) BtnBuscar_Click(s, e); };
+            cbFiltro.Items.Clear();
+            cbFiltro.Items.AddRange(new object[] { "Todos", "ID", "Nome" });
+            if (cbFiltro.Items.Count > 0) cbFiltro.SelectedIndex = 0;
         }
 
         private async void frmMarcas_Load(object? sender, EventArgs e)
         {
             ConfigurarGrid();
-            await RecarregarAsync();
+            await CarregarDados();
+            AjustarVisibilidadeColunas("Todos");
         }
 
         private void ConfigurarGrid()
@@ -34,32 +43,48 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             guna2DataGridView1.MultiSelect = false;
             guna2DataGridView1.AutoGenerateColumns = false;
+            guna2DataGridView1.RowTemplate.Height = 64;
+            guna2DataGridView1.ColumnHeadersHeight = 32;
+            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             guna2DataGridView1.Columns.Clear();
             var colId = new DataGridViewTextBoxColumn
             {
                 Name = "Id",
                 DataPropertyName = "Id",
                 HeaderText = "ID",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells,
+                FillWeight = 12,
                 ReadOnly = true
             };
+            colId.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             var colNome = new DataGridViewTextBoxColumn
             {
                 Name = "Nome",
                 DataPropertyName = "Nome",
                 HeaderText = "Nome da Marca",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                FillWeight = 88,
                 ReadOnly = true,
-                FillWeight = 1
             };
             guna2DataGridView1.Columns.Add(colId);
             guna2DataGridView1.Columns.Add(colNome);
         }
 
-        private async Task RecarregarAsync()
+        private async Task CarregarDados(string? termo = null)
         {
             var marcas = await _catalogService.GetMarcasAsync();
-            guna2DataGridView1.DataSource = marcas;
+            _dados = marcas;
+            if (!string.IsNullOrWhiteSpace(termo))
+            {
+                int id;
+                bool isId = int.TryParse(termo, out id);
+                _dados = _dados.Where(m => (isId && m.Id == id) || (!isId && (m.Nome?.Contains(termo, StringComparison.OrdinalIgnoreCase) ?? false))).ToList();
+            }
+            RefreshGrid(_dados);
+        }
+
+        private void RefreshGrid(List<CatalogService.MarcaItem> items)
+        {
+            guna2DataGridView1.DataSource = null;
+            guna2DataGridView1.DataSource = items.Select(m => new { m.Id, m.Nome }).ToList();
         }
 
         private async void BtnCriarMarca_Click(object? sender, EventArgs e)
@@ -67,7 +92,7 @@ namespace FabricaDeSorrisos.UI.Forms
             using var dlg = new frmCriarMarca();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                await RecarregarAsync();
+                await CarregarDados();
             }
         }
 
@@ -102,7 +127,7 @@ namespace FabricaDeSorrisos.UI.Forms
             using var dlg = new frmEditarMarca(id.Value, nome);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                await RecarregarAsync();
+                await CarregarDados();
             }
         }
 
@@ -131,7 +156,77 @@ namespace FabricaDeSorrisos.UI.Forms
                 return;
             }
 
-            await RecarregarAsync();
+            await CarregarDados();
+        }
+
+        private IEnumerable<CatalogService.MarcaItem> AplicarFiltroAtual()
+        {
+            var termo = txtBusca.Text?.Trim() ?? "";
+            var campo = (cbFiltro.SelectedItem as string) ?? "Todos";
+            bool temTermo = !string.IsNullOrWhiteSpace(termo);
+            var items = _dados.AsEnumerable();
+
+            if (!temTermo && campo == "Todos") return items;
+
+            if (campo == "Todos")
+            {
+                if (!temTermo) return items;
+                int idVal;
+                bool idOk = int.TryParse(termo, out idVal);
+                return items.Where(m => (idOk && m.Id == idVal) || (m.Nome?.Contains(termo, StringComparison.OrdinalIgnoreCase) ?? false));
+            }
+
+            return campo switch
+            {
+                "ID" => (int.TryParse(termo, out var id) ? items.Where(m => m.Id == id) : items),
+                "Nome" => items.Where(m => m.Nome?.Contains(termo, StringComparison.OrdinalIgnoreCase) ?? false),
+                _ => items
+            };
+        }
+
+        private void BtnFiltrar_Click(object? sender, EventArgs e)
+        {
+            var filtrados = AplicarFiltroAtual().ToList();
+            RefreshGrid(filtrados);
+            AjustarVisibilidadeColunas((cbFiltro.SelectedItem as string) ?? "Todos");
+        }
+
+        private async void BtnBuscar_Click(object? sender, EventArgs e)
+        {
+            var termo = txtBusca.Text?.Trim();
+            await CarregarDados(termo);
+            var filtrados = AplicarFiltroAtual().ToList();
+            RefreshGrid(filtrados);
+            AjustarVisibilidadeColunas((cbFiltro.SelectedItem as string) ?? "Todos");
+        }
+
+        private async void BtnResetar_Click(object? sender, EventArgs e)
+        {
+            txtBusca.Text = "";
+            if (cbFiltro.Items.Count > 0) cbFiltro.SelectedIndex = 0;
+            await CarregarDados();
+            AjustarVisibilidadeColunas("Todos");
+        }
+
+        private void AjustarVisibilidadeColunas(string campo)
+        {
+            if (campo == "Todos")
+            {
+                foreach (DataGridViewColumn c in guna2DataGridView1.Columns) c.Visible = true;
+                return;
+            }
+
+            foreach (DataGridViewColumn c in guna2DataGridView1.Columns) c.Visible = false;
+            var target = campo == "ID" ? "Id" : "Nome";
+            foreach (DataGridViewColumn c in guna2DataGridView1.Columns)
+            {
+                if (string.Equals(c.DataPropertyName, target, StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(c.Name, target, StringComparison.OrdinalIgnoreCase))
+                {
+                    c.Visible = true;
+                    break;
+                }
+            }
         }
     }
 }

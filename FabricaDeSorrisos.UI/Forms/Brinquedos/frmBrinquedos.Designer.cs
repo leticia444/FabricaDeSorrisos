@@ -32,6 +32,16 @@ namespace FabricaDeSorrisos.UI.Forms
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -47,6 +57,11 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarBrinquedo = new Guna.UI2.WinForms.Guna2GradientButton();
             lblBrinquedosCadastrados = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblBrinquedoCadastrado = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            btnResetar = new Guna.UI2.WinForms.Guna2Button();
+            btnFiltrar = new Guna.UI2.WinForms.Guna2GradientButton();
+            btnBuscar = new Guna.UI2.WinForms.Guna2GradientButton();
+            txtBusca = new Guna.UI2.WinForms.Guna2TextBox();
+            cbFiltro = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -65,6 +80,7 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             guna2DataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -75,8 +91,6 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             guna2DataGridView1.ColumnHeadersHeight = 32;
             guna2DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            guna2DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            guna2DataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -92,7 +106,7 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowHeadersWidth = 51;
             guna2DataGridView1.RowTemplate.Height = 29;
-            guna2DataGridView1.Size = new Size(1173, 395);
+            guna2DataGridView1.Size = new Size(1181, 398);
             guna2DataGridView1.TabIndex = 13;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -128,19 +142,19 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Segoe UI", 20F);
-            guna2HtmlLabel1.Location = new Point(10, 9);
+            guna2HtmlLabel1.Location = new Point(0, 2);
             guna2HtmlLabel1.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(290, 39);
             guna2HtmlLabel1.TabIndex = 17;
             guna2HtmlLabel1.Text = "Catálogo de Brinquedos";
-            guna2HtmlLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             guna2HtmlLabel1.Click += guna2HtmlLabel1_Click;
             // 
             // btnCriarBrinquedo
             // 
+            btnCriarBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCriarBrinquedo.BorderRadius = 10;
-            btnCriarBrinquedo.CustomizableEdges = customizableEdges5;
+            btnCriarBrinquedo.CustomizableEdges = customizableEdges15;
             btnCriarBrinquedo.DisabledState.BorderColor = Color.DarkGray;
             btnCriarBrinquedo.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCriarBrinquedo.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -152,19 +166,19 @@ namespace FabricaDeSorrisos.UI.Forms
             btnCriarBrinquedo.ForeColor = Color.Black;
             btnCriarBrinquedo.Image = Properties.Resources.plus;
             btnCriarBrinquedo.ImageAlign = HorizontalAlignment.Left;
-            btnCriarBrinquedo.Location = new Point(967, 11);
+            btnCriarBrinquedo.Location = new Point(975, 11);
             btnCriarBrinquedo.Margin = new Padding(3, 2, 3, 2);
             btnCriarBrinquedo.Name = "btnCriarBrinquedo";
-            btnCriarBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnCriarBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnCriarBrinquedo.Size = new Size(197, 42);
             btnCriarBrinquedo.TabIndex = 19;
             btnCriarBrinquedo.Text = "Criar Brinquedo";
-            btnCriarBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnStatusBrinquedo
             // 
+            btnStatusBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnStatusBrinquedo.BorderRadius = 10;
-            btnStatusBrinquedo.CustomizableEdges = customizableEdges3;
+            btnStatusBrinquedo.CustomizableEdges = customizableEdges13;
             btnStatusBrinquedo.DisabledState.BorderColor = Color.DarkGray;
             btnStatusBrinquedo.DisabledState.CustomBorderColor = Color.DarkGray;
             btnStatusBrinquedo.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -173,19 +187,19 @@ namespace FabricaDeSorrisos.UI.Forms
             btnStatusBrinquedo.FillColor = Color.Wheat;
             btnStatusBrinquedo.Font = new Font("Segoe UI", 9F);
             btnStatusBrinquedo.ForeColor = Color.Black;
-            btnStatusBrinquedo.Location = new Point(967, 131);
+            btnStatusBrinquedo.Location = new Point(975, 121);
             btnStatusBrinquedo.Margin = new Padding(3, 2, 3, 2);
             btnStatusBrinquedo.Name = "btnStatusBrinquedo";
-            btnStatusBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnStatusBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnStatusBrinquedo.Size = new Size(197, 42);
             btnStatusBrinquedo.TabIndex = 21;
             btnStatusBrinquedo.Text = "Ativar/Desativar Brinquedo";
-            btnStatusBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // btnEditarBrinquedo
             // 
+            btnEditarBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditarBrinquedo.BorderRadius = 10;
-            btnEditarBrinquedo.CustomizableEdges = customizableEdges1;
+            btnEditarBrinquedo.CustomizableEdges = customizableEdges11;
             btnEditarBrinquedo.DisabledState.BorderColor = Color.DarkGray;
             btnEditarBrinquedo.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEditarBrinquedo.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -197,14 +211,13 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarBrinquedo.ForeColor = Color.Black;
             btnEditarBrinquedo.Image = Properties.Resources.lapis4;
             btnEditarBrinquedo.ImageAlign = HorizontalAlignment.Left;
-            btnEditarBrinquedo.Location = new Point(967, 71);
+            btnEditarBrinquedo.Location = new Point(975, 66);
             btnEditarBrinquedo.Margin = new Padding(3, 2, 3, 2);
             btnEditarBrinquedo.Name = "btnEditarBrinquedo";
-            btnEditarBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnEditarBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnEditarBrinquedo.Size = new Size(197, 42);
             btnEditarBrinquedo.TabIndex = 22;
             btnEditarBrinquedo.Text = "Editar Brinquedo";
-            btnEditarBrinquedo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             // 
             // lblBrinquedosCadastrados
             // 
@@ -228,12 +241,113 @@ namespace FabricaDeSorrisos.UI.Forms
             lblBrinquedoCadastrado.TabIndex = 23;
             lblBrinquedoCadastrado.Text = "Brinquedos Cadastrados";
             // 
+            // btnResetar
+            // 
+            btnResetar.BorderRadius = 10;
+            btnResetar.CustomizableEdges = customizableEdges9;
+            btnResetar.DisabledState.BorderColor = Color.DarkGray;
+            btnResetar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnResetar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnResetar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnResetar.FillColor = Color.Gray;
+            btnResetar.Font = new Font("Segoe UI", 9F);
+            btnResetar.ForeColor = Color.White;
+            btnResetar.Location = new Point(591, 134);
+            btnResetar.Name = "btnResetar";
+            btnResetar.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnResetar.Size = new Size(180, 45);
+            btnResetar.TabIndex = 24;
+            btnResetar.Text = "Resetar Busca/Filtro";
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.BorderRadius = 10;
+            btnFiltrar.CustomizableEdges = customizableEdges7;
+            btnFiltrar.DisabledState.BorderColor = Color.DarkGray;
+            btnFiltrar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnFiltrar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnFiltrar.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            btnFiltrar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnFiltrar.FillColor = Color.Crimson;
+            btnFiltrar.FillColor2 = Color.Navy;
+            btnFiltrar.Font = new Font("Segoe UI", 9F);
+            btnFiltrar.ForeColor = Color.White;
+            btnFiltrar.Location = new Point(694, 83);
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnFiltrar.Size = new Size(180, 45);
+            btnFiltrar.TabIndex = 25;
+            btnFiltrar.Text = "Filtrar";
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.BorderRadius = 10;
+            btnBuscar.CustomizableEdges = customizableEdges5;
+            btnBuscar.DisabledState.BorderColor = Color.DarkGray;
+            btnBuscar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnBuscar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnBuscar.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            btnBuscar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnBuscar.FillColor = Color.PaleTurquoise;
+            btnBuscar.FillColor2 = Color.SteelBlue;
+            btnBuscar.Font = new Font("Segoe UI", 9F);
+            btnBuscar.ForeColor = Color.White;
+            btnBuscar.Location = new Point(694, 13);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnBuscar.Size = new Size(180, 45);
+            btnBuscar.TabIndex = 26;
+            btnBuscar.Text = "Buscar";
+            // 
+            // txtBusca
+            // 
+            txtBusca.BorderRadius = 10;
+            txtBusca.CustomizableEdges = customizableEdges3;
+            txtBusca.DefaultText = "";
+            txtBusca.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtBusca.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtBusca.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtBusca.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtBusca.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBusca.Font = new Font("Segoe UI", 9F);
+            txtBusca.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBusca.Location = new Point(404, 13);
+            txtBusca.Name = "txtBusca";
+            txtBusca.PlaceholderText = "Digite para Buscar";
+            txtBusca.SelectedText = "";
+            txtBusca.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtBusca.Size = new Size(260, 44);
+            txtBusca.TabIndex = 27;
+            // 
+            // cbFiltro
+            // 
+            cbFiltro.BackColor = Color.Transparent;
+            cbFiltro.BorderRadius = 10;
+            cbFiltro.CustomizableEdges = customizableEdges1;
+            cbFiltro.DrawMode = DrawMode.OwnerDrawFixed;
+            cbFiltro.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFiltro.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbFiltro.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbFiltro.Font = new Font("Segoe UI", 10F);
+            cbFiltro.ForeColor = Color.FromArgb(68, 88, 112);
+            cbFiltro.ItemHeight = 30;
+            cbFiltro.Location = new Point(404, 92);
+            cbFiltro.Name = "cbFiltro";
+            cbFiltro.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            cbFiltro.Size = new Size(260, 36);
+            cbFiltro.TabIndex = 28;
+            // 
             // frmBrinquedos
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.Ivory;
-            ClientSize = new Size(1176, 679);
+            ClientSize = new Size(1184, 682);
+            Controls.Add(cbFiltro);
+            Controls.Add(txtBusca);
+            Controls.Add(btnBuscar);
+            Controls.Add(btnFiltrar);
+            Controls.Add(btnResetar);
             Controls.Add(lblBrinquedoCadastrado);
             Controls.Add(btnEditarBrinquedo);
             Controls.Add(btnStatusBrinquedo);
@@ -258,5 +372,10 @@ namespace FabricaDeSorrisos.UI.Forms
         private Guna.UI2.WinForms.Guna2GradientButton btnStatusBrinquedo;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblBrinquedosCadastrados;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblBrinquedoCadastrado;
+        private Guna.UI2.WinForms.Guna2ComboBox cbFiltro;
+        private Guna.UI2.WinForms.Guna2TextBox txtBusca;
+        private Guna.UI2.WinForms.Guna2GradientButton btnBuscar;
+        private Guna.UI2.WinForms.Guna2GradientButton btnFiltrar;
+        private Guna.UI2.WinForms.Guna2Button btnResetar;
     }
 }
