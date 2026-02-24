@@ -74,30 +74,4 @@
         }
     });
 
-
-
-
-
-
-
-
-
-
-    // --- PINTAR CORAÇÕES AO CARREGAR A PÁGINA ---
-    if ($(".btn-favorito").length > 0) {
-        $.ajax({
-            url: "/Favoritos/ObterMeusFavoritosIds", // Certifique-se que essa rota existe no seu Controller
-            type: "GET",
-            success: function (ids) {
-                $(".btn-favorito").each(function () {
-                    let botao = $(this);
-                    let idProduto = botao.data("id");
-
-                    if (ids.includes(idProduto)) {
-                        botao.find("i").removeClass("bi-heart text-secondary").addClass("bi-heart-fill text-danger");
-                    }
-                });
-            }
-        });
-    }
 });
