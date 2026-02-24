@@ -48,4 +48,56 @@
             sugestoesBox.hide();
         }
     });
+
+
+
+
+
+
+
+
+
+    // --- LÓGICA PARA OS BOTÕES DE VOLTAR (CARRINHO E FAVORITOS) ---
+    $(".btn-voltar-favoritos, .btn-voltar-carrinho").on("click", function (e) {
+        e.preventDefault();
+
+        // Captura a URL de onde o usuário veio
+        var vindoDe = document.referrer;
+
+        // Verifica se a página anterior causaria um loop ou se não há histórico
+        if (vindoDe.includes("Carrinho") || vindoDe.includes("Favoritos") || vindoDe === "") {
+            // Se for loop, força o retorno para a Home
+            window.location.href = "/";
+        } else {
+            // Se veio de outra página, volta direto ignorando cliques internos
+            window.location.href = vindoDe;
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+    // --- PINTAR CORAÇÕES AO CARREGAR A PÁGINA ---
+    if ($(".btn-favorito").length > 0) {
+        $.ajax({
+            url: "/Favoritos/ObterMeusFavoritosIds", // Certifique-se que essa rota existe no seu Controller
+            type: "GET",
+            success: function (ids) {
+                $(".btn-favorito").each(function () {
+                    let botao = $(this);
+                    let idProduto = botao.data("id");
+
+                    if (ids.includes(idProduto)) {
+                        botao.find("i").removeClass("bi-heart text-secondary").addClass("bi-heart-fill text-danger");
+                    }
+                });
+            }
+        });
+    }
 });

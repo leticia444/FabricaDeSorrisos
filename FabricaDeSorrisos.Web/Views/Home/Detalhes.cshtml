@@ -83,12 +83,21 @@
                     </button>
                 }
 
-                <button class="btn btn-outline-danger btn-lg rounded-circle"
+               @* <button class="btn btn-outline-danger btn-lg rounded-circle"
                         onclick="toggleFavorito(this, @Model.Produto.Id)"
                         data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()"
                         title="Adicionar aos Favoritos">
                     <i class="bi bi-heart"></i>
+                </button>*@
+
+                <button class="btn btn-outline-danger btn-lg rounded-circle btn-favorito"
+                        onclick="toggleFavorito(this, @Model.Produto.Id)"
+                        data-id="@Model.Produto.Id"
+                        data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()"
+                        title="Adicionar aos Favoritos">
+                    <i class="bi bi-heart"></i>
                 </button>
+
             </div>
 
             <div class="card border-0 bg-light rounded-4 mb-4">

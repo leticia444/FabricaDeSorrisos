@@ -463,56 +463,72 @@ body {
     }
 
 /* --- CONFIGURAÇÃO EXCLUSIVA PARA MOBILE (Até 991px) --- */
+/* --- CONFIGURAÇÃO EXCLUSIVA PARA MOBILE (Até 991px) --- */
 @media (max-width: 991px) {
+    body {
+        padding-top: 180px !important;
+    }
+
     .bg-fabrica-mobile {
-        background-color: #00bfff !important; /* Azul celeste da imagem */
-        border-radius: 0 0 40px 40px !important; /* Arredondamento acentuado embaixo */
-        padding-bottom: 20px !important;
-        border: none !important;
+        background-color: #00bfff !important;
+        border-radius: 0 0 50px 50px !important;
+        padding-bottom: 25px !important;
     }
 
     .search-rounded-mobile {
-        border: 3px solid #00C709 !important; /* Verde vibrante da referência */
+        border: 3px solid #00C709 !important;
         border-radius: 50px !important;
         background-color: #ffffff !important;
-        height: 45px !important;
     }
 
-    .text-dark-pixel {
-        color: #000000 !important; /* Ícones pretos conforme a imagem */
+    /* Quadrado de Login da Foto */
+    .login-box-mobile {
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 15px;
+        margin-bottom: 20px;
+        background-color: rgba(255, 255, 255, 0.1);
+        text-align: center;
+        color: white;
     }
 
-    .badge-admin-header,
-    .user-area-header {
-        display: none !important; /* Remove área admin e 'Olá' do topo */
+    .btn-sair-mobile {
+        background-color: #000269 !important;
+        color: white !important;
+        border-radius: 50px;
+        padding: 4px 20px;
+        border: none;
+        font-weight: bold;
     }
 
-    body {
-        padding-top: 180px !important; /* Garante que o carrossel comece após a curva do header */
+    /* Categorias Brancas Alinhadas à Esquerda conforme a foto */
+    .mobile-cat-link {
+        color: white !important;
+        text-decoration: none;
+        text-align: left;
+        display: block;
+        padding: 5px 0;
+        font-size: 1.1rem;
+        transition: 0.3s;
     }
 
-    /* Botão de Filtro movido para a Esquerda conforme solicitado */
+        /* Hover Azul Escuro solicitado nas categorias mobile */
+        .mobile-cat-link:hover {
+            color: #000269 !important;
+        }
+
     .btn-filtro-mobile {
         position: fixed;
         bottom: 25px;
-        left: 25px; /* Ajustado para a esquerda */
+        left: 25px;
         width: 65px;
         height: 65px;
         background-color: white;
-        color: #6f42c1; /* Roxo conforme a referência */
         border: 1px solid #e0e0e0;
         border-radius: 50%;
         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         z-index: 1050;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.2s ease;
     }
-
-        .btn-filtro-mobile:active {
-            transform: scale(0.9);
-        }
+}
 
     /* Ocultar botão limpar filtros no mobile conforme solicitado */
     .btn-limpar-degrade {
@@ -526,4 +542,11 @@ body {
     bottom: 20px;
     right: 20px;
     z-index: 2000;
+}
+
+
+
+/* Cor do coração quando selecionado */
+.bi-heart-fill.text-danger {
+    color: #ff0000 !important;
 }

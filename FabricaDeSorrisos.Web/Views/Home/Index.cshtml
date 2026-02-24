@@ -184,11 +184,18 @@
                         </a>
 
                         @* BOTÃO DE FAVORITOS ORIGINAL (MANTIDO EXATAMENTE COMO NO SEU CÓDIGO FUNCIONAL) *@
-                        <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
+                        @*<button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
                                 onclick="toggleFavorito(this, @item.Id)"
                                 data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()">
                             <i class="bi bi-heart fs-5 text-secondary"></i>
-                        </button>
+                        </button>*@
+
+                        <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
+                                onclick="toggleFavorito(this, @item.Id)"
+                                data-id="@item.Id"
+                                data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()">
+                            <i class="bi bi-heart fs-5 text-secondary"></i>
+                        </button>];
                     </div>
 
                     <div class="card-body p-0 d-flex flex-column text-start">
