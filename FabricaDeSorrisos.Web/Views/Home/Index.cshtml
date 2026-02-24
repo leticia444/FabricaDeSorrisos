@@ -4,8 +4,7 @@
 }
 
 @* --- BLOCO DO CARROSSEL (LARGURA TOTAL 100%) --- *@
-@* A altura de 690px agora é controlada pelo arquivo shared.css *@
-<div id="carouselHome" class="carousel slide shadow-sm" data-bs-ride="carousel" data-bs-interval="4000">
+<div id="carouselHome" class="carousel slide shadow-sm mb-5" data-bs-ride="carousel" data-bs-interval="4000">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="0" class="active"></button>
         <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="1"></button>
@@ -33,208 +32,162 @@
 
 
 <div class="container">
-    @* Seção de Categorias *@
-    @* --- SEÇÃO DE CATEGORIAS ATUALIZADA (APENAS IMAGENS) --- *@
-    <div class="row justify-content-center text-center g-4 mb-5">
-        @* Coluna para a categoria Brinquedos *@
-        <div class="col-6 col-md-2">
-            @* Link que redireciona para a busca filtrada pela categoria ID 1 *@
-            <a asp-action="Busca" asp-route-categoriaId="1" class="text-decoration-none">
-                @* Container do card removendo preenchimentos (p-0) e bordas para focar na imagem *@
-                <div class="cat-card shadow-sm hover-scale p-0 border-0">
-                    @* Imagem da categoria com bordas arredondadas e ajuste responsivo *@
-                    <img src="~/img/brinquedos.png" class="img-fluid rounded-4" alt="Brinquedos">
-                </div>
-            </a>
-        </div>
+    @* --- SEÇÃO DE CATEGORIAS --- *@
+    <div class="my-5 py-4">
+        @* Novo título de Categorias em Azul Escuro *@
+        <h3 class="fw-bold mb-5 text-center" style="color: #000269;">Categorias</h3>
 
-        @* Coluna para a categoria Educativos *@
-        <div class="col-6 col-md-2">
-            @* Link que redireciona para a busca filtrada pela categoria ID 2 *@
-            <a asp-action="Busca" asp-route-categoriaId="2" class="text-decoration-none">
-                @* Container do card com efeito de sombra e escala ao passar o mouse *@
-                <div class="cat-card shadow-sm hover-scale p-0 border-0">
-                    @* Imagem da categoria Educativos *@
-                    <img src="~/img/educativos.png" class="img-fluid rounded-4" alt="Educativos">
-                </div>
-            </a>
-        </div>
+        <div class="row justify-content-center text-center g-4">
+            <div class="col-6 col-md-2">
+                <a asp-action="Busca" asp-route-categoriaId="1" class="text-decoration-none">
+                    <div class="cat-card shadow-sm hover-scale p-0 border-0">
+                        <img src="~/img/brinquedos.png" class="img-fluid rounded-4" alt="Brinquedos">
+                    </div>
+                </a>
+            </div>
 
-        @* Coluna para a categoria Pets *@
-        <div class="col-6 col-md-2">
-            @* Link que redireciona para a busca filtrada pela categoria ID 4 *@
-            <a asp-action="Busca" asp-route-categoriaId="4" class="text-decoration-none">
-                @* Container do card estilizado *@
-                <div class="cat-card shadow-sm hover-scale p-0 border-0">
-                    @* Imagem da categoria Pets *@
-                    <img src="~/img/pets.png" class="img-fluid rounded-4" alt="Pets">
-                </div>
-            </a>
-        </div>
+            <div class="col-6 col-md-2">
+                <a asp-action="Busca" asp-route-categoriaId="2" class="text-decoration-none">
+                    <div class="cat-card shadow-sm hover-scale p-0 border-0">
+                        <img src="~/img/educativos.png" class="img-fluid rounded-4" alt="Educativos">
+                    </div>
+                </a>
+            </div>
 
-        @* Coluna para a categoria Jogos *@
-        <div class="col-6 col-md-2">
-            @* Link que redireciona para a busca filtrada pela categoria ID 3 *@
-            <a asp-action="Busca" asp-route-categoriaId="3" class="text-decoration-none">
-                @* Container do card estilizado *@
-                <div class="cat-card shadow-sm hover-scale p-0 border-0">
-                    @* Imagem da categoria Jogos *@
-                    <img src="~/img/jogos.png" class="img-fluid rounded-4" alt="Jogos">
-                </div>
-            </a>
+            <div class="col-6 col-md-2">
+                <a asp-action="Busca" asp-route-categoriaId="4" class="text-decoration-none">
+                    <div class="cat-card shadow-sm hover-scale p-0 border-0">
+                        <img src="~/img/pets.png" class="img-fluid rounded-4" alt="Pets">
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6 col-md-2">
+                <a asp-action="Busca" asp-route-categoriaId="3" class="text-decoration-none">
+                    <div class="cat-card shadow-sm hover-scale p-0 border-0">
+                        <img src="~/img/jogos.png" class="img-fluid rounded-4" alt="Jogos">
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-    @* --- FIM DA SEÇÃO DE CATEGORIAS --- *@
 
-    @* Banner do Jogo *@
-    @* --- SEÇÃO BANNER DO JOGO (SUBSTITUÍDA POR IMAGEM) --- *@
-    @* O div abaixo define o espaçamento e a sombra leve igual ao seu wireframe *@
-    <div class="mb-5 shadow-sm" style="max-width: 1362px; margin: 0 auto;">
-        @* Link que envolve a imagem caso queira direcionar para o jogo no futuro *@
+    @* --- SEÇÃO BANNER DO JOGO --- *@
+    <div class="my-5 py-4 shadow-sm" style="max-width: 1362px; margin: 0 auto;">
         <a href="#" class="text-decoration-none d-block">
-            @* Imagem única substituindo o bloco de texto e botões *@
-            @* 'rounded-5' garante o arredondamento das bordas conforme o design *@
-            @* 'aspect-ratio' mantém a proporção de 1362x758 para não distorcer *@
             <img src="~/img/bannerJogo.jpg"
                  class="img-fluid rounded-5 w-100"
                  style="aspect-ratio: 1362 / 758; object-fit: cover; transition: none;"
                  alt="Banner do Jogo Ursinho Fabrício">
         </a>
     </div>
-    @* --- FIM DA SEÇÃO BANNER DO JOGO --- *@
-    </div>
 
-    @* Marcas *@
-@* --- SEÇÃO DE MARCAS FAVORITAS --- *@
-<div class="mb-5 text-center">
-    @* Título da seção mantido conforme o original *@
-    <h3 class="fw-bold mb-4 text-secondary">Nossas Marcas Favoritas</h3>
+    @* --- SEÇÃO DE MARCAS FAVORITAS --- *@
+    <div class="my-5 py-4 text-center">
+        @* Título alterado para Azul Escuro *@
+        <h3 class="fw-bold mb-5" style="color: #000269;">Nossas Marcas Favoritas</h3>
 
-    @* Container flexível para alinhar as marcas lado a lado com espaçamento *@
-    <div class="d-flex justify-content-center flex-wrap gap-4">
-
-        @* Bloco para a marca LEGO *@
-        <a asp-action="Busca" asp-route-marcaId="1" class="text-decoration-none hover-scale">
-            @* Div que cria o círculo branco com a sombra leve solicitada *@
-            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
-                @* Imagem da marca ocupando todo o espaço interno do círculo *@
-                <img src="~/img/lego.png" class="img-fluid" alt="Lego" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </a>
-
-        @* Bloco para a marca ESTRELA *@
-        <a asp-action="Busca" asp-route-marcaId="5" class="text-decoration-none hover-scale">
-            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
-                <img src="~/img/estrela.png" class="img-fluid" alt="Estrela" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </a>
-
-        @* Bloco para a marca MATTEL *@
-        <a asp-action="Busca" asp-route-marcaId="2" class="text-decoration-none hover-scale">
-            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
-                <img src="~/img/mattel.png" class="img-fluid" alt="Mattel" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </a>
-
-        @* Bloco para a marca HASBRO *@
-        <a asp-action="Busca" asp-route-marcaId="3" class="text-decoration-none hover-scale">
-            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
-                <img src="~/img/hasbro.png" class="img-fluid" alt="Hasbro" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </a>
-
-        @* Bloco para a marca CANDIDE *@
-        <a asp-action="Busca" asp-route-marcaId="6" class="text-decoration-none hover-scale">
-            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
-                <img src="~/img/candide.png" class="img-fluid" alt="Candide" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </a>
-
-        @* Bloco para a marca FISHER PRICE *@
-        <a asp-action="Busca" asp-route-marcaId="4" class="text-decoration-none hover-scale">
-            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
-                <img src="~/img/fisherPrice.png" class="img-fluid" alt="Fisher Price" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </a>
-
-    </div>
-</div>
-@* --- FIM DA SEÇÃO DE MARCAS --- *@
-
-
-
-
-    @* Produtos *@
-
-@* --- BLOCO DE PRODUTOS PARA INDEX.CSHTML --- *@
-<div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
-    @if (Model.Produtos != null && Model.Produtos.Items.Any())
-    {
-        @foreach (var item in Model.Produtos.Items.Take(6))
-        {
-            <div class="col d-flex justify-content-center">
-                @* Card travado em 276x450.07 com sombra azul conforme seu wireframe *@
-                <div class="card product-card-wireframe shadow-custom-blue border-0 position-relative rounded-5 overflow-hidden p-3"
-                     style="width: 276px; height: 450.07px; background-color: #fff;">
-
-                    <div class="position-relative text-center mb-2">
-                        <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.Id">
-                            <img src="@(item.ImagemUrl ?? "https://placehold.co/200?text=Sem+Foto")"
-                                 class="img-fluid" style="height: 180px; object-fit: contain;">
-                        </a>
-
-                        @* BOTÃO DE FAVORITOS ORIGINAL (MANTIDO EXATAMENTE COMO NO SEU CÓDIGO FUNCIONAL) *@
-                        @*<button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
-                                onclick="toggleFavorito(this, @item.Id)"
-                                data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()">
-                            <i class="bi bi-heart fs-5 text-secondary"></i>
-                        </button>*@
-
-                        <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
-                                onclick="toggleFavorito(this, @item.Id)"
-                                data-id="@item.Id"
-                                data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()">
-                            <i class="bi bi-heart fs-5 text-secondary"></i>
-                        </button>];
-                    </div>
-
-                    <div class="card-body p-0 d-flex flex-column text-start">
-                        @* Estrelas de Avaliação fixas (5 estrelas) *@
-                        <div class="text-warning mb-1" style="font-size: 0.8rem;">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                        </div>
-
-                        @* Nome do Produto *@
-                        <h5 class="fw-bold text-dark mb-1 fs-6 text-truncate">@item.Nome</h5>
-
-                        @* Marca e Categoria Amarela solicitada *@
-                        <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
-                            <small class="text-muted d-block">@item.Marca</small>
-                            <span class="badge-categoria-amarela">@item.Categoria</span>
-                        </div>
-
-                        <div class="mt-auto">
-                            @* Preço e Parcelas *@
-                            <h4 class="fw-bold text-dark mb-0">R$ @item.Preco.ToString("N2")</h4>
-                            <p class="text-muted" style="font-size: 0.75rem; margin-bottom: 10px;">
-                                ou 10x R$ @((item.Preco / 10).ToString("N2")) s/juros
-                            </p>
-
-                            @* Botão Adicionar Verde Vibrante *@
-                            @if (item.Estoque > 0)
-                            {
-                                <button class="btn btn-success-custom w-100 rounded-4 py-2"
-                                        onclick="adicionarAoCarrinho(this, @item.Id)">
-                                    <i class="bi bi-cart-fill me-1"></i> adicionar
-                                </button>
-                            }
-                        </div>
-                    </div>
+        <div class="d-flex justify-content-center flex-wrap gap-4">
+            <a asp-action="Busca" asp-route-marcaId="1" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
+                    <img src="~/img/lego.png" class="img-fluid" alt="Lego" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
-            </div>
-        }
-    }
-</div>
+            </a>
+
+            <a asp-action="Busca" asp-route-marcaId="5" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
+                    <img src="~/img/estrela.png" class="img-fluid" alt="Estrela" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+
+            <a asp-action="Busca" asp-route-marcaId="2" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
+                    <img src="~/img/mattel.png" class="img-fluid" alt="Mattel" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+
+            <a asp-action="Busca" asp-route-marcaId="3" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
+                    <img src="~/img/hasbro.png" class="img-fluid" alt="Hasbro" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+
+            <a asp-action="Busca" asp-route-marcaId="6" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
+                    <img src="~/img/candide.png" class="img-fluid" alt="Candide" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+
+            <a asp-action="Busca" asp-route-marcaId="4" class="text-decoration-none hover-scale">
+                <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center overflow-hidden" style="width: 172px; height: 172px;">
+                    <img src="~/img/fisherPrice.png" class="img-fluid" alt="Fisher Price" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    @* --- BLOCO DE PRODUTOS --- *@
+    <div class="my-5 py-4">
+        @* Novo título de Destaques em Azul Escuro *@
+        <h3 class="fw-bold mb-5 text-center" style="color: #000269;">Destaques da semana</h3>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+            @if (Model.Produtos != null && Model.Produtos.Items.Any())
+            {
+                @foreach (var item in Model.Produtos.Items.Take(6))
+                {
+                    <div class="col d-flex justify-content-center">
+                        <div class="card product-card-wireframe shadow-custom-blue border-0 position-relative rounded-5 overflow-hidden p-3"
+                             style="width: 276px; height: 450.07px; background-color: #fff;">
+
+                            <div class="position-relative text-center mb-2">
+                                <a asp-controller="Home" asp-action="Detalhes" asp-route-id="@item.Id">
+                                    <img src="@(item.ImagemUrl ?? "https://placehold.co/200?text=Sem+Foto")"
+                                         class="img-fluid" style="height: 180px; object-fit: contain;">
+                                </a>
+
+                                <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
+                                        onclick="toggleFavorito(this, @item.Id)"
+                                        data-id="@item.Id"
+                                        data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()">
+                                    <i class="bi bi-heart fs-5 text-secondary"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body p-0 d-flex flex-column text-start">
+                                <div class="text-warning mb-1" style="font-size: 0.8rem;">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                </div>
+
+                                <h5 class="fw-bold text-dark mb-1 fs-6 text-truncate">@item.Nome</h5>
+
+                                <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                                    <small class="text-muted d-block">@item.Marca</small>
+                                    <span class="badge-categoria-amarela">@item.Categoria</span>
+                                </div>
+
+                                <div class="mt-auto">
+                                    <h4 class="fw-bold text-dark mb-0">R$ @item.Preco.ToString("N2")</h4>
+                                    <p class="text-muted" style="font-size: 0.75rem; margin-bottom: 10px;">
+                                        ou 10x R$ @((item.Preco / 10).ToString("N2")) s/juros
+                                    </p>
+
+                                    @if (item.Estoque > 0)
+                                    {
+                                        <button class="btn btn-success-custom w-100 rounded-4 py-2"
+                                                onclick="adicionarAoCarrinho(this, @item.Id)">
+                                            <i class="bi bi-cart-fill me-1"></i> adicionar
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
 </div>
 
 <style>
