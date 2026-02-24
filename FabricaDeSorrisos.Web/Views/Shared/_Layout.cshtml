@@ -66,12 +66,21 @@
 
                         @* Categorias Alinhadas à Esquerda conforme a foto *@
                         <div class="d-flex flex-column gap-3">
-                            <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
+                            @* <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
                             <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
                             <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
                             <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
                             <a class="mobile-cat-link text-warning fw-bold" asp-action="Busca" asp-route-ofertas="true">Ofertas</a>
-                            <a class="mobile-cat-link" asp-action="Privacy">Sobre Nós</a>
+                            <a class="mobile-cat-link" asp-action="Privacy">Sobre Nós</a> *@
+
+                            
+                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
+                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
+                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
+                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
+                                <a class="mobile-cat-link text-warning fw-bold" asp-controller="Home" asp-action="Busca" asp-route-ofertas="true">Ofertas</a>
+                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
+                            
                         </div>
 
                         @* Seta para Fechar o Menu conforme a imagem *@
@@ -127,7 +136,7 @@
             <div class="bg-fabrica border-top border-white border-opacity-25 shadow-sm">
                 <div class="container">
                     <nav class="nav justify-content-between py-2 align-items-center">
-                    <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "1" ? "active" : "")" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
+                    @* <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "1" ? "active" : "")" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
 
                         <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "2" ? "active" : "")" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
 
@@ -141,8 +150,19 @@
                            asp-action="Busca"
                            asp-route-ofertas="true">Ofertas</a>
 
-                     <a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-action="Privacy">Sobre Nós</a>
+                     <a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-action="Privacy">Sobre Nós</a> *@
 
+                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "1" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
+
+                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "2" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
+
+                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "4" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
+
+                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "3" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
+
+                        <a class="nav-link-custom @(Context.Request.Query["ofertas"] == "true" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-ofertas="true">Ofertas</a>
+
+                        <a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
 
                         @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Gerente"))) {
                             <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-warning rounded-pill fw-bold px-3 text-dark ms-2" style="background-color: #f3dd24; font-size: 0.8rem; border: none;">ÁREA ADMIN</a>
@@ -176,12 +196,26 @@
                 <div class="col-12">
                    @* Links Categorias Footer corrigidos *@
     <nav class="nav justify-content-center gap-3 text-white flex-wrap">
-        <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">BRINQUEDOS</a>
+        @* <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">BRINQUEDOS</a>
         <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">EDUCATIVOS</a>
         <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">PETS</a>
         <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">JOGOS</a>
         <a class="footer-nav-link text-decoration-none fw-bold small text-warning" asp-controller="Home" asp-action="Busca" asp-route-ofertas="true">OFERTAS</a>
-        <a class="footer-nav-link text-decoration-none fw-bold small @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-action="Privacy">SOBRE NÓS</a>
+        <a class="footer-nav-link text-decoration-none fw-bold small @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-action="Privacy">SOBRE NÓS</a> *@
+
+                        
+                            <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">BRINQUEDOS</a>
+
+                            <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">EDUCATIVOS</a>
+
+                            <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">PETS</a>
+
+                            <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">JOGOS</a>
+
+                            <a class="footer-nav-link text-decoration-none fw-bold small text-warning" asp-controller="Home" asp-action="Busca" asp-route-ofertas="true">OFERTAS</a>
+
+                 <a class="footer-nav-link text-decoration-none fw-bold small @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">SOBRE NÓS</a>
+                        
     </nav>
                 </div>
             </div>
