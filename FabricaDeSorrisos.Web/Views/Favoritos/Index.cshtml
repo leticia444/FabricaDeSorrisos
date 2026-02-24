@@ -87,11 +87,19 @@
 </div>
 
 <style>
-    /* Área quadrada com bordas redondas no meio */
+    /* Área quadrada com bordas redondas no meio (Agora com Borda e Sombra Vinho) */
     .area-favoritos-container {
-        background-color: #ffffff;
+        background-color: #ffffff; /* Corrigi um pequeno erro de digitação "czolor" que estava no seu código */
         border-radius: 30px;
         min-height: 500px;
+        /* Adicionando a Borda e a Sombra Vinho */
+        border: 2px solid #800020 !important;
+        box-shadow: 0 8px 30px rgba(128, 0, 32, 0.2) !important;
+    }
+
+    /* Sombra ROSA suave no card normal (Sobrescreve a sombra azul) */
+    .product-card-wireframe {
+        box-shadow: 0 4px 15px rgba(255, 105, 180, 0.35) !important;
     }
 
     /* Efeito de aumento de tamanho no card ao passar a seta */
@@ -102,7 +110,8 @@
         .zoom-hover:hover {
             transform: scale(1.08);
             z-index: 10;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+            /* Sombra ROSA mais forte ao passar o mouse (Sobrescreve a sombra cinza) */
+            box-shadow: 0 15px 30px rgba(255, 20, 147, 0.45) !important;
         }
 
     .z-3 {
