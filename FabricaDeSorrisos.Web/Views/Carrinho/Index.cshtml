@@ -40,59 +40,56 @@
             @* --- ÁREA DOS PRODUTOS --- *@
             <div class="col-lg-8">
                 @* Div branca arredondada sem linhas divisórias internas *@
-                <div class="bg-white p-4 shadow-sm" style="border-radius: 30px;">
-
-                    <table class="table table-borderless align-middle mb-0 table-cart">
-                        <thead>
-                            <tr>
-                                @* Textos do cabeçalho em Azul Escuro *@
-                                <th class="ps-3" style="color: #000269; font-size: 1.1rem;">Produto</th>
-                                <th class="text-center" style="color: #000269; font-size: 1.1rem;">Quantidade</th>
-                                <th class="text-end pe-4" style="color: #000269; font-size: 1.1rem;">Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Itens)
-                            {
-                                <tr class="cart-item-row">
-                                    <td class="ps-3 py-3">
-                                        <div class="d-flex align-items-center">
-                                            <img src="@(item.Brinquedo.ImagemUrl ?? "https://placehold.co/60")"
-                                                 class="rounded-4 me-3 shadow-sm" style="width: 70px; height: 70px; object-fit: cover;">
-                                            <div>
-                                                <h6 class="mb-1 fw-bold text-dark">@item.Brinquedo.Nome</h6>
-                                                <small class="text-muted">R$ @item.Brinquedo.Preco.ToString("N2")</small>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td class="text-center py-3">
-                                        @* Controle de Quantidade (Pílula Cinza com Botões Amarelos) *@
-                                        <form asp-action="AtualizarQuantidade" method="post" class="d-inline-flex align-items-center bg-light rounded-pill p-1 shadow-sm">
-                                            <input type="hidden" name="brinquedoId" value="@item.BrinquedoId" />
-                                            <button type="submit" name="quantidade" value="@(item.Quantidade - 1)" class="btn btn-sm rounded-circle fw-bold btn-qtd-amarelo"><i class="bi bi-dash fs-5"></i></button>
-                                            <span class="mx-3 fw-bold text-dark fs-5">@item.Quantidade</span>
-                                            <button type="submit" name="quantidade" value="@(item.Quantidade + 1)" class="btn btn-sm rounded-circle fw-bold btn-qtd-amarelo"><i class="bi bi-plus fs-5"></i></button>
-                                        </form>
-                                    </td>
-
-                                    @* Total do Item em Verde *@
-                                    <td class="text-end fw-bold py-3 pe-4" style="color: #00C709; font-size: 1.2rem;">
-                                        R$ @((item.Quantidade * item.Brinquedo.Preco).ToString("N2"))
-                                    </td>
-
-                                    <td class="text-end pe-3 py-3">
-                                        @* Lixeira Vermelha Sólida *@
-                                        <a asp-action="Remover" asp-route-itemId="@item.BrinquedoId" class="text-danger fs-3 btn-lixeira" title="Remover Produto">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+               @* --- LISTA DE PRODUTOS RESPONSIVA (SEM TABLE) --- *@
+<div class="d-flex flex-column gap-3">
+    @foreach (var item in Model.Itens)
+    {
+        <div class="cart-item-row-responsive p-3 rounded-4 border-bottom">
+            <div class="row align-items-center g-3">
+                @* 1. Imagem e Nome *@
+                <div class="col-12 col-md-6">
+                    <div class="d-flex align-items-center">
+                        <img src="@(item.Brinquedo.ImagemUrl ?? "https://placehold.co/70")" 
+                             class="rounded-4 me-3 shadow-sm" 
+                             style="width: 70px; height: 70px; object-fit: contain; background: #fff;">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1 fw-bold text-dark text-truncate" style="max-width: 200px;">@item.Brinquedo.Nome</h6>
+                            <small class="text-muted d-block">R$ @item.Brinquedo.Preco.ToString("N2")</small>
+                        </div>
+                    </div>
                 </div>
+
+                @* 2. Quantidade e Total (No Mobile ficam lado a lado abaixo do nome) *@
+                <div class="col-12 col-md-6">
+                    <div class="d-flex align-items-center justify-content-between justify-content-md-end gap-3">
+                        
+                        @* Controle de Quantidade *@
+                        <form asp-action="AtualizarQuantidade" method="post" class="d-inline-flex align-items-center bg-light rounded-pill p-1 shadow-sm">
+                            <input type="hidden" name="brinquedoId" value="@item.BrinquedoId" />
+                            <button type="submit" name="quantidade" value="@(item.Quantidade - 1)" class="btn btn-sm rounded-circle fw-bold btn-qtd-amarelo">
+                                <i class="bi bi-dash fs-5"></i>
+                            </button>
+                            <span class="mx-3 fw-bold text-dark fs-5">@item.Quantidade</span>
+                            <button type="submit" name="quantidade" value="@(item.Quantidade + 1)" class="btn btn-sm rounded-circle fw-bold btn-qtd-amarelo">
+                                <i class="bi bi-plus fs-5"></i>
+                            </button>
+                        </form>
+
+                        @* Preço Total e Lixeira *@
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="fw-bold fs-5" style="color: #00C709;">
+                                R$ @((item.Quantidade * item.Brinquedo.Preco).ToString("N2"))
+                            </span>
+                            <a asp-action="Remover" asp-route-itemId="@item.BrinquedoId" class="text-danger fs-3 btn-lixeira">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
             </div>
 
             @* --- ÁREA DE RESUMO DO PEDIDO --- *@
