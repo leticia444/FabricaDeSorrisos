@@ -100,6 +100,7 @@
 <div class="container py-4">
 
     @* --- CAIXA 1: CABEÇALHO ISOLADO (Voltar, Título e Logo) --- *@
+    @* --- CAIXA 1: CABEÇALHO ISOLADO (Voltar, Título e Logo) --- *@
     <div class="checkout-box d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
         <div class="d-flex align-items-center gap-4">
             <a asp-controller="Carrinho" asp-action="Index" class="btn btn-voltar-redondo rounded-circle shadow-sm" title="Voltar ao Carrinho">
@@ -108,7 +109,8 @@
             <h2 class="fw-bold mb-0" style="color: #4B0082;">Finalizar Compra</h2>
         </div>
         <a asp-controller="Home" asp-action="Index">
-            <img src="~/img/logo.png" alt="Fábrica de Sorrisos" style="height: 65px; object-fit: contain;">
+            @* LOGO MAIOR AQUI *@
+            <img src="~/img/logo.png" alt="Fábrica de Sorrisos" style="height: 95px; object-fit: contain;">
         </a>
     </div>
 
@@ -281,14 +283,16 @@
 </div>
 
 @* --- RODAPÉ ROSA SEPARADO DOS QUADROS BRANCOS --- *@
+@* --- RODAPÉ ROSA SEPARADO DOS QUADROS BRANCOS --- *@
 <div class="footer-checkout-rosa text-center">
     <div class="container">
         <p class="text-white fw-bold mb-3 fs-5">Formas de pagamento seguras</p>
-        <div class="d-flex justify-content-center gap-3 mb-4">
-            <img src="~/img/credito.png" alt="Cartão" style="height: 35px; background: white; border-radius: 5px; padding: 2px;">
-            <img src="~/img/debito.png" alt="Débito" style="height: 35px; background: white; border-radius: 5px; padding: 2px;">
-            <img src="~/img/pix.png" alt="Pix" style="height: 35px; background: white; border-radius: 5px; padding: 2px;">
-            <img src="~/img/boleto.png" alt="Boleto" style="height: 35px; background: white; border-radius: 5px; padding: 2px;">
+        <div class="d-flex justify-content-center gap-4 mb-4">
+            @* ÍCONES DE PAGAMENTO MAIORES AQUI *@
+            <img src="~/img/credito.png" alt="Cartão" style="height: 55px; background: white; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <img src="~/img/debito.png" alt="Débito" style="height: 55px; background: white; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <img src="~/img/pix.png" alt="Pix" style="height: 55px; background: white; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <img src="~/img/boleto.png" alt="Boleto" style="height: 55px; background: white; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
         </div>
         <p class="text-white m-0" style="font-size: 0.85rem; opacity: 0.9;">© Fábrica de Sorrisos [2026]. Todos os direitos reservados.</p>
     </div>
