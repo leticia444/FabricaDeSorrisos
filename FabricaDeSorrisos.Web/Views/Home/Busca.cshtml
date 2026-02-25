@@ -1,4 +1,5 @@
-﻿@model FabricaDeSorrisos.Web.Models.CatalogViewModel
+﻿
+@model FabricaDeSorrisos.Web.Models.CatalogViewModel
 @{
     ViewData["Title"] = "Resultados da Busca";
 
@@ -207,16 +208,47 @@
         justify-content: center;
         transition: transform 0.2s ease;
     }
-    .btn-filtro-mobile:active { transform: scale(0.9); }
+
+        .btn-filtro-mobile:active {
+            transform: scale(0.9);
+        }
 
     /* --- OFFCANVAS CONFIG --- */
-    .offcanvas { width: 85% !important; border-radius: 30px 0 0 30px; }
+    .offcanvas {
+        width: 85% !important;
+        border-radius: 30px 0 0 30px;
+    }
 
     /* --- TÍTULOS DOS FILTROS --- */
-    .titulo-filtro-sub { color: @corSubcategoria !important; font-weight: bold; font-size: 1.3rem; margin-bottom: 15px; text-transform: uppercase; }
-    .titulo-filtro-idade { color: #f3dd24 !important; font-weight: bold; margin-bottom: 10px; margin-top: 15px; }
-    .titulo-filtro-pers { color: #00ccff !important; font-weight: bold; margin-bottom: 10px; margin-top: 15px; }
-    .titulo-filtro-marcas { color: #000269 !important; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px; margin-top: 15px; }
+    .titulo-filtro-sub {
+        color: @corSubcategoria !important;
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .titulo-filtro-idade {
+        color: #f3dd24 !important;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+
+    .titulo-filtro-pers {
+        color: #00ccff !important;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+
+    .titulo-filtro-marcas {
+        color: #000269 !important;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
 
     /* --- FILTROS --- */
     .btn-filter-custom {
@@ -232,16 +264,59 @@
         display: block;
         margin-bottom: 8px;
     }
-    .btn-filter-custom:hover { background-color: rgba(0,0,0,0.03); transform: translateX(5px); color: @corSubcategoria; }
-    .btn-filter-custom.active { background-color: @corSubcategoria !important; color: white !important; font-weight: bold; }
 
-    .badge-idade-custom { border: 2px solid #f3dd24 !important; color: #333; background: white; transition: 0.3s; }
-    .badge-idade-custom:hover { background-color: #fffde7 !important; }
-    .badge-idade-custom.active { background-color: #f3dd24 !important; color: #000 !important; font-weight: bold; }
+        .btn-filter-custom:hover {
+            background-color: rgba(0,0,0,0.03);
+            transform: translateX(5px);
+            color: @corSubcategoria;
+        }
 
-    .badge-pers-custom { border: 2px solid #00ccff !important; color: #333; background: white; transition: 0.3s; }
-    .badge-pers-custom.active { background-color: #00ccff !important; color: white !important; }
+        .btn-filter-custom.active {
+            background-color: @corSubcategoria !important;
+            color: white !important;
+            font-weight: bold;
+        }
 
-    .badge-marcas-custom { border: 2px solid #000269 !important; color: #333; background: white; transition: 0.3s; }
-    .badge-marcas-custom.active { background-color: #000269 !important; color: white !important; }
+    .badge-idade-custom {
+        border: 2px solid #f3dd24 !important;
+        color: #333;
+        background: white;
+        transition: 0.3s;
+    }
+
+        .badge-idade-custom:hover {
+            background-color: #fffde7 !important;
+        }
+
+        .badge-idade-custom.active {
+            background-color: #f3dd24 !important;
+            color: #000 !important;
+            font-weight: bold;
+        }
+
+    .badge-pers-custom {
+        border: 2px solid #00ccff !important;
+        color: #333;
+        background: white;
+        transition: 0.3s;
+    }
+
+        .badge-pers-custom.active {
+            background-color: #00ccff !important;
+            color: white !important;
+        }
+
+    .badge-marcas-custom {
+        border: 2px solid #000269 !important;
+        color: #333;
+        background: white;
+        transition: 0.3s;
+    }
+
+        .badge-marcas-custom.active {
+            background-color: #000269 !important;
+            color: white !important;
+        }
+
+
 </style>
