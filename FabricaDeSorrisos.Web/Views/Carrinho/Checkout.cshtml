@@ -28,19 +28,19 @@
                 @* --- COLUNA ESQUERDA (Passos) --- *@
                 <div class="col-lg-7">
 
-                    @* CAIXA 2: DADOS PESSOAIS *@
-                    <div class="checkout-box">
-                        <h5 class="fw-bold mb-4" style="color: #000269;">1. Dados pessoais</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-custom-container">
-                                    <label>CPF</label>
-                                    <input type="text" asp-for="CPF" class="form-control" id="inputCpf" placeholder="000.000.000-00" maxlength="14" onkeyup="mascaraCPF(this)">
-                                    </div>
-                                    <span asp-validation-for="CPF" class="text-danger small"></span>
-                                </div>
+                @* CAIXA 2: DADOS PESSOAIS *@
+                <div class="checkout-box">
+                    <h5 class="fw-bold mb-4" style="color: #000269;">1. Dados pessoais</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-custom-container">
+                                <label>CPF</label>
+                                <input type="text" asp-for="CPF" class="form-control" id="inputCpf" placeholder="000.000.000-00" maxlength="14" onkeyup="mascaraCPF(this)">
                             </div>
+                            <span asp-validation-for="CPF" class="text-danger small"></span>
                         </div>
+                    </div>
+                </div>
 
                         @* CAIXA 3: ENDEREÇO DE ENTREGA *@
                         <div class="checkout-box">
@@ -115,24 +115,24 @@
                                                         </ul>
                                                         <input type="hidden" asp-for="FormaPagamento" id="inputPagamento" value="Pix">
 
-                                                            <div class="tab-content">
-                                                                <div class="tab-pane fade show active" id="pix">
-                                                                    <div class="alert alert-success border-0 bg-success bg-opacity-10 text-success fw-bold rounded-4">
-                                                                        <i class="bi bi-lightning-charge-fill me-2"></i> Aprovação imediata! Chave gerada na próxima tela.
-                                                                    </div>
-                                                                </div>
-                                                                <div class="tab-pane fade" id="cartao">
-                                                                    <div class="input-custom-container">
-                                                                        <label>Número do Cartão</label>
-                                                                        <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="tab-pane fade" id="boleto">
-                                                                    <p class="text-muted"><i class="bi bi-info-circle me-1"></i> Vencimento em 3 dias úteis. A liberação ocorre após a compensação.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="pix">
+                            <div class="alert alert-success border-0 bg-success bg-opacity-10 text-success fw-bold rounded-4">
+                                <i class="bi bi-lightning-charge-fill me-2"></i> Aprovação imediata! Chave gerada na próxima tela.
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="cartao">
+                            <div class="input-custom-container">
+                                <label>Número do Cartão</label>
+                                <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="boleto">
+                            <p class="text-muted"><i class="bi bi-info-circle me-1"></i> Vencimento em 3 dias úteis. A liberação ocorre após a compensação.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
                                                     @* --- COLUNA DIREITA (Resumo Fixo e Separado) --- *@
                                                     <div class="col-lg-5">

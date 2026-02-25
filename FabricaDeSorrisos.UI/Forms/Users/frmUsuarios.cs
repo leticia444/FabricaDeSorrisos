@@ -1,7 +1,8 @@
-﻿using FabricaDeSorrisos.UI.Models.Services;
+﻿﻿﻿﻿﻿﻿using FabricaDeSorrisos.UI.Models.Services;
 using FabricaDeSorrisos.UI.ViewModels.UserViewModels;
 using System.Drawing;
 using System.Linq;
+using FabricaDeSorrisos.UI.Models;
 
 namespace FabricaDeSorrisos.UI.Forms
 {
@@ -13,6 +14,9 @@ namespace FabricaDeSorrisos.UI.Forms
         {
             InitializeComponent();
             _userService = userService;
+            btnCriarUsario.Click += btnCriarUsuario_Click;
+            btnEditarUsuario.Click += btnEditarUsuario_Click;
+            btnExcluirUsuario.Click += btnExcluirUsuario_Click;
         }
 
         private async void frmUsuarios_Load(object sender, EventArgs e)
@@ -54,12 +58,14 @@ namespace FabricaDeSorrisos.UI.Forms
 
         private void ConfigurarGrids()
         {
-            ConfigurarGrid(guna2DataGridView1);
-            ConfigurarGrid(guna2DataGridView2);
-            ConfigurarGrid(guna2DataGridView3);
+            var roxoClaro = Color.FromArgb(170, 150, 255);
+            ConfigurarGrid(guna2DataGridView2, roxoClaro);
+            ConfigurarGrid(guna2DataGridView1, roxoClaro);
+            ConfigurarGrid(guna2DataGridView3, roxoClaro);
+            RegistrarEventosSelecao();
         }
 
-        private void ConfigurarGrid(DataGridView grid)
+        private void ConfigurarGrid(DataGridView grid, Color selectionColor)
         {
             grid.AutoGenerateColumns = true;
             grid.ReadOnly = true;
@@ -77,7 +83,7 @@ namespace FabricaDeSorrisos.UI.Forms
 
             grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
 
-            grid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215);
+            grid.DefaultCellStyle.SelectionBackColor = selectionColor;
             grid.DefaultCellStyle.SelectionForeColor = Color.White;
 
             grid.EnableHeadersVisualStyles = false;
@@ -85,6 +91,25 @@ namespace FabricaDeSorrisos.UI.Forms
             grid.ColumnHeadersHeight = 35;
 
             grid.DataBindingComplete += Grid_DataBindingComplete;
+        }
+
+        private void RegistrarEventosSelecao()
+        {
+            guna2DataGridView1.Enter += (s, e) => LimparSelecaoExceto((DataGridView)s);
+            guna2DataGridView2.Enter += (s, e) => LimparSelecaoExceto((DataGridView)s);
+            guna2DataGridView3.Enter += (s, e) => LimparSelecaoExceto((DataGridView)s);
+            guna2DataGridView1.CellClick += (s, e) => LimparSelecaoExceto((DataGridView)s);
+            guna2DataGridView2.CellClick += (s, e) => LimparSelecaoExceto((DataGridView)s);
+            guna2DataGridView3.CellClick += (s, e) => LimparSelecaoExceto((DataGridView)s);
+        }
+
+        private void LimparSelecaoExceto(DataGridView ativo)
+        {
+            var grids = new[] { guna2DataGridView1, guna2DataGridView2, guna2DataGridView3 };
+            foreach (var g in grids)
+            {
+                if (g != ativo) g.ClearSelection();
+            }
         }
 
         private void Grid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -119,6 +144,7 @@ namespace FabricaDeSorrisos.UI.Forms
 
             if (grid.Columns.Contains("Senha"))
                 grid.Columns["Senha"].Visible = false;
+            grid.ClearSelection();
         }
 
         // =========================
@@ -139,7 +165,12 @@ namespace FabricaDeSorrisos.UI.Forms
         private async void btnEditarUsuario_Click(object sender, EventArgs e)
         {
             var selecionado = ObterUsuarioSelecionado();
-            var frm = new Users.frmEditarUsuario();
+            if (selecionado == null)
+            {
+                MessageBox.Show("Selecione um usuário para editar.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var frm = new Users.frmEditarUsuario(selecionado);
             Hide();
             frm.ShowDialog(this);
             Show();
@@ -152,10 +183,16 @@ namespace FabricaDeSorrisos.UI.Forms
             var selecionado = ObterUsuarioSelecionado();
             if (selecionado == null)
             {
-                MessageBox.Show("Selecione um usuário.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um usuário para excluir.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var confirmar = MessageBox.Show($"Deseja excluir o usuário \"{selecionado.Nome}\" (ID {selecionado.Id})?",
+            if (!string.IsNullOrWhiteSpace(UserSession.UserName) &&
+                string.Equals(UserSession.UserName, selecionado.Email, StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Você não pode se autoexcluir.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var confirmar = MessageBox.Show($"Deseja excluir o Usuário \"{selecionado.Nome}\"?",
                 "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirmar != DialogResult.Yes) return;
             var ok = await _userService.Excluir(selecionado.Id);

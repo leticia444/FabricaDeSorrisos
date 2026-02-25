@@ -3,7 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Fábrica de Sorrisos</title>
+    <title>
+    @if (ViewData["Title"] != null && !string.IsNullOrEmpty(ViewData["Title"].ToString()) && ViewData["Title"].ToString() != "Fábrica de Sorrisos")
+    {
+        @ViewData["Title"] @:- Fábrica de Sorrisos
+    }
+    else
+    {
+        @:Fábrica de Sorrisos
+    }
+</title>
+   
 
     <link rel="icon" type="image/png" href="~/img/logo.png" />
     <link rel="shortcut icon" type="image/png" href="~/img/logo.png" />

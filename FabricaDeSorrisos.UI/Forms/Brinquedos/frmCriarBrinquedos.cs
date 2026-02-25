@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FabricaDeSorrisos.UI.Models.Services;
 using FabricaDeSorrisos.UI.Services;
+using System.Globalization;
+using Guna.UI2.WinForms;
 
 namespace FabricaDeSorrisos.UI
 {
@@ -15,6 +17,7 @@ namespace FabricaDeSorrisos.UI
         private readonly BrinquedoService _brinquedoService = new BrinquedoService();
         private PictureBox _imgPreview;
         private string? _imagemPath;
+        private System.Collections.Generic.List<SubCategoriaService.SubCategoriaItem> _todasSubCats = new();
 
         public frmCriarBrinquedos()
         {
@@ -46,6 +49,7 @@ namespace FabricaDeSorrisos.UI
             cbCategoria.DisplayMember = "Nome";
             cbCategoria.ValueMember = "Id";
             cbCategoria.DataSource = categorias;
+            cbCategoria.SelectedIndexChanged += (s, ev) => AtualizarSubCategoriasFiltradas();
 
             var faixas = await _catalogService.GetFaixasAsync();
             cbFaixaEtaria.DisplayMember = "Descricao";
@@ -56,6 +60,13 @@ namespace FabricaDeSorrisos.UI
             cbPersonagem.DisplayMember = "Nome";
             cbPersonagem.ValueMember = "Id";
             cbPersonagem.DataSource = personagens;
+            txtPreco.KeyPress += TxtPreco_KeyPress;
+
+            var subService = new SubCategoriaService();
+            _todasSubCats = await subService.GetAllAsync();
+            cbSubCategorias.DisplayMember = "Nome";
+            cbSubCategorias.ValueMember = "Id";
+            AtualizarSubCategoriasFiltradas();
         }
 
         private void BtnFechar_Click(object? sender, EventArgs e)
@@ -63,11 +74,41 @@ namespace FabricaDeSorrisos.UI
             Close();
         }
 
+        private void TxtPreco_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            var ch = e.KeyChar;
+            if (char.IsControl(ch)) return;
+            if (ch == '.')
+            {
+                e.Handled = true;
+                return;
+            }
+            if (ch == ',')
+            {
+                var tbText = (sender as Control)?.Text ?? "";
+                if (tbText.Contains(",")) e.Handled = true;
+                return;
+            }
+            if (!char.IsDigit(ch)) e.Handled = true;
+        }
+
         private async void BtnCriar_Click(object? sender, EventArgs e)
         {
             var nome = txtNomeProduto.Text?.Trim();
             var desc = txtDescricao.Text?.Trim();
-            var precoOk = decimal.TryParse(txtPreco.Text, out var preco) && preco > 0;
+            var precoTexto = txtPreco.Text?.Trim() ?? "";
+            if (precoTexto.Any(char.IsLetter))
+            {
+                MessageBox.Show("Preço deve conter apenas números e vírgula.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (precoTexto.Contains("."))
+            {
+                MessageBox.Show("Use vírgula como separador decimal no preço (ex: 120,50).", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var culture = new CultureInfo("pt-BR");
+            var precoOk = decimal.TryParse(precoTexto, NumberStyles.Number, culture, out var preco) && preco > 0;
             var estoqueOk = int.TryParse(txtEstoque.Text, out var estoque) && estoque >= 0;
             var marcaId = cbMarca.SelectedValue as int? ?? (cbMarca.SelectedValue is null ? (int?)null : Convert.ToInt32(cbMarca.SelectedValue));
             var categoriaId = cbCategoria.SelectedValue as int? ?? (cbCategoria.SelectedValue is null ? (int?)null : Convert.ToInt32(cbCategoria.SelectedValue));
@@ -147,5 +188,23 @@ namespace FabricaDeSorrisos.UI
 
         private void lblNomeProduto_Click(object sender, EventArgs e) { }
         private void lblPersonagem_Click(object sender, EventArgs e) { }
+
+        private void AtualizarSubCategoriasFiltradas()
+        {
+            try
+            {
+                int categoriaId = 0;
+                if (cbCategoria.SelectedValue != null)
+                {
+                    categoriaId = cbCategoria.SelectedValue is int i ? i : Convert.ToInt32(cbCategoria.SelectedValue);
+                }
+                var lista = _todasSubCats.Where(s => s.CategoriaId == categoriaId).ToList();
+                cbSubCategorias.DataSource = lista;
+            }
+            catch
+            {
+                cbSubCategorias.DataSource = _todasSubCats;
+            }
+        }
     }
 }
