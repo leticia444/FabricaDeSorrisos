@@ -127,13 +127,16 @@
                 <div class="checkout-box">
                     <h5 class="fw-bold mb-4" style="color: #000269;">1. Dados pessoais</h5>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-custom-container">
-                                <label>CPF</label>
-                                <input type="text" asp-for="CPF" class="form-control" id="inputCpf" placeholder="000.000.000-00" maxlength="14" onkeyup="mascaraCPF(this)">
-                            </div>
-                            <span asp-validation-for="CPF" class="text-danger small"></span>
-                        </div>
+                      <div class="col-md-6">
+    <div class="input-custom-container">
+        <label>CPF</label>
+        @* Adicionamos value="" para limpar os zeros e manter apenas o placeholder *@
+        <input type="text" asp-for="CPF" class="form-control" id="inputCpf" 
+               placeholder="000.000.000-00" maxlength="14" 
+               onkeyup="mascaraCPF(this)" value="">
+    </div>
+    <span asp-validation-for="CPF" class="text-danger small"></span>
+</div>
                     </div>
                 </div>
 
@@ -217,11 +220,14 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="cartao">
-                            <div class="input-custom-container">
-                                <label>Número do Cartão</label>
-                                <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
-                            </div>
-                        </div>
+    <div class="input-custom-container">
+        <label>Número do Cartão</label>
+        @* inputmode garante o teclado numérico no celular e o oninput remove letras digitadas *@
+        <input type="text" class="form-control" placeholder="0000 0000 0000 0000" 
+               inputmode="numeric" 
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+    </div>
+</div>
                         <div class="tab-pane fade" id="boleto">
                             <p class="text-muted"><i class="bi bi-info-circle me-1"></i> Vencimento em 3 dias úteis. A liberação ocorre após a compensação.</p>
                         </div>
