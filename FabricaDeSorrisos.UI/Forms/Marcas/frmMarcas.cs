@@ -142,7 +142,7 @@ namespace FabricaDeSorrisos.UI.Forms
 
             var nome = ObterNomeSelecionado() ?? $"ID {id}";
             var confirm = MessageBox.Show(
-                $"Tem certeza que deseja excluir a marca \"{nome}\"?",
+                $"Deseja excluir a Marca \"{nome}\"?",
                 "Confirmar Exclusão",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);

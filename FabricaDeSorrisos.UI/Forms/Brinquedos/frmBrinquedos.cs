@@ -66,8 +66,11 @@ namespace FabricaDeSorrisos.UI.Forms
             grid.AutoGenerateColumns = false;
             grid.RowTemplate.Height = 64;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            grid.CellFormatting += Grid_CellFormatting;
 
             grid.Columns.Clear();
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Id), HeaderText = "ID", FillWeight = 6, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
             var imgCol = new DataGridViewImageColumn
             {
                 HeaderText = "Imagem",
@@ -77,23 +80,26 @@ namespace FabricaDeSorrisos.UI.Forms
             };
             imgCol.DefaultCellStyle.NullValue = _placeholder;
             grid.Columns.Add(imgCol);
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Id), HeaderText = "ID", FillWeight = 6, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Nome), HeaderText = "Nome", FillWeight = 16 });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Nome), HeaderText = "Nome", FillWeight = 16, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft } });
             grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Estoque), HeaderText = "Estoque", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Preco), HeaderText = "Preço", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleRight } });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Descricao), HeaderText = "Descrição", FillWeight = 20 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.FaixaEtaria), HeaderText = "Faixa Etária", FillWeight = 8 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Marca), HeaderText = "Marca", FillWeight = 8 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Categoria), HeaderText = "Categoria", FillWeight = 8 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.SubCategoria), HeaderText = "Subcategoria", FillWeight = 8 });
-            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Personagem), HeaderText = "Personagem", FillWeight = 8 });
+            var colPreco = new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Preco), HeaderText = "Preço", FillWeight = 8, ValueType = typeof(decimal) };
+            colPreco.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            colPreco.DefaultCellStyle.Format = "C2";
+            grid.Columns.Add(colPreco);
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Descricao), HeaderText = "Descrição", FillWeight = 20, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft } });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.FaixaEtaria), HeaderText = "Faixa Etária", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Marca), HeaderText = "Marca", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft } });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Categoria), HeaderText = "Categoria", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft } });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.SubCategoria), HeaderText = "Subcategoria", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft } });
+            grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Personagem), HeaderText = "Personagem", FillWeight = 8, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft } });
             grid.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(BrinquedoViewModel.Status), HeaderText = "Status", FillWeight = 6, DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter } });
         }
 
         private void RefreshGrid(List<BrinquedoViewModel> items)
         {
+            var ordenados = items.OrderBy(i => i.Id).ToList();
             guna2DataGridView1.DataSource = null;
-            guna2DataGridView1.DataSource = items;
+            guna2DataGridView1.DataSource = ordenados;
         }
 
         private IEnumerable<BrinquedoViewModel> AplicarFiltroAtual()
@@ -206,6 +212,31 @@ namespace FabricaDeSorrisos.UI.Forms
         private async void Grid_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
         {
             await CarregarImagensAsync(guna2DataGridView1);
+        }
+
+        private void Grid_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var grid = sender as Guna2DataGridView;
+            if (grid == null) return;
+            var col = grid.Columns[e.ColumnIndex];
+            if (string.Equals(col.DataPropertyName, nameof(BrinquedoViewModel.Preco), StringComparison.OrdinalIgnoreCase))
+            {
+                if (e.Value is decimal d)
+                {
+                    e.Value = $"R$ {d:N2}";
+                    e.FormattingApplied = true;
+                }
+                else if (e.Value != null)
+                {
+                    decimal val;
+                    if (decimal.TryParse(e.Value.ToString(), out val))
+                    {
+                        e.Value = $"R$ {val:N2}";
+                        e.FormattingApplied = true;
+                    }
+                }
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
         }
 
         private async Task CarregarImagensAsync(Guna2DataGridView grid)

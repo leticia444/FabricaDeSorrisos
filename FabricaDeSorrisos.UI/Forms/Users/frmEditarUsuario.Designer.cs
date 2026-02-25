@@ -1,4 +1,4 @@
-﻿namespace FabricaDeSorrisos.UI.Forms.Users
+namespace FabricaDeSorrisos.UI.Forms.Users
 {
     partial class frmEditarUsuario
     {
@@ -70,6 +70,7 @@
             guna2CircleButton1.Size = new Size(38, 36);
             guna2CircleButton1.TabIndex = 0;
             guna2CircleButton1.Text = "X";
+            guna2CircleButton1.Click += guna2CircleButton1_Click;
             // 
             // btnSalvarEdições
             // 
