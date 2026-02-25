@@ -94,12 +94,12 @@ namespace FabricaDeSorrisos.UI.Forms
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(0, 360);
+            guna2DataGridView1.Location = new Point(0, 316);
             guna2DataGridView1.Margin = new Padding(3, 4, 3, 4);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowHeadersWidth = 51;
-            guna2DataGridView1.Size = new Size(1191, 374);
+            guna2DataGridView1.Size = new Size(1183, 368);
             guna2DataGridView1.TabIndex = 26;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -137,7 +137,7 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 15F);
-            guna2HtmlLabel2.Location = new Point(3, 320);
+            guna2HtmlLabel2.Location = new Point(0, 279);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(176, 30);
             guna2HtmlLabel2.TabIndex = 28;

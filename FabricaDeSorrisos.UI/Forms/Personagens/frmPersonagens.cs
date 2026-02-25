@@ -114,7 +114,7 @@ namespace FabricaDeSorrisos.UI.Forms
             }
             var id = (int)dgvPersonagem.SelectedRows[0].Cells["Id"].Value;
             var nome = dgvPersonagem.SelectedRows[0].Cells["Nome"].Value?.ToString() ?? "";
-            var result = MessageBox.Show($"Deseja realmente excluir o/a Pesonagem \"{nome}\"?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show($"Deseja excluir o Personagem \"{nome}\"?", "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 var ok = await _service.DeleteAsync(id);

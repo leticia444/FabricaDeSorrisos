@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FabricaDeSorrisos.UI.Models.Services;
 using FabricaDeSorrisos.UI.Services;
+using System.Globalization;
+using Guna.UI2.WinForms;
 
 namespace FabricaDeSorrisos.UI
 {
@@ -15,6 +17,8 @@ namespace FabricaDeSorrisos.UI
         private readonly BrinquedoService _brinquedoService = new BrinquedoService();
         private PictureBox _imgPreview;
         private string? _imagemPath;
+        private Guna2ComboBox _cbSubCategoria;
+        private Label _lblSubCategoria;
 
         public frmCriarBrinquedos()
         {
@@ -33,6 +37,27 @@ namespace FabricaDeSorrisos.UI
                 SizeMode = PictureBoxSizeMode.Zoom
             };
             Controls.Add(_imgPreview);
+            _lblSubCategoria = new Label
+            {
+                Text = "Subcategoria",
+                Font = new Font("Segoe UI", 15F),
+                Left = 124,
+                Top = 296,
+                AutoSize = true
+            };
+            _cbSubCategoria = new Guna2ComboBox
+            {
+                Left = 124,
+                Top = 332,
+                Width = 192,
+                Height = 36,
+                BorderRadius = 10,
+                DrawMode = DrawMode.OwnerDrawFixed,
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                ItemHeight = 30
+            };
+            Controls.Add(_lblSubCategoria);
+            Controls.Add(_cbSubCategoria);
         }
 
         private async void FrmCriarBrinquedos_Load(object sender, EventArgs e)
@@ -56,6 +81,13 @@ namespace FabricaDeSorrisos.UI
             cbPersonagem.DisplayMember = "Nome";
             cbPersonagem.ValueMember = "Id";
             cbPersonagem.DataSource = personagens;
+            txtPreco.KeyPress += TxtPreco_KeyPress;
+
+            var subService = new SubCategoriaService();
+            var subs = await subService.GetAllAsync();
+            _cbSubCategoria.DisplayMember = "Nome";
+            _cbSubCategoria.ValueMember = "Id";
+            _cbSubCategoria.DataSource = subs;
         }
 
         private void BtnFechar_Click(object? sender, EventArgs e)
@@ -63,11 +95,41 @@ namespace FabricaDeSorrisos.UI
             Close();
         }
 
+        private void TxtPreco_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            var ch = e.KeyChar;
+            if (char.IsControl(ch)) return;
+            if (ch == '.')
+            {
+                e.Handled = true;
+                return;
+            }
+            if (ch == ',')
+            {
+                var tbText = (sender as Control)?.Text ?? "";
+                if (tbText.Contains(",")) e.Handled = true;
+                return;
+            }
+            if (!char.IsDigit(ch)) e.Handled = true;
+        }
+
         private async void BtnCriar_Click(object? sender, EventArgs e)
         {
             var nome = txtNomeProduto.Text?.Trim();
             var desc = txtDescricao.Text?.Trim();
-            var precoOk = decimal.TryParse(txtPreco.Text, out var preco) && preco > 0;
+            var precoTexto = txtPreco.Text?.Trim() ?? "";
+            if (precoTexto.Any(char.IsLetter))
+            {
+                MessageBox.Show("Preço deve conter apenas números e vírgula.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (precoTexto.Contains("."))
+            {
+                MessageBox.Show("Use vírgula como separador decimal no preço (ex: 120,50).", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var culture = new CultureInfo("pt-BR");
+            var precoOk = decimal.TryParse(precoTexto, NumberStyles.Number, culture, out var preco) && preco > 0;
             var estoqueOk = int.TryParse(txtEstoque.Text, out var estoque) && estoque >= 0;
             var marcaId = cbMarca.SelectedValue as int? ?? (cbMarca.SelectedValue is null ? (int?)null : Convert.ToInt32(cbMarca.SelectedValue));
             var categoriaId = cbCategoria.SelectedValue as int? ?? (cbCategoria.SelectedValue is null ? (int?)null : Convert.ToInt32(cbCategoria.SelectedValue));
