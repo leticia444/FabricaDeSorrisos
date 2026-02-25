@@ -224,9 +224,9 @@ namespace FabricaDeSorrisos.UI.Forms
             panelBotões.Controls.Add(btnUsuarios);
             panelBotões.Controls.Add(btnVoltar);
             panelBotões.CustomizableEdges = customizableEdges19;
+            panelBotões.Dock = DockStyle.Left;
             panelBotões.FillColor = Color.SkyBlue;
             panelBotões.FillColor2 = Color.Blue;
-            panelBotões.Dock = DockStyle.Left;
             panelBotões.Location = new Point(0, 0);
             panelBotões.Name = "panelBotões";
             panelBotões.ShadowDecoration.CustomizableEdges = customizableEdges20;
@@ -249,7 +249,7 @@ namespace FabricaDeSorrisos.UI.Forms
             lblGestão.BackColor = Color.Transparent;
             lblGestão.Font = new Font("Mongolian Baiti", 15F);
             lblGestão.ForeColor = Color.White;
-            lblGestão.Location = new Point(83, 450);
+            lblGestão.Location = new Point(83, 441);
             lblGestão.Name = "lblGestão";
             lblGestão.Size = new Size(59, 23);
             lblGestão.TabIndex = 9;
