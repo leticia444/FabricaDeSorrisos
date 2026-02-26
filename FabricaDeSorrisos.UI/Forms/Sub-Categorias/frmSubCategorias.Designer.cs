@@ -94,12 +94,12 @@ namespace FabricaDeSorrisos.UI.Forms
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             gridCategorias.DefaultCellStyle = dataGridViewCellStyle3;
             gridCategorias.GridColor = Color.FromArgb(231, 229, 255);
-            gridCategorias.Location = new Point(-3, 317);
+            gridCategorias.Location = new Point(-2, 262);
             gridCategorias.Margin = new Padding(3, 4, 3, 4);
             gridCategorias.Name = "gridCategorias";
             gridCategorias.RowHeadersVisible = false;
             gridCategorias.RowHeadersWidth = 51;
-            gridCategorias.Size = new Size(1188, 365);
+            gridCategorias.Size = new Size(1187, 420);
             gridCategorias.TabIndex = 24;
             gridCategorias.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             gridCategorias.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -139,7 +139,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarSubCategoria.ForeColor = Color.Black;
             btnEditarSubCategoria.Image = Properties.Resources.lapis7;
             btnEditarSubCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnEditarSubCategoria.Location = new Point(975, 81);
+            btnEditarSubCategoria.Location = new Point(522, 99);
             btnEditarSubCategoria.Name = "btnEditarSubCategoria";
             btnEditarSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnEditarSubCategoria.Size = new Size(197, 42);
@@ -162,7 +162,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnExcluirSubCategoria.ForeColor = Color.Black;
             btnExcluirSubCategoria.Image = Properties.Resources.x5;
             btnExcluirSubCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnExcluirSubCategoria.Location = new Point(975, 146);
+            btnExcluirSubCategoria.Location = new Point(782, 99);
             btnExcluirSubCategoria.Name = "btnExcluirSubCategoria";
             btnExcluirSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnExcluirSubCategoria.Size = new Size(197, 42);
@@ -185,7 +185,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnCriarSubCategoria.ForeColor = Color.Black;
             btnCriarSubCategoria.Image = Properties.Resources.plus5;
             btnCriarSubCategoria.ImageAlign = HorizontalAlignment.Left;
-            btnCriarSubCategoria.Location = new Point(975, 9);
+            btnCriarSubCategoria.Location = new Point(245, 99);
             btnCriarSubCategoria.Name = "btnCriarSubCategoria";
             btnCriarSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnCriarSubCategoria.Size = new Size(197, 42);
@@ -196,7 +196,7 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             lblTitulo.BackColor = Color.Transparent;
             lblTitulo.Font = new Font("Segoe UI", 20F);
-            lblTitulo.Location = new Point(0, 2);
+            lblTitulo.Location = new Point(406, 12);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(411, 39);
             lblTitulo.TabIndex = 28;
@@ -206,7 +206,7 @@ namespace FabricaDeSorrisos.UI.Forms
             // 
             lblSubCategoriasCadastradas.BackColor = Color.Transparent;
             lblSubCategoriasCadastradas.Font = new Font("Segoe UI", 15F);
-            lblSubCategoriasCadastradas.Location = new Point(2, 274);
+            lblSubCategoriasCadastradas.Location = new Point(485, 53);
             lblSubCategoriasCadastradas.Name = "lblSubCategoriasCadastradas";
             lblSubCategoriasCadastradas.Size = new Size(249, 30);
             lblSubCategoriasCadastradas.TabIndex = 29;
@@ -223,7 +223,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnResetar.FillColor = Color.Gray;
             btnResetar.Font = new Font("Segoe UI", 9F);
             btnResetar.ForeColor = Color.White;
-            btnResetar.Location = new Point(640, 126);
+            btnResetar.Location = new Point(992, 210);
             btnResetar.Name = "btnResetar";
             btnResetar.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnResetar.Size = new Size(180, 45);
@@ -243,7 +243,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnFiltrar.FillColor2 = Color.Navy;
             btnFiltrar.Font = new Font("Segoe UI", 9F);
             btnFiltrar.ForeColor = Color.White;
-            btnFiltrar.Location = new Point(769, 75);
+            btnFiltrar.Location = new Point(754, 210);
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnFiltrar.Size = new Size(180, 45);
@@ -263,7 +263,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnBuscar.FillColor2 = Color.SteelBlue;
             btnBuscar.Font = new Font("Segoe UI", 9F);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(769, 12);
+            btnBuscar.Location = new Point(526, 210);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnBuscar.Size = new Size(180, 45);
@@ -282,10 +282,10 @@ namespace FabricaDeSorrisos.UI.Forms
             cbFiltro.Font = new Font("Segoe UI", 10F);
             cbFiltro.ForeColor = Color.FromArgb(68, 88, 112);
             cbFiltro.ItemHeight = 30;
-            cbFiltro.Location = new Point(446, 84);
+            cbFiltro.Location = new Point(754, 168);
             cbFiltro.Name = "cbFiltro";
             cbFiltro.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            cbFiltro.Size = new Size(260, 36);
+            cbFiltro.Size = new Size(180, 36);
             cbFiltro.TabIndex = 33;
             // 
             // txtBusca
@@ -300,12 +300,12 @@ namespace FabricaDeSorrisos.UI.Forms
             txtBusca.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtBusca.Font = new Font("Segoe UI", 9F);
             txtBusca.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtBusca.Location = new Point(446, 12);
+            txtBusca.Location = new Point(12, 211);
             txtBusca.Name = "txtBusca";
             txtBusca.PlaceholderText = "Digite para Buscar";
             txtBusca.SelectedText = "";
             txtBusca.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtBusca.Size = new Size(260, 44);
+            txtBusca.Size = new Size(504, 44);
             txtBusca.TabIndex = 34;
             // 
             // frmSubCategorias
