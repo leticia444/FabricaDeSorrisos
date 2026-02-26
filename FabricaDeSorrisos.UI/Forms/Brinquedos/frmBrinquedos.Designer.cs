@@ -100,13 +100,13 @@ namespace FabricaDeSorrisos.UI.Forms
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(2, 247);
+            guna2DataGridView1.Location = new Point(2, 263);
             guna2DataGridView1.Margin = new Padding(3, 2, 3, 2);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
             guna2DataGridView1.RowHeadersWidth = 51;
             guna2DataGridView1.RowTemplate.Height = 29;
-            guna2DataGridView1.Size = new Size(1181, 436);
+            guna2DataGridView1.Size = new Size(1181, 420);
             guna2DataGridView1.TabIndex = 13;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -141,8 +141,8 @@ namespace FabricaDeSorrisos.UI.Forms
             // guna2HtmlLabel1
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Font = new Font("Segoe UI", 30F);
-            guna2HtmlLabel1.Location = new Point(384, 11);
+            guna2HtmlLabel1.Font = new Font("Segoe UI", 20F);
+            guna2HtmlLabel1.Location = new Point(452, 8);
             guna2HtmlLabel1.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(431, 56);
@@ -166,7 +166,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnCriarBrinquedo.ForeColor = Color.Black;
             btnCriarBrinquedo.Image = Properties.Resources.plus;
             btnCriarBrinquedo.ImageAlign = HorizontalAlignment.Left;
-            btnCriarBrinquedo.Location = new Point(2, 11);
+            btnCriarBrinquedo.Location = new Point(257, 98);
             btnCriarBrinquedo.Margin = new Padding(3, 2, 3, 2);
             btnCriarBrinquedo.Name = "btnCriarBrinquedo";
             btnCriarBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges16;
@@ -187,7 +187,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnStatusBrinquedo.FillColor = Color.Wheat;
             btnStatusBrinquedo.Font = new Font("Segoe UI", 9F);
             btnStatusBrinquedo.ForeColor = Color.Black;
-            btnStatusBrinquedo.Location = new Point(2, 127);
+            btnStatusBrinquedo.Location = new Point(742, 98);
             btnStatusBrinquedo.Margin = new Padding(3, 2, 3, 2);
             btnStatusBrinquedo.Name = "btnStatusBrinquedo";
             btnStatusBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges14;
@@ -211,7 +211,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnEditarBrinquedo.ForeColor = Color.Black;
             btnEditarBrinquedo.Image = Properties.Resources.lapis4;
             btnEditarBrinquedo.ImageAlign = HorizontalAlignment.Left;
-            btnEditarBrinquedo.Location = new Point(2, 72);
+            btnEditarBrinquedo.Location = new Point(505, 98);
             btnEditarBrinquedo.Margin = new Padding(3, 2, 3, 2);
             btnEditarBrinquedo.Name = "btnEditarBrinquedo";
             btnEditarBrinquedo.ShadowDecoration.CustomizableEdges = customizableEdges12;
@@ -234,8 +234,8 @@ namespace FabricaDeSorrisos.UI.Forms
             // lblBrinquedoCadastrado
             // 
             lblBrinquedoCadastrado.BackColor = Color.Transparent;
-            lblBrinquedoCadastrado.Font = new Font("Segoe UI", 20F);
-            lblBrinquedoCadastrado.Location = new Point(448, 72);
+            lblBrinquedoCadastrado.Font = new Font("Segoe UI", 15F);
+            lblBrinquedoCadastrado.Location = new Point(489, 46);
             lblBrinquedoCadastrado.Name = "lblBrinquedoCadastrado";
             lblBrinquedoCadastrado.Size = new Size(291, 39);
             lblBrinquedoCadastrado.TabIndex = 23;
@@ -252,7 +252,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnResetar.FillColor = Color.Gray;
             btnResetar.Font = new Font("Segoe UI", 9F);
             btnResetar.ForeColor = Color.White;
-            btnResetar.Location = new Point(1034, 197);
+            btnResetar.Location = new Point(992, 213);
             btnResetar.Name = "btnResetar";
             btnResetar.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnResetar.Size = new Size(138, 45);
@@ -272,7 +272,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnFiltrar.FillColor2 = Color.Navy;
             btnFiltrar.Font = new Font("Segoe UI", 9F);
             btnFiltrar.ForeColor = Color.White;
-            btnFiltrar.Location = new Point(752, 195);
+            btnFiltrar.Location = new Point(759, 213);
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnFiltrar.Size = new Size(150, 45);
@@ -292,7 +292,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnBuscar.FillColor2 = Color.SteelBlue;
             btnBuscar.Font = new Font("Segoe UI", 9F);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(578, 197);
+            btnBuscar.Location = new Point(522, 213);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnBuscar.Size = new Size(150, 45);
@@ -311,12 +311,12 @@ namespace FabricaDeSorrisos.UI.Forms
             txtBusca.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtBusca.Font = new Font("Segoe UI", 9F);
             txtBusca.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtBusca.Location = new Point(12, 197);
+            txtBusca.Location = new Point(12, 214);
             txtBusca.Name = "txtBusca";
             txtBusca.PlaceholderText = "Digite para Buscar";
             txtBusca.SelectedText = "";
             txtBusca.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtBusca.Size = new Size(560, 44);
+            txtBusca.Size = new Size(504, 44);
             txtBusca.TabIndex = 27;
             // 
             // cbFiltro
@@ -331,10 +331,10 @@ namespace FabricaDeSorrisos.UI.Forms
             cbFiltro.Font = new Font("Segoe UI", 10F);
             cbFiltro.ForeColor = Color.FromArgb(68, 88, 112);
             cbFiltro.ItemHeight = 30;
-            cbFiltro.Location = new Point(752, 153);
+            cbFiltro.Location = new Point(759, 171);
             cbFiltro.Name = "cbFiltro";
             cbFiltro.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            cbFiltro.Size = new Size(150, 36);
+            cbFiltro.Size = new Size(180, 36);
             cbFiltro.TabIndex = 28;
             // 
             // frmBrinquedos

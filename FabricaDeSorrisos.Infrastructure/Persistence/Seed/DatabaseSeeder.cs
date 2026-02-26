@@ -128,8 +128,11 @@ public static class DatabaseSeeder
         if (!context.Categorias.Any())
         {
             var catBrinquedos = new Categoria { Nome = "Brinquedos" };
+            var catPelucias = new Categoria { Nome = "Pelucias" };
+            var catFantasias = new Categoria { Nome = "Fantasias" };
             var catEducativos = new Categoria { Nome = "Educativos" };
             var catJogos = new Categoria { Nome = "Jogos" };
+            var catEsportes = new Categoria { Nome = "Esportes" };
             var catPets = new Categoria { Nome = "Pets" };
 
             context.Categorias.AddRange(catBrinquedos, catEducativos, catJogos, catPets);
