@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering; // Necessário para SelectList
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,Administrador,ADMINISTRADOR")]
 public class SubCategoriasController : Controller
 {
     private readonly ISubCategoriaRepository _repository;

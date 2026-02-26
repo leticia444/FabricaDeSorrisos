@@ -48,8 +48,6 @@
     </div>
 </section>
 
-
-
 @* --- PARTE 3: NOSSA HISTÓRIA (COM IMAGEM HISTORIA.PNG) --- *@
 <section class="secao-historia-full">
     <div class="container">
@@ -80,8 +78,6 @@
         </div>
     </div>
 </section>
-
-
 
 @* --- PARTE 4: COMPROMISSO (AZUL.PNG COM CARDS) --- *@
 <section class="secao-compromisso-full">
@@ -130,15 +126,23 @@
     </div>
 </section>
 
-
-
-
-
-@* --- CORREÇÃO DO SCROLL HORIZONTAL (SEM QUEBRAR O TOPO) --- *@
+@* --- CORREÇÕES DA PÁGINA (SCROLL E RODAPÉ) --- *@
 <style>
     /* Bloqueia a tela de rolar para os lados e esconde o que vazar da tela */
     body {
         overflow-x: hidden !important;
         width: 100%;
+    }
+
+    /* --- MÁGICA PARA TIRAR A LINHA BRANCA --- */
+    /* Remove o padding padrão do _Layout que cria o espaço branco no fundo, APENAS nesta página */
+    .content-main, main[role="main"] {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Adiciona uma margem negativa super sutil na seção azul para "engolir" qualquer fresta de pixel */
+    .secao-compromisso-full {
+        margin-bottom: -2px !important; 
     }
 </style>

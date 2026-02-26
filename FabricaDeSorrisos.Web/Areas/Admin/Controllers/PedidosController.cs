@@ -7,7 +7,8 @@ using FabricaDeSorrisos.Web.Areas.Admin.Models;
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,Administrador,ADMINISTRADOR")]
+
 public class PedidosController : Controller
 {
     private readonly IPedidoRepository _pedidoRepo;

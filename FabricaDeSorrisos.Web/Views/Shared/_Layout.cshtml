@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+@using FabricaDeSorrisos.Application.Abstractions.Repositories
+@inject IUsuarioRepository UsuarioRepo
+
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -12,9 +16,8 @@
     {
         @:Fábrica de Sorrisos
     }
-</title>
+    </title>
    
-
     <link rel="icon" type="image/png" href="~/img/logo.png" />
     <link rel="shortcut icon" type="image/png" href="~/img/logo.png" />
 
@@ -24,6 +27,34 @@
     <link rel="stylesheet" href="~/css/shared/shared.css" asp-append-version="true" />
 </head>
 <body class="d-flex flex-column min-vh-100" style="overflow-x: hidden;">
+    
+    @* Lógica para buscar o NOME VERDADEIRO do banco de dados *@
+    @{
+        string primeiroNome = "";
+        if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            var claimId = User.FindFirst("UsuarioSistemaId")?.Value;
+            if (!string.IsNullOrEmpty(claimId))
+            {
+                int uId = int.Parse(claimId);
+                var usuario = await UsuarioRepo.GetByIdAsync(uId);
+                
+                if (usuario != null && !string.IsNullOrWhiteSpace(usuario.NomeCompleto))
+                {
+                    primeiroNome = usuario.NomeCompleto.Split(' ')[0];
+                }
+                else
+                {
+                    primeiroNome = User.Identity.Name?.Split('@')[0] ?? "Usuário";
+                }
+            }
+            else
+            {
+                primeiroNome = User.Identity.Name?.Split('@')[0] ?? "Usuário";
+            }
+        }
+    }
+
     <header class="fixed-top shadow-sm">
         
         @* --- NAV BAR MOBILE --- *@
@@ -61,7 +92,7 @@
                         <div class="login-box-mobile d-flex flex-column">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <p class="mb-2 text-white">Olá, <strong>@User.Identity.Name.Split('@')[0]</strong></p>
+                                <p class="mb-2 text-white">Olá, <strong class="text-capitalize">@primeiroNome</strong></p>
                                 
                                 <a asp-controller="Pedidos" asp-action="Index" class="text-warning text-decoration-none fw-bold mb-2 small">
                                     <i class="bi bi-box-seam me-1"></i> Meus Pedidos
@@ -117,7 +148,7 @@
                             <div class="text-end lh-sm user-area-header d-flex flex-column align-items-end pe-3 border-end border-white border-opacity-25 me-3">
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <small class="text-white mb-1">Olá, <strong>@User.Identity.Name.Split('@')[0]</strong></small>
+                                    <small class="text-white mb-1">Olá, <strong class="text-capitalize">@primeiroNome</strong></small>
                                     
                                     <a asp-controller="Pedidos" asp-action="Index" class="text-warning text-decoration-none fw-bold mb-1 hover-scale" style="font-size: 0.8rem;">
                                         <i class="bi bi-box-seam me-1"></i> Meus Pedidos
@@ -154,7 +185,8 @@
                         <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "3" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
                         <a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
 
-                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Gerente")))
+                        @* --- CORREÇÃO AQUI: CHECA POR TODAS AS VARIAÇÕES POSSÍVEIS --- *@
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Administrador") || User.IsInRole("ADMINISTRADOR") || User.IsInRole("Admin") || User.IsInRole("Gerente")))
                         {
                             <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-warning rounded-pill fw-bold px-3 text-dark ms-2 hover-scale" style="background-color: #f3dd24; font-size: 0.8rem; border: none;">ÁREA ADMIN</a>
                         }

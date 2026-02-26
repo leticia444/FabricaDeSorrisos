@@ -10,7 +10,8 @@ using Microsoft.EntityFrameworkCore;
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin,Gerente")]
+[Authorize(Roles = "Admin,Administrador,ADMINISTRADOR,Gerente")]
+
 public class DashboardController : Controller
 {
     private readonly IBrinquedoRepository _brinquedoRepo;

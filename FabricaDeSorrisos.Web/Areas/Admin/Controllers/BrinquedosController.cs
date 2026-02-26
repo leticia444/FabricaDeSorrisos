@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,Administrador,ADMINISTRADOR")]
+
 public class BrinquedosController : Controller
 {
     private readonly IBrinquedoRepository _brinquedoRepo;

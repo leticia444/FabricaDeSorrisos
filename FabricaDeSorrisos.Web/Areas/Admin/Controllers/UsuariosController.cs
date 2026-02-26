@@ -10,16 +10,21 @@ using System.ComponentModel.DataAnnotations;
 namespace FabricaDeSorrisos.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin,Administrador,ADMINISTRADOR")]
 public class UsuariosController : Controller
 {
     private readonly IUsuarioRepository _repository;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly RoleManager<IdentityRole> _roleManager; // ADICIONADO PARA CRIAR E GERIR PERMISSÕES
 
-    public UsuariosController(IUsuarioRepository repository, UserManager<ApplicationUser> userManager)
+    public UsuariosController(
+        IUsuarioRepository repository,
+        UserManager<ApplicationUser> userManager,
+        RoleManager<IdentityRole> roleManager) // INJETADO AQUI
     {
         _repository = repository;
         _userManager = userManager;
+        _roleManager = roleManager;
     }
 
     // LISTAR
@@ -42,26 +47,28 @@ public class UsuariosController : Controller
     {
         if (ModelState.IsValid)
         {
-            // 1. Cria no Identity (Login)
-            var user = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email
-            };
-
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Senha);
 
             if (result.Succeeded)
             {
-                // Define Role baseada no Tipo
                 var tipos = await _repository.GetTiposUsuariosAsync();
                 var tipoEscolhido = tipos.FirstOrDefault(t => t.Id == model.TipoUsuarioId);
+                string nomeRole = tipoEscolhido?.Nome ?? "Cliente";
 
-                if (tipoEscolhido?.Nome == "Administrador") await _userManager.AddToRoleAsync(user, "Admin");
-                else if (tipoEscolhido?.Nome == "Gerente") await _userManager.AddToRoleAsync(user, "Gerente");
-                else await _userManager.AddToRoleAsync(user, "Cliente");
+                // GERA A PERMISSÃO NO IDENTITY SE NÃO EXISTIR
+                if (!await _roleManager.RoleExistsAsync(nomeRole))
+                    await _roleManager.CreateAsync(new IdentityRole(nomeRole));
 
-                // 2. Cria na Tabela de Negócio (Usuario)
+                await _userManager.AddToRoleAsync(user, nomeRole);
+
+                // Se for Administrador, dá a role "Admin" por segurança para não dar conflito
+                if (nomeRole == "Administrador" || nomeRole == "ADMINISTRADOR")
+                {
+                    if (!await _roleManager.RoleExistsAsync("Admin")) await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                    await _userManager.AddToRoleAsync(user, "Admin");
+                }
+
                 var novoUsuario = new Usuario
                 {
                     NomeCompleto = model.NomeCompleto,
@@ -75,23 +82,12 @@ public class UsuariosController : Controller
                 return RedirectToAction(nameof(Index));
             }
 
-            // --- LÓGICA DO MODAL DE ERRO DE SENHA (TRADUZIDO) ---
-            var errosSenha = result.Errors
-                .Where(e => e.Code.StartsWith("Password"))
-                .Select(e => TraduzirErro(e.Code)) // Chama a função de tradução
-                .ToList();
-
-            if (errosSenha.Any())
-            {
-                ViewBag.ErrosSenha = errosSenha;
-            }
+            var errosSenha = result.Errors.Where(e => e.Code.StartsWith("Password")).Select(e => TraduzirErro(e.Code)).ToList();
+            if (errosSenha.Any()) ViewBag.ErrosSenha = errosSenha;
 
             foreach (var error in result.Errors)
             {
-                if (!error.Code.StartsWith("Password"))
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                if (!error.Code.StartsWith("Password")) ModelState.AddModelError(string.Empty, error.Description);
             }
         }
 
@@ -99,7 +95,6 @@ public class UsuariosController : Controller
         return View(model);
     }
 
-    // Função auxiliar para traduzir as mensagens do inglês
     private string TraduzirErro(string code)
     {
         return code switch
@@ -142,6 +137,38 @@ public class UsuariosController : Controller
             var usuario = await _repository.GetByIdAsync(id);
             if (usuario == null) return NotFound();
 
+            // -----------------------------------------------------------------
+            // LÓGICA NOVA: ATUALIZAR O CRACHÁ (IDENTITY) AO EDITAR O USUÁRIO
+            // -----------------------------------------------------------------
+            if (usuario.TipoUsuarioId != model.TipoUsuarioId)
+            {
+                var identityUser = await _userManager.FindByIdAsync(usuario.IdentityUserId);
+                if (identityUser != null)
+                {
+                    var tipos = await _repository.GetTiposUsuariosAsync();
+                    var novoTipo = tipos.FirstOrDefault(t => t.Id == model.TipoUsuarioId);
+                    string nomeRole = novoTipo?.Nome ?? "Cliente";
+
+                    // 1. Remove as permissões antigas
+                    var rolesAtuais = await _userManager.GetRolesAsync(identityUser);
+                    if (rolesAtuais.Any()) await _userManager.RemoveFromRolesAsync(identityUser, rolesAtuais);
+
+                    // 2. Garante que a nova permissão existe no sistema
+                    if (!await _roleManager.RoleExistsAsync(nomeRole))
+                        await _roleManager.CreateAsync(new IdentityRole(nomeRole));
+
+                    // 3. Dá a nova permissão
+                    await _userManager.AddToRoleAsync(identityUser, nomeRole);
+
+                    // 4. Se for Admin, dá a variação "Admin" para evitar qualquer bloqueio
+                    if (nomeRole == "Administrador" || nomeRole == "ADMINISTRADOR")
+                    {
+                        if (!await _roleManager.RoleExistsAsync("Admin")) await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                        await _userManager.AddToRoleAsync(identityUser, "Admin");
+                    }
+                }
+            }
+
             // Atualiza dados locais
             usuario.NomeCompleto = model.NomeCompleto;
             usuario.TipoUsuarioId = model.TipoUsuarioId;
@@ -177,7 +204,6 @@ public class UsuariosController : Controller
     }
 }
 
-// ViewModel Auxiliar
 public class UsuarioFormViewModel
 {
     public int Id { get; set; }
