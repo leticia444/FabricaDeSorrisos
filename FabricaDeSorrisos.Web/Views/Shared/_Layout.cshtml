@@ -15,7 +15,6 @@
 </title>
    
 
-    @* --- ADICIONE ESTAS DUAS LINHAS PARA O ÍCONE DA ABA (FAVICON) --- *@
     <link rel="icon" type="image/png" href="~/img/logo.png" />
     <link rel="shortcut icon" type="image/png" href="~/img/logo.png" />
 
@@ -24,12 +23,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/shared/shared.css" asp-append-version="true" />
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100" style="overflow-x: hidden;">
     <header class="fixed-top shadow-sm">
-        @* --- NAV BAR MOBILE REESTRUTURADO (Estilo Foto) --- *@
+        
+        @* --- NAV BAR MOBILE --- *@
         <nav class="navbar d-lg-none bg-fabrica-mobile py-2">
             <div class="container d-flex align-items-center justify-content-between flex-wrap">
-                @* Botão que abre o menu para baixo (Ícone Verde) *@
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuMobileDropdown">
                     <i class="bi bi-list fs-1" style="color: #00C709 !important;"></i>
                 </button>
@@ -38,7 +37,6 @@
                     <img src="~/img/logo.png" alt="Logo" class="nav-logo-mobile" style="max-height: 60px !important;" />
                 </a>
 
-                @* Ícones: Coração Amarelo e Cesta Branca conforme a imagem *@
                 <div class="d-flex align-items-center gap-3">
                     <a asp-controller="Favoritos" asp-action="Index" class="text-warning text-decoration-none" style="color: #F3DD24 !important;">
                         <i class="bi bi-heart-fill fs-3"></i>
@@ -46,12 +44,11 @@
                     <a asp-controller="Carrinho" asp-action="Index" class="text-white position-relative text-decoration-none">
                         <i class="bi bi-basket2-fill fs-3"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <span class="badge-carrinho">0</span> @* <-- Adicione esta classe aqui *@
+                            <span class="badge-carrinho">0</span>
                         </span>
                     </a>
                 </div>
 
-                @* Barra de busca mobile com borda verde *@
                 <div class="w-100 mt-2 px-2">
                     <form asp-controller="Home" asp-action="Busca" method="get" class="position-relative">
                         <input type="text" name="termoBusca" class="form-control search-rounded-mobile py-2 ps-4" placeholder="Encontre aqui um mundo de diversão...">
@@ -59,16 +56,19 @@
                     </form>
                 </div>
 
-                @* MENU MOBILE ABERTO (Categorias à Esquerda e Login em Quadrado) *@
                 <div class="collapse w-100 mt-3" id="menuMobileDropdown">
                     <div class="p-3">
-                        @* Quadrado de Login conforme a imagem *@
-                        <div class="login-box-mobile">
+                        <div class="login-box-mobile d-flex flex-column">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <p class="mb-1 text-white">Olá, <strong>@User.Identity.Name.Split('@')[0]</strong></p>
+                                <p class="mb-2 text-white">Olá, <strong>@User.Identity.Name.Split('@')[0]</strong></p>
+                                
+                                <a asp-controller="Pedidos" asp-action="Index" class="text-warning text-decoration-none fw-bold mb-2 small">
+                                    <i class="bi bi-box-seam me-1"></i> Meus Pedidos
+                                </a>
+
                                 <form asp-controller="Account" asp-action="Logout" method="post">
-                                    <button type="submit" class="btn-sair-mobile mt-2">Sair</button>
+                                    <button type="submit" class="btn-sair-mobile w-100">Sair</button>
                                 </form>
                             }
                             else
@@ -78,26 +78,14 @@
                             }
                         </div>
 
-                        @* Categorias Alinhadas à Esquerda conforme a foto *@
-                        <div class="d-flex flex-column gap-3">
-                            @* <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
-                            <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
-                            <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
-                            <a class="mobile-cat-link" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
-                            <a class="mobile-cat-link text-warning fw-bold" asp-action="Busca" asp-route-ofertas="true">Ofertas</a>
-                            <a class="mobile-cat-link" asp-action="Privacy">Sobre Nós</a> *@
-
-                            
-                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
-                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
-                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
-                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
-                                <a class="mobile-cat-link text-warning fw-bold" asp-controller="Home" asp-action="Busca" asp-route-ofertas="true">Ofertas</a>
-                                <a class="mobile-cat-link" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
-                            
+                        <div class="d-flex flex-column gap-3 mt-3">
+                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
+                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
+                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
+                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
+                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
                         </div>
 
-                        @* Seta para Fechar o Menu conforme a imagem *@
                         <div class="text-center mt-4">
                             <button class="btn border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menuMobileDropdown">
                                 <i class="bi bi-chevron-up fs-2"></i>
@@ -108,7 +96,7 @@
             </div>
         </nav>
 
-        @* --- NAV BAR DESKTOP (Sua original restaurada) --- *@
+        @* --- NAV BAR DESKTOP --- *@
         <div class="d-none d-lg-block">
             <div class="bg-fabrica py-3">
                 <div class="container">
@@ -125,22 +113,32 @@
                             </form>
                         </div>
                         <div class="col-md-4 d-flex justify-content-end align-items-center">
-                            <div class="text-end lh-sm user-area-header">
-                                @if (User.Identity.IsAuthenticated) {
-                                    <small class="text-white">Olá, <strong>@User.Identity.Name.Split('@')[0]</strong></small>
-                                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                        <button type="submit" class="btn btn-sm mt-1 fw-bold text-white px-3 rounded-pill btn-sair-desktop" style="background-color: #000269; font-size: 0.75rem; border: none;">Sair</button>
+                            
+                            <div class="text-end lh-sm user-area-header d-flex flex-column align-items-end pe-3 border-end border-white border-opacity-25 me-3">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <small class="text-white mb-1">Olá, <strong>@User.Identity.Name.Split('@')[0]</strong></small>
+                                    
+                                    <a asp-controller="Pedidos" asp-action="Index" class="text-warning text-decoration-none fw-bold mb-1 hover-scale" style="font-size: 0.8rem;">
+                                        <i class="bi bi-box-seam me-1"></i> Meus Pedidos
+                                    </a>
+
+                                    <form asp-controller="Account" asp-action="Logout" method="post" class="m-0 p-0">
+                                        <button type="submit" class="btn btn-sm fw-bold text-white px-3 rounded-pill btn-sair-desktop hover-scale" style="background-color: #000269; font-size: 0.7rem; border: none; padding-top: 2px; padding-bottom: 2px;">Sair</button>
                                     </form>
-                                } else {
+                                }
+                                else
+                                {
                                     <a asp-controller="Account" asp-action="Login" class="text-white text-decoration-none d-block small">Olá, acesse sua conta</a>
                                     <a asp-controller="Account" asp-action="Register" class="text-white fw-bold text-decoration-none small">ou faça seu cadastro</a>
                                 }
                             </div>
-                            <a asp-controller="Favoritos" asp-action="Index" class="fav-icon text-decoration-none nav-icon-spacing"><i class="bi bi-heart-fill fs-3"></i></a>
-                            <a asp-controller="Carrinho" asp-action="Index" class="text-white position-relative text-decoration-none nav-icon-spacing">
+
+                            <a asp-controller="Favoritos" asp-action="Index" class="fav-icon text-decoration-none nav-icon-spacing hover-scale"><i class="bi bi-heart-fill fs-3"></i></a>
+                            <a asp-controller="Carrinho" asp-action="Index" class="text-white position-relative text-decoration-none nav-icon-spacing hover-scale">
                                 <i class="bi bi-basket2-fill fs-3"></i>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white">
-                                    <span class="badge-carrinho">0</span> @* <-- E aqui também *@
+                                    <span class="badge-carrinho">0</span>
                                 </span>
                             </a>
                         </div>
@@ -150,36 +148,15 @@
             <div class="bg-fabrica border-top border-white border-opacity-25 shadow-sm">
                 <div class="container">
                     <nav class="nav justify-content-between py-2 align-items-center">
-                    @* <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "1" ? "active" : "")" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
-
-                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "2" ? "active" : "")" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
-
-                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "4" ? "active" : "")" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
-
-                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "3" ? "active" : "")" 
-                        asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
-
-                        <a class="nav-link-custom @(Context.Request.Query["ofertas"] == "true" ? "active" : "")"
-                           asp-controller="Home"
-                           asp-action="Busca"
-                           asp-route-ofertas="true">Ofertas</a>
-
-                     <a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-action="Privacy">Sobre Nós</a> *@
-
                         <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "1" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
-
                         <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "2" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
-
                         <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "4" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
-
                         <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "3" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
-
-                        <a class="nav-link-custom @(Context.Request.Query["ofertas"] == "true" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-ofertas="true">Ofertas</a>
-
                         <a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
 
-                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Gerente"))) {
-                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-warning rounded-pill fw-bold px-3 text-dark ms-2" style="background-color: #f3dd24; font-size: 0.8rem; border: none;">ÁREA ADMIN</a>
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Gerente")))
+                        {
+                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-warning rounded-pill fw-bold px-3 text-dark ms-2 hover-scale" style="background-color: #f3dd24; font-size: 0.8rem; border: none;">ÁREA ADMIN</a>
                         }
                     </nav>
                 </div>
@@ -187,57 +164,42 @@
         </div>
     </header>
 
-    <div class="container content-main">
-        <main role="main" class="pb-3">@RenderBody()</main>
+    <div class="container content-main flex-grow-1 pt-4">
+        <main role="main" class="pb-4">@RenderBody()</main>
     </div>
 
-    @* --- SEU FOOTER ROSA ORIGINAL RESTAURADO COM CATEGORIAS --- *@
-    <footer class="footer-fabrica">
+    <footer class="footer-fabrica mt-auto">
         <div class="container text-center">
             <div class="row justify-content-center mb-3">
                 <div class="col-12"><a asp-action="Index"><img src="~/img/logo.png" alt="Logo" class="footer-logo" /></a></div>
             </div>
 
-              @* TEXTO RECOLOCADO: Espalhando alegria através de brinquedos *@
-        <div class="row justify-content-center mb-4">
-            <div class="col-12 text-white slogan-footer">
-                <h3 class="fw-bold m-0" style="font-size: 1.2rem;">Espalhando alegria através de brinquedos</h3>
-            </div>
-        </div>
-
-            @* Links Categorias Footer *@
-            <div class="row justify-content-center mb-3">
-                <div class="col-12">
-                   @* Links Categorias Footer corrigidos *@
-    <nav class="nav justify-content-center gap-3 text-white flex-wrap">
-        @* <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">BRINQUEDOS</a>
-        <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">EDUCATIVOS</a>
-        <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">PETS</a>
-        <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">JOGOS</a>
-        <a class="footer-nav-link text-decoration-none fw-bold small text-warning" asp-controller="Home" asp-action="Busca" asp-route-ofertas="true">OFERTAS</a>
-        <a class="footer-nav-link text-decoration-none fw-bold small @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-action="Privacy">SOBRE NÓS</a> *@
-
-                        
-                            <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
-
-                            <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
-
-                            <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
-
-                            <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
-
-                            <a class="footer-nav-link text-decoration-none fw-bold small text-warning" asp-controller="Home" asp-action="Busca" asp-route-ofertas="true">Ofertas</a>
-
-                 <a class="footer-nav-link text-decoration-none fw-bold small @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">Sobre nós</a>
-                        
-    </nav>
+            <div class="row justify-content-center mb-4">
+                <div class="col-12 text-white slogan-footer">
+                    <h3 class="fw-bold m-0" style="font-size: 1.2rem;">Espalhando alegria através de brinquedos</h3>
                 </div>
             </div>
 
-              @* formas de pagamento *@
+            <div class="row justify-content-center mb-3">
+                <div class="col-12">
+                    <nav class="nav justify-content-center gap-3 text-white flex-wrap">
+                        <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
+                        <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
+                        <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
+                        <a class="footer-nav-link text-decoration-none fw-bold small" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
+                        <a class="footer-nav-link text-decoration-none fw-bold small @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">Sobre nós</a>
+                    </nav>
+                </div>
+            </div>
+
             <div class="row justify-content-center mb-4">
                 <nav class="nav justify-content-center gap-4 text-white footer-social-icons">
-                    <i class="bi bi-instagram fs-2"></i><i class="bi bi-facebook fs-2"></i><i class="bi bi-tiktok fs-2"></i><i class="bi bi-envelope-fill fs-2"></i><i class="bi bi-youtube fs-2"></i><i class="bi bi-whatsapp fs-2"></i>
+                    <i class="bi bi-instagram fs-2 hover-scale"></i>
+                    <i class="bi bi-facebook fs-2 hover-scale"></i>
+                    <i class="bi bi-tiktok fs-2 hover-scale"></i>
+                    <i class="bi bi-envelope-fill fs-2 hover-scale"></i>
+                    <i class="bi bi-youtube fs-2 hover-scale"></i>
+                    <i class="bi bi-whatsapp fs-2 hover-scale"></i>
                 </nav>
             </div>
             <div class="row text-center mb-3">
@@ -253,21 +215,16 @@
                 <p class="text-white m-0" style="font-size: 0.75rem;">©Fabrica de sorrisos [2026]. Todos os direitos reservados.</p>
             </div>
         </div>
-</footer> @* Fim do seu footer rosa *@
+    </footer>
 
-    @* RESTAURANDO O CHAT AQUI *@
-    @* RESTAURANDO O CHAT E OS SCRIPTS DE LÓGICA *@
     <partial name="_ChatWidget" />
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     
-    @* ESTES DOIS SCRIPTS SÃO ESSENCIAIS PARA OS BOTÕES FUNCIONAREM *@
     <script src="~/js/favoritos.js" asp-append-version="true"></script>
     <script src="~/js/carrinho.js" asp-append-version="true"></script>
-    
-    @* Script específico do chat *@
     <script src="~/js/chat.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

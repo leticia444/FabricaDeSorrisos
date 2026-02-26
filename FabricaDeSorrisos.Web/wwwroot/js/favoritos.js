@@ -1,5 +1,42 @@
-﻿function toggleFavorito(btn, brinquedoId) {
-    // 1. Verificação de Login
+﻿// ==========================================
+// 1. RODA AUTOMATICAMENTE AO ABRIR A PÁGINA
+// ==========================================
+document.addEventListener("DOMContentLoaded", function () {
+    pintarFavoritosNaTela();
+});
+
+function pintarFavoritosNaTela() {
+    // Pergunta para a nossa nova API quais são os IDs favoritados do cliente
+    $.get("/api/Favoritos/meus-ids")
+        .done(function (idsFavoritados) {
+
+            // Se o servidor retornar uma lista válida
+            if (Array.isArray(idsFavoritados) && idsFavoritados.length > 0) {
+
+                // Varre todos os botões de coração da tela atual
+                $(".btn-favorito").each(function () {
+                    var btn = $(this);
+                    var idBrinquedo = btn.data("id"); // Pega o id do HTML (data-id="@item.Id")
+
+                    // Se esse brinquedo estiver na lista de favoritos do banco...
+                    if (idsFavoritados.includes(idBrinquedo)) {
+                        var icon = btn.find("i");
+                        // Pinta o coração de vermelho!
+                        icon.removeClass("bi-heart text-secondary").addClass("bi-heart-fill text-danger");
+                    }
+                });
+            }
+        })
+        .fail(function () {
+            // Fica em silêncio. Se não estiver logado, os corações ficam normais (vazios).
+        });
+}
+
+// ==========================================
+// 2. AÇÃO DE CLICAR NO CORAÇÃO (Seu código original melhorado)
+// ==========================================
+function toggleFavorito(btn, brinquedoId) {
+    // Verificação de Login
     var isAuth = $(btn).data('auth');
 
     if (!isAuth || isAuth.toString().toLowerCase() === "false") {
@@ -7,39 +44,30 @@
         return;
     }
 
-    // Pega o ícone para mudar visualmente
     var icon = $(btn).find("i");
-    // Verifica se estamos na página de "Meus Favoritos" (se for lixeira)
     var isTrash = icon.hasClass("bi-trash") || $(btn).hasClass("btn-remover");
 
-    // 2. Chamada à API (Endereço Corrigido)
-    // Atenção: A URL agora é /api/Favoritos/toggle/ + o ID
+    // Chamada à API para Favoritar/Desfavoritar
     $.post("/api/Favoritos/toggle/" + brinquedoId)
         .done(function (response) {
 
             if (response.success) {
-                // === AÇÃO DE REMOVER (LIXEIRA) ===
+                // AÇÃO DE REMOVER DA TELA DE "MEUS FAVORITOS" (LIXEIRA)
                 if (isTrash) {
-                    // Seleciona o card pelo ID que colocamos no HTML
                     var card = $("#card-favorito-" + brinquedoId);
-
-                    // Faz sumir suavemente
                     card.fadeOut(400, function () {
-                        $(this).remove(); // Remove do HTML
-
-                        // Se a lista ficar vazia, recarrega para mostrar a mensagem "Você não tem favoritos"
-                        // Verifica quantos cards sobraram na div pai #lista-favoritos
+                        $(this).remove();
                         if ($("#lista-favoritos").children(":visible").length === 0) {
-                            location.reload();
+                            location.reload(); // Atualiza pra mostrar "Sem favoritos"
                         }
                     });
                 }
-                // === AÇÃO DE TOGGLE (CORAÇÃO NA HOME/BUSCA) ===
+                // AÇÃO DE PINTAR/DESPINTAR NA HOME, BUSCA E DETALHES
                 else {
                     if (response.action === "added") {
-                        icon.removeClass("bi-heart").addClass("bi-heart-fill text-danger");
+                        icon.removeClass("bi-heart text-secondary").addClass("bi-heart-fill text-danger");
                     } else {
-                        icon.removeClass("bi-heart-fill text-danger").addClass("bi-heart");
+                        icon.removeClass("bi-heart-fill text-danger").addClass("bi-heart text-secondary");
                     }
                 }
             }
@@ -49,7 +77,6 @@
             if (xhr.status === 401) {
                 window.location.href = "/Account/Login";
             } else {
-                // Feedback visual de erro (opcional)
                 alert("Não foi possível atualizar o favorito.");
             }
         });
