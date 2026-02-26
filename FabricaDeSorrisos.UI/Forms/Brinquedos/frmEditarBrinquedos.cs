@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FabricaDeSorrisos.UI.ViewModels.Brinquedos;
 using FabricaDeSorrisos.UI.Api;
+using FabricaDeSorrisos.UI.Services;
+using FabricaDeSorrisos.UI.Models.Services;
 
 namespace FabricaDeSorrisos.UI.Forms.Brinquedos
 {
@@ -15,6 +17,13 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
         private static readonly HttpClient _imgClient = new HttpClient();
         public string? NovaImagemBase64 { get; private set; }
         public string? NovaImagemNomeArquivo { get; private set; }
+        private readonly CatalogService _catalog = new CatalogService();
+        private readonly SubCategoriaService _subService = new SubCategoriaService();
+        private List<CatalogService.MarcaItem> _marcas = new();
+        private List<CatalogService.CategoriaItem> _categorias = new();
+        private List<CatalogService.FaixaEtariaItem> _faixas = new();
+        private List<CatalogService.PersonagemItem> _personagens = new();
+        private List<SubCategoriaService.SubCategoriaItem> _subcats = new();
 
         public frmEditarBrinquedos()
         {
@@ -57,32 +66,43 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             txtPreço.Text = _model.Preco.ToString("0.00");
             txtDescricao.Text = _model.Descricao ?? string.Empty;
 
-            cbCategoria.Items.Clear();
-            if (!string.IsNullOrWhiteSpace(_model.Categoria))
-            {
-                cbCategoria.Items.Add(_model.Categoria);
-                cbCategoria.SelectedIndex = 0;
-            }
+            _marcas = await _catalog.GetMarcasAsync();
+            _categorias = await _catalog.GetCategoriasAsync();
+            _faixas = await _catalog.GetFaixasAsync();
+            _personagens = await _catalog.GetPersonagensAsync();
+            _subcats = await _subService.GetAllAsync();
 
-            cbMarca.Items.Clear();
-            if (!string.IsNullOrWhiteSpace(_model.Marca))
-            {
-                cbMarca.Items.Add(_model.Marca);
-                cbMarca.SelectedIndex = 0;
-            }
+            cbMarca.DisplayMember = "Nome";
+            cbMarca.ValueMember = "Id";
+            cbMarca.DataSource = _marcas;
+            var marcaIdx = _marcas.FindIndex(m => string.Equals(m.Nome, _model.Marca, StringComparison.OrdinalIgnoreCase));
+            if (marcaIdx >= 0) cbMarca.SelectedIndex = marcaIdx;
 
-            cbFaixaEtaria.Items.Clear();
-            if (!string.IsNullOrWhiteSpace(_model.FaixaEtaria))
-            {
-                cbFaixaEtaria.Items.Add(_model.FaixaEtaria);
-                cbFaixaEtaria.SelectedIndex = 0;
-            }
+            cbCategoria.DisplayMember = "Nome";
+            cbCategoria.ValueMember = "Id";
+            cbCategoria.DataSource = _categorias;
+            var catIdx = _categorias.FindIndex(c => string.Equals(c.Nome, _model.Categoria, StringComparison.OrdinalIgnoreCase));
+            if (catIdx >= 0) cbCategoria.SelectedIndex = catIdx;
+            cbCategoria.SelectedIndexChanged += (s, e) => AtualizarSubCategorias();
 
-            cbPersonagem.Items.Clear();
-            if (!string.IsNullOrWhiteSpace(_model.Personagem))
+            cbFaixaEtaria.DisplayMember = "Descricao";
+            cbFaixaEtaria.ValueMember = "Id";
+            cbFaixaEtaria.DataSource = _faixas;
+            var faixaIdx = _faixas.FindIndex(f => string.Equals(f.Descricao, _model.FaixaEtaria, StringComparison.OrdinalIgnoreCase));
+            if (faixaIdx >= 0) cbFaixaEtaria.SelectedIndex = faixaIdx;
+
+            cbPersonagem.DisplayMember = "Nome";
+            cbPersonagem.ValueMember = "Id";
+            cbPersonagem.DataSource = _personagens;
+            var persIdx = _personagens.FindIndex(p => string.Equals(p.Nome, _model.Personagem ?? "", StringComparison.OrdinalIgnoreCase));
+            if (persIdx >= 0) cbPersonagem.SelectedIndex = persIdx;
+
+            AtualizarSubCategorias();
+            if (!string.IsNullOrWhiteSpace(_model.SubCategoria))
             {
-                cbPersonagem.Items.Add(_model.Personagem);
-                cbPersonagem.SelectedIndex = 0;
+                var subIdx = (cbSubCategoria.DataSource as List<SubCategoriaService.SubCategoriaItem>)?
+                    .FindIndex(s => string.Equals(s.Nome, _model.SubCategoria, StringComparison.OrdinalIgnoreCase)) ?? -1;
+                if (subIdx >= 0) cbSubCategoria.SelectedIndex = subIdx;
             }
 
             await CarregarImagemAtualAsync();
@@ -156,6 +176,11 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
                 Descricao = txtDescricao.Text?.Trim(),
                 Preco = preco,
                 Estoque = estoque,
+                MarcaId = cbMarca.SelectedValue is int m ? m : (cbMarca.SelectedValue != null ? Convert.ToInt32(cbMarca.SelectedValue) : null),
+                CategoriaId = cbCategoria.SelectedValue is int c ? c : (cbCategoria.SelectedValue != null ? Convert.ToInt32(cbCategoria.SelectedValue) : null),
+                FaixaEtariaId = cbFaixaEtaria.SelectedValue is int f ? f : (cbFaixaEtaria.SelectedValue != null ? Convert.ToInt32(cbFaixaEtaria.SelectedValue) : null),
+                PersonagemId = cbPersonagem.SelectedValue is int p ? p : (cbPersonagem.SelectedValue != null ? Convert.ToInt32(cbPersonagem.SelectedValue) : null),
+                SubCategoriaId = cbSubCategoria.SelectedValue is int s ? s : (cbSubCategoria.SelectedValue != null ? Convert.ToInt32(cbSubCategoria.SelectedValue) : null),
                 ImagemBase64 = NovaImagemBase64,
                 ImagemNomeArquivo = NovaImagemNomeArquivo
             };
@@ -169,6 +194,23 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
 
             MessageBox.Show("Alterações salvas com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
+        }
+
+        private void AtualizarSubCategorias()
+        {
+            try
+            {
+                int categoriaId = cbCategoria.SelectedValue is int i ? i :
+                    (cbCategoria.SelectedValue != null ? Convert.ToInt32(cbCategoria.SelectedValue) : 0);
+                var lista = _subcats.Where(s => s.CategoriaId == categoriaId).ToList();
+                cbSubCategoria.DisplayMember = "Nome";
+                cbSubCategoria.ValueMember = "Id";
+                cbSubCategoria.DataSource = lista;
+            }
+            catch
+            {
+                cbSubCategoria.DataSource = _subcats;
+            }
         }
     }
 }

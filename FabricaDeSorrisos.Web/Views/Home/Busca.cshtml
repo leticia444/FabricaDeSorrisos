@@ -4,15 +4,16 @@
     ViewData["Title"] = "Resultados da Busca";
 
     // Lógica para definir a cor das Subcategorias conforme a Categoria principal selecionada
-    string corSubcategoria = "#ff69b4"; // Rosa (Padrão para Brinquedos)
+    string corSubcategoria = "#6f42c1"; // Roxo (Cor padrão quando nenhuma categoria é selecionada)
 
     if (Model.CategoriaId.HasValue)
     {
         switch (Model.CategoriaId.Value)
         {
+            case 1: corSubcategoria = "#ff69b4"; break; // Brinquedos -> Rosa
             case 2: corSubcategoria = "#f3dd24"; break; // Educativos -> Amarelo
-            case 4: corSubcategoria = "#28a745"; break; // Pets -> Verde
             case 3: corSubcategoria = "#000269"; break; // Jogos -> Azul Escuro
+            case 4: corSubcategoria = "#28a745"; break; // Pets -> Verde
         }
     }
 
@@ -137,10 +138,12 @@
 @functions {
     public Microsoft.AspNetCore.Html.IHtmlContent RenderFiltros()
     {
+        bool ehPets = Model.CategoriaId == 4;
+
         return Html.Raw($@"
             <div class='filtros-wrapper'>
-                {(Model.CategoriaId.HasValue && Model.SubCategorias.Any() ? $@"
-                    <div class='d-flex align-items-center justify-content-between mb-3'>
+                {(Model.CategoriaId.HasValue && Model.SubCategorias.Any() ?
+                $@"<div class='d-flex align-items-center justify-content-between mb-3'>
                         <h5 class='titulo-filtro-sub'>Subcategorias</h5>
                         <a href='/Home/Busca' class='small text-muted text-decoration-none'><i class='bi bi-arrow-left'></i> Voltar</a>
                     </div>
@@ -150,8 +153,8 @@
                             <a href='/Home/Busca?categoriaId={Model.CategoriaId}&subCategoriaId={sub.Id}&termoBusca={Model.TermoBusca}' 
                                class='btn-filter-custom {(Model.SubCategoriaId == sub.Id ? "active" : "")}'>{sub.Nome}</a>
                         "))}
-                    </div>" : $@"
-                    <h5 class='titulo-filtro-sub'>Categorias</h5>
+                    </div>" :
+                $@"<h5 class='titulo-filtro-sub'>Categorias</h5>
                     <div class='d-flex flex-column gap-2 mb-4'>
                         <a href='/Home/Busca' class='btn-filter-custom {(Model.CategoriaId == null ? "active" : "")}'>Todas</a>
                         {string.Join("", Model.Categorias.Select(cat => $@"
@@ -161,25 +164,30 @@
                     </div>")}
 
                 <hr class='text-muted opacity-25'>
-                <h6 class='titulo-filtro-idade'>Por Idade</h6>
-                <div class='d-flex flex-wrap gap-2 mb-4'>
-                    {string.Join("", Model.FaixasEtarias.Select(idade => $@"
-                        <a href='/Home/Busca?categoriaId={Model.CategoriaId}&subCategoriaId={Model.SubCategoriaId}&faixaEtariaId={idade.Id}&termoBusca={Model.TermoBusca}' 
-                           class='badge rounded-pill text-decoration-none p-2 badge-idade-custom {(Model.FaixaEtariaId == idade.Id ? "active" : "")}'>{idade.Descricao}</a>
-                    "))}
-                </div>
 
-                <h6 class='titulo-filtro-pers'>Personagens</h6>
-                <div class='d-flex flex-wrap gap-2 mb-4'>
-                    {string.Join("", Model.Personagens.Select(pers => $@"
+                {(!ehPets ? $@"
+                    <h6 class='titulo-filtro-idade'>Por Idade</h6>
+                    <div class='d-flex flex-wrap gap-2 mb-4'>
+                        {string.Join("", Model.FaixasEtarias.Where(i => !i.Descricao.Contains("Animal")).Select(idade => $@"
+                            <a href='/Home/Busca?categoriaId={Model.CategoriaId}&subCategoriaId={Model.SubCategoriaId}&faixaEtariaId={idade.Id}&termoBusca={Model.TermoBusca}' 
+                               class='badge rounded-pill text-decoration-none p-2 badge-idade-custom {(Model.FaixaEtariaId == idade.Id ? "active" : "")}'>{idade.Descricao}</a>
+                        "))}
+                    </div>" : "")}
+
+                {(!ehPets ? $@"
+                    <h6 class='titulo-filtro-pers'>Personagens</h6>
+                    <div class='d-flex flex-wrap gap-2 mb-4'>
+                        {string.Join("", Model.Personagens.Select(pers => $@"
                         <a href='/Home/Busca?categoriaId={Model.CategoriaId}&subCategoriaId={Model.SubCategoriaId}&personagemId={pers.Id}&termoBusca={Model.TermoBusca}' 
-                           class='badge rounded-pill text-decoration-none p-2 badge-pers-custom {(Model.PersonagemId == pers.Id ? "active" : "")}'>{pers.Nome}</a>
-                    "))}
-                </div>
+                               class='badge rounded-pill text-decoration-none p-2 badge-pers-custom {(Model.PersonagemId == pers.Id ? "active" : "")}'>{pers.Nome}</a>
+                        "))}
+                    </div>" : "")}
 
                 <h6 class='titulo-filtro-marcas'>Marcas</h6>
                 <div class='d-flex flex-wrap gap-2'>
-                    {string.Join("", Model.Marcas.Select(marca => $@"
+                    {string.Join("", Model.Marcas
+                        .Where(m => ehPets ? m.Nome == "Linha Pet" : m.Nome != "Linha Pet")
+                        .Select(marca => $@"
                         <a href='/Home/Busca?categoriaId={Model.CategoriaId}&subCategoriaId={Model.SubCategoriaId}&marcaId={marca.Id}&termoBusca={Model.TermoBusca}' 
                            class='badge rounded-pill text-decoration-none p-2 badge-marcas-custom {(Model.MarcaId == marca.Id ? "active" : "")}'>{marca.Nome}</a>
                     "))}

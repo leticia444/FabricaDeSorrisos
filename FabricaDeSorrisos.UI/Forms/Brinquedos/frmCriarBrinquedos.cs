@@ -17,8 +17,7 @@ namespace FabricaDeSorrisos.UI
         private readonly BrinquedoService _brinquedoService = new BrinquedoService();
         private PictureBox _imgPreview;
         private string? _imagemPath;
-        private Guna2ComboBox _cbSubCategoria;
-        private Label _lblSubCategoria;
+        private System.Collections.Generic.List<SubCategoriaService.SubCategoriaItem> _todasSubCats = new();
 
         public frmCriarBrinquedos()
         {
@@ -37,27 +36,6 @@ namespace FabricaDeSorrisos.UI
                 SizeMode = PictureBoxSizeMode.Zoom
             };
             Controls.Add(_imgPreview);
-            _lblSubCategoria = new Label
-            {
-                Text = "Subcategoria",
-                Font = new Font("Segoe UI", 15F),
-                Left = 124,
-                Top = 296,
-                AutoSize = true
-            };
-            _cbSubCategoria = new Guna2ComboBox
-            {
-                Left = 124,
-                Top = 332,
-                Width = 192,
-                Height = 36,
-                BorderRadius = 10,
-                DrawMode = DrawMode.OwnerDrawFixed,
-                DropDownStyle = ComboBoxStyle.DropDownList,
-                ItemHeight = 30
-            };
-            Controls.Add(_lblSubCategoria);
-            Controls.Add(_cbSubCategoria);
         }
 
         private async void FrmCriarBrinquedos_Load(object sender, EventArgs e)
@@ -71,6 +49,7 @@ namespace FabricaDeSorrisos.UI
             cbCategoria.DisplayMember = "Nome";
             cbCategoria.ValueMember = "Id";
             cbCategoria.DataSource = categorias;
+            cbCategoria.SelectedIndexChanged += (s, ev) => AtualizarSubCategoriasFiltradas();
 
             var faixas = await _catalogService.GetFaixasAsync();
             cbFaixaEtaria.DisplayMember = "Descricao";
@@ -84,10 +63,10 @@ namespace FabricaDeSorrisos.UI
             txtPreco.KeyPress += TxtPreco_KeyPress;
 
             var subService = new SubCategoriaService();
-            var subs = await subService.GetAllAsync();
-            _cbSubCategoria.DisplayMember = "Nome";
-            _cbSubCategoria.ValueMember = "Id";
-            _cbSubCategoria.DataSource = subs;
+            _todasSubCats = await subService.GetAllAsync();
+            cbSubCategorias.DisplayMember = "Nome";
+            cbSubCategorias.ValueMember = "Id";
+            AtualizarSubCategoriasFiltradas();
         }
 
         private void BtnFechar_Click(object? sender, EventArgs e)
@@ -209,5 +188,23 @@ namespace FabricaDeSorrisos.UI
 
         private void lblNomeProduto_Click(object sender, EventArgs e) { }
         private void lblPersonagem_Click(object sender, EventArgs e) { }
+
+        private void AtualizarSubCategoriasFiltradas()
+        {
+            try
+            {
+                int categoriaId = 0;
+                if (cbCategoria.SelectedValue != null)
+                {
+                    categoriaId = cbCategoria.SelectedValue is int i ? i : Convert.ToInt32(cbCategoria.SelectedValue);
+                }
+                var lista = _todasSubCats.Where(s => s.CategoriaId == categoriaId).ToList();
+                cbSubCategorias.DataSource = lista;
+            }
+            catch
+            {
+                cbSubCategorias.DataSource = _todasSubCats;
+            }
+        }
     }
 }

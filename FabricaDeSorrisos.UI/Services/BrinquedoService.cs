@@ -28,6 +28,11 @@ namespace FabricaDeSorrisos.UI.Models.Services
             public decimal? Preco { get; set; }
             public int? Estoque { get; set; }
             public bool? Ativo { get; set; }
+            public int? MarcaId { get; set; }
+            public int? CategoriaId { get; set; }
+            public int? FaixaEtariaId { get; set; }
+            public int? PersonagemId { get; set; }
+            public int? SubCategoriaId { get; set; }
             public string? ImagemBase64 { get; set; }
             public string? ImagemNomeArquivo { get; set; }
         }

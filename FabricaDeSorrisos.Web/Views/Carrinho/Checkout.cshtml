@@ -3,104 +3,11 @@
     ViewData["Title"] = "Finalizar Compra";
 }
 
-@* --- ESTILOS EXCLUSIVOS DO CHECKOUT --- *@
-<style>
-    /* Esconde os elementos globais para um Checkout Limpo */
-    header, .footer-fabrica, .chat-widget-fixed, .btn-chat-float {
-        display: none !important;
-    }
-
-    /* 1. REMOVE O FUNDO BRANCO GLOBAL E DEIXA A TELA TODA CINZA CLARO */
-    body, .content-main {
-        background-color: #f0f2f5 !important;
-        padding-top: 0 !important;
-    }
-
-    /* 2. FORÇA A TELA A CRESCER E PERMITE QUE O RODAPÉ VÁ PARA O FUNDO */
-    .content-main, main[role="main"] {
-        display: flex;
-        flex-direction: column;
-        flex: 1; /* Faz ocupar todo o espaço vazio da tela */
-        padding-bottom: 0 !important;
-    }
-
-    /* Estilo das caixas separadas (Quadros Brancos) */
-    .checkout-box {
-        background-color: white;
-        border-radius: 20px;
-        border: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        margin-bottom: 30px;
-        padding: 25px;
-    }
-
-    /* --- ESTILO DAS CAIXAS DE TEXTO (Label na Linha) --- */
-    .input-custom-container {
-        position: relative;
-        margin-top: 15px;
-        margin-bottom: 10px;
-    }
-
-        .input-custom-container label {
-            position: absolute;
-            top: -10px;
-            left: 15px;
-            background-color: white;
-            padding: 0 8px;
-            color: #000269;
-            font-weight: bold;
-            font-size: 0.85rem;
-            z-index: 5;
-        }
-
-        .input-custom-container .form-control {
-            border-radius: 12px;
-            border: 1px solid #ced4da;
-            padding: 12px 15px;
-            box-shadow: none;
-            background-color: white !important;
-        }
-
-            .input-custom-container .form-control:focus {
-                border-color: #000269;
-                box-shadow: 0 0 0 0.2rem rgba(0, 2, 105, 0.1);
-            }
-
-    /* Botão Redondo de Voltar */
-    .btn-voltar-redondo {
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-        color: #9900ff;
-        border: 1px solid #e0e0e0;
-        transition: 0.3s;
-    }
-
-        .btn-voltar-redondo:hover {
-            background-color: #9900ff;
-            color: white;
-            transform: scale(1.05);
-        }
-
-    /* 3. RODAPÉ ROSA ESTICADO DE PONTA A PONTA E GRUDADO NO FUNDO */
-    .footer-checkout-rosa {
-        background-color: #F66CD8;
-        width: 100vw; /* Força a ter a largura total da tela do usuário */
-        position: relative;
-        left: 50%;
-        margin-left: -50vw; /* Truque para vazar as laterais do container central */
-        padding: 30px 0;
-        margin-top: auto; /* Empurra a faixa rosa para o final da tela */
-    }
-</style>
+<link rel="stylesheet" href="~/css/checkout.css" />
 
 <div class="container py-4">
 
-    @* --- CAIXA 1: CABEÇALHO ISOLADO (Voltar, Título e Logo) --- *@
-    @* --- CAIXA 1: CABEÇALHO ISOLADO (Voltar, Título e Logo) --- *@
+    @* --- CAIXA 1: CABEÇALHO ISOLADO --- *@
     <div class="checkout-box d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
         <div class="d-flex align-items-center gap-4">
             <a asp-controller="Carrinho" asp-action="Index" class="btn btn-voltar-redondo rounded-circle shadow-sm" title="Voltar ao Carrinho">
@@ -109,19 +16,17 @@
             <h2 class="fw-bold mb-0" style="color: #4B0082;">Finalizar Compra</h2>
         </div>
         <a asp-controller="Home" asp-action="Index">
-            @* LOGO MAIOR AQUI *@
-            <img src="~/img/logo.png" alt="Fábrica de Sorrisos" style="height: 95px; object-fit: contain;">
-        </a>
-    </div>
+            <img src="~/img/logo.png" alt="Fábrica de Sorrisos" style="height: 65px; object-fit: contain;">
+            </a>
+        </div>
 
-    <form asp-action="ProcessarPedido" method="post">
-        <input type="hidden" id="subtotalInicial" value="@Model.Subtotal.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)" />
+        <form asp-action="ProcessarPedido" method="post" id="formCheckout">
+            <input type="hidden" id="subtotalInicial" value="@Model.Subtotal.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)" />
 
-        @* g-5 cria uma separação larga (espaço vazio) entre a esquerda e a direita *@
-        <div class="row g-5">
+            <div class="row g-5">
 
-            @* --- COLUNA ESQUERDA (Passos) --- *@
-            <div class="col-lg-7">
+                @* --- COLUNA ESQUERDA (Passos) --- *@
+                <div class="col-lg-7">
 
                 @* CAIXA 2: DADOS PESSOAIS *@
                 <div class="checkout-box">
@@ -137,78 +42,78 @@
                     </div>
                 </div>
 
-                @* CAIXA 3: ENDEREÇO DE ENTREGA *@
-                <div class="checkout-box">
-                    <h5 class="fw-bold mb-4" style="color: #000269;">2. Endereço de Entrega</h5>
-                    <div class="row g-2">
-                        <div class="col-md-5">
-                            <div class="input-custom-container">
-                                <label>CEP</label>
-                                <input type="text" asp-for="CEP" class="form-control" id="inputCep" placeholder="00000-000" maxlength="9" onblur="buscarEnderecoViaCep()">
-                            </div>
-                            <span asp-validation-for="CEP" class="text-danger small"></span>
-                        </div>
-                        <div class="col-md-7 d-flex align-items-end pb-2">
-                            <small class="text-muted fw-bold ms-2" id="msgFrete"></small>
-                        </div>
+                        @* CAIXA 3: ENDEREÇO DE ENTREGA *@
+                        <div class="checkout-box">
+                            <h5 class="fw-bold mb-4" style="color: #000269;">2. Endereço de Entrega</h5>
+                            <div class="row g-2">
+                                <div class="col-md-5">
+                                    <div class="input-custom-container">
+                                        <label>CEP</label>
+                                        <input type="text" asp-for="CEP" class="form-control" id="inputCep" placeholder="00000-000" maxlength="9" onblur="buscarEnderecoViaCep()">
+                                        </div>
+                                        <span asp-validation-for="CEP" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-7 d-flex align-items-end pb-2">
+                                        <small class="text-muted fw-bold ms-2" id="msgFrete"></small>
+                                    </div>
 
-                        <div class="col-md-9">
-                            <div class="input-custom-container">
-                                <label>Rua / Logradouro</label>
-                                <input type="text" asp-for="Logradouro" id="inputLogradouro" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-custom-container">
-                                <label>Número</label>
-                                <input type="text" asp-for="Numero" id="inputNumero" class="form-control" placeholder="123">
-                            </div>
-                            <span asp-validation-for="Numero" class="text-danger small"></span>
-                        </div>
+                                    <div class="col-md-9">
+                                        <div class="input-custom-container">
+                                            <label>Rua / Logradouro</label>
+                                            <input type="text" asp-for="Logradouro" id="inputLogradouro" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="input-custom-container">
+                                                <label>Número</label>
+                                                <input type="text" asp-for="Numero" id="inputNumero" class="form-control" placeholder="123">
+                                                </div>
+                                                <span asp-validation-for="Numero" class="text-danger small"></span>
+                                            </div>
 
-                        <div class="col-md-5">
-                            <div class="input-custom-container">
-                                <label>Bairro</label>
-                                <input type="text" asp-for="Bairro" id="inputBairro" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="input-custom-container">
-                                <label>Cidade</label>
-                                <input type="text" asp-for="Cidade" id="inputCidade" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="input-custom-container">
-                                <label>UF</label>
-                                <input type="text" asp-for="UF" id="inputUf" class="form-control">
-                            </div>
-                        </div>
+                                            <div class="col-md-5">
+                                                <div class="input-custom-container">
+                                                    <label>Bairro</label>
+                                                    <input type="text" asp-for="Bairro" id="inputBairro" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="input-custom-container">
+                                                        <label>Cidade</label>
+                                                        <input type="text" asp-for="Cidade" id="inputCidade" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="input-custom-container">
+                                                            <label>UF</label>
+                                                            <input type="text" asp-for="UF" id="inputUf" class="form-control">
+                                                            </div>
+                                                        </div>
 
-                        <div class="col-12">
-                            <div class="input-custom-container">
-                                <label>Complemento <small class="text-muted fw-normal">(Opcional)</small></label>
-                                <input type="text" asp-for="Complemento" class="form-control" placeholder="Ex: Apto 101, Bloco B">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                                        <div class="col-12">
+                                                            <div class="input-custom-container">
+                                                                <label>Complemento <small class="text-muted fw-normal">(Opcional)</small></label>
+                                                                <input type="text" asp-for="Complemento" class="form-control" placeholder="Ex: Apto 101, Bloco B">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                @* CAIXA 4: PAGAMENTO *@
-                <div class="checkout-box mb-lg-0">
-                    <h5 class="fw-bold mb-4" style="color: #000269;">3. Pagamento</h5>
-                    <ul class="nav nav-pills gap-2 mb-4" id="pills-tab">
-                        <li class="nav-item">
-                            <button class="nav-link active rounded-pill border" type="button" onclick="setPag('Pix')" data-bs-toggle="pill" data-bs-target="#pix">Pix ⚡</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link rounded-pill border" type="button" onclick="setPag('Cartao')" data-bs-toggle="pill" data-bs-target="#cartao">Cartão 💳</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link rounded-pill border" type="button" onclick="setPag('Boleto')" data-bs-toggle="pill" data-bs-target="#boleto">Boleto 📄</button>
-                        </li>
-                    </ul>
-                    <input type="hidden" asp-for="FormaPagamento" id="inputPagamento" value="Pix">
+                                                    @* CAIXA 4: PAGAMENTO *@
+                                                    <div class="checkout-box mb-lg-0">
+                                                        <h5 class="fw-bold mb-4" style="color: #000269;">3. Pagamento</h5>
+                                                        <ul class="nav nav-pills gap-2 mb-4" id="pills-tab">
+                                                            <li class="nav-item">
+                                                                <button class="nav-link active rounded-pill border" type="button" onclick="setPag('Pix')" data-bs-toggle="pill" data-bs-target="#pix">Pix ⚡</button>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <button class="nav-link rounded-pill border" type="button" onclick="setPag('Cartao')" data-bs-toggle="pill" data-bs-target="#cartao">Cartão 💳</button>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <button class="nav-link rounded-pill border" type="button" onclick="setPag('Boleto')" data-bs-toggle="pill" data-bs-target="#boleto">Boleto 📄</button>
+                                                            </li>
+                                                        </ul>
+                                                        <input type="hidden" asp-for="FormaPagamento" id="inputPagamento" value="Pix">
 
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="pix">
@@ -229,75 +134,126 @@
                 </div>
             </div>
 
-            @* --- COLUNA DIREITA (Resumo Fixo e Separado) --- *@
-            <div class="col-lg-5">
-                <div class="checkout-box position-sticky" style="top: 20px;">
-                    <h4 class="fw-bold mb-4 text-dark">Resumo da Compra</h4>
+                                                    @* --- COLUNA DIREITA (Resumo Fixo e Separado) --- *@
+                                                    <div class="col-lg-5">
+                                                        <div class="checkout-box position-sticky" style="top: 20px;">
+                                                            <h4 class="fw-bold mb-4 text-dark">Resumo da Compra</h4>
 
-                    @* Lista de Produtos *@
-                    <div class="mb-4 pe-2" style="max-height: 350px; overflow-y: auto;">
-                        @foreach (var item in Model.Itens)
-                        {
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="position-relative me-3">
-                                    <span class="position-absolute top-0 start-0 translate-middle badge rounded-circle bg-success border border-white" style="z-index: 2;">
-                                        @item.Quantidade x
-                                    </span>
-                                    <img src="@(item.Brinquedo.ImagemUrl ?? "https://placehold.co/60")"
-                                         class="rounded-4 border" style="width: 70px; height: 70px; object-fit: contain; background: white;">
-                                </div>
-                                <div class="flex-grow-1">
-                                    <p class="mb-0 text-muted fw-bold" style="line-height: 1.2;">@item.Brinquedo.Nome</p>
-                                </div>
-                            </div>
-                        }
-                    </div>
+                                                            @* Lista de Produtos *@
+                                                            <div class="mb-4 pe-2" style="max-height: 350px; overflow-y: auto;">
+                                                                @foreach (var item in Model.Itens)
+                                                                {
+                                                                    <div class="d-flex align-items-center mb-3">
+                                                                        <div class="position-relative me-3">
+                                                                            <span class="position-absolute top-0 start-0 translate-middle badge rounded-circle bg-success border border-white" style="z-index: 2;">
+                                                                                @item.Quantidade x
+                                                                            </span>
+                                                                            <img src="@(item.Brinquedo.ImagemUrl ?? "https://placehold.co/60")"
+                                                                                 class="rounded-4 border" style="width: 70px; height: 70px; object-fit: contain; background: white;">
+                                                                        </div>
+                                                                        <div class="flex-grow-1">
+                                                                            <p class="mb-0 text-muted fw-bold" style="line-height: 1.2;">@item.Brinquedo.Nome</p>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            </div>
 
-                    <hr class="text-muted opacity-25 mb-4">
+                                                            <hr class="text-muted opacity-25 mb-4">
 
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-muted fs-5">Subtotal</span>
-                        <span class="fw-bold fs-5 text-dark">R$ @Model.Subtotal.ToString("N2")</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-4">
-                        <span class="text-muted fs-5">Entrega</span>
-                        <span class="fw-bold fs-5 text-dark" id="txtFrete">R$ 0,00</span>
-                    </div>
+                                                            <div class="d-flex justify-content-between mb-3">
+                                                                <span class="text-muted fs-5">Subtotal</span>
+                                                                <span class="fw-bold fs-5 text-dark">R$ @Model.Subtotal.ToString("N2")</span>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between mb-4">
+                                                                <span class="text-muted fs-5">Entrega</span>
+                                                                <span class="fw-bold fs-5 text-dark" id="txtFrete">R$ 0,00</span>
+                                                            </div>
 
-                    @* Total Azul Escuro e Valor Verde *@
-                    <div class="d-flex justify-content-between align-items-center mt-2 pt-3 border-top">
-                        <span class="fw-bold" style="color: #000269; font-size: 1.5rem;">Total</span>
-                        <span class="fw-bold" id="txtTotal" style="color: #00C709; font-size: 1.8rem;">R$ @Model.Subtotal.ToString("N2")</span>
-                    </div>
+                                                            @* Total Azul Escuro e Valor Verde *@
+                                                            <div class="d-flex justify-content-between align-items-center mt-2 pt-3 border-top">
+                                                                <span class="fw-bold" style="color: #000269; font-size: 1.5rem;">Total</span>
+                                                                <span class="fw-bold" id="txtTotal" style="color: #00C709; font-size: 1.8rem;">R$ @Model.Subtotal.ToString("N2")</span>
+                                                            </div>
 
-                    <input type="hidden" asp-for="ValorFrete" id="inputValorFrete" value="0">
+                                                            <input type="hidden" asp-for="ValorFrete" id="inputValorFrete" value="0">
 
-                    @* Botão Verde Escuro *@
-                    <button type="submit" class="btn w-100 btn-lg mt-5 rounded-4 shadow-sm fw-bold text-white" style="background-color: #28a745; padding: 18px;">
-                        <i class="bi bi-check-circle-fill me-2 fs-5"></i> Confirmar Pedido
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+                                                                @* Botão Verde Escuro (O script vai impedir o submit direto para mostrar o modal) *@
+                                                                <button type="submit" class="btn w-100 btn-lg mt-5 rounded-4 shadow-sm fw-bold text-white" style="background-color: #28a745; padding: 18px;">
+                                                                    <i class="bi bi-check-circle-fill me-2 fs-5"></i> Confirmar Pedido
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
 
-@* --- RODAPÉ ROSA SEPARADO DOS QUADROS BRANCOS --- *@
-@* --- RODAPÉ ROSA SEPARADO DOS QUADROS BRANCOS --- *@
-<div class="footer-checkout-rosa text-center">
-    <div class="container">
-        <p class="text-white fw-bold mb-3 fs-5">Formas de pagamento seguras</p>
-        <div class="d-flex justify-content-center gap-4 mb-4">
-            @* ÍCONES DE PAGAMENTO MAIORES AQUI *@
-            <img src="~/img/credito.png" alt="Cartão" style="height: 55px; background: white; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-            <img src="~/img/debito.png" alt="Débito" style="height: 55px; background: white; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-            <img src="~/img/pix.png" alt="Pix" style="height: 55px; background: white; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-            <img src="~/img/boleto.png" alt="Boleto" style="height: 55px; background: white; border-radius: 8px; padding: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        </div>
-        <p class="text-white m-0" style="font-size: 0.85rem; opacity: 0.9;">© Fábrica de Sorrisos [2026]. Todos os direitos reservados.</p>
-    </div>
-</div>
+                                            @* --- MODAL AVISO ACADÊMICO --- *@
+                                            <div class="modal fade modal-academico" id="modalAvisoAcademico" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body p-4 text-center">
+                                                            <div class="icon-box">
+                                                                <i class="bi bi-mortarboard-fill"></i>
+                                                            </div>
+                
+                                                            <h3 class="fw-bold mb-3" style="color: #000269;">Aviso de Simulação</h3>
+                                                            <div class="alert alert-warning bg-warning bg-opacity-10 border-0 rounded-4 p-3 mb-4 text-start">
+                                                                <i class="bi bi-info-circle-fill text-warning me-2 fs-5"></i>
+                                                                A <strong>Fábrica de Sorrisos</strong> é um projeto acadêmico de estudo.
+                                                            </div>
+                
+                                                            <p class="text-muted mb-4 fs-5">
+                                                                Nenhuma cobrança real será feita em seus cartões ou contas. Ao confirmar, simularemos o fechamento do seu pedido com sucesso! ✨
+                                                            </p>
 
-@section Scripts {
-    <script src="~/js/checkout.js" asp-append-version="true"></script>
-}
+                                                            <div class="d-grid gap-2">
+                                                                <button type="button" class="btn btn-modal-confirm" onclick="finalizarPedidoDeVerdade()">
+                                                                    <i class="bi bi-emoji-smile-fill me-2"></i> Entendi, gerar pedido simulado
+                                                                </button>
+                                                                <button type="button" class="btn btn-link text-muted text-decoration-none mt-2 fw-bold" data-bs-dismiss="modal">
+                                                                    Cancelar e voltar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @* --- RODAPÉ ROSA SEPARADO DOS QUADROS BRANCOS --- *@
+                                            <div class="footer-checkout-rosa text-center">
+                                                <div class="container">
+                                                    <p class="text-white fw-bold mb-3 fs-5">Formas de pagamento seguras</p>
+                                                    <div class="d-flex justify-content-center gap-3 mb-4">
+                                                        <img src="~/img/credito.png" alt="Cartão" style="height: 35px; background: white; border-radius: 5px; padding: 2px;">
+                                                            <img src="~/img/debito.png" alt="Débito" style="height: 35px; background: white; border-radius: 5px; padding: 2px;">
+                                                                <img src="~/img/pix.png" alt="Pix" style="height: 35px; background: white; border-radius: 5px; padding: 2px;">
+                                                                    <img src="~/img/boleto.png" alt="Boleto" style="height: 35px; background: white; border-radius: 5px; padding: 2px;">
+                                                                    </div>
+                                                                    <p class="text-white m-0" style="font-size: 0.85rem; opacity: 0.9;">© Fábrica de Sorrisos [2026]. Todos os direitos reservados.</p>
+                                                                </div>
+                                                            </div>
+
+                                                            @section Scripts {
+                                                                <partial name="_ValidationScriptsPartial" />
+                                                                <script src="~/js/checkout.js" asp-append-version="true"></script>
+
+                                                                <script>
+                                                                    let simulaçãoConfirmada = false;
+
+                                                                    document.getElementById('formCheckout').addEventListener('submit', function (event) {
+                                                                        if (!simulaçãoConfirmada) {
+                                                                            event.preventDefault();
+                                                                            var myModal = new bootstrap.Modal(document.getElementById('modalAvisoAcademico'));
+                                                                            myModal.show();
+                                                                        }
+                                                                    });
+
+                                                                    function finalizarPedidoDeVerdade() {
+                                                                        simulaçãoConfirmada = true;
+                                                                        var modalEl = document.getElementById('modalAvisoAcademico');
+                                                                        var modal = bootstrap.Modal.getInstance(modalEl);
+                                                                        modal.hide();
+                                                                        document.getElementById('formCheckout').submit();
+                                                                    }
+                                                                </script>
+                                                            }

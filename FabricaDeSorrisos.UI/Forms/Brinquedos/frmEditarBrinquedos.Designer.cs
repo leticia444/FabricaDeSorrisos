@@ -30,6 +30,8 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
         {
             components = new System.ComponentModel.Container();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -69,6 +71,8 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             cbMarca = new Guna.UI2.WinForms.Guna2ComboBox();
             picImagem = new PictureBox();
             btnTrocarImagem = new Guna.UI2.WinForms.Guna2Button();
+            cbSubCategoria = new Guna.UI2.WinForms.Guna2ComboBox();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             ((System.ComponentModel.ISupportInitialize)picImagem).BeginInit();
             SuspendLayout();
             // 
@@ -81,7 +85,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             guna2CircleButton1.FillColor = Color.Red;
             guna2CircleButton1.Font = new Font("Segoe UI", 9F);
             guna2CircleButton1.ForeColor = Color.White;
-            guna2CircleButton1.Location = new Point(915, 20);
+            guna2CircleButton1.Location = new Point(915, 12);
             guna2CircleButton1.Name = "guna2CircleButton1";
             guna2CircleButton1.ShadowDecoration.CustomizableEdges = customizableEdges1;
             guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -100,7 +104,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             lblNome.BackColor = Color.Transparent;
             lblNome.Font = new Font("Segoe UI", 15F);
-            lblNome.Location = new Point(188, 61);
+            lblNome.Location = new Point(110, 56);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(57, 30);
             lblNome.TabIndex = 4;
@@ -110,7 +114,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             lblPreco.BackColor = Color.Transparent;
             lblPreco.Font = new Font("Segoe UI", 15F);
-            lblPreco.Location = new Point(656, 61);
+            lblPreco.Location = new Point(578, 56);
             lblPreco.Name = "lblPreco";
             lblPreco.Size = new Size(52, 30);
             lblPreco.TabIndex = 5;
@@ -120,7 +124,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             lblEstoque.BackColor = Color.Transparent;
             lblEstoque.Font = new Font("Segoe UI", 15F);
-            lblEstoque.Location = new Point(414, 61);
+            lblEstoque.Location = new Point(336, 56);
             lblEstoque.Name = "lblEstoque";
             lblEstoque.Size = new Size(73, 30);
             lblEstoque.TabIndex = 6;
@@ -130,7 +134,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             lblCategoria.BackColor = Color.Transparent;
             lblCategoria.Font = new Font("Segoe UI", 15F);
-            lblCategoria.Location = new Point(178, 170);
+            lblCategoria.Location = new Point(100, 165);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(88, 30);
             lblCategoria.TabIndex = 7;
@@ -140,7 +144,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             lblMarca.BackColor = Color.Transparent;
             lblMarca.Font = new Font("Segoe UI", 15F);
-            lblMarca.Location = new Point(420, 170);
+            lblMarca.Location = new Point(342, 165);
             lblMarca.Name = "lblMarca";
             lblMarca.Size = new Size(57, 30);
             lblMarca.TabIndex = 8;
@@ -150,7 +154,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             lblFaixaEtária.BackColor = Color.Transparent;
             lblFaixaEtária.Font = new Font("Segoe UI", 15F);
-            lblFaixaEtária.Location = new Point(627, 170);
+            lblFaixaEtária.Location = new Point(549, 165);
             lblFaixaEtária.Name = "lblFaixaEtária";
             lblFaixaEtária.Size = new Size(101, 30);
             lblFaixaEtária.TabIndex = 9;
@@ -160,7 +164,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             lblPersonagem.BackColor = Color.Transparent;
             lblPersonagem.Font = new Font("Segoe UI", 15F);
-            lblPersonagem.Location = new Point(405, 261);
+            lblPersonagem.Location = new Point(100, 254);
             lblPersonagem.Name = "lblPersonagem";
             lblPersonagem.Size = new Size(111, 30);
             lblPersonagem.TabIndex = 10;
@@ -170,7 +174,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             lblDescricao.BackColor = Color.Transparent;
             lblDescricao.Font = new Font("Segoe UI", 15F);
-            lblDescricao.Location = new Point(246, 351);
+            lblDescricao.Location = new Point(168, 346);
             lblDescricao.Name = "lblDescricao";
             lblDescricao.Size = new Size(87, 30);
             lblDescricao.TabIndex = 11;
@@ -179,7 +183,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // txtNome
             // 
             txtNome.BorderRadius = 10;
-            txtNome.CustomizableEdges = customizableEdges18;
+            txtNome.CustomizableEdges = customizableEdges20;
             txtNome.DefaultText = "";
             txtNome.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtNome.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -188,19 +192,19 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             txtNome.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNome.Font = new Font("Segoe UI", 9F);
             txtNome.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtNome.Location = new Point(129, 98);
+            txtNome.Location = new Point(51, 93);
             txtNome.Margin = new Padding(3, 4, 3, 4);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "";
             txtNome.SelectedText = "";
-            txtNome.ShadowDecoration.CustomizableEdges = customizableEdges19;
+            txtNome.ShadowDecoration.CustomizableEdges = customizableEdges21;
             txtNome.Size = new Size(210, 37);
             txtNome.TabIndex = 12;
             // 
             // txtDescricao
             // 
             txtDescricao.BorderRadius = 10;
-            txtDescricao.CustomizableEdges = customizableEdges16;
+            txtDescricao.CustomizableEdges = customizableEdges18;
             txtDescricao.DefaultText = "";
             txtDescricao.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtDescricao.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -209,19 +213,19 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             txtDescricao.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDescricao.Font = new Font("Segoe UI", 9F);
             txtDescricao.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDescricao.Location = new Point(225, 387);
+            txtDescricao.Location = new Point(129, 383);
             txtDescricao.Margin = new Padding(3, 4, 3, 4);
             txtDescricao.Name = "txtDescricao";
             txtDescricao.PlaceholderText = "";
             txtDescricao.SelectedText = "";
-            txtDescricao.ShadowDecoration.CustomizableEdges = customizableEdges17;
+            txtDescricao.ShadowDecoration.CustomizableEdges = customizableEdges19;
             txtDescricao.Size = new Size(481, 131);
             txtDescricao.TabIndex = 13;
             // 
             // txtEstoque
             // 
             txtEstoque.BorderRadius = 10;
-            txtEstoque.CustomizableEdges = customizableEdges14;
+            txtEstoque.CustomizableEdges = customizableEdges16;
             txtEstoque.DefaultText = "";
             txtEstoque.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtEstoque.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -230,19 +234,19 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             txtEstoque.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtEstoque.Font = new Font("Segoe UI", 9F);
             txtEstoque.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEstoque.Location = new Point(354, 97);
+            txtEstoque.Location = new Point(276, 92);
             txtEstoque.Margin = new Padding(3, 4, 3, 4);
             txtEstoque.Name = "txtEstoque";
             txtEstoque.PlaceholderText = "";
             txtEstoque.SelectedText = "";
-            txtEstoque.ShadowDecoration.CustomizableEdges = customizableEdges15;
+            txtEstoque.ShadowDecoration.CustomizableEdges = customizableEdges17;
             txtEstoque.Size = new Size(210, 37);
             txtEstoque.TabIndex = 15;
             // 
             // txtPreço
             // 
             txtPreço.BorderRadius = 10;
-            txtPreço.CustomizableEdges = customizableEdges12;
+            txtPreço.CustomizableEdges = customizableEdges14;
             txtPreço.DefaultText = "";
             txtPreço.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPreço.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -251,19 +255,19 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             txtPreço.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPreço.Font = new Font("Segoe UI", 9F);
             txtPreço.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPreço.Location = new Point(584, 97);
+            txtPreço.Location = new Point(506, 92);
             txtPreço.Margin = new Padding(3, 4, 3, 4);
             txtPreço.Name = "txtPreço";
             txtPreço.PlaceholderText = "";
             txtPreço.SelectedText = "";
-            txtPreço.ShadowDecoration.CustomizableEdges = customizableEdges13;
+            txtPreço.ShadowDecoration.CustomizableEdges = customizableEdges15;
             txtPreço.Size = new Size(210, 37);
             txtPreço.TabIndex = 18;
             // 
             // btnEditar
             // 
             btnEditar.BorderRadius = 10;
-            btnEditar.CustomizableEdges = customizableEdges2;
+            btnEditar.CustomizableEdges = customizableEdges4;
             btnEditar.DisabledState.BorderColor = Color.DarkGray;
             btnEditar.DisabledState.CustomBorderColor = Color.DarkGray;
             btnEditar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -271,9 +275,9 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             btnEditar.FillColor = Color.DeepSkyBlue;
             btnEditar.Font = new Font("Segoe UI", 9F);
             btnEditar.ForeColor = Color.Black;
-            btnEditar.Location = new Point(325, 532);
+            btnEditar.Location = new Point(247, 527);
             btnEditar.Name = "btnEditar";
-            btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            btnEditar.ShadowDecoration.CustomizableEdges = customizableEdges5;
             btnEditar.Size = new Size(220, 46);
             btnEditar.TabIndex = 20;
             btnEditar.Text = "Salvar alterações";
@@ -283,7 +287,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             cbCategoria.BackColor = Color.Transparent;
             cbCategoria.BorderRadius = 10;
-            cbCategoria.CustomizableEdges = customizableEdges10;
+            cbCategoria.CustomizableEdges = customizableEdges12;
             cbCategoria.DrawMode = DrawMode.OwnerDrawFixed;
             cbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCategoria.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -291,9 +295,9 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             cbCategoria.Font = new Font("Segoe UI", 10F);
             cbCategoria.ForeColor = Color.FromArgb(68, 88, 112);
             cbCategoria.ItemHeight = 30;
-            cbCategoria.Location = new Point(129, 206);
+            cbCategoria.Location = new Point(51, 201);
             cbCategoria.Name = "cbCategoria";
-            cbCategoria.ShadowDecoration.CustomizableEdges = customizableEdges11;
+            cbCategoria.ShadowDecoration.CustomizableEdges = customizableEdges13;
             cbCategoria.Size = new Size(200, 36);
             cbCategoria.TabIndex = 21;
             // 
@@ -301,7 +305,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             cbPersonagem.BackColor = Color.Transparent;
             cbPersonagem.BorderRadius = 10;
-            cbPersonagem.CustomizableEdges = customizableEdges8;
+            cbPersonagem.CustomizableEdges = customizableEdges10;
             cbPersonagem.DrawMode = DrawMode.OwnerDrawFixed;
             cbPersonagem.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPersonagem.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -309,9 +313,9 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             cbPersonagem.Font = new Font("Segoe UI", 10F);
             cbPersonagem.ForeColor = Color.FromArgb(68, 88, 112);
             cbPersonagem.ItemHeight = 30;
-            cbPersonagem.Location = new Point(364, 297);
+            cbPersonagem.Location = new Point(51, 290);
             cbPersonagem.Name = "cbPersonagem";
-            cbPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges9;
+            cbPersonagem.ShadowDecoration.CustomizableEdges = customizableEdges11;
             cbPersonagem.Size = new Size(200, 36);
             cbPersonagem.TabIndex = 22;
             // 
@@ -319,7 +323,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             cbFaixaEtaria.BackColor = Color.Transparent;
             cbFaixaEtaria.BorderRadius = 10;
-            cbFaixaEtaria.CustomizableEdges = customizableEdges6;
+            cbFaixaEtaria.CustomizableEdges = customizableEdges8;
             cbFaixaEtaria.DrawMode = DrawMode.OwnerDrawFixed;
             cbFaixaEtaria.DropDownStyle = ComboBoxStyle.DropDownList;
             cbFaixaEtaria.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -327,9 +331,9 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             cbFaixaEtaria.Font = new Font("Segoe UI", 10F);
             cbFaixaEtaria.ForeColor = Color.FromArgb(68, 88, 112);
             cbFaixaEtaria.ItemHeight = 30;
-            cbFaixaEtaria.Location = new Point(584, 206);
+            cbFaixaEtaria.Location = new Point(506, 201);
             cbFaixaEtaria.Name = "cbFaixaEtaria";
-            cbFaixaEtaria.ShadowDecoration.CustomizableEdges = customizableEdges7;
+            cbFaixaEtaria.ShadowDecoration.CustomizableEdges = customizableEdges9;
             cbFaixaEtaria.Size = new Size(200, 36);
             cbFaixaEtaria.TabIndex = 23;
             // 
@@ -337,7 +341,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // 
             cbMarca.BackColor = Color.Transparent;
             cbMarca.BorderRadius = 10;
-            cbMarca.CustomizableEdges = customizableEdges4;
+            cbMarca.CustomizableEdges = customizableEdges6;
             cbMarca.DrawMode = DrawMode.OwnerDrawFixed;
             cbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMarca.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -345,17 +349,17 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             cbMarca.Font = new Font("Segoe UI", 10F);
             cbMarca.ForeColor = Color.FromArgb(68, 88, 112);
             cbMarca.ItemHeight = 30;
-            cbMarca.Location = new Point(363, 206);
+            cbMarca.Location = new Point(285, 201);
             cbMarca.Name = "cbMarca";
-            cbMarca.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            cbMarca.ShadowDecoration.CustomizableEdges = customizableEdges7;
             cbMarca.Size = new Size(200, 36);
             cbMarca.TabIndex = 24;
             // 
             // picImagem
             // 
-            picImagem.Location = new Point(799, 297);
+            picImagem.Location = new Point(780, 72);
             picImagem.Name = "picImagem";
-            picImagem.Size = new Size(140, 140);
+            picImagem.Size = new Size(173, 180);
             picImagem.SizeMode = PictureBoxSizeMode.Zoom;
             picImagem.TabIndex = 25;
             picImagem.TabStop = false;
@@ -363,7 +367,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             // btnTrocarImagem
             // 
             btnTrocarImagem.BorderRadius = 10;
-            btnTrocarImagem.CustomizableEdges = customizableEdges2;
+            btnTrocarImagem.CustomizableEdges = customizableEdges4;
             btnTrocarImagem.DisabledState.BorderColor = Color.DarkGray;
             btnTrocarImagem.DisabledState.CustomBorderColor = Color.DarkGray;
             btnTrocarImagem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -371,12 +375,40 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             btnTrocarImagem.FillColor = Color.Violet;
             btnTrocarImagem.Font = new Font("Segoe UI", 9F);
             btnTrocarImagem.ForeColor = Color.Black;
-            btnTrocarImagem.Location = new Point(799, 446);
+            btnTrocarImagem.Location = new Point(780, 258);
             btnTrocarImagem.Name = "btnTrocarImagem";
-            btnTrocarImagem.ShadowDecoration.CustomizableEdges = customizableEdges3;
-            btnTrocarImagem.Size = new Size(140, 36);
+            btnTrocarImagem.ShadowDecoration.CustomizableEdges = customizableEdges5;
+            btnTrocarImagem.Size = new Size(173, 48);
             btnTrocarImagem.TabIndex = 26;
             btnTrocarImagem.Text = "Trocar imagem";
+            // 
+            // cbSubCategoria
+            // 
+            cbSubCategoria.BackColor = Color.Transparent;
+            cbSubCategoria.BorderRadius = 10;
+            cbSubCategoria.CustomizableEdges = customizableEdges2;
+            cbSubCategoria.DrawMode = DrawMode.OwnerDrawFixed;
+            cbSubCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSubCategoria.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbSubCategoria.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbSubCategoria.Font = new Font("Segoe UI", 10F);
+            cbSubCategoria.ForeColor = Color.FromArgb(68, 88, 112);
+            cbSubCategoria.ItemHeight = 30;
+            cbSubCategoria.Location = new Point(285, 290);
+            cbSubCategoria.Name = "cbSubCategoria";
+            cbSubCategoria.ShadowDecoration.CustomizableEdges = customizableEdges3;
+            cbSubCategoria.Size = new Size(200, 36);
+            cbSubCategoria.TabIndex = 27;
+            // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Segoe UI", 15F);
+            guna2HtmlLabel1.Location = new Point(336, 254);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(138, 30);
+            guna2HtmlLabel1.TabIndex = 28;
+            guna2HtmlLabel1.Text = "Sub-Categorias";
             // 
             // frmEditarBrinquedos
             // 
@@ -384,6 +416,8 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
             ClientSize = new Size(965, 591);
+            Controls.Add(guna2HtmlLabel1);
+            Controls.Add(cbSubCategoria);
             Controls.Add(btnTrocarImagem);
             Controls.Add(picImagem);
             Controls.Add(cbMarca);
@@ -435,5 +469,7 @@ namespace FabricaDeSorrisos.UI.Forms.Brinquedos
         private Guna.UI2.WinForms.Guna2ComboBox cbMarca;
         private System.Windows.Forms.PictureBox picImagem;
         private Guna.UI2.WinForms.Guna2Button btnTrocarImagem;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2ComboBox cbSubCategoria;
     }
 }

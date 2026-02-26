@@ -145,7 +145,7 @@ namespace FabricaDeSorrisos.UI.Forms
             guna2HtmlLabel1.Location = new Point(452, 8);
             guna2HtmlLabel1.Margin = new Padding(3, 2, 3, 2);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(290, 39);
+            guna2HtmlLabel1.Size = new Size(431, 56);
             guna2HtmlLabel1.TabIndex = 17;
             guna2HtmlLabel1.Text = "Catálogo de Brinquedos";
             guna2HtmlLabel1.Click += guna2HtmlLabel1_Click;
@@ -237,7 +237,7 @@ namespace FabricaDeSorrisos.UI.Forms
             lblBrinquedoCadastrado.Font = new Font("Segoe UI", 15F);
             lblBrinquedoCadastrado.Location = new Point(489, 46);
             lblBrinquedoCadastrado.Name = "lblBrinquedoCadastrado";
-            lblBrinquedoCadastrado.Size = new Size(215, 30);
+            lblBrinquedoCadastrado.Size = new Size(291, 39);
             lblBrinquedoCadastrado.TabIndex = 23;
             lblBrinquedoCadastrado.Text = "Brinquedos Cadastrados";
             // 
@@ -255,7 +255,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnResetar.Location = new Point(992, 213);
             btnResetar.Name = "btnResetar";
             btnResetar.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnResetar.Size = new Size(180, 45);
+            btnResetar.Size = new Size(138, 45);
             btnResetar.TabIndex = 24;
             btnResetar.Text = "Resetar Busca/Filtro";
             // 
@@ -275,7 +275,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnFiltrar.Location = new Point(759, 213);
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnFiltrar.Size = new Size(180, 45);
+            btnFiltrar.Size = new Size(150, 45);
             btnFiltrar.TabIndex = 25;
             btnFiltrar.Text = "Filtrar";
             // 
@@ -295,7 +295,7 @@ namespace FabricaDeSorrisos.UI.Forms
             btnBuscar.Location = new Point(522, 213);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnBuscar.Size = new Size(180, 45);
+            btnBuscar.Size = new Size(150, 45);
             btnBuscar.TabIndex = 26;
             btnBuscar.Text = "Buscar";
             // 
