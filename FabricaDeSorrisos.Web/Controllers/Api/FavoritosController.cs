@@ -6,45 +6,39 @@ using System.Security.Claims;
 
 namespace FabricaDeSorrisos.Web.Controllers.Api;
 
-[Route("api/[controller]")]
+[Route("api/Favoritos")]
 [ApiController]
-[Authorize] // Só aceita quem tem o Cookie de login
-public class FavoritosController : ControllerBase
+public class FavoritosControllerAPI : ControllerBase
 {
     private readonly IFavoritoRepository _favoritoRepo;
-    private readonly IBrinquedoRepository _brinquedoRepo;
 
-    public FavoritosController(IFavoritoRepository favoritoRepo, IBrinquedoRepository brinquedoRepo)
+    public FavoritosControllerAPI(IFavoritoRepository favoritoRepo)
     {
         _favoritoRepo = favoritoRepo;
-        _brinquedoRepo = brinquedoRepo;
     }
 
+    // --- 1. AÇÃO DE FAVORITAR / DESFAVORITAR (Ao clicar no botão) ---
     [HttpPost("toggle/{brinquedoId}")]
+    [Authorize] // Apenas usuários logados
     public async Task<IActionResult> Toggle(int brinquedoId)
     {
-        // 1. Pega o ID que gravamos no Cookie (Claims)
         var usuarioIdClaim = User.FindFirstValue("UsuarioSistemaId");
-
-        if (string.IsNullOrEmpty(usuarioIdClaim))
-            return BadRequest(new { success = false, message = "Erro ao identificar usuário." });
+        if (string.IsNullOrEmpty(usuarioIdClaim)) return Unauthorized();
 
         int usuarioId = int.Parse(usuarioIdClaim);
 
-        // 2. Verifica se o brinquedo existe
-        if (!await _brinquedoRepo.ExistsAsync(brinquedoId))
-            return NotFound(new { success = false, message = "Brinquedo não encontrado." });
-
-        // 3. Lógica do Toggle (Se tem, tira. Se não tem, põe)
+        // Verifica se já existe nos favoritos
         var favoritoExistente = await _favoritoRepo.GetByUsuarioEBrinquedoAsync(usuarioId, brinquedoId);
 
         if (favoritoExistente != null)
         {
+            // Se já é favorito, remove (desfavorita)
             await _favoritoRepo.DeleteAsync(favoritoExistente);
-            return Ok(new { success = true, action = "removed", message = "Removido dos favoritos!" });
+            return Ok(new { success = true, action = "removed" });
         }
         else
         {
+            // Se não é, adiciona
             var novoFavorito = new Favorito
             {
                 UsuarioId = usuarioId,
@@ -52,7 +46,28 @@ public class FavoritosController : ControllerBase
                 DataFavoritado = DateTime.Now
             };
             await _favoritoRepo.AddAsync(novoFavorito);
-            return Ok(new { success = true, action = "added", message = "Adicionado aos favoritos!" });
+            return Ok(new { success = true, action = "added" });
         }
+    }
+
+    // --- 2. O MÉTODO NOVO: BUSCA OS IDs DOS FAVORITOS (Ao carregar a página) ---
+    [HttpGet("meus-ids")]
+    public async Task<IActionResult> ObterMeusFavoritosIds()
+    {
+        var usuarioIdClaim = User.FindFirstValue("UsuarioSistemaId");
+
+        // Se o usuário não estiver logado, apenas retorna uma lista vazia e a tela continua com corações vazios
+        if (string.IsNullOrEmpty(usuarioIdClaim))
+            return Ok(new List<int>());
+
+        int usuarioId = int.Parse(usuarioIdClaim);
+
+        // Busca todos os favoritos do cliente no banco
+        var favoritos = await _favoritoRepo.GetByUsuarioIdAsync(usuarioId);
+
+        // Separa apenas os números de ID dos brinquedos para o JavaScript ler fácil
+        var ids = favoritos.Select(f => f.BrinquedoId).ToList();
+
+        return Ok(ids);
     }
 }
