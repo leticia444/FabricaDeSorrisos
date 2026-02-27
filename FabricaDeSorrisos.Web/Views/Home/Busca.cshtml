@@ -1,24 +1,30 @@
-﻿
-@model FabricaDeSorrisos.Web.Models.CatalogViewModel
+﻿@model FabricaDeSorrisos.Web.Models.CatalogViewModel
 @{
     ViewData["Title"] = "Resultados da Busca";
 
     // Lógica para definir a cor das Subcategorias conforme a Categoria principal selecionada
     string corSubcategoria = "#6f42c1"; // Roxo (Cor padrão quando nenhuma categoria é selecionada)
+    string bgAtivo = "#6f42c1"; // Fundo ativo
 
     if (Model.CategoriaId.HasValue)
     {
         switch (Model.CategoriaId.Value)
         {
-            case 1: corSubcategoria = "#ff69b4"; break; // Brinquedos -> Rosa
-            case 2: corSubcategoria = "#f3dd24"; break; // Educativos -> Amarelo
-            case 3: corSubcategoria = "#000269"; break; // Jogos -> Azul Escuro
-            case 4: corSubcategoria = "#28a745"; break; // Pets -> Verde
+            case 1: corSubcategoria = "#ff69b4"; bgAtivo = "#ff69b4"; break; // Brinquedos -> Rosa
+            case 2: corSubcategoria = "#f3dd24"; bgAtivo = "#f3dd24"; break; // Educativos -> Amarelo
+            case 3: corSubcategoria = "#000269"; bgAtivo = "#000269"; break; // Jogos -> Azul Escuro
+            case 4: corSubcategoria = "#28a745"; bgAtivo = "#28a745"; break; // Pets -> Verde
+            case 5: corSubcategoria = "#3c0145"; bgAtivo = "#3c0145"; break; // Fantasias -> Roxo Forte (#3c0145)
+            case 6: corSubcategoria = "#ff7f00"; bgAtivo = "#ff7f00"; break; // Pelúcias -> Laranja
+            case 7: corSubcategoria = "#ff0000"; bgAtivo = "#ff0000"; break; // Esportes -> Vermelho
         }
     }
 
     // Se estiver na tela de Ofertas (via filtro de ofertas)
-    if (Context.Request.Query["ofertas"] == "true") { corSubcategoria = "#ff0000"; } // Vermelho
+    if (Context.Request.Query["ofertas"] == "true") { 
+        corSubcategoria = "#808080"; // Cinza
+        bgAtivo = "#808080"; // Cinza
+    } 
 }
 
 <div class="container py-4">
@@ -62,11 +68,6 @@
                                              class="img-fluid" alt="@item.Nome"
                                              style="height: 180px; object-fit: contain;">
                                     </a>
-                                    @*<button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
-                                            onclick="toggleFavorito(this, @item.Id)"
-                                            data-auth="@User.Identity.IsAuthenticated.ToString().ToLower()">
-                                        <i class="bi bi-heart fs-5 text-secondary"></i>
-                                    </button>*@
 
                                     <button class="btn btn-light rounded-circle position-absolute top-0 end-0 m-0 shadow-sm btn-favorito"
                                             onclick="toggleFavorito(this, @item.Id)"
@@ -280,7 +281,8 @@
         }
 
         .btn-filter-custom.active {
-            background-color: @corSubcategoria !important;
+            background-color: @bgAtivo !important;
+            border-color: @corSubcategoria !important;
             color: white !important;
             font-weight: bold;
         }
@@ -325,6 +327,5 @@
             background-color: #000269 !important;
             color: white !important;
         }
-
 
 </style>

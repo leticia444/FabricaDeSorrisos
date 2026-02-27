@@ -81,7 +81,7 @@ public static class DatabaseSeeder
                 new FaixaEtaria { Descricao = "5 a 7 anos (Alfabetização)" },
                 new FaixaEtaria { Descricao = "7 a 10 anos (Crianças maiores)" },
                 new FaixaEtaria { Descricao = "+10 anos (Pré-adolescentes)" },
-                new FaixaEtaria { Descricao = "Uso Animal (Pets)" } // <--- ADICIONADO PARA OS PETS
+                new FaixaEtaria { Descricao = "Uso Animal (Pets)" }
             );
             await context.SaveChangesAsync();
         }
@@ -99,7 +99,11 @@ public static class DatabaseSeeder
                 new Marca { Nome = "Estrela" },
                 new Marca { Nome = "Candide" },
                 new Marca { Nome = "Grow" },
-                new Marca { Nome = "Linha Pet" } // <--- ADICIONADO PARA OS PETS
+                new Marca { Nome = "Linha Pet" },
+                new Marca { Nome = "DC Comics" },
+                new Marca { Nome = "Sanrio" },
+                new Marca { Nome = "Spalding" },
+                new Marca { Nome = "Nike" }
             );
             await context.SaveChangesAsync();
         }
@@ -128,14 +132,14 @@ public static class DatabaseSeeder
         if (!context.Categorias.Any())
         {
             var catBrinquedos = new Categoria { Nome = "Brinquedos" };
-            var catPelucias = new Categoria { Nome = "Pelucias" };
-            var catFantasias = new Categoria { Nome = "Fantasias" };
             var catEducativos = new Categoria { Nome = "Educativos" };
             var catJogos = new Categoria { Nome = "Jogos" };
-            var catEsportes = new Categoria { Nome = "Esportes" };
             var catPets = new Categoria { Nome = "Pets" };
+            var catFantasias = new Categoria { Nome = "Fantasias" };
+            var catPelucias = new Categoria { Nome = "Pelucias" };
+            var catEsportes = new Categoria { Nome = "Esportes" };
 
-            context.Categorias.AddRange(catBrinquedos, catEducativos, catJogos, catPets);
+            context.Categorias.AddRange(catBrinquedos, catEducativos, catJogos, catPets, catFantasias, catPelucias, catEsportes);
             await context.SaveChangesAsync();
 
             context.SubCategorias.AddRange(
@@ -147,12 +151,19 @@ public static class DatabaseSeeder
                 new SubCategoria { Nome = "Alfabetização e Números", CategoriaId = catEducativos.Id },
                 new SubCategoria { Nome = "Tabuleiro", CategoriaId = catJogos.Id },
                 new SubCategoria { Nome = "Cartas", CategoriaId = catJogos.Id },
-
-                // --- SUBCATEGORIAS DE PETS ADICIONADAS AQUI PARA NUNCA MAIS SUMIREM ---
                 new SubCategoria { Nome = "Pássaros", CategoriaId = catPets.Id },
                 new SubCategoria { Nome = "Gatos", CategoriaId = catPets.Id },
                 new SubCategoria { Nome = "Cachorros", CategoriaId = catPets.Id },
-                new SubCategoria { Nome = "Roedores", CategoriaId = catPets.Id }
+                new SubCategoria { Nome = "Roedores", CategoriaId = catPets.Id },
+                new SubCategoria { Nome = "Heróis", CategoriaId = catFantasias.Id },
+                new SubCategoria { Nome = "Heroínas", CategoriaId = catFantasias.Id },
+                new SubCategoria { Nome = "Princesas", CategoriaId = catFantasias.Id },
+                new SubCategoria { Nome = "Personagens de Pelúcia", CategoriaId = catPelucias.Id },
+                new SubCategoria { Nome = "Pelúcias Tradicionais", CategoriaId = catPelucias.Id },
+                new SubCategoria { Nome = "Almofadas de Pescoço", CategoriaId = catPelucias.Id },
+                new SubCategoria { Nome = "Basquete", CategoriaId = catEsportes.Id },
+                new SubCategoria { Nome = "Artes Marciais", CategoriaId = catEsportes.Id },
+                new SubCategoria { Nome = "Futebol", CategoriaId = catEsportes.Id }
             );
             await context.SaveChangesAsync();
         }
@@ -168,6 +179,9 @@ public static class DatabaseSeeder
             var estrela = await context.Marcas.FirstAsync(m => m.Nome == "Estrela");
             var fisher = await context.Marcas.FirstAsync(m => m.Nome == "Fisher-Price");
             var marcaPet = await context.Marcas.FirstAsync(m => m.Nome == "Linha Pet");
+            var dc = await context.Marcas.FirstAsync(m => m.Nome == "DC Comics");
+            var nike = await context.Marcas.FirstAsync(m => m.Nome == "Nike");
+            var spalding = await context.Marcas.FirstAsync(m => m.Nome == "Spalding");
 
             var starWars = await context.Personagens.FirstAsync(p => p.Nome == "Star Wars");
             var barbie = await context.Personagens.FirstAsync(p => p.Nome == "Barbie");
@@ -179,18 +193,29 @@ public static class DatabaseSeeder
             var catJogos = await context.Categorias.FirstAsync(c => c.Nome == "Jogos");
             var catEducativos = await context.Categorias.FirstAsync(c => c.Nome == "Educativos");
             var catPets = await context.Categorias.FirstAsync(c => c.Nome == "Pets");
+            var catFantasias = await context.Categorias.FirstAsync(c => c.Nome == "Fantasias");
+            var catPelucias = await context.Categorias.FirstAsync(c => c.Nome == "Pelucias");
+            var catEsportes = await context.Categorias.FirstAsync(c => c.Nome == "Esportes");
 
-            var subBlocos = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Blocos de Montar");
-            var subBonecas = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Bonecas e Acessórios");
-            var subVeiculos = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Veículos e Pistas");
-            var subAcao = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Ação e Aventura");
-            var subTabuleiro = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Tabuleiro");
-            var subEducativo = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome.Contains("Alfabetização"));
-
-            var subPassaros = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Pássaros");
-            var subGatos = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Gatos");
-            var subCachorros = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Cachorros");
-            var subRoedores = await context.SubCategorias.FirstOrDefaultAsync(s => s.Nome == "Roedores");
+            var subBlocos = await context.SubCategorias.FirstAsync(s => s.Nome == "Blocos de Montar");
+            var subBonecas = await context.SubCategorias.FirstAsync(s => s.Nome == "Bonecas e Acessórios");
+            var subVeiculos = await context.SubCategorias.FirstAsync(s => s.Nome == "Veículos e Pistas");
+            var subAcao = await context.SubCategorias.FirstAsync(s => s.Nome == "Ação e Aventura");
+            var subTabuleiro = await context.SubCategorias.FirstAsync(s => s.Nome == "Tabuleiro");
+            var subEducativo = await context.SubCategorias.FirstAsync(s => s.Nome.Contains("Alfabetização"));
+            var subPassaros = await context.SubCategorias.FirstAsync(s => s.Nome == "Pássaros");
+            var subGatos = await context.SubCategorias.FirstAsync(s => s.Nome == "Gatos");
+            var subCachorros = await context.SubCategorias.FirstAsync(s => s.Nome == "Cachorros");
+            var subRoedores = await context.SubCategorias.FirstAsync(s => s.Nome == "Roedores");
+            var subHerois = await context.SubCategorias.FirstAsync(s => s.Nome == "Heróis");
+            var subHeroinas = await context.SubCategorias.FirstAsync(s => s.Nome == "Heroínas");
+            var subPrincesas = await context.SubCategorias.FirstAsync(s => s.Nome == "Princesas");
+            var subPersPelucia = await context.SubCategorias.FirstAsync(s => s.Nome == "Personagens de Pelúcia");
+            var subPeluciaTrad = await context.SubCategorias.FirstAsync(s => s.Nome == "Pelúcias Tradicionais");
+            var subAlmofada = await context.SubCategorias.FirstAsync(s => s.Nome == "Almofadas de Pescoço");
+            var subBasquete = await context.SubCategorias.FirstAsync(s => s.Nome == "Basquete");
+            var subArtesMarciais = await context.SubCategorias.FirstAsync(s => s.Nome == "Artes Marciais");
+            var subFutebol = await context.SubCategorias.FirstAsync(s => s.Nome == "Futebol");
 
             var faixa5a7 = await context.FaixasEtarias.FirstAsync(f => f.Descricao.Contains("5 a 7"));
             var faixa7a10 = await context.FaixasEtarias.FirstAsync(f => f.Descricao.Contains("7 a 10"));
@@ -200,177 +225,63 @@ public static class DatabaseSeeder
 
             var produtos = new List<Brinquedo>
             {
-                // PRODUTOS ORIGINAIS
-                new Brinquedo {
-                    Nome = "Lego Star Wars Millennium Falcon", Descricao = "A nave mais famosa da galáxia em blocos de montar.",
-                    Preco = 899.90m, Estoque = 10, Ativo = true,
-                    MarcaId = lego.Id, CategoriaId = catBrinquedos.Id, SubCategoriaId = subBlocos?.Id, PersonagemId = starWars.Id, FaixaEtariaId = faixa10mais.Id,
-                    ImagemUrl = "/imagens/produtos/legostarwars.jpg"
-                },
-                new Brinquedo {
-                    Nome = "Barbie Casa dos Sonhos", Descricao = "A casa da Barbie com 3 andares e piscina.",
-                    Preco = 1299.90m, Estoque = 5, Ativo = true,
-                    MarcaId = mattel.Id, CategoriaId = catBrinquedos.Id, SubCategoriaId = subBonecas?.Id, PersonagemId = barbie.Id, FaixaEtariaId = faixa5a7.Id,
-                    ImagemUrl = "/imagens/produtos/barbiecasadossonhos.png"
-                },
-                new Brinquedo {
-                    Nome = "Pista Hot Wheels Ataque do Tubarão", Descricao = "Fuja do tubarão gigante com seus carrinhos mais rápidos!",
-                    Preco = 249.90m, Estoque = 20, Ativo = true,
-                    MarcaId = mattel.Id, CategoriaId = catBrinquedos.Id, SubCategoriaId = subVeiculos?.Id, PersonagemId = hotWheels.Id, FaixaEtariaId = faixa5a7.Id,
-                    ImagemUrl = "/imagens/produtos/hotwheels.webp"
-                },
-                new Brinquedo {
-                    Nome = "Banco Imobiliário Clássico", Descricao = "O jogo de negócios mais famoso do mundo.",
-                    Preco = 129.90m, Estoque = 30, Ativo = true,
-                    MarcaId = estrela.Id, CategoriaId = catJogos.Id, SubCategoriaId = subTabuleiro?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa7a10.Id,
-                    ImagemUrl = "/imagens/produtos/bancoimobiliario.jpg"
-                },
-                new Brinquedo {
-                    Nome = "Boneco Homem-Aranha Titan Hero", Descricao = "Figura de ação articulada de 30cm.",
-                    Preco = 99.90m, Estoque = 50, Ativo = true,
-                    MarcaId = hasbro.Id, CategoriaId = catBrinquedos.Id, SubCategoriaId = subAcao?.Id, PersonagemId = aranha.Id, FaixaEtariaId = faixa5a7.Id,
-                    ImagemUrl = "/imagens/produtos/homemaranha.jpg"
-                },
-                new Brinquedo {
-                    Nome = "Cachorrinho Aprender e Brincar", Descricao = "Ensina palavras, cores e sentimentos com músicas.",
-                    Preco = 199.90m, Estoque = 15, Ativo = true,
-                    MarcaId = fisher.Id, CategoriaId = catEducativos.Id, SubCategoriaId = subEducativo?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaBebe.Id,
-                    ImagemUrl = "/imagens/produtos/cachorrinho.jpg"
-                },
+                // ORIGINAIS E JOGOS
+                new Brinquedo { Nome = "Lego Star Wars Millennium Falcon", Descricao = "Nave espacial lendária em blocos.", Preco = 899.90m, Estoque = 10, Ativo = true, MarcaId = lego.Id, CategoriaId = catBrinquedos.Id, SubCategoriaId = subBlocos.Id, PersonagemId = starWars.Id, FaixaEtariaId = faixa10mais.Id, ImagemUrl = "/imagens/produtos/legostarwars.jpg" },
+                new Brinquedo { Nome = "Barbie Casa dos Sonhos", Descricao = "Casa completa com 3 andares.", Preco = 1299.90m, Estoque = 5, Ativo = true, MarcaId = mattel.Id, CategoriaId = catBrinquedos.Id, SubCategoriaId = subBonecas.Id, PersonagemId = barbie.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/barbiecasadossonhos.png" },
+                new Brinquedo { Nome = "Pista Hot Wheels Ataque do Tubarão", Descricao = "Desafio de velocidade radical.", Preco = 249.90m, Estoque = 20, Ativo = true, MarcaId = mattel.Id, CategoriaId = catBrinquedos.Id, SubCategoriaId = subVeiculos.Id, PersonagemId = hotWheels.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/hotwheels.webp" },
+                new Brinquedo { Nome = "Banco Imobiliário Clássico", Descricao = "O clássico jogo de estratégia financeira.", Preco = 129.90m, Estoque = 30, Ativo = true, MarcaId = estrela.Id, CategoriaId = catJogos.Id, SubCategoriaId = subTabuleiro.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa7a10.Id, ImagemUrl = "/imagens/produtos/bancoimobiliario.jpg" },
+                new Brinquedo { Nome = "Boneco Homem-Aranha Titan Hero", Descricao = "Figura de ação articulada 30cm.", Preco = 99.90m, Estoque = 50, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catBrinquedos.Id, SubCategoriaId = subAcao.Id, PersonagemId = aranha.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/homemaranha.jpg" },
+                new Brinquedo { Nome = "Cachorrinho Aprender e Brincar", Descricao = "Brinquedo educativo com músicas.", Preco = 199.90m, Estoque = 15, Ativo = true, MarcaId = fisher.Id, CategoriaId = catEducativos.Id, SubCategoriaId = subEducativo.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaBebe.Id, ImagemUrl = "/imagens/produtos/cachorrinho.jpg" },
 
-                // PÁSSAROS
-                new Brinquedo {
-                    Nome = "Bicicleta para pássaros", Descricao = "Bicicleta interativa projetada especialmente para o treinamento e entretenimento de pássaros. Desenvolve a inteligência, o equilíbrio e a coordenação motora do seu pet voador.",
-                    Preco = 45.90m, Estoque = 20, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/bicicleta.webp"
-                },
-                new Brinquedo {
-                    Nome = "Skate para pássaros", Descricao = "Mini skate divertido ideal para manter seu pássaro ativo e estimulado. Perfeito para calopsitas e periquitos, possui lixa levemente antiderrapante e rodinhas seguras.",
-                    Preco = 35.90m, Estoque = 25, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/skate.webp"
-                },
-                new Brinquedo {
-                    Nome = "Kit pega argola e palito para pássaros", Descricao = "Kit educativo e interativo desenvolvido para estimular a inteligência e destreza mental do seu pássaro. O pacote inclui uma base firme, argolas coloridas e palitos de encaixe.",
-                    Preco = 55.00m, Estoque = 15, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/palitoEArgola.webp"
-                },
-                new Brinquedo {
-                    Nome = "Banheira para pássaros", Descricao = "Banheira prática e espaçosa para a higiene e o refresco do seu pássaro nos dias quentes. Extremamente fácil de higienizar, pode ser acoplada nas grades da gaiola.",
-                    Preco = 29.90m, Estoque = 30, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/banheira.jpg"
-                },
-                new Brinquedo {
-                    Nome = "Playground gigante para pássaros", Descricao = "Centro de diversão completo em madeira natural com poleiros, balanços, escadas verticais e brinquedos de bicar. Proporciona um ambiente rico e estimulante.",
-                    Preco = 189.90m, Estoque = 10, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/playgroundPassaro.webp"
-                },
-                new Brinquedo {
-                    Nome = "Playground twister para roedores e pássaros", Descricao = "Playground versátil em formato twister que garante horas de diversão. Fabricado com madeira natural atóxica e cordas de algodão coloridas.",
-                    Preco = 129.90m, Estoque = 12, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/playground.jpg"
-                },
+                // --- TODOS OS 17 ITENS DE PETS RESTAURADOS ---
+                new Brinquedo { Nome = "Bicicleta para pássaros", Descricao = "Treinamento interativo.", Preco = 45.90m, Estoque = 20, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/bicicleta.webp" },
+                new Brinquedo { Nome = "Skate para pássaros", Descricao = "Mini skate divertido.", Preco = 35.90m, Estoque = 25, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/skate.webp" },
+                new Brinquedo { Nome = "Kit pega argola e palito", Descricao = "Estimula a inteligência.", Preco = 55.00m, Estoque = 15, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/palitoEArgola.webp" },
+                new Brinquedo { Nome = "Banheira para pássaros", Descricao = "Higiene prática.", Preco = 29.90m, Estoque = 30, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/banheira.jpg" },
+                new Brinquedo { Nome = "Playground gigante pássaros", Descricao = "Centro de diversão completo.", Preco = 189.90m, Estoque = 10, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/playgroundPassaro.webp" },
+                new Brinquedo { Nome = "Playground twister", Descricao = "Diversão em formato twister.", Preco = 129.90m, Estoque = 12, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subPassaros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/playground.jpg" },
+                new Brinquedo { Nome = "Torre bolinhas corre corre", Descricao = "Trilhos para gatos.", Preco = 79.90m, Estoque = 22, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/corre.webp" },
+                new Brinquedo { Nome = "Túnel com bolinha", Descricao = "Curiosidade felina.", Preco = 89.90m, Estoque = 18, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/tunelGaro.webp" },
+                new Brinquedo { Nome = "Kit brinquedos gatos", Descricao = "3 unidades de diversão.", Preco = 39.90m, Estoque = 40, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/bolaGato.webp" },
+                new Brinquedo { Nome = "Arranhador estrela mola", Descricao = "Resistente e divertido.", Preco = 115.00m, Estoque = 15, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/arranhador.webp" },
+                new Brinquedo { Nome = "Bola interativa", Descricao = "Move-se sozinha.", Preco = 65.90m, Estoque = 25, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/interativa.jpg" },
+                new Brinquedo { Nome = "Bola de tênis", Descricao = "Clássico para cães.", Preco = 19.90m, Estoque = 50, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/bolaDog.webp" },
+                new Brinquedo { Nome = "Osso rosa", Descricao = "Borracha TPR atóxica.", Preco = 25.90m, Estoque = 35, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/osso.webp" },
+                new Brinquedo { Nome = "Galo que apita", Descricao = "Brinquedo sonoro divertido.", Preco = 42.50m, Estoque = 28, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/galo.webp" },
+                new Brinquedo { Nome = "Macaco pelúcia apito", Descricao = "Macia e segura para cães.", Preco = 55.90m, Estoque = 20, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/macaco.webp" },
+                new Brinquedo { Nome = "Toca para roedores", Descricao = "Escuro e seguro.", Preco = 38.00m, Estoque = 18, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/toca.webp" },
+                new Brinquedo { Nome = "Cenoura roedores", Descricao = "Desgaste natural dentes.", Preco = 22.90m, Estoque = 40, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/cenoura.webp" },
+                new Brinquedo { Nome = "Roda roedores", Descricao = "Exercício silencioso.", Preco = 65.90m, Estoque = 15, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/roda.png" },
+                new Brinquedo { Nome = "Moinho interativo", Descricao = "Madeira sustentável.", Preco = 75.00m, Estoque = 10, Ativo = true, MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id, ImagemUrl = "/imagens/produtos/moinho.png" },
 
-                // GATOS
-                new Brinquedo {
-                    Nome = "Torre bolinhas corre corre", Descricao = "Torre interativa com 3 andares de trilhos e bolinhas coloridas que giram sem parar. Desenvolvida para aguçar o instinto de caça do gato.",
-                    Preco = 79.90m, Estoque = 22, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/corre.webp"
-                },
-                new Brinquedo {
-                    Nome = "Túnel com bolinha", Descricao = "Túnel dobrável e flexível que desperta a curiosidade do seu felino. Com uma bolinha de pelúcia pendurada na entrada, é o esconderijo perfeito.",
-                    Preco = 89.90m, Estoque = 18, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/tunelGaro.webp"
-                },
-                new Brinquedo {
-                    Nome = "Kit brinquedos para gatos com 3 unidades", Descricao = "Conjunto especial de diversão contendo texturas e barulhos variados. Perfeito para o enriquecimento ambiental da sua casa.",
-                    Preco = 39.90m, Estoque = 40, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/bolaGato.webp"
-                },
-                new Brinquedo {
-                    Nome = "Arranhador de estrela com mola", Descricao = "Arranhador altamente resistente com base estilizada em formato de estrela e uma mola vertical flexível com pompom na ponta.",
-                    Preco = 115.00m, Estoque = 15, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/arranhador.webp"
-                },
-                new Brinquedo {
-                    Nome = "Bola interativa para gatos e cachorros", Descricao = "Bola inteligente automática que se move sozinha de forma aleatória pelo ambiente. Ela desvia de obstáculos e simula presa viva.",
-                    Preco = 65.90m, Estoque = 25, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subGatos?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/interativa.jpg"
-                },
-
-                // CACHORROS
-                new Brinquedo {
-                    Nome = "Bola de tênis", Descricao = "A bola clássica e super resistente, perfeita para jogar, buscar e morder em praças ou áreas abertas.",
-                    Preco = 19.90m, Estoque = 50, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/bolaDog.webp"
-                },
-                new Brinquedo {
-                    Nome = "Osso rosa", Descricao = "Osso fabricado em borracha TPR maciça e 100% atóxica, desenvolvido para suportar mordidas fortes de cães de médio porte.",
-                    Preco = 25.90m, Estoque = 35, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/osso.webp"
-                },
-                new Brinquedo {
-                    Nome = "Galo que apita", Descricao = "Brinquedo sonoro hilário em formato de galo de borracha. Emite um som alto e divertido ao ser apertado ou mordido.",
-                    Preco = 42.50m, Estoque = 28, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/galo.webp"
-                },
-                new Brinquedo {
-                    Nome = "Macaco pelúcia com apito", Descricao = "Pelúcia extremamente macia, aconchegante e segura para cães. Fabricada com costuras reforçadas e um apito interno embutido.",
-                    Preco = 55.90m, Estoque = 20, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/macaco.webp"
-                },
-                new Brinquedo {
-                    Nome = "Bola interativa para gatos e cachorros", Descricao = "Bola inteligente automática que se move sozinha de forma aleatória pelo ambiente. Ela desvia de obstáculos e simula presa viva.",
-                    Preco = 65.90m, Estoque = 25, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subCachorros?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/interativa.jpg"
-                },
-
-                // ROEDORES
-                new Brinquedo {
-                    Nome = "Toca para roedores", Descricao = "Toca espaçosa, aconchegante e escura, oferecendo o refúgio perfeito para hamsters e porquinhos-da-índia.",
-                    Preco = 38.00m, Estoque = 18, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/toca.webp"
-                },
-                new Brinquedo {
-                    Nome = "Cenoura para roedores", Descricao = "Brinquedo lúdico em formato de cenoura, 100% natural e seguro. Auxilia no desgaste contínuo e vital dos dentes dos roedores.",
-                    Preco = 22.90m, Estoque = 40, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/cenoura.webp"
-                },
-                new Brinquedo {
-                    Nome = "Roda para roedores", Descricao = "Roda de exercícios essencial com sistema de rolamento super silencioso. Ideal para manter o seu roedor em excelente forma física.",
-                    Preco = 65.90m, Estoque = 15, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/roda.png"
-                },
-                new Brinquedo {
-                    Nome = "Moinho interativo", Descricao = "Moinho giratório feito de madeira sustentável, projetado estrategicamente para o enriquecimento ambiental de gaiolas.",
-                    Preco = 75.00m, Estoque = 10, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/moinho.png"
-                },
-                new Brinquedo {
-                    Nome = "Playground twister para roedores e pássaros", Descricao = "Playground versátil em formato twister. Fabricado com madeira natural atóxica e cordas de algodão, é o brinquedo ideal para roer e escalar.",
-                    Preco = 129.90m, Estoque = 12, Ativo = true,
-                    MarcaId = marcaPet.Id, CategoriaId = catPets.Id, SubCategoriaId = subRoedores?.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaPet.Id,
-                    ImagemUrl = "/imagens/produtos/playground.jpg"
-                }
+                // --- NOVOS 27 ITENS (FANTASIAS, PELUCIAS, ESPORTES) ---
+                new Brinquedo { Nome = "Almofada Hello Kitty", Descricao = "Conforto Sanrio.", Preco = 69.90m, Estoque = 15, Ativo = true, MarcaId = estrela.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subAlmofada.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaBebe.Id, ImagemUrl = "/imagens/produtos/hellok.webp" },
+                new Brinquedo { Nome = "Almofada Mickey Mouse", Descricao = "Estilo Disney.", Preco = 69.90m, Estoque = 15, Ativo = true, MarcaId = estrela.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subAlmofada.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaBebe.Id, ImagemUrl = "/imagens/produtos/mickey.webp" },
+                new Brinquedo { Nome = "Almofada Stitch", Descricao = "Aconchego espacial.", Preco = 75.00m, Estoque = 10, Ativo = true, MarcaId = estrela.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subAlmofada.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaBebe.Id, ImagemUrl = "/imagens/produtos/stichalmofada.webp" },
+                new Brinquedo { Nome = "Pelúcia Furby", Descricao = "Amigo interativo.", Preco = 249.90m, Estoque = 8, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subPersPelucia.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/furby.webp" },
+                new Brinquedo { Nome = "Pelúcia Sonic", Descricao = "Velocidade em pelúcia.", Preco = 119.90m, Estoque = 20, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subPersPelucia.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/sonic.webp" },
+                new Brinquedo { Nome = "Pelúcia Stitch", Descricao = "Fofura azul.", Preco = 129.90m, Estoque = 12, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subPersPelucia.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/stich.webp" },
+                new Brinquedo { Nome = "Pelúcia Urso Rosa", Descricao = "Clássico para abraçar.", Preco = 89.90m, Estoque = 25, Ativo = true, MarcaId = estrela.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subPeluciaTrad.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaBebe.Id, ImagemUrl = "/imagens/produtos/rosa.webp" },
+                new Brinquedo { Nome = "Pelúcia Urso Panda", Descricao = "Acompanha penico.", Preco = 149.90m, Estoque = 10, Ativo = true, MarcaId = estrela.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subPeluciaTrad.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaBebe.Id, ImagemUrl = "/imagens/produtos/panda.webp" },
+                new Brinquedo { Nome = "Pelúcia Capivara", Descricao = "Amigável e macia.", Preco = 79.90m, Estoque = 30, Ativo = true, MarcaId = estrela.Id, CategoriaId = catPelucias.Id, SubCategoriaId = subPeluciaTrad.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixaBebe.Id, ImagemUrl = "/imagens/produtos/capivara.webp" },
+                new Brinquedo { Nome = "Fantasia Homem de Ferro", Descricao = "Traje heróico Marvel.", Preco = 199.90m, Estoque = 10, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subHerois.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/ferro.webp" },
+                new Brinquedo { Nome = "Fantasia Homem Aranha", Descricao = "Máscara inclusa.", Preco = 179.90m, Estoque = 15, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subHerois.Id, PersonagemId = aranha.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/aranha.webp" },
+                new Brinquedo { Nome = "Fantasia Capitão América", Descricao = "Uniforme com escudo.", Preco = 189.90m, Estoque = 12, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subHerois.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/capitao.webp" },
+                new Brinquedo { Nome = "Fantasia Lady Bug", Descricao = "Aventuras em Paris.", Preco = 159.90m, Estoque = 18, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subHeroinas.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/ladybug.webp" },
+                new Brinquedo { Nome = "Fantasia Vestido Batman", Descricao = "Versão charmosa DC.", Preco = 169.90m, Estoque = 10, Ativo = true, MarcaId = dc.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subHeroinas.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/batman.webp" },
+                new Brinquedo { Nome = "Fantasia Mulher Maravilha", Descricao = "Clássico Themyscira.", Preco = 185.00m, Estoque = 12, Ativo = true, MarcaId = dc.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subHeroinas.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/mulher.webp" },
+                new Brinquedo { Nome = "Fantasia Princesa Moana", Descricao = "Aventura nas ilhas.", Preco = 199.90m, Estoque = 10, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subPrincesas.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/moana.webp" },
+                new Brinquedo { Nome = "Fantasia Rapunzel", Descricao = "Vestido longo encantado.", Preco = 210.00m, Estoque = 10, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subPrincesas.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/rapunzel.webp" },
+                new Brinquedo { Nome = "Fantasia Elsa", Descricao = "Rainha da Neve.", Preco = 229.90m, Estoque = 15, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catFantasias.Id, SubCategoriaId = subPrincesas.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/elsa.webp" },
+                new Brinquedo { Nome = "Dinossauro Boxeador", Descricao = "Inflável de bater divertido.", Preco = 89.90m, Estoque = 20, Ativo = true, MarcaId = estrela.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subArtesMarciais.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/dinossauro.webp" },
+                new Brinquedo { Nome = "Alvos de Pancada", Descricao = "Círculos para treinamento.", Preco = 115.00m, Estoque = 15, Ativo = true, MarcaId = hasbro.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subArtesMarciais.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/pancada.webp" },
+                new Brinquedo { Nome = "Luvas de Boxe Infantil", Descricao = "Proteção confortável.", Preco = 75.00m, Estoque = 30, Ativo = true, MarcaId = estrela.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subArtesMarciais.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/luvas.webp" },
+                new Brinquedo { Nome = "Bola Futebol Palmeiras", Descricao = "Oficial para craques.", Preco = 99.90m, Estoque = 50, Ativo = true, MarcaId = nike.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subFutebol.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa7a10.Id, ImagemUrl = "/imagens/produtos/palmeiras.webp" },
+                new Brinquedo { Nome = "Bola Futebol Real Madry", Descricao = "Edição especial torcedor.", Preco = 109.90m, Estoque = 40, Ativo = true, MarcaId = nike.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subFutebol.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa7a10.Id, ImagemUrl = "/imagens/produtos/realmadry.webp" },
+                new Brinquedo { Nome = "Kit 2 Traves", Descricao = "Fácil de montar.", Preco = 145.00m, Estoque = 25, Ativo = true, MarcaId = estrela.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subFutebol.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa7a10.Id, ImagemUrl = "/imagens/produtos/kit2traves.webp" },
+                new Brinquedo { Nome = "Jogo Basquete Mesa", Descricao = "Escala reduzida divertida.", Preco = 59.90m, Estoque = 35, Ativo = true, MarcaId = estrela.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subBasquete.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa7a10.Id, ImagemUrl = "/imagens/produtos/basquetemesa.webp" },
+                new Brinquedo { Nome = "Cesta Basquete Princesas", Descricao = "Ajustável para crianças.", Preco = 129.90m, Estoque = 12, Ativo = true, MarcaId = mattel.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subBasquete.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa5a7.Id, ImagemUrl = "/imagens/produtos/cestaprincesas.webp" },
+                new Brinquedo { Nome = "Bola Basquete Azul", Descricao = "Resistente para quadras.", Preco = 85.00m, Estoque = 45, Ativo = true, MarcaId = spalding.Id, CategoriaId = catEsportes.Id, SubCategoriaId = subBasquete.Id, PersonagemId = semPers.Id, FaixaEtariaId = faixa7a10.Id, ImagemUrl = "/imagens/produtos/bolaazul.webp" }
             };
 
             context.Brinquedos.AddRange(produtos);

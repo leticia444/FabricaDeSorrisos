@@ -110,12 +110,20 @@
                         </div>
 
                         <div class="d-flex flex-column gap-3 mt-3">
-                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
-                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
-                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
-                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
-                            <a class="mobile-cat-link" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
-                        </div>
+    <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
+    @* Adicionando Pelúcias e Fantasias após Brinquedos *@
+    <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="6">Pelúcias</a>
+    <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="5">Fantasias</a>
+    
+    <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
+    <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
+    <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
+    
+    @* Adicionando Esportes após Jogos *@
+    <a class="mobile-cat-link" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="7">Esportes</a>
+    
+    <a class="mobile-cat-link" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
+</div>
 
                         <div class="text-center mt-4">
                             <button class="btn border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menuMobileDropdown">
@@ -179,11 +187,20 @@
             <div class="bg-fabrica border-top border-white border-opacity-25 shadow-sm">
                 <div class="container">
                     <nav class="nav justify-content-between py-2 align-items-center">
-                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "1" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
-                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "2" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
-                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "4" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
-                        <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "3" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
-                        <a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
+                      <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "1" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="1">Brinquedos</a>
+    
+    @* Novas Categorias após Brinquedos *@
+    <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "6" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="6">Pelúcias</a>
+    <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "5" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="5">Fantasias</a>
+
+    <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "2" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="2">Educativos</a>
+    <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "4" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="4">Pets</a>
+    <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "3" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="3">Jogos</a>
+    
+    @* Esportes após Jogos *@
+    <a class="nav-link-custom @(Context.Request.Query["categoriaId"] == "7" ? "active" : "")" asp-controller="Home" asp-action="Busca" asp-route-categoriaId="7">Esportes</a>
+
+    <a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
 
                         @* --- CORREÇÃO AQUI: CHECA POR TODAS AS VARIAÇÕES POSSÍVEIS --- *@
                         @if (User.Identity.IsAuthenticated && (User.IsInRole("Administrador") || User.IsInRole("ADMINISTRADOR") || User.IsInRole("Admin") || User.IsInRole("Gerente")))
